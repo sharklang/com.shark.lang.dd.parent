@@ -39,6 +39,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 	@Check
 	def checkTypes(Attribute attr) {
 		val attrDataType = attr.dataType
+		// checks the size between bracket, not the array size
 		checkSize(attrDataType.value, attr.attributeSize, attr, DdPackage.Literals.ATTRIBUTE__ATTRIBUTE_SIZE)
 		val exprType = exprValidator.getExpressionType(attr.defaultValue)
 		if (exprType !== null) {
@@ -54,16 +55,15 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 					// the final error message if types are different is in the manage date function
 					manageDateTimeFormats(attrDataType.value, exprType.value, attr, attr.defaultValue,
 						DdPackage.Literals.ATTRIBUTE__DEFAULT_VALUE)
-					// check that if the variable is an array it has a list of smaller size as a default
-					checkArray(attr.arraySize, attr, attr.defaultValue, DdPackage.Literals.ATTRIBUTE__DEFAULT_VALUE)
 				}
 			}
 		}
+		// check that if the variable is an array it has a list of smaller size as a default
+		checkArray(attr.arraySize, attr, attr.defaultValue, DdPackage.Literals.ATTRIBUTE__DEFAULT_VALUE)
 	}
 
 //check that declared type are aligned to expression used for declaration
 //on attribute and constant defaultValue
-//TODO for constants add the size deduction? Or remove control? not possible for dec...
 	@Check
 	def checkTypes(Constant cst) {
 		val cstDataType = cst.dataType
@@ -81,11 +81,10 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 				// the final error message if types are different is in the manage date function
 				manageDateTimeFormats(cstDataType.value, exprType.value, cst, cst.defaultValue,
 					DdPackage.Literals.CONSTANT__DEFAULT_VALUE)
-				// check that if the variable is an array it has a list of smaller size as a default
-				checkArray(cst.arraySize, cst, cst.defaultValue, DdPackage.Literals.CONSTANT__DEFAULT_VALUE)
-
 			}
 		}
+		// check that if the variable is an array it has a list of smaller size as a default
+		checkArray(cst.arraySize, cst, cst.defaultValue, DdPackage.Literals.CONSTANT__DEFAULT_VALUE)
 	}
 
 	// when used, the types are checked already, only size is verified of array
@@ -112,7 +111,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 				if (leftSize < rightSize) {
 					error("array size is too small to store list size", context, eRef)
 				}
-				
+
 				if (leftSize > rightSize) {
 					warning("array size is too large for list size", context, eRef)
 				}
@@ -229,36 +228,39 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 				}
 			} else {
 				if ((mainDataType == DataType.STAMP_VALUE) && (exprType == DataType.STR_VALUE)) {
-				// could be ok despite the difference of type, unless it is not the right format 
-				// at that stage it can either be a list of strings to init an array of Times or a single Timestamp and a string
-				if (defaultValue instanceof StrValue) { // case of a simple Timestamp=string
-					if (!checkStringTimestampFormat((defaultValue as StrValue).value)) {
-						error("Invalid Timestamp Format: it should be YYYYMMDD.HHMMSS.ssss", context, eRef)
-					}
-				} else { // case of a list
-					var firstExprElt = (defaultValue as ListExpression).getLeft
-					if (firstExprElt instanceof StrValue) {
-						// continue to check Timestamp validity of first
-						if (!checkStringTimestampFormat((firstExprElt as StrValue).value)) {
+					// could be ok despite the difference of type, unless it is not the right format 
+					// at that stage it can either be a list of strings to init an array of Times or a single Timestamp and a string
+					if (defaultValue instanceof StrValue) { // case of a simple Timestamp=string
+						if (!checkStringTimestampFormat((defaultValue as StrValue).value)) {
 							error("Invalid Timestamp Format: it should be YYYYMMDD.HHMMSS.ssss", context, eRef)
 						}
-						// and then the list
-						for (exprElt : (defaultValue as ListExpression).getListElts) {
-							val right = exprElt.right
-							if (right instanceof StrValue) {
-								// continue to check Timestamp validity of first
-								if (!checkStringTimestampFormat((right as StrValue).value)) {
-									error("Invalid Timestamp Format: it should be YYYYMMDD.HHMMSS.ssss", context, eRef)
-								}
-							} else { // this would cover all other types of lists, like list of strings
-								error("Invalid Timestamp Array Init: it should be a list of simple Timestamp strings", context,
-									eRef)
+					} else { // case of a list
+						var firstExprElt = (defaultValue as ListExpression).getLeft
+						if (firstExprElt instanceof StrValue) {
+							// continue to check Timestamp validity of first
+							if (!checkStringTimestampFormat((firstExprElt as StrValue).value)) {
+								error("Invalid Timestamp Format: it should be YYYYMMDD.HHMMSS.ssss", context, eRef)
 							}
+							// and then the list
+							for (exprElt : (defaultValue as ListExpression).getListElts) {
+								val right = exprElt.right
+								if (right instanceof StrValue) {
+									// continue to check Timestamp validity of first
+									if (!checkStringTimestampFormat((right as StrValue).value)) {
+										error("Invalid Timestamp Format: it should be YYYYMMDD.HHMMSS.ssss", context,
+											eRef)
+									}
+								} else { // this would cover all other types of lists, like list of strings
+									error(
+										"Invalid Timestamp Array Init: it should be a list of simple Timestamp strings",
+										context, eRef)
+								}
+							}
+						} else { // this would cover all other types of list with numbers or ranges (in which case left is null)
+							error("Invalid Timestamp Array Init: it should be a list of simple Timestamp strings",
+								context, eRef)
 						}
-					} else { // this would cover all other types of list with numbers or ranges (in which case left is null)
-						error("Invalid Timestamp Array Init: it should be a list of simple Timestamp strings", context, eRef)
 					}
-				}
 				} else {
 					// in that case we are sure this is a type error, not a date time or timestamp init
 					error("Invalid initialization: expression type mismatch with attribute or constant", context, eRef)
