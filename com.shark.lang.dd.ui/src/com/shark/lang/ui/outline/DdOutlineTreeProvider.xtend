@@ -3,7 +3,11 @@
  */
 package com.shark.lang.ui.outline
 
-import com.shark.lang.dd.Comment
+import com.shark.lang.dd.Attribute
+import com.shark.lang.dd.CheckExpression
+import com.shark.lang.dd.Constant
+import com.shark.lang.dd.Constraint
+import com.shark.lang.dd.Entity
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
@@ -15,10 +19,15 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
  */
 class DdOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
-	//to filter out comment nodes from the outline view as it looks messy otherwise
+	//to filter out all nodes from the outline view except Entity, Attribute, Constant, Constraint and CheckExpression
 	override _createChildren(IOutlineNode parentNode, EObject modelElement) {
 		for (EObject childElement : modelElement.eContents())
-			if (!(childElement instanceof Comment)) {
+			if ((childElement instanceof Entity) || 
+				 (childElement instanceof Attribute) ||
+				 (childElement instanceof Constant) ||
+				 (childElement instanceof CheckExpression) ||
+				 (childElement instanceof Constraint)  
+			) {
 				createNode(parentNode, childElement);
 				}
 	}

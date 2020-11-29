@@ -7,6 +7,7 @@ import com.google.inject.Inject
 import com.shark.lang.dd.Attribute
 import com.shark.lang.dd.BinaryExpression
 import com.shark.lang.dd.Constant
+import com.shark.lang.dd.Constraint
 import com.shark.lang.dd.Entity
 import com.shark.lang.dd.ListExpression
 import com.shark.lang.dd.ListExpressionElt
@@ -57,8 +58,12 @@ class DdLabelProvider extends DefaultEObjectLabelProvider {
 	def text(Constant ele) {
 		'Cst '+ele.name
 	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+
+   def image(Attribute ele) {
+	'attribute.png'
+	}
+	
+	def image(Constraint ele) {
+	'constraint.png'
+	}
 }
