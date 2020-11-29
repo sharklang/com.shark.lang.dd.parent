@@ -31,7 +31,7 @@ import org.eclipse.xtext.validation.Check
 import org.eclipse.xtext.validation.EValidatorRegistrar
 
 /**
- * The class focuses on validating expression in check expression of the dd grammar
+ * The class focuses on validating expression in check and initialization expression and of the dd grammar
  * It does the type validation of expressions and validate operators
  * To process Expressions EObjects only once in this recursive expression validation process, boolean were added 
  * to SharkExpression objects in the model to be used here. They use synthetic never instanciated tokens just to create members.
@@ -335,7 +335,7 @@ class DdExpressionValidator extends AbstractDeclarativeValidator {
 	}
 
 // returns the type and also calls the check type function recursively if required, so generates errors too
-// note that bits are not allowed
+// note that bits are not allowed as there is not expressions with bits, only storage and string operations
 	def DataType getExpressionType(SharkExpression e) {
 		switch (e) {
 			StrValue | ChrValue:

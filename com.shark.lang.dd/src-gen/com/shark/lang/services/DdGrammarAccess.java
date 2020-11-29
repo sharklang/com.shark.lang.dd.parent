@@ -40,21 +40,22 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		////EOL tokens are added after an indent constant or no indent and a new line
 		////IDENT triggered after a Comment so generates EOL 
 		////with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-		////TODO improve display of outline with name attribute
-		////TODO document design and classes and some design decisions in the grammar as comments here
-		////TODO test expressions interactively and build non passing JUNIT tests using excel random
+		////TODO bug on chr array size in cst decl
 		////TODO check cast date format
 		////TODO check empty string const on like
 		////TODO validation of cross entity checks if not 1-1
-		////TODO customize error messages for parser and lexer: eg constant en maj
-		////TODO do a first output
+		////TODO check max size of strings in const declaration
+		////TODO check precision of dec in const decl
 		////TODO update formatter
+		////TODO customize error messages for parser and lexer: eg constant en maj
+		////TODO document design and classes and some design decisions in the grammar as comments here
+		////TODO test expressions interactively and build non passing JUNIT tests using excel random
+		////TODO do a first output
 		////TODO semantic highlighting example, true / false in yellow and decl in bold
 		////TODO add formats on top of checks to be used by like operator: 5A003a-"H" with positions. formats will be usable to split
 		////TODO test date operations + 1*DAY... basing on the generator error management
 		////TODO add min, max, avg
 		////TODO ad validation of size vs. real constant or init value size, like wise for list size, decimal precision...
-		////TODO move to github
 		////TODO add content assist
 		////TODO split into reusable grammar and create sd and sk languages
 		////TODO implement math a bit more: implement the expression precision check and rounding routines
@@ -63,7 +64,6 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		////Validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
 		////TODO check and neutralize useless comment associator
 		////TODO check that all text is assigned
-		////TODO change the outline view with several levels: summary pretty and full. the full lone would look like the 
 		////ecore sample editor. editor read again the XtextRessource so normal that my boolean are not there. they would have to 
 		////be persisted in hidden text... But core code generation maybe the in memory AST is the same as in validation
 		////to test.
@@ -2290,21 +2290,22 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	////EOL tokens are added after an indent constant or no indent and a new line
 	////IDENT triggered after a Comment so generates EOL 
 	////with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-	////TODO improve display of outline with name attribute
-	////TODO document design and classes and some design decisions in the grammar as comments here
-	////TODO test expressions interactively and build non passing JUNIT tests using excel random
+	////TODO bug on chr array size in cst decl
 	////TODO check cast date format
 	////TODO check empty string const on like
 	////TODO validation of cross entity checks if not 1-1
-	////TODO customize error messages for parser and lexer: eg constant en maj
-	////TODO do a first output
+	////TODO check max size of strings in const declaration
+	////TODO check precision of dec in const decl
 	////TODO update formatter
+	////TODO customize error messages for parser and lexer: eg constant en maj
+	////TODO document design and classes and some design decisions in the grammar as comments here
+	////TODO test expressions interactively and build non passing JUNIT tests using excel random
+	////TODO do a first output
 	////TODO semantic highlighting example, true / false in yellow and decl in bold
 	////TODO add formats on top of checks to be used by like operator: 5A003a-"H" with positions. formats will be usable to split
 	////TODO test date operations + 1*DAY... basing on the generator error management
 	////TODO add min, max, avg
 	////TODO ad validation of size vs. real constant or init value size, like wise for list size, decimal precision...
-	////TODO move to github
 	////TODO add content assist
 	////TODO split into reusable grammar and create sd and sk languages
 	////TODO implement math a bit more: implement the expression precision check and rounding routines
@@ -2313,7 +2314,6 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	////Validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
 	////TODO check and neutralize useless comment associator
 	////TODO check that all text is assigned
-	////TODO change the outline view with several levels: summary pretty and full. the full lone would look like the 
 	////ecore sample editor. editor read again the XtextRessource so normal that my boolean are not there. they would have to 
 	////be persisted in hidden text... But core code generation maybe the in memory AST is the same as in validation
 	////to test.

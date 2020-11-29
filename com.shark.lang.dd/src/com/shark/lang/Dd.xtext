@@ -9,19 +9,16 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 //IDENT triggered after a Comment so generates EOL 
 //with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
 //TODO bug on chr array size in cst decl
-//TODO improve display of outline with name attribute
-//TODO move to github
-//TODO document design and classes and some design decisions in the grammar as comments here
-//TODO test expressions interactively and build non passing JUNIT tests using excel random
 //TODO check cast date format
 //TODO check empty string const on like
 //TODO validation of cross entity checks if not 1-1
-//TODO customize error messages for parser and lexer: eg constant en maj
 //TODO check max size of strings in const declaration
 //TODO check precision of dec in const decl
-//TODO check 
-//TODO do a first output
 //TODO update formatter
+//TODO customize error messages for parser and lexer: eg constant en maj
+//TODO document design and classes and some design decisions in the grammar as comments here
+//TODO test expressions interactively and build non passing JUNIT tests using excel random
+//TODO do a first output
 //TODO semantic highlighting example, true / false in yellow and decl in bold
 //TODO add formats on top of checks to be used by like operator: 5A003a-"H" with positions. formats will be usable to split
 //TODO test date operations + 1*DAY... basing on the generator error management
