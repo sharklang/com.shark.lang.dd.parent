@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.shark.lang.dd
+Bundle-ManifestVersion: 2
+Bundle-Name: com.shark.lang.dd
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: com.shark.lang.dd; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.14.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-14
+Import-Package: org.apache.log4j
+Export-Package: com.shark.lang,
+ com.shark.lang.scoping,
+ com.shark.lang.validation,
+ com.shark.lang.dd.impl,
+ com.shark.lang.dd,
+ com.shark.lang.parser.antlr.internal,
+ com.shark.lang.serializer,
+ com.shark.lang.generator,
+ com.shark.lang.dd.util,
+ com.shark.lang.parser.antlr,
+ com.shark.lang.parser.antlr.lexer,
+ com.shark.lang.services

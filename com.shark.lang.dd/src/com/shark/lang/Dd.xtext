@@ -1,0 +1,326 @@
+grammar com.shark.lang.Dd hidden(WS, CONT, IDENT)
+
+generate dd "http://www.sharklang.org/lang/Dd"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+//no empty entity and so mandatory BEGIN/END structure
+//BEGIN / END added when there is an indent level change
+//EOL tokens are added after an indent constant or no indent and a new line
+//IDENT triggered after a Comment so generates EOL 
+//with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
+//TODO bug on chr array size in cst decl
+//TODO improve display of outline with name attribute
+//TODO move to github
+//TODO document design and classes and some design decisions in the grammar as comments here
+//TODO test expressions interactively and build non passing JUNIT tests using excel random
+//TODO check cast date format
+//TODO check empty string const on like
+//TODO validation of cross entity checks if not 1-1
+//TODO customize error messages for parser and lexer: eg constant en maj
+//TODO check max size of strings in const declaration
+//TODO check precision of dec in const decl
+//TODO check 
+//TODO do a first output
+//TODO update formatter
+//TODO semantic highlighting example, true / false in yellow and decl in bold
+//TODO add formats on top of checks to be used by like operator: 5A003a-"H" with positions. formats will be usable to split
+//TODO test date operations + 1*DAY... basing on the generator error management
+//TODO add min, max, avg
+//TODO ad validation of size vs. real constant or init value size, like wise for list size, decimal precision...
+//TODO add content assist
+//TODO split into reusable grammar and create sd and sk languages
+//TODO implement math a bit more: implement the expression precision check and rounding routines
+//TODO in this context consider removing int and stick to general dec(n,0)?
+//TODO as for constant they need to be calculatable expressions at compile time so use groovy or other in 
+//Validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
+//TODO check and neutralize useless comment associator
+//TODO check that all text is assigned
+//ecore sample editor. editor read again the XtextRessource so normal that my boolean are not there. they would have to 
+//be persisted in hidden text... But core code generation maybe the in memory AST is the same as in validation
+//to test.
+DataModelFragment returns DataModelFragment:
+	(constants+=Constant)*
+	(entities+=Entity)*
+	(constraints+=Constraint)*;
+
+	/////////////////////////
+//Statement 0: constants
+Constant returns Constant:
+	(extraAttrDesc+=LineComment)*
+	dataType=DataType
+	(attributeSize=AttributeSize)?
+	(arraySize=ArraySize)?
+	name=CSTID
+	('=' defaultValue=SharkExpression)
+	(attrDesc=TrailComment)
+	EOL;
+
+	//////////////////////////////////////////
+//First Block of statements: entity block
+Entity returns Entity:
+	(entityDescLines+=LineComment)+
+	name=OBJID ('->' extends=[Entity])? ':'
+	BEGIN
+	(attributes+=Attribute)+
+	(relationships+=Relationship)*
+	END;
+
+	////////////Statement 1: Attributes
+
+//all is initialized and we'll see if that creates perf issue.
+//the unset value constant is either zero or Min and "". it can be overridden in ddt
+Attribute returns Attribute:
+	(extraAttrDesc+=LineComment)*
+	dataType=DataType (attributeSize=AttributeSize)? 
+	(arraySize=ArraySize)?
+	name=ID
+	('=' defaultValue=SharkExpression)?
+	(primaryKey?='pk')?
+	(mandatory?='!')?
+	(attrDesc=TrailComment) //mandatory description of the Attribute
+	//	(nullable?='!null')? 
+	EOL;
+
+//valid for all types except date time and bool. for int, str and char it can be min max, for dec precision is mandatory
+AttributeSize returns AttributeSize:
+	('(' length=INT (',' precision=INT)? ')');
+	
+//not only for constants in this dd context, but also attribute. TODO check cassandra and flatbuuffer impact
+ArraySize returns ArraySize:
+	'[' size=INT ']'
+;
+
+	////////////Statement 2: Relationships
+Relationship returns Relationship:
+	cardi1=RangeExpression name=ID cardi2=RangeExpression linkTo=[Entity|OBJID]
+	(relDesc=TrailComment) //mandatory description of the Attribute
+	EOL;
+
+	///////////////////////////////////////////////
+//Second Block of statements: check constraints
+Constraint returns Constraint:
+	(chkDescLines+=LineComment)+
+	name=CHKID ':'
+	BEGIN
+	(check+=CheckExpression)+
+	END;
+
+	////////////Statement 3: constraints. If same name as entity they are intrinsic and executed systematically
+//at each creation time of the object. The other need to be invoke: check #Customer_Account_Crosschecks.all or .<id>
+CheckExpression returns CheckExpression:
+	(chkDesc+=LineComment)+
+	name=ID expr=SharkExpression EOL;
+
+	///////////////////////////////////////////////
+//reusable rules (expression, datatype rules...)
+//below expression are very badly written but easy to understand
+//Start was done with only Binary expressions with brackets and list expressions were added to avoid putting
+//brackets everywhere. This still limits what is allowed to be written but makes it a style that is quite readable
+//avoiding priority and errors of operators
+//Note; syntactic predicate below works only if written in order of priority
+//operation on datetime var: all is done on a time stamp and rounded/cut to keep only the interesting
+//part like only the hours or the date... hence all date compatible
+SharkExpression returns SharkExpression:
+	=> RangeExpression |
+	=> AddExpression | => MultExpression |
+	=> AndExpression | => OrExpression |
+	=> CatExpression | => ListExpression | 
+	BinaryExpression | UnaryExpression |
+	TerminalExpression | IdentifierExpression;
+
+BinaryExpression returns BinaryExpression:
+	'(' left=SharkExpression op=BinaryOperator right=SharkExpression ')' //uses name for better display in outline
+	//add boolean to the Expression Object to manage validation in a more efficient way and avoid recursive reprocessing
+	(numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?;
+
+UnaryExpression returns UnaryExpression:
+	op=UnaryOperator '(' left=SharkExpression ')'
+	//add boolean to the Expression Object to manage validation in a more efficient way and avoid recursive reprocessing
+	(numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?;
+
+AddExpression returns AddExpression:
+	'(' left=SharkExpression op=('+' | '-') right=SharkExpression (addElts+=AddExpressionElt)+ ')'
+	//to avoid recursive reprocessing
+	(checked?=NULL)?;
+
+AddExpressionElt returns AddExpressionElt:
+	op=('+' | '-') right=SharkExpression;
+
+MultExpression returns MultExpression:
+	'(' left=SharkExpression op=('*') right=SharkExpression (multElts+=MultExpressionElt)+ ')'
+	//to avoid recursive reprocessing
+	(checked?=NULL)?;
+
+MultExpressionElt returns MultExpressionElt:
+	op=('*') right=SharkExpression;
+
+AndExpression returns AndExpression:
+	'(' left=SharkExpression op=('and') right=SharkExpression (andElts+=AndExpressionElt)+ ')'
+	(checked?=NULL)?;
+
+AndExpressionElt returns AndExpressionElt:
+	op=('and') right=SharkExpression;
+
+OrExpression returns OrExpression:
+	'(' left=SharkExpression op=('or') right=SharkExpression (orElts+=OrExpressionElt)+ ')'
+	(checked?=NULL)?;
+
+OrExpressionElt returns OrExpressionElt:
+	op=('or') right=SharkExpression;
+
+CatExpression returns CatExpression:
+	'(' left=SharkExpression op=('&') right=SharkExpression (catElts+=CatExpressionElt)+ ')'
+	(checked?=NULL)?;
+
+CatExpressionElt returns CatExpressionElt:
+	op=('&') right=SharkExpression;
+	
+ListExpression returns ListExpression:
+	op='(' left=SharkExpression (ListElts+=ListExpressionElt)+ ')' 
+	(numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?;
+
+ListExpressionElt returns ListExpressionElt:
+	op=(',') right=SharkExpression;
+	
+RangeExpression returns ListExpression:
+	{ListExpression} '(' range=RANGE ')'
+	(numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)? |
+	{ListExpression} => '(' range=RANGEINF ')'
+	(numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)? 
+;
+
+enum BinaryOperator:
+	opOr='or' | opAnd='and' | opAdd='+' | opMin='-' | opMult='*' | opDiv='/'
+	| opMod='%' | opEq='==' | opGt='>' | opLt='<' | opLte='<=' | opGte='>=' | opPow='^'
+	| opLike='like' | opDif='!=' | opCat='&'	| opIn='in' | opStxt='stxt' | opRound='round' 
+;
+
+enum UnaryOperator:
+	opNot='not' | opNeg='-' | strCast='str' | intCast='int' | decCast='dec' | dateCast='date' |
+	timeCast='time' | opLen='len' | stampCast='stamp';
+
+TerminalExpression returns TerminalExpression:
+	({StrValue} value=STR |
+	{IntValue} value=INT |
+	{DecValue} value=DEC |
+	{ChrValue} value=CHR |
+	{CstValue} value=[Constant|CSTID] |
+	{BoolValue} value=Boolean |
+	{UnsetValue} value=Unset);
+
+IdentifierExpression returns TerminalExpression:
+	{IdentifierExpression} value=[Attribute|QualifiedName];
+
+QualifiedName:
+	(OBJID '.')? ID;
+
+LineComment:
+	{Comment} line=CMT EOL;
+
+TrailComment:
+	{Comment} line=CMT;
+
+enum Unset:
+	unset='unset';
+
+enum Boolean:
+	trueCst='true' |
+	falseCst='false';
+
+	//the unset value is used to process/validate types in validator but should not (cannot?) be typed in editor
+enum DataType:
+	str='str' | dec='dec' | date='date' | time='time' | chr='chr' | int='int' | stamp='stamp' | bits='bits' | bool='bool'
+	|
+	unset='\uFFA0\uFFA0\uFFA0';
+	//unset here allows to use the value in the validation logic but it will never be created by lexer
+
+	/////////////////////////////////////////////////////////
+//TERMINALS: TODO export in a re-usable sharkdsl grammar
+
+//The following synthetic tokens are used for the indentation-aware blocks
+//they are declared here and injected in the lexer in DDTokenSource Class
+//to create from indentation position block begin and end token as well as statement end EOL token
+terminal BEGIN:
+	'synthetic:BEGIN'; // increase indentation
+terminal END:
+	'synthetic:END'; // decrease indentation
+terminal EOL:
+	'synthetic:EOL'; // allow to have a classical set of parser rule with end statement token like ; but not typed
+terminal NULL:
+	'synthetic:NULL'; // to create token as booleans and use them in validation logic
+
+//reused below
+terminal fragment HEX:
+	('0'..'9' | 'A'..'F' | 'a'..'f');
+
+terminal fragment NUM:
+	('0'..'9')+;
+
+terminal fragment UNI:
+	'u' HEX HEX HEX HEX;
+
+terminal fragment ESC:
+	'\\' ('t' | 'n' | 'r' | '"' | '\\' | UNI);
+
+terminal fragment ASCII:
+	('!' | '#' | '$' | '%' | '&' | "'" | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | '0'..'9' | ' ' | ':' | ';' | '<'
+	| '=' | '>' | '?' | '@' | 'A'..'Z' | '[' | ']' | '^' | '_' | '`' | 'a'..'z' | '{' | '|' | '}' | '~');
+
+terminal fragment NL:
+	('\r'? '\n');
+
+	//beware terminals are consumed in this order of precedence
+//and lexer eats the longest possibility. caret removed
+	//string literals don't allow all escapes only common ones, and only double quotes
+terminal CHR returns ecore::EChar:
+	'"' (ESC | ASCII)? '"';
+
+	//string literals don't allow all escapes only common ones, and only double quotes
+//and still need to put Unicode support for special char so \u is in
+//with string compaction, non ASCII char is not encouraged in code/literals --> Unicode only
+terminal STR returns ecore::EString:
+	'"' (ESC | ASCII)+ '"';
+
+terminal RANGEINF returns ecore::EString:
+	NUM '..n'
+;
+
+terminal RANGE returns ecore::EString:
+	NUM '..' NUM
+;
+
+terminal CHKID returns ecore::EString:
+	'#' ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+
+terminal CSTID returns ecore::EString:
+	('A'..'Z') (('A'..'Z') | '_' | '0'..'9')*;
+
+terminal OBJID returns ecore::EString:
+	('A'..'Z') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+
+	//for members and local variables and functions
+terminal ID returns ecore::EString:
+	('a'..'z' | '_' | '~') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+
+	//although xtext doc advises datatype rule. kept like that if it fails will be educational, TBC
+terminal DEC returns ecore::EBigDecimal:
+	NUM '.' NUM;
+
+terminal INT returns ecore::EInt:
+	NUM;
+
+terminal CONT returns ecore::EString:
+	'\\' NL+;
+
+	//convention with xtext and the WS terminal for indentation. I separate from blanks
+terminal IDENT returns ecore::EString:
+	(NL)+ ('\t')*;
+
+terminal CMT returns ecore::EString:
+	"'" !('\r' | '\n')*;
+
+terminal WS returns ecore::EString:
+	(' ' | '\t')+;
+
+terminal ANY_OTHER returns ecore::EChar:
+	.;

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.shark.lang.dd.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: com.shark.lang.dd.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: com.shark.lang.dd.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.shark.lang.dd,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-14
+Export-Package: com.shark.lang.ide.contentassist.antlr.internal,
+ com.shark.lang.ide.contentassist.antlr.lexer,
+ com.shark.lang.ide.contentassist.antlr
