@@ -58,6 +58,8 @@
       <genEnumLiterals ecoreEnumLiteral="Dd.ecore#//DataType/unset"/>
     </genEnums>
     <genClasses ecoreClass="Dd.ecore#//DataModelFragment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//DataModelFragment/modelDesc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//DataModelFragment/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//DataModelFragment/constants"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//DataModelFragment/entities"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//DataModelFragment/constraints"/>
@@ -118,25 +120,25 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//BinaryExpression/left"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//BinaryExpression/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//BinaryExpression/right"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//BinaryExpression/numType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//BinaryExpression/strType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//BinaryExpression/dateType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//BinaryExpression/boolType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//BinaryExpression/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//BinaryExpression/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//BinaryExpression/length"/>
     </genClasses>
     <genClasses ecoreClass="Dd.ecore#//UnaryExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//UnaryExpression/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//UnaryExpression/left"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//UnaryExpression/numType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//UnaryExpression/strType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//UnaryExpression/dateType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//UnaryExpression/boolType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//UnaryExpression/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//UnaryExpression/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//UnaryExpression/length"/>
     </genClasses>
     <genClasses ecoreClass="Dd.ecore#//AddExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//AddExpression/left"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//AddExpression/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//AddExpression/right"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//AddExpression/addElts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//AddExpression/checked"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//AddExpression/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//AddExpression/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//AddExpression/length"/>
     </genClasses>
     <genClasses ecoreClass="Dd.ecore#//AddExpressionElt">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//AddExpressionElt/op"/>
@@ -147,7 +149,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//MultExpression/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//MultExpression/right"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//MultExpression/multElts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//MultExpression/checked"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//MultExpression/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//MultExpression/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//MultExpression/length"/>
     </genClasses>
     <genClasses ecoreClass="Dd.ecore#//MultExpressionElt">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//MultExpressionElt/op"/>
@@ -158,7 +162,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//AndExpression/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//AndExpression/right"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//AndExpression/andElts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//AndExpression/checked"/>
     </genClasses>
     <genClasses ecoreClass="Dd.ecore#//AndExpressionElt">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//AndExpressionElt/op"/>
@@ -169,7 +172,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//OrExpression/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//OrExpression/right"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//OrExpression/orElts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//OrExpression/checked"/>
     </genClasses>
     <genClasses ecoreClass="Dd.ecore#//OrExpressionElt">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//OrExpressionElt/op"/>
@@ -180,7 +182,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//CatExpression/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//CatExpression/right"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//CatExpression/catElts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//CatExpression/checked"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//CatExpression/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//CatExpression/length"/>
     </genClasses>
     <genClasses ecoreClass="Dd.ecore#//CatExpressionElt">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//CatExpressionElt/op"/>
@@ -190,10 +193,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//ListExpression/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//ListExpression/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dd.ecore#//ListExpression/ListElts"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//ListExpression/numType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//ListExpression/strType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//ListExpression/dateType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//ListExpression/boolType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dd.ecore#//ListExpression/range"/>
     </genClasses>
     <genClasses ecoreClass="Dd.ecore#//ListExpressionElt">

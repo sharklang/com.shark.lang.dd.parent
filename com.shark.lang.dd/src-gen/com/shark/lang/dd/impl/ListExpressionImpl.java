@@ -8,8 +8,6 @@ import com.shark.lang.dd.ListExpression;
 import com.shark.lang.dd.ListExpressionElt;
 import com.shark.lang.dd.SharkExpression;
 
-import java.lang.Boolean;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -36,10 +34,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.shark.lang.dd.impl.ListExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.ListExpressionImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.ListExpressionImpl#getListElts <em>List Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.ListExpressionImpl#isNumType <em>Num Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.ListExpressionImpl#isStrType <em>Str Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.ListExpressionImpl#isDateType <em>Date Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.ListExpressionImpl#isBoolType <em>Bool Type</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.ListExpressionImpl#getRange <em>Range</em>}</li>
  * </ul>
  *
@@ -86,86 +80,6 @@ public class ListExpressionImpl extends SharkExpressionImpl implements ListExpre
    * @ordered
    */
   protected EList<ListExpressionElt> listElts;
-
-  /**
-   * The default value of the '{@link #isNumType() <em>Num Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isNumType()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean NUM_TYPE_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isNumType() <em>Num Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isNumType()
-   * @generated
-   * @ordered
-   */
-  protected boolean numType = NUM_TYPE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isStrType() <em>Str Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isStrType()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean STR_TYPE_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isStrType() <em>Str Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isStrType()
-   * @generated
-   * @ordered
-   */
-  protected boolean strType = STR_TYPE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isDateType() <em>Date Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isDateType()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean DATE_TYPE_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isDateType() <em>Date Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isDateType()
-   * @generated
-   * @ordered
-   */
-  protected boolean dateType = DATE_TYPE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isBoolType() <em>Bool Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isBoolType()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean BOOL_TYPE_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isBoolType() <em>Bool Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isBoolType()
-   * @generated
-   * @ordered
-   */
-  protected boolean boolType = BOOL_TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getRange() <em>Range</em>}' attribute.
@@ -304,106 +218,6 @@ public class ListExpressionImpl extends SharkExpressionImpl implements ListExpre
    * @generated
    */
   @Override
-  public boolean isNumType()
-  {
-    return numType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setNumType(boolean newNumType)
-  {
-    boolean oldNumType = numType;
-    numType = newNumType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.LIST_EXPRESSION__NUM_TYPE, oldNumType, numType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isStrType()
-  {
-    return strType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setStrType(boolean newStrType)
-  {
-    boolean oldStrType = strType;
-    strType = newStrType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.LIST_EXPRESSION__STR_TYPE, oldStrType, strType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isDateType()
-  {
-    return dateType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setDateType(boolean newDateType)
-  {
-    boolean oldDateType = dateType;
-    dateType = newDateType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.LIST_EXPRESSION__DATE_TYPE, oldDateType, dateType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isBoolType()
-  {
-    return boolType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setBoolType(boolean newBoolType)
-  {
-    boolean oldBoolType = boolType;
-    boolType = newBoolType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.LIST_EXPRESSION__BOOL_TYPE, oldBoolType, boolType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public String getRange()
   {
     return range;
@@ -457,14 +271,6 @@ public class ListExpressionImpl extends SharkExpressionImpl implements ListExpre
         return getLeft();
       case DdPackage.LIST_EXPRESSION__LIST_ELTS:
         return getListElts();
-      case DdPackage.LIST_EXPRESSION__NUM_TYPE:
-        return isNumType();
-      case DdPackage.LIST_EXPRESSION__STR_TYPE:
-        return isStrType();
-      case DdPackage.LIST_EXPRESSION__DATE_TYPE:
-        return isDateType();
-      case DdPackage.LIST_EXPRESSION__BOOL_TYPE:
-        return isBoolType();
       case DdPackage.LIST_EXPRESSION__RANGE:
         return getRange();
     }
@@ -492,18 +298,6 @@ public class ListExpressionImpl extends SharkExpressionImpl implements ListExpre
         getListElts().clear();
         getListElts().addAll((Collection<? extends ListExpressionElt>)newValue);
         return;
-      case DdPackage.LIST_EXPRESSION__NUM_TYPE:
-        setNumType((Boolean)newValue);
-        return;
-      case DdPackage.LIST_EXPRESSION__STR_TYPE:
-        setStrType((Boolean)newValue);
-        return;
-      case DdPackage.LIST_EXPRESSION__DATE_TYPE:
-        setDateType((Boolean)newValue);
-        return;
-      case DdPackage.LIST_EXPRESSION__BOOL_TYPE:
-        setBoolType((Boolean)newValue);
-        return;
       case DdPackage.LIST_EXPRESSION__RANGE:
         setRange((String)newValue);
         return;
@@ -530,18 +324,6 @@ public class ListExpressionImpl extends SharkExpressionImpl implements ListExpre
       case DdPackage.LIST_EXPRESSION__LIST_ELTS:
         getListElts().clear();
         return;
-      case DdPackage.LIST_EXPRESSION__NUM_TYPE:
-        setNumType(NUM_TYPE_EDEFAULT);
-        return;
-      case DdPackage.LIST_EXPRESSION__STR_TYPE:
-        setStrType(STR_TYPE_EDEFAULT);
-        return;
-      case DdPackage.LIST_EXPRESSION__DATE_TYPE:
-        setDateType(DATE_TYPE_EDEFAULT);
-        return;
-      case DdPackage.LIST_EXPRESSION__BOOL_TYPE:
-        setBoolType(BOOL_TYPE_EDEFAULT);
-        return;
       case DdPackage.LIST_EXPRESSION__RANGE:
         setRange(RANGE_EDEFAULT);
         return;
@@ -565,14 +347,6 @@ public class ListExpressionImpl extends SharkExpressionImpl implements ListExpre
         return left != null;
       case DdPackage.LIST_EXPRESSION__LIST_ELTS:
         return listElts != null && !listElts.isEmpty();
-      case DdPackage.LIST_EXPRESSION__NUM_TYPE:
-        return numType != NUM_TYPE_EDEFAULT;
-      case DdPackage.LIST_EXPRESSION__STR_TYPE:
-        return strType != STR_TYPE_EDEFAULT;
-      case DdPackage.LIST_EXPRESSION__DATE_TYPE:
-        return dateType != DATE_TYPE_EDEFAULT;
-      case DdPackage.LIST_EXPRESSION__BOOL_TYPE:
-        return boolType != BOOL_TYPE_EDEFAULT;
       case DdPackage.LIST_EXPRESSION__RANGE:
         return RANGE_EDEFAULT == null ? range != null : !RANGE_EDEFAULT.equals(range);
     }
@@ -592,14 +366,6 @@ public class ListExpressionImpl extends SharkExpressionImpl implements ListExpre
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", numType: ");
-    result.append(numType);
-    result.append(", strType: ");
-    result.append(strType);
-    result.append(", dateType: ");
-    result.append(dateType);
-    result.append(", boolType: ");
-    result.append(boolType);
     result.append(", range: ");
     result.append(range);
     result.append(')');

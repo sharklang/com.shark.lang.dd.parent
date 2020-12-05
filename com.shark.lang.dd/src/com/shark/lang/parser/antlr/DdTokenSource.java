@@ -59,7 +59,7 @@ public class DdTokenSource extends AbstractIndentationTokenSource {
 		String text = token.getText();
 		int indentation = computeIndentation(text);
 		if (indentation == -1 || indentation == currentIndentation) {
-			// no change of indentation level only create and EOL token
+			// no change of indentation level only create an EOL token
 			result.accept(token);
 			result.accept(createEOLToken(((CommonToken) token).getStopIndex() + 1));
 		} else if (indentation > currentIndentation) {

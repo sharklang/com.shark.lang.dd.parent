@@ -17,10 +17,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.shark.lang.dd.ListExpression#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.ListExpression#getLeft <em>Left</em>}</li>
  *   <li>{@link com.shark.lang.dd.ListExpression#getListElts <em>List Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.ListExpression#isNumType <em>Num Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.ListExpression#isStrType <em>Str Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.ListExpression#isDateType <em>Date Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.ListExpression#isBoolType <em>Bool Type</em>}</li>
  *   <li>{@link com.shark.lang.dd.ListExpression#getRange <em>Range</em>}</li>
  * </ul>
  *
@@ -85,94 +81,6 @@ public interface ListExpression extends SharkExpression
    * @generated
    */
   EList<ListExpressionElt> getListElts();
-
-  /**
-   * Returns the value of the '<em><b>Num Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Num Type</em>' attribute.
-   * @see #setNumType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getListExpression_NumType()
-   * @model
-   * @generated
-   */
-  boolean isNumType();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.ListExpression#isNumType <em>Num Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Num Type</em>' attribute.
-   * @see #isNumType()
-   * @generated
-   */
-  void setNumType(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Str Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Str Type</em>' attribute.
-   * @see #setStrType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getListExpression_StrType()
-   * @model
-   * @generated
-   */
-  boolean isStrType();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.ListExpression#isStrType <em>Str Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Str Type</em>' attribute.
-   * @see #isStrType()
-   * @generated
-   */
-  void setStrType(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Date Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Date Type</em>' attribute.
-   * @see #setDateType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getListExpression_DateType()
-   * @model
-   * @generated
-   */
-  boolean isDateType();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.ListExpression#isDateType <em>Date Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Date Type</em>' attribute.
-   * @see #isDateType()
-   * @generated
-   */
-  void setDateType(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Bool Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Bool Type</em>' attribute.
-   * @see #setBoolType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getListExpression_BoolType()
-   * @model
-   * @generated
-   */
-  boolean isBoolType();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.ListExpression#isBoolType <em>Bool Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Bool Type</em>' attribute.
-   * @see #isBoolType()
-   * @generated
-   */
-  void setBoolType(boolean value);
 
   /**
    * Returns the value of the '<em><b>Range</b></em>' attribute.

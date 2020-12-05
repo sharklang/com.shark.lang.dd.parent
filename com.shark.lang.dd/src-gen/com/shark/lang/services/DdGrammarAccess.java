@@ -28,71 +28,99 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	public class DataModelFragmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.DataModelFragment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cConstantsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cConstantsConstantParserRuleCall_0_0 = (RuleCall)cConstantsAssignment_0.eContents().get(0);
-		private final Assignment cEntitiesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cEntitiesEntityParserRuleCall_1_0 = (RuleCall)cEntitiesAssignment_1.eContents().get(0);
-		private final Assignment cConstraintsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cConstraintsConstraintParserRuleCall_2_0 = (RuleCall)cConstraintsAssignment_2.eContents().get(0);
+		private final Assignment cModelDescAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cModelDescLineCommentParserRuleCall_0_0 = (RuleCall)cModelDescAssignment_0.eContents().get(0);
+		private final Keyword cModelKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameOBJIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final RuleCall cEOLTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Assignment cConstantsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cConstantsConstantParserRuleCall_4_0 = (RuleCall)cConstantsAssignment_4.eContents().get(0);
+		private final Assignment cEntitiesAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cEntitiesEntityParserRuleCall_5_0 = (RuleCall)cEntitiesAssignment_5.eContents().get(0);
+		private final Assignment cConstraintsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cConstraintsConstraintParserRuleCall_6_0 = (RuleCall)cConstraintsAssignment_6.eContents().get(0);
 		
 		////no empty entity and so mandatory BEGIN/END structure
 		////BEGIN / END added when there is an indent level change
 		////EOL tokens are added after an indent constant or no indent and a new line
 		////IDENT triggered after a Comment so generates EOL 
 		////with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-		////TODO bug on chr array size in cst decl
-		////TODO check cast date format
-		////TODO check empty string const on like
-		////TODO validation of cross entity checks if not 1-1
-		////TODO check max size of strings in const declaration
-		////TODO check precision of dec in const decl
+		////TODO the @check in expressions are useless: the type check of attributes, constant and boolean nature of constraints ensure it goes through
+		////TODO flags are useless as the constraints+constant+attributes checks ensure single passe verification
+		////TODO check chr init is only one caracter
+		////TODO check cast date format: date("YYYYMMDD") 
+		////TODO for stxt it should be a list of 2 int
+		////TODO check empty string const on like: myvar like "" should fail
+		////TODO check max size of strings in const declaration is respected in the expression length using groovy?
+		////TODO check precision of dec in const decl is respected, using again groovy for an expression
+		////TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
+		////TODO test expressions interactively and build non passing JUNIT tests using excel random
 		////TODO update formatter
 		////TODO customize error messages for parser and lexer: eg constant en maj
-		////TODO document design and classes and some design decisions in the grammar as comments here
-		////TODO test expressions interactively and build non passing JUNIT tests using excel random
 		////TODO do a first output
-		////TODO semantic highlighting example, true / false in yellow and decl in bold
+		////TODO semantic highlighting example
+		////TODO use case of the unset value
 		////TODO add formats on top of checks to be used by like operator: 5A003a-"H" with positions. formats will be usable to split
 		////TODO test date operations + 1*DAY... basing on the generator error management
 		////TODO add min, max, avg
-		////TODO ad validation of size vs. real constant or init value size, like wise for list size, decimal precision...
 		////TODO add content assist
 		////TODO split into reusable grammar and create sd and sk languages
 		////TODO implement math a bit more: implement the expression precision check and rounding routines
 		////TODO in this context consider removing int and stick to general dec(n,0)?
-		////TODO as for constant they need to be calculatable expressions at compile time so use groovy or other in 
-		////Validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
+		////TODO as for constant they need to be calculatable expressions at compile time so use groovy or other in validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
 		////TODO check and neutralize useless comment associator
 		////TODO check that all text is assigned
+		////TODO cleanup error messages in propoerties
 		////ecore sample editor. editor read again the XtextRessource so normal that my boolean are not there. they would have to 
 		////be persisted in hidden text... But core code generation maybe the in memory AST is the same as in validation
 		////to test.
 		//DataModelFragment:
+		//	modelDesc+=LineComment+
+		//	'model' name=OBJID EOL
 		//	constants+=Constant*
 		//	entities+=Entity*
 		//	constraints+=Constraint*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//constants+=Constant* entities+=Entity* constraints+=Constraint*
+		//modelDesc+=LineComment+ 'model' name=OBJID EOL constants+=Constant* entities+=Entity* constraints+=Constraint*
 		public Group getGroup() { return cGroup; }
 		
+		//modelDesc+=LineComment+
+		public Assignment getModelDescAssignment_0() { return cModelDescAssignment_0; }
+		
+		//LineComment
+		public RuleCall getModelDescLineCommentParserRuleCall_0_0() { return cModelDescLineCommentParserRuleCall_0_0; }
+		
+		//'model'
+		public Keyword getModelKeyword_1() { return cModelKeyword_1; }
+		
+		//name=OBJID
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//OBJID
+		public RuleCall getNameOBJIDTerminalRuleCall_2_0() { return cNameOBJIDTerminalRuleCall_2_0; }
+		
+		//EOL
+		public RuleCall getEOLTerminalRuleCall_3() { return cEOLTerminalRuleCall_3; }
+		
 		//constants+=Constant*
-		public Assignment getConstantsAssignment_0() { return cConstantsAssignment_0; }
+		public Assignment getConstantsAssignment_4() { return cConstantsAssignment_4; }
 		
 		//Constant
-		public RuleCall getConstantsConstantParserRuleCall_0_0() { return cConstantsConstantParserRuleCall_0_0; }
+		public RuleCall getConstantsConstantParserRuleCall_4_0() { return cConstantsConstantParserRuleCall_4_0; }
 		
 		//entities+=Entity*
-		public Assignment getEntitiesAssignment_1() { return cEntitiesAssignment_1; }
+		public Assignment getEntitiesAssignment_5() { return cEntitiesAssignment_5; }
 		
 		//Entity
-		public RuleCall getEntitiesEntityParserRuleCall_1_0() { return cEntitiesEntityParserRuleCall_1_0; }
+		public RuleCall getEntitiesEntityParserRuleCall_5_0() { return cEntitiesEntityParserRuleCall_5_0; }
 		
 		//constraints+=Constraint*
-		public Assignment getConstraintsAssignment_2() { return cConstraintsAssignment_2; }
+		public Assignment getConstraintsAssignment_6() { return cConstraintsAssignment_6; }
 		
 		//Constraint
-		public RuleCall getConstraintsConstraintParserRuleCall_2_0() { return cConstraintsConstraintParserRuleCall_2_0; }
+		public RuleCall getConstraintsConstraintParserRuleCall_6_0() { return cConstraintsConstraintParserRuleCall_6_0; }
 	}
 	public class ConstantElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.Constant");
@@ -281,7 +309,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final Assignment cDefaultValueAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
 		private final RuleCall cDefaultValueSharkExpressionParserRuleCall_5_1_0 = (RuleCall)cDefaultValueAssignment_5_1.eContents().get(0);
 		private final Assignment cPrimaryKeyAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final Keyword cPrimaryKeyPkKeyword_6_0 = (Keyword)cPrimaryKeyAssignment_6.eContents().get(0);
+		private final Keyword cPrimaryKeyKeyKeyword_6_0 = (Keyword)cPrimaryKeyAssignment_6.eContents().get(0);
 		private final Assignment cMandatoryAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final Keyword cMandatoryExclamationMarkKeyword_7_0 = (Keyword)cMandatoryAssignment_7.eContents().get(0);
 		private final Assignment cAttrDescAssignment_8 = (Assignment)cGroup.eContents().get(8);
@@ -296,13 +324,13 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		//	dataType=DataType attributeSize=AttributeSize?
 		//	arraySize=ArraySize?
 		//	name=ID ('=' defaultValue=SharkExpression)?
-		//	primaryKey?='pk'?
+		//	primaryKey?='key'?
 		//	mandatory?='!'?
 		//	attrDesc=TrailComment EOL;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//extraAttrDesc+=LineComment* dataType=DataType attributeSize=AttributeSize? arraySize=ArraySize? name=ID ('='
-		//defaultValue=SharkExpression)? primaryKey?='pk'? mandatory?='!'? attrDesc=TrailComment EOL
+		//defaultValue=SharkExpression)? primaryKey?='key'? mandatory?='!'? attrDesc=TrailComment EOL
 		public Group getGroup() { return cGroup; }
 		
 		//extraAttrDesc+=LineComment*
@@ -347,11 +375,11 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		//SharkExpression
 		public RuleCall getDefaultValueSharkExpressionParserRuleCall_5_1_0() { return cDefaultValueSharkExpressionParserRuleCall_5_1_0; }
 		
-		//primaryKey?='pk'?
+		//primaryKey?='key'?
 		public Assignment getPrimaryKeyAssignment_6() { return cPrimaryKeyAssignment_6; }
 		
-		//'pk'
-		public Keyword getPrimaryKeyPkKeyword_6_0() { return cPrimaryKeyPkKeyword_6_0; }
+		//'key'
+		public Keyword getPrimaryKeyKeyKeyword_6_0() { return cPrimaryKeyKeyKeyword_6_0; }
 		
 		//mandatory?='!'?
 		public Assignment getMandatoryAssignment_7() { return cMandatoryAssignment_7; }
@@ -567,8 +595,11 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final RuleCall cExprSharkExpressionParserRuleCall_2_0 = (RuleCall)cExprAssignment_2.eContents().get(0);
 		private final RuleCall cEOLTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//////////////Statement 3: constraints. If same name as entity they are intrinsic and executed systematically
-		////at each creation time of the object. The other need to be invoke: check #Customer_Account_Crosschecks.all or .<id>
+		//////////////Statement 1: checks. If same name as entity they are intrinsic and executed systematically
+		////at each creation time of the object. The other need to be invoked: check myCust#Customer_Account_Crosschecks.all or .<id>
+		////because a full context with all objects is required and also a relationship is required to get the related objects
+		////crosschecks only work when called from the root object and descending the tree. Validation would be applied to all 
+		////children automatically
 		//CheckExpression:
 		//	chkDesc+=LineComment+
 		//	name=ID expr=SharkExpression EOL;
@@ -678,22 +709,19 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final RuleCall cRightSharkExpressionParserRuleCall_3_0 = (RuleCall)cRightAssignment_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Assignment cNumTypeAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
-		private final RuleCall cNumTypeNULLTerminalRuleCall_5_0_0 = (RuleCall)cNumTypeAssignment_5_0.eContents().get(0);
-		private final Assignment cStrTypeAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cStrTypeNULLTerminalRuleCall_5_1_0 = (RuleCall)cStrTypeAssignment_5_1.eContents().get(0);
-		private final Assignment cDateTypeAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
-		private final RuleCall cDateTypeNULLTerminalRuleCall_5_2_0 = (RuleCall)cDateTypeAssignment_5_2.eContents().get(0);
-		private final Assignment cBoolTypeAssignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
-		private final RuleCall cBoolTypeNULLTerminalRuleCall_5_3_0 = (RuleCall)cBoolTypeAssignment_5_3.eContents().get(0);
+		private final Assignment cValueAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
+		private final RuleCall cValueNULTerminalRuleCall_5_0_0 = (RuleCall)cValueAssignment_5_0.eContents().get(0);
+		private final Assignment cPrecisionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cPrecisionINTTerminalRuleCall_5_1_0 = (RuleCall)cPrecisionAssignment_5_1.eContents().get(0);
+		private final Assignment cLengthAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cLengthINTTerminalRuleCall_5_2_0 = (RuleCall)cLengthAssignment_5_2.eContents().get(0);
 		
 		//BinaryExpression:
-		//	'(' left=SharkExpression op=BinaryOperator right=SharkExpression ')' (numType?=NULL strType?=NULL dateType?=NULL
-		//	boolType?=NULL)?;
+		//	'(' left=SharkExpression op=BinaryOperator right=SharkExpression ')' (value=NUL precision=INT length=INT)? //starting the sequence with NULL ensures it will never parse anything
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' left=SharkExpression op=BinaryOperator right=SharkExpression ')' (numType?=NULL strType?=NULL dateType?=NULL
-		//boolType?=NULL)?
+		//'(' left=SharkExpression op=BinaryOperator right=SharkExpression ')' (value=NUL precision=INT length=INT)?
 		public Group getGroup() { return cGroup; }
 		
 		//'('
@@ -720,32 +748,26 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 		
-		//(numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?
+		//(value=NUL precision=INT length=INT)?
 		public Group getGroup_5() { return cGroup_5; }
 		
-		//numType?=NULL
-		public Assignment getNumTypeAssignment_5_0() { return cNumTypeAssignment_5_0; }
+		//value=NUL
+		public Assignment getValueAssignment_5_0() { return cValueAssignment_5_0; }
 		
-		//NULL
-		public RuleCall getNumTypeNULLTerminalRuleCall_5_0_0() { return cNumTypeNULLTerminalRuleCall_5_0_0; }
+		//NUL
+		public RuleCall getValueNULTerminalRuleCall_5_0_0() { return cValueNULTerminalRuleCall_5_0_0; }
 		
-		//strType?=NULL
-		public Assignment getStrTypeAssignment_5_1() { return cStrTypeAssignment_5_1; }
+		//precision=INT
+		public Assignment getPrecisionAssignment_5_1() { return cPrecisionAssignment_5_1; }
 		
-		//NULL
-		public RuleCall getStrTypeNULLTerminalRuleCall_5_1_0() { return cStrTypeNULLTerminalRuleCall_5_1_0; }
+		//INT
+		public RuleCall getPrecisionINTTerminalRuleCall_5_1_0() { return cPrecisionINTTerminalRuleCall_5_1_0; }
 		
-		//dateType?=NULL
-		public Assignment getDateTypeAssignment_5_2() { return cDateTypeAssignment_5_2; }
+		//length=INT
+		public Assignment getLengthAssignment_5_2() { return cLengthAssignment_5_2; }
 		
-		//NULL
-		public RuleCall getDateTypeNULLTerminalRuleCall_5_2_0() { return cDateTypeNULLTerminalRuleCall_5_2_0; }
-		
-		//boolType?=NULL
-		public Assignment getBoolTypeAssignment_5_3() { return cBoolTypeAssignment_5_3; }
-		
-		//NULL
-		public RuleCall getBoolTypeNULLTerminalRuleCall_5_3_0() { return cBoolTypeNULLTerminalRuleCall_5_3_0; }
+		//INT
+		public RuleCall getLengthINTTerminalRuleCall_5_2_0() { return cLengthINTTerminalRuleCall_5_2_0; }
 	}
 	public class UnaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.UnaryExpression");
@@ -757,20 +779,18 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final RuleCall cLeftSharkExpressionParserRuleCall_2_0 = (RuleCall)cLeftAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Assignment cNumTypeAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final RuleCall cNumTypeNULLTerminalRuleCall_4_0_0 = (RuleCall)cNumTypeAssignment_4_0.eContents().get(0);
-		private final Assignment cStrTypeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cStrTypeNULLTerminalRuleCall_4_1_0 = (RuleCall)cStrTypeAssignment_4_1.eContents().get(0);
-		private final Assignment cDateTypeAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cDateTypeNULLTerminalRuleCall_4_2_0 = (RuleCall)cDateTypeAssignment_4_2.eContents().get(0);
-		private final Assignment cBoolTypeAssignment_4_3 = (Assignment)cGroup_4.eContents().get(3);
-		private final RuleCall cBoolTypeNULLTerminalRuleCall_4_3_0 = (RuleCall)cBoolTypeAssignment_4_3.eContents().get(0);
+		private final Assignment cValueAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final RuleCall cValueNULTerminalRuleCall_4_0_0 = (RuleCall)cValueAssignment_4_0.eContents().get(0);
+		private final Assignment cPrecisionAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cPrecisionINTTerminalRuleCall_4_1_0 = (RuleCall)cPrecisionAssignment_4_1.eContents().get(0);
+		private final Assignment cLengthAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cLengthINTTerminalRuleCall_4_2_0 = (RuleCall)cLengthAssignment_4_2.eContents().get(0);
 		
 		//UnaryExpression:
-		//	op=UnaryOperator '(' left=SharkExpression ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?;
+		//	op=UnaryOperator '(' left=SharkExpression ')' (value=NUL precision=INT length=INT)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//op=UnaryOperator '(' left=SharkExpression ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?
+		//op=UnaryOperator '(' left=SharkExpression ')' (value=NUL precision=INT length=INT)?
 		public Group getGroup() { return cGroup; }
 		
 		//op=UnaryOperator
@@ -791,32 +811,26 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		//')'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 		
-		//(numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?
+		//(value=NUL precision=INT length=INT)?
 		public Group getGroup_4() { return cGroup_4; }
 		
-		//numType?=NULL
-		public Assignment getNumTypeAssignment_4_0() { return cNumTypeAssignment_4_0; }
+		//value=NUL
+		public Assignment getValueAssignment_4_0() { return cValueAssignment_4_0; }
 		
-		//NULL
-		public RuleCall getNumTypeNULLTerminalRuleCall_4_0_0() { return cNumTypeNULLTerminalRuleCall_4_0_0; }
+		//NUL
+		public RuleCall getValueNULTerminalRuleCall_4_0_0() { return cValueNULTerminalRuleCall_4_0_0; }
 		
-		//strType?=NULL
-		public Assignment getStrTypeAssignment_4_1() { return cStrTypeAssignment_4_1; }
+		//precision=INT
+		public Assignment getPrecisionAssignment_4_1() { return cPrecisionAssignment_4_1; }
 		
-		//NULL
-		public RuleCall getStrTypeNULLTerminalRuleCall_4_1_0() { return cStrTypeNULLTerminalRuleCall_4_1_0; }
+		//INT
+		public RuleCall getPrecisionINTTerminalRuleCall_4_1_0() { return cPrecisionINTTerminalRuleCall_4_1_0; }
 		
-		//dateType?=NULL
-		public Assignment getDateTypeAssignment_4_2() { return cDateTypeAssignment_4_2; }
+		//length=INT
+		public Assignment getLengthAssignment_4_2() { return cLengthAssignment_4_2; }
 		
-		//NULL
-		public RuleCall getDateTypeNULLTerminalRuleCall_4_2_0() { return cDateTypeNULLTerminalRuleCall_4_2_0; }
-		
-		//boolType?=NULL
-		public Assignment getBoolTypeAssignment_4_3() { return cBoolTypeAssignment_4_3; }
-		
-		//NULL
-		public RuleCall getBoolTypeNULLTerminalRuleCall_4_3_0() { return cBoolTypeNULLTerminalRuleCall_4_3_0; }
+		//INT
+		public RuleCall getLengthINTTerminalRuleCall_4_2_0() { return cLengthINTTerminalRuleCall_4_2_0; }
 	}
 	public class AddExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.AddExpression");
@@ -833,17 +847,21 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final Assignment cAddEltsAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cAddEltsAddExpressionEltParserRuleCall_4_0 = (RuleCall)cAddEltsAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cCheckedAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cCheckedNULLTerminalRuleCall_6_0 = (RuleCall)cCheckedAssignment_6.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Assignment cValueAssignment_6_0 = (Assignment)cGroup_6.eContents().get(0);
+		private final RuleCall cValueNULTerminalRuleCall_6_0_0 = (RuleCall)cValueAssignment_6_0.eContents().get(0);
+		private final Assignment cPrecisionAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cPrecisionINTTerminalRuleCall_6_1_0 = (RuleCall)cPrecisionAssignment_6_1.eContents().get(0);
+		private final Assignment cLengthAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
+		private final RuleCall cLengthINTTerminalRuleCall_6_2_0 = (RuleCall)cLengthAssignment_6_2.eContents().get(0);
 		
 		//AddExpression:
-		//	'(' left=SharkExpression op=('+' | '-') right=SharkExpression addElts+=AddExpressionElt+ ')'
-		//	//to avoid recursive reprocessing
-		//	checked?=NULL?;
+		//	'(' left=SharkExpression op=('+' | '-') right=SharkExpression addElts+=AddExpressionElt+ ')' (value=NUL precision=INT
+		//	length=INT)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' left=SharkExpression op=('+' | '-') right=SharkExpression addElts+=AddExpressionElt+ ')' //to avoid recursive reprocessing
-		//checked?=NULL?
+		//'(' left=SharkExpression op=('+' | '-') right=SharkExpression addElts+=AddExpressionElt+ ')' (value=NUL precision=INT
+		//length=INT)?
 		public Group getGroup() { return cGroup; }
 		
 		//'('
@@ -882,12 +900,26 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 		
-		////to avoid recursive reprocessing
-		//checked?=NULL?
-		public Assignment getCheckedAssignment_6() { return cCheckedAssignment_6; }
+		//(value=NUL precision=INT length=INT)?
+		public Group getGroup_6() { return cGroup_6; }
 		
-		//NULL
-		public RuleCall getCheckedNULLTerminalRuleCall_6_0() { return cCheckedNULLTerminalRuleCall_6_0; }
+		//value=NUL
+		public Assignment getValueAssignment_6_0() { return cValueAssignment_6_0; }
+		
+		//NUL
+		public RuleCall getValueNULTerminalRuleCall_6_0_0() { return cValueNULTerminalRuleCall_6_0_0; }
+		
+		//precision=INT
+		public Assignment getPrecisionAssignment_6_1() { return cPrecisionAssignment_6_1; }
+		
+		//INT
+		public RuleCall getPrecisionINTTerminalRuleCall_6_1_0() { return cPrecisionINTTerminalRuleCall_6_1_0; }
+		
+		//length=INT
+		public Assignment getLengthAssignment_6_2() { return cLengthAssignment_6_2; }
+		
+		//INT
+		public RuleCall getLengthINTTerminalRuleCall_6_2_0() { return cLengthINTTerminalRuleCall_6_2_0; }
 	}
 	public class AddExpressionEltElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.AddExpressionElt");
@@ -937,17 +969,21 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final Assignment cMultEltsAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cMultEltsMultExpressionEltParserRuleCall_4_0 = (RuleCall)cMultEltsAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cCheckedAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cCheckedNULLTerminalRuleCall_6_0 = (RuleCall)cCheckedAssignment_6.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Assignment cValueAssignment_6_0 = (Assignment)cGroup_6.eContents().get(0);
+		private final RuleCall cValueNULTerminalRuleCall_6_0_0 = (RuleCall)cValueAssignment_6_0.eContents().get(0);
+		private final Assignment cPrecisionAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cPrecisionINTTerminalRuleCall_6_1_0 = (RuleCall)cPrecisionAssignment_6_1.eContents().get(0);
+		private final Assignment cLengthAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
+		private final RuleCall cLengthINTTerminalRuleCall_6_2_0 = (RuleCall)cLengthAssignment_6_2.eContents().get(0);
 		
 		//MultExpression:
-		//	'(' left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ ')'
-		//	//to avoid recursive reprocessing
-		//	checked?=NULL?;
+		//	'(' left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ ')' (value=NUL precision=INT
+		//	length=INT)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ ')' //to avoid recursive reprocessing
-		//checked?=NULL?
+		//'(' left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ ')' (value=NUL precision=INT
+		//length=INT)?
 		public Group getGroup() { return cGroup; }
 		
 		//'('
@@ -980,12 +1016,26 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 		
-		////to avoid recursive reprocessing
-		//checked?=NULL?
-		public Assignment getCheckedAssignment_6() { return cCheckedAssignment_6; }
+		//(value=NUL precision=INT length=INT)?
+		public Group getGroup_6() { return cGroup_6; }
 		
-		//NULL
-		public RuleCall getCheckedNULLTerminalRuleCall_6_0() { return cCheckedNULLTerminalRuleCall_6_0; }
+		//value=NUL
+		public Assignment getValueAssignment_6_0() { return cValueAssignment_6_0; }
+		
+		//NUL
+		public RuleCall getValueNULTerminalRuleCall_6_0_0() { return cValueNULTerminalRuleCall_6_0_0; }
+		
+		//precision=INT
+		public Assignment getPrecisionAssignment_6_1() { return cPrecisionAssignment_6_1; }
+		
+		//INT
+		public RuleCall getPrecisionINTTerminalRuleCall_6_1_0() { return cPrecisionINTTerminalRuleCall_6_1_0; }
+		
+		//length=INT
+		public Assignment getLengthAssignment_6_2() { return cLengthAssignment_6_2; }
+		
+		//INT
+		public RuleCall getLengthINTTerminalRuleCall_6_2_0() { return cLengthINTTerminalRuleCall_6_2_0; }
 	}
 	public class MultExpressionEltElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.MultExpressionElt");
@@ -1027,15 +1077,12 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final Assignment cAndEltsAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cAndEltsAndExpressionEltParserRuleCall_4_0 = (RuleCall)cAndEltsAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cCheckedAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cCheckedNULLTerminalRuleCall_6_0 = (RuleCall)cCheckedAssignment_6.eContents().get(0);
 		
 		//AndExpression:
-		//	'(' left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+ ')'
-		//	checked?=NULL?;
+		//	'(' left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+ ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+ ')' checked?=NULL?
+		//'(' left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+ ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'('
@@ -1067,12 +1114,6 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
-		
-		//checked?=NULL?
-		public Assignment getCheckedAssignment_6() { return cCheckedAssignment_6; }
-		
-		//NULL
-		public RuleCall getCheckedNULLTerminalRuleCall_6_0() { return cCheckedNULLTerminalRuleCall_6_0; }
 	}
 	public class AndExpressionEltElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.AndExpressionElt");
@@ -1114,15 +1155,12 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final Assignment cOrEltsAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cOrEltsOrExpressionEltParserRuleCall_4_0 = (RuleCall)cOrEltsAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cCheckedAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cCheckedNULLTerminalRuleCall_6_0 = (RuleCall)cCheckedAssignment_6.eContents().get(0);
 		
 		//OrExpression:
-		//	'(' left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+ ')'
-		//	checked?=NULL?;
+		//	'(' left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+ ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+ ')' checked?=NULL?
+		//'(' left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+ ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'('
@@ -1154,12 +1192,6 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
-		
-		//checked?=NULL?
-		public Assignment getCheckedAssignment_6() { return cCheckedAssignment_6; }
-		
-		//NULL
-		public RuleCall getCheckedNULLTerminalRuleCall_6_0() { return cCheckedNULLTerminalRuleCall_6_0; }
 	}
 	public class OrExpressionEltElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.OrExpressionElt");
@@ -1201,15 +1233,17 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final Assignment cCatEltsAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cCatEltsCatExpressionEltParserRuleCall_4_0 = (RuleCall)cCatEltsAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cCheckedAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cCheckedNULLTerminalRuleCall_6_0 = (RuleCall)cCheckedAssignment_6.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Assignment cValueAssignment_6_0 = (Assignment)cGroup_6.eContents().get(0);
+		private final RuleCall cValueNULTerminalRuleCall_6_0_0 = (RuleCall)cValueAssignment_6_0.eContents().get(0);
+		private final Assignment cLengthAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cLengthINTTerminalRuleCall_6_1_0 = (RuleCall)cLengthAssignment_6_1.eContents().get(0);
 		
 		//CatExpression:
-		//	'(' left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ ')'
-		//	checked?=NULL?;
+		//	'(' left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ ')' (value=NUL length=INT)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ ')' checked?=NULL?
+		//'(' left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ ')' (value=NUL length=INT)?
 		public Group getGroup() { return cGroup; }
 		
 		//'('
@@ -1242,11 +1276,20 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 		
-		//checked?=NULL?
-		public Assignment getCheckedAssignment_6() { return cCheckedAssignment_6; }
+		//(value=NUL length=INT)?
+		public Group getGroup_6() { return cGroup_6; }
 		
-		//NULL
-		public RuleCall getCheckedNULLTerminalRuleCall_6_0() { return cCheckedNULLTerminalRuleCall_6_0; }
+		//value=NUL
+		public Assignment getValueAssignment_6_0() { return cValueAssignment_6_0; }
+		
+		//NUL
+		public RuleCall getValueNULTerminalRuleCall_6_0_0() { return cValueNULTerminalRuleCall_6_0_0; }
+		
+		//length=INT
+		public Assignment getLengthAssignment_6_1() { return cLengthAssignment_6_1; }
+		
+		//INT
+		public RuleCall getLengthINTTerminalRuleCall_6_1_0() { return cLengthINTTerminalRuleCall_6_1_0; }
 	}
 	public class CatExpressionEltElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.CatExpressionElt");
@@ -1285,23 +1328,12 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final Assignment cListEltsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cListEltsListExpressionEltParserRuleCall_2_0 = (RuleCall)cListEltsAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Assignment cNumTypeAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final RuleCall cNumTypeNULLTerminalRuleCall_4_0_0 = (RuleCall)cNumTypeAssignment_4_0.eContents().get(0);
-		private final Assignment cStrTypeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cStrTypeNULLTerminalRuleCall_4_1_0 = (RuleCall)cStrTypeAssignment_4_1.eContents().get(0);
-		private final Assignment cDateTypeAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cDateTypeNULLTerminalRuleCall_4_2_0 = (RuleCall)cDateTypeAssignment_4_2.eContents().get(0);
-		private final Assignment cBoolTypeAssignment_4_3 = (Assignment)cGroup_4.eContents().get(3);
-		private final RuleCall cBoolTypeNULLTerminalRuleCall_4_3_0 = (RuleCall)cBoolTypeAssignment_4_3.eContents().get(0);
 		
 		//ListExpression:
-		//	op='(' left=SharkExpression ListElts+=ListExpressionElt+ ')' (numType?=NULL strType?=NULL dateType?=NULL
-		//	boolType?=NULL)?;
+		//	op='(' left=SharkExpression ListElts+=ListExpressionElt+ ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//op='(' left=SharkExpression ListElts+=ListExpressionElt+ ')' (numType?=NULL strType?=NULL dateType?=NULL
-		//boolType?=NULL)?
+		//op='(' left=SharkExpression ListElts+=ListExpressionElt+ ')'
 		public Group getGroup() { return cGroup; }
 		
 		//op='('
@@ -1324,33 +1356,6 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
-		
-		//(numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//numType?=NULL
-		public Assignment getNumTypeAssignment_4_0() { return cNumTypeAssignment_4_0; }
-		
-		//NULL
-		public RuleCall getNumTypeNULLTerminalRuleCall_4_0_0() { return cNumTypeNULLTerminalRuleCall_4_0_0; }
-		
-		//strType?=NULL
-		public Assignment getStrTypeAssignment_4_1() { return cStrTypeAssignment_4_1; }
-		
-		//NULL
-		public RuleCall getStrTypeNULLTerminalRuleCall_4_1_0() { return cStrTypeNULLTerminalRuleCall_4_1_0; }
-		
-		//dateType?=NULL
-		public Assignment getDateTypeAssignment_4_2() { return cDateTypeAssignment_4_2; }
-		
-		//NULL
-		public RuleCall getDateTypeNULLTerminalRuleCall_4_2_0() { return cDateTypeNULLTerminalRuleCall_4_2_0; }
-		
-		//boolType?=NULL
-		public Assignment getBoolTypeAssignment_4_3() { return cBoolTypeAssignment_4_3; }
-		
-		//NULL
-		public RuleCall getBoolTypeNULLTerminalRuleCall_4_3_0() { return cBoolTypeNULLTerminalRuleCall_4_3_0; }
 	}
 	public class ListExpressionEltElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.ListExpressionElt");
@@ -1388,41 +1393,21 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final Assignment cRangeAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
 		private final RuleCall cRangeRANGETerminalRuleCall_0_2_0 = (RuleCall)cRangeAssignment_0_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
-		private final Group cGroup_0_4 = (Group)cGroup_0.eContents().get(4);
-		private final Assignment cNumTypeAssignment_0_4_0 = (Assignment)cGroup_0_4.eContents().get(0);
-		private final RuleCall cNumTypeNULLTerminalRuleCall_0_4_0_0 = (RuleCall)cNumTypeAssignment_0_4_0.eContents().get(0);
-		private final Assignment cStrTypeAssignment_0_4_1 = (Assignment)cGroup_0_4.eContents().get(1);
-		private final RuleCall cStrTypeNULLTerminalRuleCall_0_4_1_0 = (RuleCall)cStrTypeAssignment_0_4_1.eContents().get(0);
-		private final Assignment cDateTypeAssignment_0_4_2 = (Assignment)cGroup_0_4.eContents().get(2);
-		private final RuleCall cDateTypeNULLTerminalRuleCall_0_4_2_0 = (RuleCall)cDateTypeAssignment_0_4_2.eContents().get(0);
-		private final Assignment cBoolTypeAssignment_0_4_3 = (Assignment)cGroup_0_4.eContents().get(3);
-		private final RuleCall cBoolTypeNULLTerminalRuleCall_0_4_3_0 = (RuleCall)cBoolTypeAssignment_0_4_3.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Action cListExpressionAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cRangeAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRangeRANGEINFTerminalRuleCall_1_2_0 = (RuleCall)cRangeAssignment_1_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		private final Group cGroup_1_4 = (Group)cGroup_1.eContents().get(4);
-		private final Assignment cNumTypeAssignment_1_4_0 = (Assignment)cGroup_1_4.eContents().get(0);
-		private final RuleCall cNumTypeNULLTerminalRuleCall_1_4_0_0 = (RuleCall)cNumTypeAssignment_1_4_0.eContents().get(0);
-		private final Assignment cStrTypeAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
-		private final RuleCall cStrTypeNULLTerminalRuleCall_1_4_1_0 = (RuleCall)cStrTypeAssignment_1_4_1.eContents().get(0);
-		private final Assignment cDateTypeAssignment_1_4_2 = (Assignment)cGroup_1_4.eContents().get(2);
-		private final RuleCall cDateTypeNULLTerminalRuleCall_1_4_2_0 = (RuleCall)cDateTypeAssignment_1_4_2.eContents().get(0);
-		private final Assignment cBoolTypeAssignment_1_4_3 = (Assignment)cGroup_1_4.eContents().get(3);
-		private final RuleCall cBoolTypeNULLTerminalRuleCall_1_4_3_0 = (RuleCall)cBoolTypeAssignment_1_4_3.eContents().get(0);
 		
 		//RangeExpression ListExpression:
-		//	{ListExpression} '(' range=RANGE ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)? | {ListExpression}
-		//	=> '(' range=RANGEINF ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?;
+		//	{ListExpression} '(' range=RANGE ')' | {ListExpression} => '(' range=RANGEINF ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ListExpression} '(' range=RANGE ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)? | {ListExpression} =>
-		//'(' range=RANGEINF ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?
+		//{ListExpression} '(' range=RANGE ')' | {ListExpression} => '(' range=RANGEINF ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//{ListExpression} '(' range=RANGE ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?
+		//{ListExpression} '(' range=RANGE ')'
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//{ListExpression}
@@ -1440,34 +1425,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		//')'
 		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
 		
-		//(numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?
-		public Group getGroup_0_4() { return cGroup_0_4; }
-		
-		//numType?=NULL
-		public Assignment getNumTypeAssignment_0_4_0() { return cNumTypeAssignment_0_4_0; }
-		
-		//NULL
-		public RuleCall getNumTypeNULLTerminalRuleCall_0_4_0_0() { return cNumTypeNULLTerminalRuleCall_0_4_0_0; }
-		
-		//strType?=NULL
-		public Assignment getStrTypeAssignment_0_4_1() { return cStrTypeAssignment_0_4_1; }
-		
-		//NULL
-		public RuleCall getStrTypeNULLTerminalRuleCall_0_4_1_0() { return cStrTypeNULLTerminalRuleCall_0_4_1_0; }
-		
-		//dateType?=NULL
-		public Assignment getDateTypeAssignment_0_4_2() { return cDateTypeAssignment_0_4_2; }
-		
-		//NULL
-		public RuleCall getDateTypeNULLTerminalRuleCall_0_4_2_0() { return cDateTypeNULLTerminalRuleCall_0_4_2_0; }
-		
-		//boolType?=NULL
-		public Assignment getBoolTypeAssignment_0_4_3() { return cBoolTypeAssignment_0_4_3; }
-		
-		//NULL
-		public RuleCall getBoolTypeNULLTerminalRuleCall_0_4_3_0() { return cBoolTypeNULLTerminalRuleCall_0_4_3_0; }
-		
-		//{ListExpression} => '(' range=RANGEINF ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?
+		//{ListExpression} => '(' range=RANGEINF ')'
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{ListExpression}
@@ -1484,33 +1442,6 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
-		
-		//(numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?
-		public Group getGroup_1_4() { return cGroup_1_4; }
-		
-		//numType?=NULL
-		public Assignment getNumTypeAssignment_1_4_0() { return cNumTypeAssignment_1_4_0; }
-		
-		//NULL
-		public RuleCall getNumTypeNULLTerminalRuleCall_1_4_0_0() { return cNumTypeNULLTerminalRuleCall_1_4_0_0; }
-		
-		//strType?=NULL
-		public Assignment getStrTypeAssignment_1_4_1() { return cStrTypeAssignment_1_4_1; }
-		
-		//NULL
-		public RuleCall getStrTypeNULLTerminalRuleCall_1_4_1_0() { return cStrTypeNULLTerminalRuleCall_1_4_1_0; }
-		
-		//dateType?=NULL
-		public Assignment getDateTypeAssignment_1_4_2() { return cDateTypeAssignment_1_4_2; }
-		
-		//NULL
-		public RuleCall getDateTypeNULLTerminalRuleCall_1_4_2_0() { return cDateTypeNULLTerminalRuleCall_1_4_2_0; }
-		
-		//boolType?=NULL
-		public Assignment getBoolTypeAssignment_1_4_3() { return cBoolTypeAssignment_1_4_3; }
-		
-		//NULL
-		public RuleCall getBoolTypeNULLTerminalRuleCall_1_4_3_0() { return cBoolTypeNULLTerminalRuleCall_1_4_3_0; }
 	}
 	public class TerminalExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.TerminalExpression");
@@ -2172,7 +2103,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	private final TerminalRule tBEGIN;
 	private final TerminalRule tEND;
 	private final TerminalRule tEOL;
-	private final TerminalRule tNULL;
+	private final TerminalRule tNUL;
 	private final TerminalRule tHEX;
 	private final TerminalRule tNUM;
 	private final TerminalRule tUNI;
@@ -2238,7 +2169,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		this.tBEGIN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.BEGIN");
 		this.tEND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.END");
 		this.tEOL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.EOL");
-		this.tNULL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.NULL");
+		this.tNUL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.NUL");
 		this.tHEX = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.HEX");
 		this.tNUM = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.NUM");
 		this.tUNI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.UNI");
@@ -2290,34 +2221,38 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	////EOL tokens are added after an indent constant or no indent and a new line
 	////IDENT triggered after a Comment so generates EOL 
 	////with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-	////TODO bug on chr array size in cst decl
-	////TODO check cast date format
-	////TODO check empty string const on like
-	////TODO validation of cross entity checks if not 1-1
-	////TODO check max size of strings in const declaration
-	////TODO check precision of dec in const decl
+	////TODO the @check in expressions are useless: the type check of attributes, constant and boolean nature of constraints ensure it goes through
+	////TODO flags are useless as the constraints+constant+attributes checks ensure single passe verification
+	////TODO check chr init is only one caracter
+	////TODO check cast date format: date("YYYYMMDD") 
+	////TODO for stxt it should be a list of 2 int
+	////TODO check empty string const on like: myvar like "" should fail
+	////TODO check max size of strings in const declaration is respected in the expression length using groovy?
+	////TODO check precision of dec in const decl is respected, using again groovy for an expression
+	////TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
+	////TODO test expressions interactively and build non passing JUNIT tests using excel random
 	////TODO update formatter
 	////TODO customize error messages for parser and lexer: eg constant en maj
-	////TODO document design and classes and some design decisions in the grammar as comments here
-	////TODO test expressions interactively and build non passing JUNIT tests using excel random
 	////TODO do a first output
-	////TODO semantic highlighting example, true / false in yellow and decl in bold
+	////TODO semantic highlighting example
+	////TODO use case of the unset value
 	////TODO add formats on top of checks to be used by like operator: 5A003a-"H" with positions. formats will be usable to split
 	////TODO test date operations + 1*DAY... basing on the generator error management
 	////TODO add min, max, avg
-	////TODO ad validation of size vs. real constant or init value size, like wise for list size, decimal precision...
 	////TODO add content assist
 	////TODO split into reusable grammar and create sd and sk languages
 	////TODO implement math a bit more: implement the expression precision check and rounding routines
 	////TODO in this context consider removing int and stick to general dec(n,0)?
-	////TODO as for constant they need to be calculatable expressions at compile time so use groovy or other in 
-	////Validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
+	////TODO as for constant they need to be calculatable expressions at compile time so use groovy or other in validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
 	////TODO check and neutralize useless comment associator
 	////TODO check that all text is assigned
+	////TODO cleanup error messages in propoerties
 	////ecore sample editor. editor read again the XtextRessource so normal that my boolean are not there. they would have to 
 	////be persisted in hidden text... But core code generation maybe the in memory AST is the same as in validation
 	////to test.
 	//DataModelFragment:
+	//	modelDesc+=LineComment+
+	//	'model' name=OBJID EOL
 	//	constants+=Constant*
 	//	entities+=Entity*
 	//	constraints+=Constraint*;
@@ -2370,7 +2305,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	//	dataType=DataType attributeSize=AttributeSize?
 	//	arraySize=ArraySize?
 	//	name=ID ('=' defaultValue=SharkExpression)?
-	//	primaryKey?='pk'?
+	//	primaryKey?='key'?
 	//	mandatory?='!'?
 	//	attrDesc=TrailComment EOL;
 	public AttributeElements getAttributeAccess() {
@@ -2430,8 +2365,11 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		return getConstraintAccess().getRule();
 	}
 	
-	//////////////Statement 3: constraints. If same name as entity they are intrinsic and executed systematically
-	////at each creation time of the object. The other need to be invoke: check #Customer_Account_Crosschecks.all or .<id>
+	//////////////Statement 1: checks. If same name as entity they are intrinsic and executed systematically
+	////at each creation time of the object. The other need to be invoked: check myCust#Customer_Account_Crosschecks.all or .<id>
+	////because a full context with all objects is required and also a relationship is required to get the related objects
+	////crosschecks only work when called from the root object and descending the tree. Validation would be applied to all 
+	////children automatically
 	//CheckExpression:
 	//	chkDesc+=LineComment+
 	//	name=ID expr=SharkExpression EOL;
@@ -2466,8 +2404,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//BinaryExpression:
-	//	'(' left=SharkExpression op=BinaryOperator right=SharkExpression ')' (numType?=NULL strType?=NULL dateType?=NULL
-	//	boolType?=NULL)?;
+	//	'(' left=SharkExpression op=BinaryOperator right=SharkExpression ')' (value=NUL precision=INT length=INT)? //starting the sequence with NULL ensures it will never parse anything
+	//;
 	public BinaryExpressionElements getBinaryExpressionAccess() {
 		return pBinaryExpression;
 	}
@@ -2477,7 +2415,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//UnaryExpression:
-	//	op=UnaryOperator '(' left=SharkExpression ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?;
+	//	op=UnaryOperator '(' left=SharkExpression ')' (value=NUL precision=INT length=INT)?;
 	public UnaryExpressionElements getUnaryExpressionAccess() {
 		return pUnaryExpression;
 	}
@@ -2487,9 +2425,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//AddExpression:
-	//	'(' left=SharkExpression op=('+' | '-') right=SharkExpression addElts+=AddExpressionElt+ ')'
-	//	//to avoid recursive reprocessing
-	//	checked?=NULL?;
+	//	'(' left=SharkExpression op=('+' | '-') right=SharkExpression addElts+=AddExpressionElt+ ')' (value=NUL precision=INT
+	//	length=INT)?;
 	public AddExpressionElements getAddExpressionAccess() {
 		return pAddExpression;
 	}
@@ -2509,9 +2446,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//MultExpression:
-	//	'(' left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ ')'
-	//	//to avoid recursive reprocessing
-	//	checked?=NULL?;
+	//	'(' left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ ')' (value=NUL precision=INT
+	//	length=INT)?;
 	public MultExpressionElements getMultExpressionAccess() {
 		return pMultExpression;
 	}
@@ -2531,8 +2467,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//AndExpression:
-	//	'(' left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+ ')'
-	//	checked?=NULL?;
+	//	'(' left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+ ')';
 	public AndExpressionElements getAndExpressionAccess() {
 		return pAndExpression;
 	}
@@ -2552,8 +2487,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//OrExpression:
-	//	'(' left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+ ')'
-	//	checked?=NULL?;
+	//	'(' left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+ ')';
 	public OrExpressionElements getOrExpressionAccess() {
 		return pOrExpression;
 	}
@@ -2573,8 +2507,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//CatExpression:
-	//	'(' left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ ')'
-	//	checked?=NULL?;
+	//	'(' left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ ')' (value=NUL length=INT)?;
 	public CatExpressionElements getCatExpressionAccess() {
 		return pCatExpression;
 	}
@@ -2594,8 +2527,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//ListExpression:
-	//	op='(' left=SharkExpression ListElts+=ListExpressionElt+ ')' (numType?=NULL strType?=NULL dateType?=NULL
-	//	boolType?=NULL)?;
+	//	op='(' left=SharkExpression ListElts+=ListExpressionElt+ ')';
 	public ListExpressionElements getListExpressionAccess() {
 		return pListExpression;
 	}
@@ -2615,8 +2547,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//RangeExpression ListExpression:
-	//	{ListExpression} '(' range=RANGE ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)? | {ListExpression}
-	//	=> '(' range=RANGEINF ')' (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?;
+	//	{ListExpression} '(' range=RANGE ')' | {ListExpression} => '(' range=RANGEINF ')';
 	public RangeExpressionElements getRangeExpressionAccess() {
 		return pRangeExpression;
 	}
@@ -2749,10 +2680,10 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		return tEOL;
 	}
 	
-	//terminal NULL:
-	//	'synthetic:NULL';
-	public TerminalRule getNULLRule() {
-		return tNULL;
+	//terminal NUL:
+	//	'synthetic:NUL';
+	public TerminalRule getNULRule() {
+		return tNUL;
 	}
 	
 	//terminal fragment HEX:

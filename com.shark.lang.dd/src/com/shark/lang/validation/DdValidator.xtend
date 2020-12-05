@@ -44,6 +44,7 @@ class DdValidator extends AbstractDdValidator {
 	@Inject
 	DdExpressionValidator exprValidator;
 
+
 	@Check
 	def checkEntityGloballyUnique(Entity entity) {
 		// visible containers is part of the global scope provider system

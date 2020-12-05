@@ -18,7 +18,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.shark.lang.dd.MultExpression#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.MultExpression#getRight <em>Right</em>}</li>
  *   <li>{@link com.shark.lang.dd.MultExpression#getMultElts <em>Mult Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.MultExpression#isChecked <em>Checked</em>}</li>
+ *   <li>{@link com.shark.lang.dd.MultExpression#getValue <em>Value</em>}</li>
+ *   <li>{@link com.shark.lang.dd.MultExpression#getPrecision <em>Precision</em>}</li>
+ *   <li>{@link com.shark.lang.dd.MultExpression#getLength <em>Length</em>}</li>
  * </ul>
  *
  * @see com.shark.lang.dd.DdPackage#getMultExpression()
@@ -106,25 +108,69 @@ public interface MultExpression extends SharkExpression
   EList<MultExpressionElt> getMultElts();
 
   /**
-   * Returns the value of the '<em><b>Checked</b></em>' attribute.
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Checked</em>' attribute.
-   * @see #setChecked(boolean)
-   * @see com.shark.lang.dd.DdPackage#getMultExpression_Checked()
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(String)
+   * @see com.shark.lang.dd.DdPackage#getMultExpression_Value()
    * @model
    * @generated
    */
-  boolean isChecked();
+  String getValue();
 
   /**
-   * Sets the value of the '{@link com.shark.lang.dd.MultExpression#isChecked <em>Checked</em>}' attribute.
+   * Sets the value of the '{@link com.shark.lang.dd.MultExpression#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Checked</em>' attribute.
-   * @see #isChecked()
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see #getValue()
    * @generated
    */
-  void setChecked(boolean value);
+  void setValue(String value);
+
+  /**
+   * Returns the value of the '<em><b>Precision</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Precision</em>' attribute.
+   * @see #setPrecision(int)
+   * @see com.shark.lang.dd.DdPackage#getMultExpression_Precision()
+   * @model
+   * @generated
+   */
+  int getPrecision();
+
+  /**
+   * Sets the value of the '{@link com.shark.lang.dd.MultExpression#getPrecision <em>Precision</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Precision</em>' attribute.
+   * @see #getPrecision()
+   * @generated
+   */
+  void setPrecision(int value);
+
+  /**
+   * Returns the value of the '<em><b>Length</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Length</em>' attribute.
+   * @see #setLength(int)
+   * @see com.shark.lang.dd.DdPackage#getMultExpression_Length()
+   * @model
+   * @generated
+   */
+  int getLength();
+
+  /**
+   * Sets the value of the '{@link com.shark.lang.dd.MultExpression#getLength <em>Length</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Length</em>' attribute.
+   * @see #getLength()
+   * @generated
+   */
+  void setLength(int value);
 
 } // MultExpression

@@ -8,8 +8,6 @@ import com.shark.lang.dd.CatExpressionElt;
 import com.shark.lang.dd.DdPackage;
 import com.shark.lang.dd.SharkExpression;
 
-import java.lang.Boolean;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -37,7 +35,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#getRight <em>Right</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#getCatElts <em>Cat Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#isChecked <em>Checked</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#getLength <em>Length</em>}</li>
  * </ul>
  *
  * @generated
@@ -95,24 +94,44 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
   protected EList<CatExpressionElt> catElts;
 
   /**
-   * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isChecked()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final boolean CHECKED_EDEFAULT = false;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isChecked() <em>Checked</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isChecked()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected boolean checked = CHECKED_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLength()
+   * @generated
+   * @ordered
+   */
+  protected static final int LENGTH_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLength()
+   * @generated
+   * @ordered
+   */
+  protected int length = LENGTH_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -281,9 +300,9 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
    * @generated
    */
   @Override
-  public boolean isChecked()
+  public String getValue()
   {
-    return checked;
+    return value;
   }
 
   /**
@@ -292,12 +311,37 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
    * @generated
    */
   @Override
-  public void setChecked(boolean newChecked)
+  public void setValue(String newValue)
   {
-    boolean oldChecked = checked;
-    checked = newChecked;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.CAT_EXPRESSION__CHECKED, oldChecked, checked));
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.CAT_EXPRESSION__VALUE, oldValue, value));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int getLength()
+  {
+    return length;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setLength(int newLength)
+  {
+    int oldLength = length;
+    length = newLength;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.CAT_EXPRESSION__LENGTH, oldLength, length));
   }
 
   /**
@@ -338,8 +382,10 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
         return getRight();
       case DdPackage.CAT_EXPRESSION__CAT_ELTS:
         return getCatElts();
-      case DdPackage.CAT_EXPRESSION__CHECKED:
-        return isChecked();
+      case DdPackage.CAT_EXPRESSION__VALUE:
+        return getValue();
+      case DdPackage.CAT_EXPRESSION__LENGTH:
+        return getLength();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -368,8 +414,11 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
         getCatElts().clear();
         getCatElts().addAll((Collection<? extends CatExpressionElt>)newValue);
         return;
-      case DdPackage.CAT_EXPRESSION__CHECKED:
-        setChecked((Boolean)newValue);
+      case DdPackage.CAT_EXPRESSION__VALUE:
+        setValue((String)newValue);
+        return;
+      case DdPackage.CAT_EXPRESSION__LENGTH:
+        setLength((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -397,8 +446,11 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
       case DdPackage.CAT_EXPRESSION__CAT_ELTS:
         getCatElts().clear();
         return;
-      case DdPackage.CAT_EXPRESSION__CHECKED:
-        setChecked(CHECKED_EDEFAULT);
+      case DdPackage.CAT_EXPRESSION__VALUE:
+        setValue(VALUE_EDEFAULT);
+        return;
+      case DdPackage.CAT_EXPRESSION__LENGTH:
+        setLength(LENGTH_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -422,8 +474,10 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
         return right != null;
       case DdPackage.CAT_EXPRESSION__CAT_ELTS:
         return catElts != null && !catElts.isEmpty();
-      case DdPackage.CAT_EXPRESSION__CHECKED:
-        return checked != CHECKED_EDEFAULT;
+      case DdPackage.CAT_EXPRESSION__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+      case DdPackage.CAT_EXPRESSION__LENGTH:
+        return length != LENGTH_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -441,8 +495,10 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", checked: ");
-    result.append(checked);
+    result.append(", value: ");
+    result.append(value);
+    result.append(", length: ");
+    result.append(length);
     result.append(')');
     return result.toString();
   }

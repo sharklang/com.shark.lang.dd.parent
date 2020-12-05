@@ -8,8 +8,6 @@ import com.shark.lang.dd.BinaryOperator;
 import com.shark.lang.dd.DdPackage;
 import com.shark.lang.dd.SharkExpression;
 
-import java.lang.Boolean;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -29,10 +27,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getRight <em>Right</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#isNumType <em>Num Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#isStrType <em>Str Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#isDateType <em>Date Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#isBoolType <em>Bool Type</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getPrecision <em>Precision</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getLength <em>Length</em>}</li>
  * </ul>
  *
  * @generated
@@ -80,84 +77,64 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
   protected SharkExpression right;
 
   /**
-   * The default value of the '{@link #isNumType() <em>Num Type</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isNumType()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final boolean NUM_TYPE_EDEFAULT = false;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isNumType() <em>Num Type</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isNumType()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected boolean numType = NUM_TYPE_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isStrType() <em>Str Type</em>}' attribute.
+   * The default value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isStrType()
+   * @see #getPrecision()
    * @generated
    * @ordered
    */
-  protected static final boolean STR_TYPE_EDEFAULT = false;
+  protected static final int PRECISION_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #isStrType() <em>Str Type</em>}' attribute.
+   * The cached value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isStrType()
+   * @see #getPrecision()
    * @generated
    * @ordered
    */
-  protected boolean strType = STR_TYPE_EDEFAULT;
+  protected int precision = PRECISION_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isDateType() <em>Date Type</em>}' attribute.
+   * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isDateType()
+   * @see #getLength()
    * @generated
    * @ordered
    */
-  protected static final boolean DATE_TYPE_EDEFAULT = false;
+  protected static final int LENGTH_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #isDateType() <em>Date Type</em>}' attribute.
+   * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isDateType()
+   * @see #getLength()
    * @generated
    * @ordered
    */
-  protected boolean dateType = DATE_TYPE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isBoolType() <em>Bool Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isBoolType()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean BOOL_TYPE_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isBoolType() <em>Bool Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isBoolType()
-   * @generated
-   * @ordered
-   */
-  protected boolean boolType = BOOL_TYPE_EDEFAULT;
+  protected int length = LENGTH_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -311,9 +288,9 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
    * @generated
    */
   @Override
-  public boolean isNumType()
+  public String getValue()
   {
-    return numType;
+    return value;
   }
 
   /**
@@ -322,12 +299,12 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
    * @generated
    */
   @Override
-  public void setNumType(boolean newNumType)
+  public void setValue(String newValue)
   {
-    boolean oldNumType = numType;
-    numType = newNumType;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.BINARY_EXPRESSION__NUM_TYPE, oldNumType, numType));
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.BINARY_EXPRESSION__VALUE, oldValue, value));
   }
 
   /**
@@ -336,9 +313,9 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
    * @generated
    */
   @Override
-  public boolean isStrType()
+  public int getPrecision()
   {
-    return strType;
+    return precision;
   }
 
   /**
@@ -347,12 +324,12 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
    * @generated
    */
   @Override
-  public void setStrType(boolean newStrType)
+  public void setPrecision(int newPrecision)
   {
-    boolean oldStrType = strType;
-    strType = newStrType;
+    int oldPrecision = precision;
+    precision = newPrecision;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.BINARY_EXPRESSION__STR_TYPE, oldStrType, strType));
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.BINARY_EXPRESSION__PRECISION, oldPrecision, precision));
   }
 
   /**
@@ -361,9 +338,9 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
    * @generated
    */
   @Override
-  public boolean isDateType()
+  public int getLength()
   {
-    return dateType;
+    return length;
   }
 
   /**
@@ -372,37 +349,12 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
    * @generated
    */
   @Override
-  public void setDateType(boolean newDateType)
+  public void setLength(int newLength)
   {
-    boolean oldDateType = dateType;
-    dateType = newDateType;
+    int oldLength = length;
+    length = newLength;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.BINARY_EXPRESSION__DATE_TYPE, oldDateType, dateType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isBoolType()
-  {
-    return boolType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setBoolType(boolean newBoolType)
-  {
-    boolean oldBoolType = boolType;
-    boolType = newBoolType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.BINARY_EXPRESSION__BOOL_TYPE, oldBoolType, boolType));
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.BINARY_EXPRESSION__LENGTH, oldLength, length));
   }
 
   /**
@@ -439,14 +391,12 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
         return getOp();
       case DdPackage.BINARY_EXPRESSION__RIGHT:
         return getRight();
-      case DdPackage.BINARY_EXPRESSION__NUM_TYPE:
-        return isNumType();
-      case DdPackage.BINARY_EXPRESSION__STR_TYPE:
-        return isStrType();
-      case DdPackage.BINARY_EXPRESSION__DATE_TYPE:
-        return isDateType();
-      case DdPackage.BINARY_EXPRESSION__BOOL_TYPE:
-        return isBoolType();
+      case DdPackage.BINARY_EXPRESSION__VALUE:
+        return getValue();
+      case DdPackage.BINARY_EXPRESSION__PRECISION:
+        return getPrecision();
+      case DdPackage.BINARY_EXPRESSION__LENGTH:
+        return getLength();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -470,17 +420,14 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
       case DdPackage.BINARY_EXPRESSION__RIGHT:
         setRight((SharkExpression)newValue);
         return;
-      case DdPackage.BINARY_EXPRESSION__NUM_TYPE:
-        setNumType((Boolean)newValue);
+      case DdPackage.BINARY_EXPRESSION__VALUE:
+        setValue((String)newValue);
         return;
-      case DdPackage.BINARY_EXPRESSION__STR_TYPE:
-        setStrType((Boolean)newValue);
+      case DdPackage.BINARY_EXPRESSION__PRECISION:
+        setPrecision((Integer)newValue);
         return;
-      case DdPackage.BINARY_EXPRESSION__DATE_TYPE:
-        setDateType((Boolean)newValue);
-        return;
-      case DdPackage.BINARY_EXPRESSION__BOOL_TYPE:
-        setBoolType((Boolean)newValue);
+      case DdPackage.BINARY_EXPRESSION__LENGTH:
+        setLength((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -505,17 +452,14 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
       case DdPackage.BINARY_EXPRESSION__RIGHT:
         setRight((SharkExpression)null);
         return;
-      case DdPackage.BINARY_EXPRESSION__NUM_TYPE:
-        setNumType(NUM_TYPE_EDEFAULT);
+      case DdPackage.BINARY_EXPRESSION__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
-      case DdPackage.BINARY_EXPRESSION__STR_TYPE:
-        setStrType(STR_TYPE_EDEFAULT);
+      case DdPackage.BINARY_EXPRESSION__PRECISION:
+        setPrecision(PRECISION_EDEFAULT);
         return;
-      case DdPackage.BINARY_EXPRESSION__DATE_TYPE:
-        setDateType(DATE_TYPE_EDEFAULT);
-        return;
-      case DdPackage.BINARY_EXPRESSION__BOOL_TYPE:
-        setBoolType(BOOL_TYPE_EDEFAULT);
+      case DdPackage.BINARY_EXPRESSION__LENGTH:
+        setLength(LENGTH_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -537,14 +481,12 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
         return op != OP_EDEFAULT;
       case DdPackage.BINARY_EXPRESSION__RIGHT:
         return right != null;
-      case DdPackage.BINARY_EXPRESSION__NUM_TYPE:
-        return numType != NUM_TYPE_EDEFAULT;
-      case DdPackage.BINARY_EXPRESSION__STR_TYPE:
-        return strType != STR_TYPE_EDEFAULT;
-      case DdPackage.BINARY_EXPRESSION__DATE_TYPE:
-        return dateType != DATE_TYPE_EDEFAULT;
-      case DdPackage.BINARY_EXPRESSION__BOOL_TYPE:
-        return boolType != BOOL_TYPE_EDEFAULT;
+      case DdPackage.BINARY_EXPRESSION__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+      case DdPackage.BINARY_EXPRESSION__PRECISION:
+        return precision != PRECISION_EDEFAULT;
+      case DdPackage.BINARY_EXPRESSION__LENGTH:
+        return length != LENGTH_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -562,14 +504,12 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", numType: ");
-    result.append(numType);
-    result.append(", strType: ");
-    result.append(strType);
-    result.append(", dateType: ");
-    result.append(dateType);
-    result.append(", boolType: ");
-    result.append(boolType);
+    result.append(", value: ");
+    result.append(value);
+    result.append(", precision: ");
+    result.append(precision);
+    result.append(", length: ");
+    result.append(length);
     result.append(')');
     return result.toString();
   }

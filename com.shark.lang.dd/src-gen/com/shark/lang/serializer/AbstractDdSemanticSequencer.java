@@ -200,7 +200,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     AddExpression returns AddExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression (op='+' | op='-') right=SharkExpression addElts+=AddExpressionElt+ checked?=NULL?)
+	 *     (left=SharkExpression (op='+' | op='-') right=SharkExpression addElts+=AddExpressionElt+ (value=NUL precision=INT length=INT)?)
 	 */
 	protected void sequence_AddExpression(ISerializationContext context, AddExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -234,7 +234,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     AndExpression returns AndExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+ checked?=NULL?)
+	 *     (left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+)
 	 */
 	protected void sequence_AndExpression(ISerializationContext context, AndExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -283,7 +283,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *         arraySize=ArraySize? 
 	 *         name=ID 
 	 *         defaultValue=SharkExpression? 
-	 *         primaryKey?='pk'? 
+	 *         primaryKey?='key'? 
 	 *         mandatory?='!'? 
 	 *         attrDesc=TrailComment
 	 *     )
@@ -299,7 +299,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     BinaryExpression returns BinaryExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op=BinaryOperator right=SharkExpression (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?)
+	 *     (left=SharkExpression op=BinaryOperator right=SharkExpression (value=NUL precision=INT length=INT)?)
 	 */
 	protected void sequence_BinaryExpression(ISerializationContext context, BinaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -333,7 +333,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     CatExpression returns CatExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ checked?=NULL?)
+	 *     (left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ (value=NUL length=INT)?)
 	 */
 	protected void sequence_CatExpression(ISerializationContext context, CatExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -389,7 +389,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     DataModelFragment returns DataModelFragment
 	 *
 	 * Constraint:
-	 *     ((constants+=Constant* entities+=Entity+ constraints+=Constraint+) | (constants+=Constant* constraints+=Constraint+) | constraints+=Constraint+)?
+	 *     (modelDesc+=LineComment+ name=OBJID constants+=Constant* entities+=Entity* constraints+=Constraint*)
 	 */
 	protected void sequence_DataModelFragment(ISerializationContext context, DataModelFragment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -471,7 +471,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     ListExpression returns ListExpression
 	 *
 	 * Constraint:
-	 *     (op='(' left=SharkExpression ListElts+=ListExpressionElt+ (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?)
+	 *     (op='(' left=SharkExpression ListElts+=ListExpressionElt+)
 	 */
 	protected void sequence_ListExpression(ISerializationContext context, ListExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -483,11 +483,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     SharkExpression returns ListExpression
 	 *
 	 * Constraint:
-	 *     (
-	 *         (op='(' left=SharkExpression ListElts+=ListExpressionElt+ (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?) | 
-	 *         (range=RANGE (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?) | 
-	 *         (range=RANGEINF (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?)
-	 *     )
+	 *     ((op='(' left=SharkExpression ListElts+=ListExpressionElt+) | range=RANGE | range=RANGEINF)
 	 */
 	protected void sequence_ListExpression_RangeExpression(ISerializationContext context, ListExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -521,7 +517,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     MultExpression returns MultExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ checked?=NULL?)
+	 *     (left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ (value=NUL precision=INT length=INT)?)
 	 */
 	protected void sequence_MultExpression(ISerializationContext context, MultExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -555,7 +551,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     OrExpression returns OrExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+ checked?=NULL?)
+	 *     (left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+)
 	 */
 	protected void sequence_OrExpression(ISerializationContext context, OrExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -567,10 +563,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     RangeExpression returns ListExpression
 	 *
 	 * Constraint:
-	 *     (
-	 *         (range=RANGE (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?) | 
-	 *         (range=RANGEINF (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?)
-	 *     )
+	 *     (range=RANGE | range=RANGEINF)
 	 */
 	protected void sequence_RangeExpression(ISerializationContext context, ListExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -764,7 +757,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     UnaryExpression returns UnaryExpression
 	 *
 	 * Constraint:
-	 *     (op=UnaryOperator left=SharkExpression (numType?=NULL strType?=NULL dateType?=NULL boolType?=NULL)?)
+	 *     (op=UnaryOperator left=SharkExpression (value=NUL precision=INT length=INT)?)
 	 */
 	protected void sequence_UnaryExpression(ISerializationContext context, UnaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -1,6 +1,6 @@
 define(["ace/lib/oop", "ace/mode/text", "ace/mode/text_highlight_rules"], function(oop, mText, mTextHighlightRules) {
 	var HighlightRules = function() {
-		var keywords = "and|bits|bool|chr|date|dec|false|in|int|len|like|not|or|pk|round|stamp|str|stxt|time|true|unset";
+		var keywords = "and|bits|bool|chr|date|dec|false|in|int|key|len|like|model|not|or|round|stamp|str|stxt|time|true|unset";
 		this.$rules = {
 			"start": [
 				{token: "lparen", regex: "[\\[(]"},

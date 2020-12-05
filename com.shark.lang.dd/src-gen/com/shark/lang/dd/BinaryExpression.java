@@ -16,10 +16,9 @@ package com.shark.lang.dd;
  *   <li>{@link com.shark.lang.dd.BinaryExpression#getLeft <em>Left</em>}</li>
  *   <li>{@link com.shark.lang.dd.BinaryExpression#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.BinaryExpression#getRight <em>Right</em>}</li>
- *   <li>{@link com.shark.lang.dd.BinaryExpression#isNumType <em>Num Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.BinaryExpression#isStrType <em>Str Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.BinaryExpression#isDateType <em>Date Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.BinaryExpression#isBoolType <em>Bool Type</em>}</li>
+ *   <li>{@link com.shark.lang.dd.BinaryExpression#getValue <em>Value</em>}</li>
+ *   <li>{@link com.shark.lang.dd.BinaryExpression#getPrecision <em>Precision</em>}</li>
+ *   <li>{@link com.shark.lang.dd.BinaryExpression#getLength <em>Length</em>}</li>
  * </ul>
  *
  * @see com.shark.lang.dd.DdPackage#getBinaryExpression()
@@ -98,91 +97,69 @@ public interface BinaryExpression extends SharkExpression
   void setRight(SharkExpression value);
 
   /**
-   * Returns the value of the '<em><b>Num Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Num Type</em>' attribute.
-   * @see #setNumType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getBinaryExpression_NumType()
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(String)
+   * @see com.shark.lang.dd.DdPackage#getBinaryExpression_Value()
    * @model
    * @generated
    */
-  boolean isNumType();
+  String getValue();
 
   /**
-   * Sets the value of the '{@link com.shark.lang.dd.BinaryExpression#isNumType <em>Num Type</em>}' attribute.
+   * Sets the value of the '{@link com.shark.lang.dd.BinaryExpression#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Num Type</em>' attribute.
-   * @see #isNumType()
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see #getValue()
    * @generated
    */
-  void setNumType(boolean value);
+  void setValue(String value);
 
   /**
-   * Returns the value of the '<em><b>Str Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Precision</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Str Type</em>' attribute.
-   * @see #setStrType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getBinaryExpression_StrType()
+   * @return the value of the '<em>Precision</em>' attribute.
+   * @see #setPrecision(int)
+   * @see com.shark.lang.dd.DdPackage#getBinaryExpression_Precision()
    * @model
    * @generated
    */
-  boolean isStrType();
+  int getPrecision();
 
   /**
-   * Sets the value of the '{@link com.shark.lang.dd.BinaryExpression#isStrType <em>Str Type</em>}' attribute.
+   * Sets the value of the '{@link com.shark.lang.dd.BinaryExpression#getPrecision <em>Precision</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Str Type</em>' attribute.
-   * @see #isStrType()
+   * @param value the new value of the '<em>Precision</em>' attribute.
+   * @see #getPrecision()
    * @generated
    */
-  void setStrType(boolean value);
+  void setPrecision(int value);
 
   /**
-   * Returns the value of the '<em><b>Date Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Length</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Date Type</em>' attribute.
-   * @see #setDateType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getBinaryExpression_DateType()
+   * @return the value of the '<em>Length</em>' attribute.
+   * @see #setLength(int)
+   * @see com.shark.lang.dd.DdPackage#getBinaryExpression_Length()
    * @model
    * @generated
    */
-  boolean isDateType();
+  int getLength();
 
   /**
-   * Sets the value of the '{@link com.shark.lang.dd.BinaryExpression#isDateType <em>Date Type</em>}' attribute.
+   * Sets the value of the '{@link com.shark.lang.dd.BinaryExpression#getLength <em>Length</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Date Type</em>' attribute.
-   * @see #isDateType()
+   * @param value the new value of the '<em>Length</em>' attribute.
+   * @see #getLength()
    * @generated
    */
-  void setDateType(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Bool Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Bool Type</em>' attribute.
-   * @see #setBoolType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getBinaryExpression_BoolType()
-   * @model
-   * @generated
-   */
-  boolean isBoolType();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.BinaryExpression#isBoolType <em>Bool Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Bool Type</em>' attribute.
-   * @see #isBoolType()
-   * @generated
-   */
-  void setBoolType(boolean value);
+  void setLength(int value);
 
 } // BinaryExpression

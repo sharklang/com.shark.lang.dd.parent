@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.shark.lang.dd.AndExpression#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.AndExpression#getRight <em>Right</em>}</li>
  *   <li>{@link com.shark.lang.dd.AndExpression#getAndElts <em>And Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.AndExpression#isChecked <em>Checked</em>}</li>
  * </ul>
  *
  * @see com.shark.lang.dd.DdPackage#getAndExpression()
@@ -104,27 +103,5 @@ public interface AndExpression extends SharkExpression
    * @generated
    */
   EList<AndExpressionElt> getAndElts();
-
-  /**
-   * Returns the value of the '<em><b>Checked</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Checked</em>' attribute.
-   * @see #setChecked(boolean)
-   * @see com.shark.lang.dd.DdPackage#getAndExpression_Checked()
-   * @model
-   * @generated
-   */
-  boolean isChecked();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.AndExpression#isChecked <em>Checked</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Checked</em>' attribute.
-   * @see #isChecked()
-   * @generated
-   */
-  void setChecked(boolean value);
 
 } // AndExpression

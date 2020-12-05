@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link com.shark.lang.dd.DataModelFragment#getModelDesc <em>Model Desc</em>}</li>
+ *   <li>{@link com.shark.lang.dd.DataModelFragment#getName <em>Name</em>}</li>
  *   <li>{@link com.shark.lang.dd.DataModelFragment#getConstants <em>Constants</em>}</li>
  *   <li>{@link com.shark.lang.dd.DataModelFragment#getEntities <em>Entities</em>}</li>
  *   <li>{@link com.shark.lang.dd.DataModelFragment#getConstraints <em>Constraints</em>}</li>
@@ -27,6 +29,40 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DataModelFragment extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Model Desc</b></em>' containment reference list.
+   * The list contents are of type {@link com.shark.lang.dd.LineComment}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Model Desc</em>' containment reference list.
+   * @see com.shark.lang.dd.DdPackage#getDataModelFragment_ModelDesc()
+   * @model containment="true"
+   * @generated
+   */
+  EList<LineComment> getModelDesc();
+
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see com.shark.lang.dd.DdPackage#getDataModelFragment_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link com.shark.lang.dd.DataModelFragment#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
+
   /**
    * Returns the value of the '<em><b>Constants</b></em>' containment reference list.
    * The list contents are of type {@link com.shark.lang.dd.Constant}.
