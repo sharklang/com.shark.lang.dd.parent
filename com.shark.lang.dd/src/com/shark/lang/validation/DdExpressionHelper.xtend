@@ -248,7 +248,8 @@ class DdExpressionHelper {
 				length = (expr as StrValue).value.length - 2 // quotes are in value
 			}
 			ChrValue: {
-				length = 1
+				//empty string is an empty char... So here can return 1 or 0
+				length = (expr as ChrValue).value.length - 2
 			}
 			IntValue: {
 				length = (expr as IntValue).value.integerLength
@@ -326,7 +327,7 @@ class DdExpressionHelper {
 	}
 
 	// TODO, improve beyond simple literal cases. Can be done recursively at least a little for constants.
-	def calculateExpression(SharkExpression expr) {
+	def String calculateExpression(SharkExpression expr) {
 		switch (expr) {
 			ChrValue: {
 				val chr = expr as ChrValue
@@ -349,11 +350,11 @@ class DdExpressionHelper {
 			}
 			CstValue: {
 				val cst = expr as CstValue
-				""
+				calculateExpression(cst.value.defaultValue)
 			}
 			IdentifierExpression: {
 				val identExpr = expr as IdentifierExpression
-				""
+				calculateExpression(identExpr.value.defaultValue)
 			}
 			BinaryExpression: {
 				val binExpr = expr as BinaryExpression

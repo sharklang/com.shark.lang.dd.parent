@@ -8,8 +8,6 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 //EOL tokens are added after an indent constant or no indent and a new line
 //IDENT triggered after a Comment so generates EOL 
 //with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-//TODO check empty string const on like: myvar like "" should fail
-//TODO check cast date format: date("YYYYMMDD") in case it is not and expression
 //TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
 //TODO test expressions interactively and build non passing JUNIT tests using excel random
 //TODO update formatter
@@ -20,17 +18,16 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 //TODO do a first output
 //TODO semantic highlighting example
 //TODO use case of the unset value
-//TODO add formats on top of checks to be used by like operator: 5A003a-"H" with positions. formats will be usable to split
 //TODO test date operations + 1*DAY... basing on the generator error management
 //TODO add min, max, avg
 //TODO add content assist
 //TODO split into reusable grammar and create sd and sk languages
 //TODO implement math a bit more: implement the expression precision check and rounding routines
 //TODO in this context consider removing int and stick to general dec(n,0)?
-//TODO as for constant they need to be calculatable expressions at compile time so use groovy or other in validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
+//TODO Improve calculateExpression and add it to the main descent of getExpressionType using a value extra member
 //TODO check and neutralize useless comment associator
 //TODO check that all text is assigned
-//TODO cleanup error messages in propoerties
+//TODO cleanup error messages in properties
 //ecore sample editor. editor read again the XtextRessource so normal that my boolean are not there. they would have to 
 //be persisted in hidden text... But core code generation maybe the in memory AST is the same as in validation
 //to test.
@@ -274,8 +271,9 @@ terminal fragment NL:
 
 	//beware terminals are consumed in this order of precedence
 //and lexer eats the longest possibility. caret removed
-	//string literals don't allow all escapes only common ones, and only double quotes
-terminal CHR returns ecore::EChar:
+//string literals don't allow all escapes only common ones, and only double quotes
+terminal CHR returns ecore::EString: //simpler to manage a string and remove quotes rather than using a value converter
+//TODO consider using a value converter
 	'"' (ESC | ASCII)? '"';
 
 	//string literals don't allow all escapes only common ones, and only double quotes

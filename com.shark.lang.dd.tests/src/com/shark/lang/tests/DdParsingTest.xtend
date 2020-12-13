@@ -7,7 +7,6 @@ import com.google.inject.Inject
 import com.shark.lang.dd.DataModelFragment
 import javax.inject.Provider
 import org.eclipse.emf.common.util.URI
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.extensions.InjectionExtension
@@ -208,7 +207,7 @@ class DdParsingTest {
 		
 	}
 	
-		@Test
+	@Test
 	def void testMultType() {
 
 		val memFile = "inmemory:/testStxt.dd" -> '''
@@ -223,25 +222,70 @@ class DdParsingTest {
 		'''
 
 		val errList = testMemoryFileWithErrors(memFile)
+		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
 		Assertions.assertTrue((errList.get(0).message ==
 			"Type Mismatch: all the members of the addition should be of numeric type"),
 			"Type validation of Multiple add fails")
 		Assertions.assertTrue((errList.get(1).message == 
 			"Type Mismatch: all the members of the multiplication should be of numeric type"), 
 			"Type validation of Multiple mult fails")
-		Assertions.assertTrue((errList.get(3).message == 
+		Assertions.assertTrue((errList.get(2).message == 
 			"Type Mismatch: all the members of the concat expression should be of string type"), 
 			"Type validation of Multiple cat fails")
-		Assertions.assertTrue((errList.get(4).message == 
+		Assertions.assertTrue((errList.get(3).message == 
 			"Type Mismatch: all the members of the logical Or expression should be of boolean type"), 
 			"Type validation of Multiple or fails")
-		Assertions.assertTrue((errList.get(5).message == 
+		Assertions.assertTrue((errList.get(4).message == 
 			"Type Mismatch: all the members of the logical And expression should be of boolean type"), 
 			"Type validation of Multiple and fails")
 		
 	}
 	
+	@Test
+	def void testLike() {
 
+		val memFile = "inmemory:/testStxt.dd" -> '''
+			'this is a test model   
+			model Round_Test
+			bool			    TEST1 = ("TOTO" like "TO") 'comment
+			bool			    TEST2 = ("TATA" like "") 'comment
+			
+		'''
+
+		val errList = testMemoryFileWithErrors(memFile)
+		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message ==
+			"Invalid Operand: String template for a like operator cannot be empty"),
+			"Verification of right operand of like operator fails")
+	}
+
+	@Test
+	def void testDateCasts() {
+
+		val memFile = "inmemory:/testStxt.dd" -> '''
+			'this is a test model   
+			model Round_Test
+			date			    TEST1 = date("ABC") 'comment
+			stamp			    TEST2 = stamp("CDE") 'comment
+			time            TEST3 = time("EFG") 'comment
+			
+		'''
+
+		val errList = testMemoryFileWithErrors(memFile)
+		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message ==
+			"Invalid Date Format: it should be YYYYMMDD"),
+			"Verification of date cast literal operand format failed")
+		Assertions.assertTrue((errList.get(1).message ==
+			"Invalid Timestamp Format: it should be YYYYMMDD.HHMMSS.ssss"),
+			"Verification of stamp cast literal operand format failed")
+		Assertions.assertTrue((errList.get(2).message ==
+			"Invalid Time Format: it should be HHMNSS"),
+			"Verification of time cast literal operand format failed")
+	}
+
+
+//TODO move that to a helper class
 	def testMemoryFileNoError(Pair<String, String> fileDesc) {
 		val inMemFile = handler.getInMemoryFile(URI.createURI(fileDesc.key))
 		inMemFile.contents = fileDesc.value.bytes

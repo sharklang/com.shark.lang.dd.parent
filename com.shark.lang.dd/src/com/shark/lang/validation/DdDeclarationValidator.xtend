@@ -138,7 +138,9 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 			} else {
 				// last possible correct cases with date and time are checked in below function
 				// the final error message if types are different is in the manage date function
-				manageDateTimeFormatsOrThrowError(dataType.value, exprType.value, ctxt, defaultValue, ref)
+				if(manageDateTimeFormats(dataType.value, exprType.value, ctxt, defaultValue, ref) == false) {
+					error("Invalid initialization: expression type mismatch with attribute or constant", ctxt, ref)
+				}
 			}
 		}
 	}
@@ -199,7 +201,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 		// if no mismatch type is deducted from operator and casts are managed
 		// the order of the 2 calls here are important: in check operator the cast type change was not done yet so the check operator is done on the left type
 		// not on the target type of the unary expression
-		exprHelper.getUnaryType(unExpr)
+		exprHelper.mergeCompatibleDataTypes(exprHelper.getUnaryType(unExpr))
 	}
 
 // checks type and operator consistency
@@ -476,10 +478,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 
 	// check operator and type compatibility, called after the type was identified for the expression
 	// so only on homogeneous expression with same type at that point. Sends error otherwise.
-	def void checkHomogenousOperator(
-		SharkExpression e,
-		DataType t
-	) {
+	def void checkHomogenousOperator(SharkExpression e, DataType t) {
 		switch (e) {
 			BinaryExpression: {
 				val binExpr = e as BinaryExpression
@@ -513,6 +512,10 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 						} else {
 							// computes the size/precision depending on operator of the binary expression
 							exprHelper.computesSizeSTR(binExpr)
+							if((opValue == BinaryOperator.OP_LIKE_VALUE) && (exprHelper.getExpressionSize(e.right).length == 0)) {
+								error("Invalid Operand: String template for a like operator cannot be empty", binExpr,
+									DdPackage.Literals.BINARY_EXPRESSION__OP)
+							}
 						}
 					}
 					case DataType.DEC_VALUE: {
@@ -569,12 +572,12 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 						if((opValue != UnaryOperator.DATE_CAST_VALUE) && (opValue != UnaryOperator.INT_CAST_VALUE) &&
 							(opValue != UnaryOperator.DEC_CAST_VALUE) && (opValue != UnaryOperator.OP_LEN_VALUE) &&
 							(opValue != UnaryOperator.TIME_CAST_VALUE) && (opValue != UnaryOperator.STAMP_CAST_VALUE)) {
-							error(
-								"Invalid Operator: String and character types can only use stxt(),int(),dec(),len(),date() and time() functions, here it is " +
-									op.literal, unExpr, DdPackage.Literals.UNARY_EXPRESSION__OP)
+							error("Invalid Unary Operator " + op.literal + " on a string expression", unExpr,
+								DdPackage.Literals.UNARY_EXPRESSION__OP)
 						} else {
 							// computes the size/precision depending on operator of the binary expression
 							exprHelper.computesSizeSTR(unExpr)
+							manageDateTimeFormats(exprHelper.getUnaryType(unExpr).value, typeValue, unExpr, unExpr.left, DdPackage.Literals.UNARY_EXPRESSION__LEFT)
 						}
 					}
 					case typeValue == DataType.DEC_VALUE: {
@@ -709,8 +712,9 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 
 //used in the verification of initializations for constants and attribute to control the specific date and time string formats
 //allowed to init date and time attributes and constants
-//this is called at the end of the check sequence so here all types are homogenous already and operator is ok
-	def manageDateTimeFormatsOrThrowError(int mainDataType, int exprType, EObject context, SharkExpression defaultValue, EReference eRef) {
+//this is called at the end of the check sequence so here all types are homogeneous already and operator is ok
+//It only does a check if the init is done via a literal of list of them
+	def boolean manageDateTimeFormats(int mainDataType, int exprType, EObject context, SharkExpression defaultValue, EReference eRef) {
 		if((mainDataType == DataType.DATE_VALUE) && (exprType == DataType.STR_VALUE)) {
 			// could be ok despite the difference of type, unless it is not the right format 
 			// at that stage it can either be a list of strings to init an array of dates or a single date and a string
@@ -799,12 +803,12 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 						error(ERR_INVALID_STAMP_ARRAY_INIT, context, eRef)
 					}
 				} else {
-					// in that case we are sure this is a type error, not a date time or timestamp init
-					error("Invalid initialization: expression type mismatch with attribute or constant", context, eRef)
+					// to return and error in checktype
+					return false
 				}
 			}
 		}
-
+		return true
 	}
 
 }

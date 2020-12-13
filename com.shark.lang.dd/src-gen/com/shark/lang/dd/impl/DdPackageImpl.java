@@ -2431,7 +2431,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getDecValue_Value(), ecorePackage.getEBigDecimal(), "value", null, 0, 1, DecValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(chrValueEClass, ChrValue.class, "ChrValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getChrValue_Value(), ecorePackage.getEChar(), "value", null, 0, 1, ChrValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getChrValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, ChrValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(cstValueEClass, CstValue.class, "CstValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCstValue_Value(), this.getConstant(), null, "value", null, 0, 1, CstValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

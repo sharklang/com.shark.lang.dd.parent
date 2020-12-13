@@ -46,13 +46,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		////EOL tokens are added after an indent constant or no indent and a new line
 		////IDENT triggered after a Comment so generates EOL 
 		////with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-		////TODO length of mutliple concat is required so do a computesize sur sharkexpression et un switch...
-		////TODO check chr init is only one caracter
-		////TODO check cast date format: date("YYYYMMDD") 
-		////TODO for stxt it should be a list of 2 int --> exact size and type not only list...
 		////TODO check empty string const on like: myvar like "" should fail
-		////TODO check max size of strings in const declaration is respected in the expression length using groovy?
-		////TODO check precision of dec in const decl is respected, using again groovy for an expression
+		////TODO check cast date format: date("YYYYMMDD") in case it is not and expression
 		////TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
 		////TODO test expressions interactively and build non passing JUNIT tests using excel random
 		////TODO update formatter
@@ -2215,13 +2210,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	////EOL tokens are added after an indent constant or no indent and a new line
 	////IDENT triggered after a Comment so generates EOL 
 	////with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-	////TODO length of mutliple concat is required so do a computesize sur sharkexpression et un switch...
-	////TODO check chr init is only one caracter
-	////TODO check cast date format: date("YYYYMMDD") 
-	////TODO for stxt it should be a list of 2 int --> exact size and type not only list...
 	////TODO check empty string const on like: myvar like "" should fail
-	////TODO check max size of strings in const declaration is respected in the expression length using groovy?
-	////TODO check precision of dec in const decl is respected, using again groovy for an expression
+	////TODO check cast date format: date("YYYYMMDD") in case it is not and expression
 	////TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
 	////TODO test expressions interactively and build non passing JUNIT tests using excel random
 	////TODO update formatter
@@ -2719,7 +2709,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		return tNL;
 	}
 	
-	//terminal CHR returns ecore::EChar:
+	//terminal CHR: //simpler to manage a string and remove quotes rather than using a value converter
+	////TODO consider using a value converter
 	//	'"' (ESC | ASCII)? '"';
 	public TerminalRule getCHRRule() {
 		return tCHR;
