@@ -35,7 +35,6 @@ public class DdParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, DdGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getSharkExpressionAccess().getAlternatives(), "rule__SharkExpression__Alternatives");
 			builder.put(grammarAccess.getAddExpressionAccess().getOpAlternatives_2_0(), "rule__AddExpression__OpAlternatives_2_0");
-			builder.put(grammarAccess.getAddExpressionEltAccess().getOpAlternatives_0_0(), "rule__AddExpressionElt__OpAlternatives_0_0");
 			builder.put(grammarAccess.getRangeExpressionAccess().getAlternatives(), "rule__RangeExpression__Alternatives");
 			builder.put(grammarAccess.getTerminalExpressionAccess().getAlternatives(), "rule__TerminalExpression__Alternatives");
 			builder.put(grammarAccess.getBinaryOperatorAccess().getAlternatives(), "rule__BinaryOperator__Alternatives");

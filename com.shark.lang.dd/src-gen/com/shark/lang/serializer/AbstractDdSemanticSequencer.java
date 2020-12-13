@@ -187,10 +187,19 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     AddExpressionElt returns AddExpressionElt
 	 *
 	 * Constraint:
-	 *     ((op='+' | op='-') right=SharkExpression)
+	 *     (op='+' right=SharkExpression)
 	 */
 	protected void sequence_AddExpressionElt(ISerializationContext context, AddExpressionElt semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.ADD_EXPRESSION_ELT__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.ADD_EXPRESSION_ELT__OP));
+			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.ADD_EXPRESSION_ELT__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.ADD_EXPRESSION_ELT__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getAddExpressionEltAccess().getRightSharkExpressionParserRuleCall_1_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	

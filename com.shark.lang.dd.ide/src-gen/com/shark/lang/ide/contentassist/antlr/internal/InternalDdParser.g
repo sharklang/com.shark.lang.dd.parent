@@ -1024,27 +1024,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__AddExpressionElt__OpAlternatives_0_0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0_0()); }
-		PlusSign
-		{ after(grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0_0()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getAddExpressionEltAccess().getOpHyphenMinusKeyword_0_0_1()); }
-		HyphenMinus
-		{ after(grammarAccess.getAddExpressionEltAccess().getOpHyphenMinusKeyword_0_0_1()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__RangeExpression__Alternatives
 	@init {
 		int stackSize = keepStackSize();
@@ -6986,9 +6965,13 @@ rule__AddExpressionElt__OpAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getAddExpressionEltAccess().getOpAlternatives_0_0()); }
-		(rule__AddExpressionElt__OpAlternatives_0_0)
-		{ after(grammarAccess.getAddExpressionEltAccess().getOpAlternatives_0_0()); }
+		{ before(grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0()); }
+		(
+			{ before(grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0()); }
+			PlusSign
+			{ after(grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0()); }
+		)
+		{ after(grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0()); }
 	)
 ;
 finally {

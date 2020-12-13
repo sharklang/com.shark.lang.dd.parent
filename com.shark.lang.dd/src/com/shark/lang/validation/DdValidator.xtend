@@ -7,7 +7,6 @@ import com.google.inject.Inject
 import com.google.inject.Provider
 import com.shark.lang.dd.CheckExpression
 import com.shark.lang.dd.Constraint
-import com.shark.lang.dd.DataType
 import com.shark.lang.dd.DdPackage
 import com.shark.lang.dd.Entity
 import com.shark.lang.dd.IdentifierExpression
@@ -29,7 +28,7 @@ import org.eclipse.xtext.validation.ComposedChecks
  * 	- checks that the check constraints are bool
  * 
  */
-@ComposedChecks(validators=#[DdExpressionValidator, DdDeclarationValidator])
+@ComposedChecks(validators=#[DdDeclarationValidator])
 
 //TODO check numberUtil iCreatable and compare to exception management below 
 
@@ -41,8 +40,7 @@ class DdValidator extends AbstractDdValidator {
 	IResourceDescriptions resourceDescriptions
 	@Inject
 	Provider<XtextResourceSet> resourceSetProvider;
-	@Inject
-	DdExpressionValidator exprValidator;
+
 
 
 	@Check
@@ -91,21 +89,6 @@ class DdValidator extends AbstractDdValidator {
 		}
 	}
 
-//check expression need to be of boolean type	
-	@Check
-	def checkCheckConstraintsAreBoolean(CheckExpression checkExpr) {
-		var type = exprValidator.getExpressionType(checkExpr.expr)
-		if (type.value != DataType.BOOL_VALUE) {
-			error("Invalid Check Expression: expression should be of type Boolean", checkExpr,
-				DdPackage.Literals.CHECK_EXPRESSION__EXPR)
-		} else {
-			if (exprValidator.isListExpression(checkExpr.expr)) {
-				error(
-					"ListExpression of Bool do not have an implicit bool value and cannot be used as a direct check constraint",
-					checkExpr, DdPackage.Literals.CHECK_EXPRESSION__EXPR)
-			}
-		}
 
-	}
 
 } //end class

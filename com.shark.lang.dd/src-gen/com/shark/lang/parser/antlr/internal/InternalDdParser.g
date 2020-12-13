@@ -1625,29 +1625,16 @@ ruleAddExpressionElt returns [EObject current=null]
 	(
 		(
 			(
-				(
-					lv_op_0_1=PlusSign
-					{
-						newLeafNode(lv_op_0_1, grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0_0());
+				lv_op_0_0=PlusSign
+				{
+					newLeafNode(lv_op_0_0, grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAddExpressionEltRule());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAddExpressionEltRule());
-						}
-						setWithLastConsumed($current, "op", lv_op_0_1, null);
-					}
-					    |
-					lv_op_0_2=HyphenMinus
-					{
-						newLeafNode(lv_op_0_2, grammarAccess.getAddExpressionEltAccess().getOpHyphenMinusKeyword_0_0_1());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAddExpressionEltRule());
-						}
-						setWithLastConsumed($current, "op", lv_op_0_2, null);
-					}
-				)
+					setWithLastConsumed($current, "op", lv_op_0_0, "+");
+				}
 			)
 		)
 		(

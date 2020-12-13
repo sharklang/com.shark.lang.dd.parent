@@ -46,18 +46,20 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		////EOL tokens are added after an indent constant or no indent and a new line
 		////IDENT triggered after a Comment so generates EOL 
 		////with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-		////TODO the @check in expressions are useless: the type check of attributes, constant and boolean nature of constraints ensure it goes through
-		////TODO flags are useless as the constraints+constant+attributes checks ensure single passe verification
+		////TODO length of mutliple concat is required so do a computesize sur sharkexpression et un switch...
 		////TODO check chr init is only one caracter
 		////TODO check cast date format: date("YYYYMMDD") 
-		////TODO for stxt it should be a list of 2 int
+		////TODO for stxt it should be a list of 2 int --> exact size and type not only list...
 		////TODO check empty string const on like: myvar like "" should fail
 		////TODO check max size of strings in const declaration is respected in the expression length using groovy?
 		////TODO check precision of dec in const decl is respected, using again groovy for an expression
 		////TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
 		////TODO test expressions interactively and build non passing JUNIT tests using excel random
 		////TODO update formatter
+		////TODO move up error message as constants
+		////TODO move checkOpertor to helper class
 		////TODO customize error messages for parser and lexer: eg constant en maj
+		////TODO use long for INT and DEC size verification instead of int
 		////TODO do a first output
 		////TODO semantic highlighting example
 		////TODO use case of the unset value
@@ -925,30 +927,22 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.AddExpressionElt");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOpAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Alternatives cOpAlternatives_0_0 = (Alternatives)cOpAssignment_0.eContents().get(0);
-		private final Keyword cOpPlusSignKeyword_0_0_0 = (Keyword)cOpAlternatives_0_0.eContents().get(0);
-		private final Keyword cOpHyphenMinusKeyword_0_0_1 = (Keyword)cOpAlternatives_0_0.eContents().get(1);
+		private final Keyword cOpPlusSignKeyword_0_0 = (Keyword)cOpAssignment_0.eContents().get(0);
 		private final Assignment cRightAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cRightSharkExpressionParserRuleCall_1_0 = (RuleCall)cRightAssignment_1.eContents().get(0);
 		
 		//AddExpressionElt:
-		//	op=('+' | '-') right=SharkExpression;
+		//	op='+' right=SharkExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//op=('+' | '-') right=SharkExpression
+		//op='+' right=SharkExpression
 		public Group getGroup() { return cGroup; }
 		
-		//op=('+' | '-')
+		//op='+'
 		public Assignment getOpAssignment_0() { return cOpAssignment_0; }
 		
-		//('+' | '-')
-		public Alternatives getOpAlternatives_0_0() { return cOpAlternatives_0_0; }
-		
 		//'+'
-		public Keyword getOpPlusSignKeyword_0_0_0() { return cOpPlusSignKeyword_0_0_0; }
-		
-		//'-'
-		public Keyword getOpHyphenMinusKeyword_0_0_1() { return cOpHyphenMinusKeyword_0_0_1; }
+		public Keyword getOpPlusSignKeyword_0_0() { return cOpPlusSignKeyword_0_0; }
 		
 		//right=SharkExpression
 		public Assignment getRightAssignment_1() { return cRightAssignment_1; }
@@ -2221,18 +2215,20 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	////EOL tokens are added after an indent constant or no indent and a new line
 	////IDENT triggered after a Comment so generates EOL 
 	////with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-	////TODO the @check in expressions are useless: the type check of attributes, constant and boolean nature of constraints ensure it goes through
-	////TODO flags are useless as the constraints+constant+attributes checks ensure single passe verification
+	////TODO length of mutliple concat is required so do a computesize sur sharkexpression et un switch...
 	////TODO check chr init is only one caracter
 	////TODO check cast date format: date("YYYYMMDD") 
-	////TODO for stxt it should be a list of 2 int
+	////TODO for stxt it should be a list of 2 int --> exact size and type not only list...
 	////TODO check empty string const on like: myvar like "" should fail
 	////TODO check max size of strings in const declaration is respected in the expression length using groovy?
 	////TODO check precision of dec in const decl is respected, using again groovy for an expression
 	////TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
 	////TODO test expressions interactively and build non passing JUNIT tests using excel random
 	////TODO update formatter
+	////TODO move up error message as constants
+	////TODO move checkOpertor to helper class
 	////TODO customize error messages for parser and lexer: eg constant en maj
+	////TODO use long for INT and DEC size verification instead of int
 	////TODO do a first output
 	////TODO semantic highlighting example
 	////TODO use case of the unset value
@@ -2436,7 +2432,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//AddExpressionElt:
-	//	op=('+' | '-') right=SharkExpression;
+	//	op='+' right=SharkExpression;
 	public AddExpressionEltElements getAddExpressionEltAccess() {
 		return pAddExpressionElt;
 	}

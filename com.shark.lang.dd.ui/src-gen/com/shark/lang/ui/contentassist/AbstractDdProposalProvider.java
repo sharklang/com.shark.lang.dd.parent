@@ -195,7 +195,6 @@ public abstract class AbstractDdProposalProvider extends AbstractJavaBasedConten
 	}
 	public void completeAddExpressionElt_Op(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
-		// subclasses may override
 	}
 	public void completeAddExpressionElt_Right(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);

@@ -28,16 +28,22 @@ class DdParsingTest {
 	// @Inject ITokenDefProvider tokenDefProvider;
 	// @Inject Lexer lexer;
 	@Inject Provider<XtextResourceSet> resourceSetProvider
-	
-	val handler = new InMemoryURIHandler()
 
+	val handler = new InMemoryURIHandler()
 
 	@Test
 	def void testCheckExpressionsPassingCases() {
 
-		val memFile = "inmemory:/testCheckExpressions.dd" -> '''
-			int(2,3)  AVERAGE_AGE = (32+4) 		 'to initiate ages
-			str(9)  DEFAULT_FIRST_NAME= "@No22Name" 'just for tresting string constants
+		val memFile = "inmemory:/testCheckExpressionsPassingCases.dd" -> '''
+			'description of this model, why is it structured like that and which entities it contains
+			'the first series of constants test nominal declarions of constants for each type
+			model Customer_Accounts 
+			
+			'first of all we can put comments everywhere as a full line but they are related to the next item
+			'and they have to follow the indentation strcuture
+			'so these first 3 lines will be considered as extra decription of the first costant AVERAGE_AGE below
+			int(2,1)  AVERAGE_AGE = (32+4) 'to initiate ages
+			str(9)  DEFAULT_FIRST_NAME= "@No22Name" 'just for testing string constants
 			date BUG_OF_2000 = "20000101"  'just to test date constants
 			date CREATION_OF_BANK = "18700101"  'just to test date constants
 			chr  YES = "Y" 'yes constant
@@ -47,7 +53,7 @@ class DdParsingTest {
 			stamp MIDNIGHT_STAMP = "20100101.000000.9999" 'to test a time constant 
 			chr[2] GENDERS = ("M","F") 'domain values for gender
 			str(3)[5] ALLOWED_ISO_3_CCY = ("eur","USD","GPB","JPY","RMB") 'domain values for currencies 
-			bits PLAIN = "00000" 'this is a joke...
+			bits PLAIN = "000001" 'this is a joke...
 			bool TRUE = true 'for testinrg
 			date[3] TARGET_HOLIDAYS = ("20000101","18700101","17890101") 'bank holidays for europe target2 all put in year 2000
 			time[3] CUTOFF_TIMES = ("120000","163000","193059") 'time of sepa cutoffs
@@ -60,8 +66,8 @@ class DdParsingTest {
 			Person:
 				'extra attribute description for attribute id that follows
 				'it can have as many lines as we want, while the trailing comment at the 
-				'end of the line is a single line comment
-				int(10)  id  pk 'the internal identifier of the Person
+				'end of the line is a single line comment. only the trailing is mandatory
+				int(10)  id  key 'the internal identifier of the Person
 			
 				'See here an example of a line continuation \ which is the only way to split a statement into several line
 				str(100) name \
@@ -79,13 +85,13 @@ class DdParsingTest {
 			
 			'a customer can be a person or a company
 			Customer:
-				int(10) 	id  pk 'the internal identifier of the Customer 
+				int(10) 	id  key 'the internal identifier of the Customer 
 				(0..1) isPerson (1..1) Person 'a Cutomer has to be a Person (abstracting the notion of company for the example) but a Person might not be
 				(1..n) hasAccounts (0..n) Account 'should move to a 1-n relationship because a customer has at least one account
 			
 			'banking account, can be of many types (term, savings, current, overdraft...)
 			Account:
-				int(11) 			num     pk   ! 'the internal acount number 
+				int(11) 			num     key   ! 'the internal acount number 
 				dec(13,7) 		balance 'balance os the account with a large enough precision for all type of currency
 				str(100) 					description ! 'open description of the account from a customer standpoint, mandatory with !
 				date openDate = "20120101" 'opening date of the account
@@ -127,15 +133,116 @@ class DdParsingTest {
 				'test
 				test2 true
 				'test
-				test3 ((1+2+3+4+(5*5)+(5*6))==6)
+				test3 ((1+2+3+4+(5*5)+(5*6)+5)==6)
+			
 		'''
 
-		val model = testMemoryFile(memFile)
-		println(NodeModelUtils.compactDump(NodeModelUtils.getNode(model), true))
-		
+		testMemoryFileNoError(memFile)
+
 	}
 
-	def DataModelFragment testMemoryFile(Pair<String, String> fileDesc) {
+	@Test
+	def void testRound() {
+
+		val memFile = "inmemory:/testRound.dd" -> '''
+			'this is a test model   
+			model Round_Test
+			dec ( 3 , 1 ) TEST1 = ( ( 2.23 + 1 ) round 1 ) 'comment
+			dec ( 3 , 1 ) TEST2 = ( ( 2.2 + 1.7896 ) round 2 ) 'comment
+			dec ( 3 , 1 ) TEST3 = ( 2.234 + 1.6745 ) 'comment
+			str ( 3 , 1 ) TEST4 = (2.23 round 2) 'comment
+			
+		'''
+
+		val errList = testMemoryFileWithErrors(memFile)
+		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message ==
+			"Expression precision is incompatible with the declaration precision, it is 2 and not 1"),
+			"Precision Validation Check With Round Not Working")
+		Assertions.assertTrue((errList.get(1).message == 
+			"Expression precision is incompatible with the declaration precision, it is 4 and not 1"), 
+			"Precision Validation Check Without Round Not Working")
+		Assertions.assertTrue((errList.get(2).message == 
+			"Invalid initialization: expression type mismatch with attribute or constant"), 
+			"Type Checking Not Working On Round: Should Detect That Round Is a Num And Not A Str")
+		
+	}
+	
+	@Test
+	def void testStxt() {
+
+		val memFile = "inmemory:/testStxt.dd" -> '''
+			'this is a test model   
+			model Round_Test
+			str ( 3 , 1 ) TEST1 = ( "AB" & "AB" )	'comment
+			str ( 3 , 1 ) TEST2 = (( "AB" & "AB" ) stxt (1,3) )'comment
+			str ( 4 )     TEST3 = ("A" & "A" & "A" & "A" & "A") 'comment
+			str (4,2)     TEST4 = "A" 'comment
+			str ( 3 , 1 ) TEST5 = ("ABC" stxt (1,3,4) )'comment
+			str ( 3 ) TEST6 = (1 stxt (1,3) )'comment
+			
+		'''
+
+		val errList = testMemoryFileWithErrors(memFile)
+		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		//warnings are skipped in the list
+		Assertions.assertTrue((errList.get(0).message ==
+			"Expression length is incompatible with the declaration length, it is 4 and not 3"),
+			"Length Validation Check Not Working on binary cat")
+		Assertions.assertTrue((errList.get(1).message == 
+			"Expression length is incompatible with the declaration length, it is 5 and not 4"), 
+			"Length Validation Check Not Working on multiple cat")
+		Assertions.assertTrue((errList.get(3).message == 
+			"Expression min size is incompatible with the declaration min size, it is 1 and not 2"), 
+			"Min length validation on string not working")
+		Assertions.assertTrue((errList.get(4).message == 
+			"Type Mismatch: substring operator requires string on the left and integer list on the right"), 
+			"Operator validation not working")
+		Assertions.assertTrue((errList.get(5).message == 
+			"Type Mismatch: substring operator requires string on the left and integer list on the right"), 
+			"Type Mismatch validation on stxt operator is not working")
+		Assertions.assertTrue((errList.get(6).message == 
+			"Invalid initialization: expression type mismatch with attribute or constant"), 
+			"Type Mismatch validation is not working")
+
+		
+	}
+	
+		@Test
+	def void testMultType() {
+
+		val memFile = "inmemory:/testStxt.dd" -> '''
+			'this is a test model   
+			model Round_Test
+			int ( 3,2 )     TEST1 = (323+4+"" ) 'comment
+			int ( 3,2 )     TEST2 = (32*4*"" ) 'comment
+			str ( 3,2 )     TEST3 = ("A" & "A" & 1.2) 'comment
+			bool			    TEST4 = (true or false or "") 'comment
+			bool			    TEST5 = (true and false and "") 'comment
+			
+		'''
+
+		val errList = testMemoryFileWithErrors(memFile)
+		Assertions.assertTrue((errList.get(0).message ==
+			"Type Mismatch: all the members of the addition should be of numeric type"),
+			"Type validation of Multiple add fails")
+		Assertions.assertTrue((errList.get(1).message == 
+			"Type Mismatch: all the members of the multiplication should be of numeric type"), 
+			"Type validation of Multiple mult fails")
+		Assertions.assertTrue((errList.get(3).message == 
+			"Type Mismatch: all the members of the concat expression should be of string type"), 
+			"Type validation of Multiple cat fails")
+		Assertions.assertTrue((errList.get(4).message == 
+			"Type Mismatch: all the members of the logical Or expression should be of boolean type"), 
+			"Type validation of Multiple or fails")
+		Assertions.assertTrue((errList.get(5).message == 
+			"Type Mismatch: all the members of the logical And expression should be of boolean type"), 
+			"Type validation of Multiple and fails")
+		
+	}
+	
+
+	def testMemoryFileNoError(Pair<String, String> fileDesc) {
 		val inMemFile = handler.getInMemoryFile(URI.createURI(fileDesc.key))
 		inMemFile.contents = fileDesc.value.bytes
 		inMemFile.exists = true
@@ -144,12 +251,24 @@ class DdParsingTest {
 		val resource = resourceSet.getResource(URI.createURI(fileDesc.key), true)
 		resource.load(null)
 		val model = resource.contents.head as DataModelFragment
-		validationTestHelper.assertNoIssues(model)
-		if (resource.loaded) {
+		if(resource.loaded) {
 			val errors = resource.errors
-			Assertions.assertTrue(errors.isEmpty, '''Errors: «errors.join(", ")»''')
+			validationTestHelper.assertNoError(model,'''Errors: «errors.join("\n ")»''')
+		
 		}
-		return model
+		//println(NodeModelUtils.compactDump(NodeModelUtils.getNode(model), true))
+	}
+
+	def  testMemoryFileWithErrors(Pair<String, String> fileDesc) {
+		val inMemFile = handler.getInMemoryFile(URI.createURI(fileDesc.key))
+		inMemFile.contents = fileDesc.value.bytes
+		inMemFile.exists = true
+		val resourceSet = resourceSetProvider.get
+		resourceSet.URIConverter.URIHandlers.add(0, handler)
+		val resource = resourceSet.getResource(URI.createURI(fileDesc.key), true)
+		resource.load(null)
+		val model = resource.contents.head as DataModelFragment
+		validationTestHelper.validate(model)
 	}
 
 }
