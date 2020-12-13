@@ -73,9 +73,54 @@ ruleDataModelFragment returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDataModelFragmentAccess().getConstantsConstantParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getDataModelFragmentAccess().getModelDescLineCommentParserRuleCall_0_0());
 				}
-				lv_constants_0_0=ruleConstant
+				lv_modelDesc_0_0=ruleLineComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDataModelFragmentRule());
+					}
+					add(
+						$current,
+						"modelDesc",
+						lv_modelDesc_0_0,
+						"com.shark.lang.Dd.LineComment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)+
+		otherlv_1=Model
+		{
+			newLeafNode(otherlv_1, grammarAccess.getDataModelFragmentAccess().getModelKeyword_1());
+		}
+		(
+			(
+				lv_name_2_0=RULE_OBJID
+				{
+					newLeafNode(lv_name_2_0, grammarAccess.getDataModelFragmentAccess().getNameOBJIDTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDataModelFragmentRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_2_0,
+						"com.shark.lang.Dd.OBJID");
+				}
+			)
+		)
+		this_EOL_3=RULE_EOL
+		{
+			newLeafNode(this_EOL_3, grammarAccess.getDataModelFragmentAccess().getEOLTerminalRuleCall_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDataModelFragmentAccess().getConstantsConstantParserRuleCall_4_0());
+				}
+				lv_constants_4_0=ruleConstant
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDataModelFragmentRule());
@@ -83,7 +128,7 @@ ruleDataModelFragment returns [EObject current=null]
 					add(
 						$current,
 						"constants",
-						lv_constants_0_0,
+						lv_constants_4_0,
 						"com.shark.lang.Dd.Constant");
 					afterParserOrEnumRuleCall();
 				}
@@ -92,9 +137,9 @@ ruleDataModelFragment returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDataModelFragmentAccess().getEntitiesEntityParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getDataModelFragmentAccess().getEntitiesEntityParserRuleCall_5_0());
 				}
-				lv_entities_1_0=ruleEntity
+				lv_entities_5_0=ruleEntity
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDataModelFragmentRule());
@@ -102,7 +147,7 @@ ruleDataModelFragment returns [EObject current=null]
 					add(
 						$current,
 						"entities",
-						lv_entities_1_0,
+						lv_entities_5_0,
 						"com.shark.lang.Dd.Entity");
 					afterParserOrEnumRuleCall();
 				}
@@ -111,9 +156,9 @@ ruleDataModelFragment returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDataModelFragmentAccess().getConstraintsConstraintParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getDataModelFragmentAccess().getConstraintsConstraintParserRuleCall_6_0());
 				}
-				lv_constraints_2_0=ruleConstraint
+				lv_constraints_6_0=ruleConstraint
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDataModelFragmentRule());
@@ -121,7 +166,7 @@ ruleDataModelFragment returns [EObject current=null]
 					add(
 						$current,
 						"constraints",
-						lv_constraints_2_0,
+						lv_constraints_6_0,
 						"com.shark.lang.Dd.Constraint");
 					afterParserOrEnumRuleCall();
 				}
@@ -553,15 +598,15 @@ ruleAttribute returns [EObject current=null]
 		)?
 		(
 			(
-				lv_primaryKey_7_0=Pk
+				lv_primaryKey_7_0=Key
 				{
-					newLeafNode(lv_primaryKey_7_0, grammarAccess.getAttributeAccess().getPrimaryKeyPkKeyword_6_0());
+					newLeafNode(lv_primaryKey_7_0, grammarAccess.getAttributeAccess().getPrimaryKeyKeyKeyword_6_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getAttributeRule());
 					}
-					setWithLastConsumed($current, "primaryKey", lv_primaryKey_7_0 != null, "pk");
+					setWithLastConsumed($current, "primaryKey", lv_primaryKey_7_0 != null, "key");
 				}
 			)
 		)?
@@ -1218,9 +1263,9 @@ ruleBinaryExpression returns [EObject current=null]
 		(
 			(
 				(
-					lv_numType_5_0=RULE_NULL
+					lv_value_5_0=RULE_NUL
 					{
-						newLeafNode(lv_numType_5_0, grammarAccess.getBinaryExpressionAccess().getNumTypeNULLTerminalRuleCall_5_0_0());
+						newLeafNode(lv_value_5_0, grammarAccess.getBinaryExpressionAccess().getValueNULTerminalRuleCall_5_0_0());
 					}
 					{
 						if ($current==null) {
@@ -1228,17 +1273,17 @@ ruleBinaryExpression returns [EObject current=null]
 						}
 						setWithLastConsumed(
 							$current,
-							"numType",
-							lv_numType_5_0 != null,
-							"com.shark.lang.Dd.NULL");
+							"value",
+							lv_value_5_0,
+							"com.shark.lang.Dd.NUL");
 					}
 				)
 			)
 			(
 				(
-					lv_strType_6_0=RULE_NULL
+					lv_precision_6_0=RULE_INT
 					{
-						newLeafNode(lv_strType_6_0, grammarAccess.getBinaryExpressionAccess().getStrTypeNULLTerminalRuleCall_5_1_0());
+						newLeafNode(lv_precision_6_0, grammarAccess.getBinaryExpressionAccess().getPrecisionINTTerminalRuleCall_5_1_0());
 					}
 					{
 						if ($current==null) {
@@ -1246,17 +1291,17 @@ ruleBinaryExpression returns [EObject current=null]
 						}
 						setWithLastConsumed(
 							$current,
-							"strType",
-							lv_strType_6_0 != null,
-							"com.shark.lang.Dd.NULL");
+							"precision",
+							lv_precision_6_0,
+							"com.shark.lang.Dd.INT");
 					}
 				)
 			)
 			(
 				(
-					lv_dateType_7_0=RULE_NULL
+					lv_length_7_0=RULE_INT
 					{
-						newLeafNode(lv_dateType_7_0, grammarAccess.getBinaryExpressionAccess().getDateTypeNULLTerminalRuleCall_5_2_0());
+						newLeafNode(lv_length_7_0, grammarAccess.getBinaryExpressionAccess().getLengthINTTerminalRuleCall_5_2_0());
 					}
 					{
 						if ($current==null) {
@@ -1264,27 +1309,9 @@ ruleBinaryExpression returns [EObject current=null]
 						}
 						setWithLastConsumed(
 							$current,
-							"dateType",
-							lv_dateType_7_0 != null,
-							"com.shark.lang.Dd.NULL");
-					}
-				)
-			)
-			(
-				(
-					lv_boolType_8_0=RULE_NULL
-					{
-						newLeafNode(lv_boolType_8_0, grammarAccess.getBinaryExpressionAccess().getBoolTypeNULLTerminalRuleCall_5_3_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getBinaryExpressionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"boolType",
-							lv_boolType_8_0 != null,
-							"com.shark.lang.Dd.NULL");
+							"length",
+							lv_length_7_0,
+							"com.shark.lang.Dd.INT");
 					}
 				)
 			)
@@ -1357,9 +1384,9 @@ ruleUnaryExpression returns [EObject current=null]
 		(
 			(
 				(
-					lv_numType_4_0=RULE_NULL
+					lv_value_4_0=RULE_NUL
 					{
-						newLeafNode(lv_numType_4_0, grammarAccess.getUnaryExpressionAccess().getNumTypeNULLTerminalRuleCall_4_0_0());
+						newLeafNode(lv_value_4_0, grammarAccess.getUnaryExpressionAccess().getValueNULTerminalRuleCall_4_0_0());
 					}
 					{
 						if ($current==null) {
@@ -1367,17 +1394,17 @@ ruleUnaryExpression returns [EObject current=null]
 						}
 						setWithLastConsumed(
 							$current,
-							"numType",
-							lv_numType_4_0 != null,
-							"com.shark.lang.Dd.NULL");
+							"value",
+							lv_value_4_0,
+							"com.shark.lang.Dd.NUL");
 					}
 				)
 			)
 			(
 				(
-					lv_strType_5_0=RULE_NULL
+					lv_precision_5_0=RULE_INT
 					{
-						newLeafNode(lv_strType_5_0, grammarAccess.getUnaryExpressionAccess().getStrTypeNULLTerminalRuleCall_4_1_0());
+						newLeafNode(lv_precision_5_0, grammarAccess.getUnaryExpressionAccess().getPrecisionINTTerminalRuleCall_4_1_0());
 					}
 					{
 						if ($current==null) {
@@ -1385,17 +1412,17 @@ ruleUnaryExpression returns [EObject current=null]
 						}
 						setWithLastConsumed(
 							$current,
-							"strType",
-							lv_strType_5_0 != null,
-							"com.shark.lang.Dd.NULL");
+							"precision",
+							lv_precision_5_0,
+							"com.shark.lang.Dd.INT");
 					}
 				)
 			)
 			(
 				(
-					lv_dateType_6_0=RULE_NULL
+					lv_length_6_0=RULE_INT
 					{
-						newLeafNode(lv_dateType_6_0, grammarAccess.getUnaryExpressionAccess().getDateTypeNULLTerminalRuleCall_4_2_0());
+						newLeafNode(lv_length_6_0, grammarAccess.getUnaryExpressionAccess().getLengthINTTerminalRuleCall_4_2_0());
 					}
 					{
 						if ($current==null) {
@@ -1403,27 +1430,9 @@ ruleUnaryExpression returns [EObject current=null]
 						}
 						setWithLastConsumed(
 							$current,
-							"dateType",
-							lv_dateType_6_0 != null,
-							"com.shark.lang.Dd.NULL");
-					}
-				)
-			)
-			(
-				(
-					lv_boolType_7_0=RULE_NULL
-					{
-						newLeafNode(lv_boolType_7_0, grammarAccess.getUnaryExpressionAccess().getBoolTypeNULLTerminalRuleCall_4_3_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getUnaryExpressionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"boolType",
-							lv_boolType_7_0 != null,
-							"com.shark.lang.Dd.NULL");
+							"length",
+							lv_length_6_0,
+							"com.shark.lang.Dd.INT");
 					}
 				)
 			)
@@ -1541,20 +1550,58 @@ ruleAddExpression returns [EObject current=null]
 		}
 		(
 			(
-				lv_checked_6_0=RULE_NULL
-				{
-					newLeafNode(lv_checked_6_0, grammarAccess.getAddExpressionAccess().getCheckedNULLTerminalRuleCall_6_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getAddExpressionRule());
+				(
+					lv_value_6_0=RULE_NUL
+					{
+						newLeafNode(lv_value_6_0, grammarAccess.getAddExpressionAccess().getValueNULTerminalRuleCall_6_0_0());
 					}
-					setWithLastConsumed(
-						$current,
-						"checked",
-						lv_checked_6_0 != null,
-						"com.shark.lang.Dd.NULL");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAddExpressionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"value",
+							lv_value_6_0,
+							"com.shark.lang.Dd.NUL");
+					}
+				)
+			)
+			(
+				(
+					lv_precision_7_0=RULE_INT
+					{
+						newLeafNode(lv_precision_7_0, grammarAccess.getAddExpressionAccess().getPrecisionINTTerminalRuleCall_6_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAddExpressionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"precision",
+							lv_precision_7_0,
+							"com.shark.lang.Dd.INT");
+					}
+				)
+			)
+			(
+				(
+					lv_length_8_0=RULE_INT
+					{
+						newLeafNode(lv_length_8_0, grammarAccess.getAddExpressionAccess().getLengthINTTerminalRuleCall_6_2_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAddExpressionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"length",
+							lv_length_8_0,
+							"com.shark.lang.Dd.INT");
+					}
+				)
 			)
 		)?
 	)
@@ -1578,29 +1625,16 @@ ruleAddExpressionElt returns [EObject current=null]
 	(
 		(
 			(
-				(
-					lv_op_0_1=PlusSign
-					{
-						newLeafNode(lv_op_0_1, grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0_0());
+				lv_op_0_0=PlusSign
+				{
+					newLeafNode(lv_op_0_0, grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAddExpressionEltRule());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAddExpressionEltRule());
-						}
-						setWithLastConsumed($current, "op", lv_op_0_1, null);
-					}
-					    |
-					lv_op_0_2=HyphenMinus
-					{
-						newLeafNode(lv_op_0_2, grammarAccess.getAddExpressionEltAccess().getOpHyphenMinusKeyword_0_0_1());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAddExpressionEltRule());
-						}
-						setWithLastConsumed($current, "op", lv_op_0_2, null);
-					}
-				)
+					setWithLastConsumed($current, "op", lv_op_0_0, "+");
+				}
 			)
 		)
 		(
@@ -1722,20 +1756,58 @@ ruleMultExpression returns [EObject current=null]
 		}
 		(
 			(
-				lv_checked_6_0=RULE_NULL
-				{
-					newLeafNode(lv_checked_6_0, grammarAccess.getMultExpressionAccess().getCheckedNULLTerminalRuleCall_6_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getMultExpressionRule());
+				(
+					lv_value_6_0=RULE_NUL
+					{
+						newLeafNode(lv_value_6_0, grammarAccess.getMultExpressionAccess().getValueNULTerminalRuleCall_6_0_0());
 					}
-					setWithLastConsumed(
-						$current,
-						"checked",
-						lv_checked_6_0 != null,
-						"com.shark.lang.Dd.NULL");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMultExpressionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"value",
+							lv_value_6_0,
+							"com.shark.lang.Dd.NUL");
+					}
+				)
+			)
+			(
+				(
+					lv_precision_7_0=RULE_INT
+					{
+						newLeafNode(lv_precision_7_0, grammarAccess.getMultExpressionAccess().getPrecisionINTTerminalRuleCall_6_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMultExpressionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"precision",
+							lv_precision_7_0,
+							"com.shark.lang.Dd.INT");
+					}
+				)
+			)
+			(
+				(
+					lv_length_8_0=RULE_INT
+					{
+						newLeafNode(lv_length_8_0, grammarAccess.getMultExpressionAccess().getLengthINTTerminalRuleCall_6_2_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMultExpressionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"length",
+							lv_length_8_0,
+							"com.shark.lang.Dd.INT");
+					}
+				)
 			)
 		)?
 	)
@@ -1888,24 +1960,6 @@ ruleAndExpression returns [EObject current=null]
 		{
 			newLeafNode(otherlv_5, grammarAccess.getAndExpressionAccess().getRightParenthesisKeyword_5());
 		}
-		(
-			(
-				lv_checked_6_0=RULE_NULL
-				{
-					newLeafNode(lv_checked_6_0, grammarAccess.getAndExpressionAccess().getCheckedNULLTerminalRuleCall_6_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getAndExpressionRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"checked",
-						lv_checked_6_0 != null,
-						"com.shark.lang.Dd.NULL");
-				}
-			)
-		)?
 	)
 ;
 
@@ -2056,24 +2110,6 @@ ruleOrExpression returns [EObject current=null]
 		{
 			newLeafNode(otherlv_5, grammarAccess.getOrExpressionAccess().getRightParenthesisKeyword_5());
 		}
-		(
-			(
-				lv_checked_6_0=RULE_NULL
-				{
-					newLeafNode(lv_checked_6_0, grammarAccess.getOrExpressionAccess().getCheckedNULLTerminalRuleCall_6_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getOrExpressionRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"checked",
-						lv_checked_6_0 != null,
-						"com.shark.lang.Dd.NULL");
-				}
-			)
-		)?
 	)
 ;
 
@@ -2226,20 +2262,40 @@ ruleCatExpression returns [EObject current=null]
 		}
 		(
 			(
-				lv_checked_6_0=RULE_NULL
-				{
-					newLeafNode(lv_checked_6_0, grammarAccess.getCatExpressionAccess().getCheckedNULLTerminalRuleCall_6_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getCatExpressionRule());
+				(
+					lv_value_6_0=RULE_NUL
+					{
+						newLeafNode(lv_value_6_0, grammarAccess.getCatExpressionAccess().getValueNULTerminalRuleCall_6_0_0());
 					}
-					setWithLastConsumed(
-						$current,
-						"checked",
-						lv_checked_6_0 != null,
-						"com.shark.lang.Dd.NULL");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getCatExpressionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"value",
+							lv_value_6_0,
+							"com.shark.lang.Dd.NUL");
+					}
+				)
+			)
+			(
+				(
+					lv_length_7_0=RULE_INT
+					{
+						newLeafNode(lv_length_7_0, grammarAccess.getCatExpressionAccess().getLengthINTTerminalRuleCall_6_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getCatExpressionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"length",
+							lv_length_7_0,
+							"com.shark.lang.Dd.INT");
+					}
+				)
 			)
 		)?
 	)
@@ -2369,80 +2425,6 @@ ruleListExpression returns [EObject current=null]
 		{
 			newLeafNode(otherlv_3, grammarAccess.getListExpressionAccess().getRightParenthesisKeyword_3());
 		}
-		(
-			(
-				(
-					lv_numType_4_0=RULE_NULL
-					{
-						newLeafNode(lv_numType_4_0, grammarAccess.getListExpressionAccess().getNumTypeNULLTerminalRuleCall_4_0_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getListExpressionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"numType",
-							lv_numType_4_0 != null,
-							"com.shark.lang.Dd.NULL");
-					}
-				)
-			)
-			(
-				(
-					lv_strType_5_0=RULE_NULL
-					{
-						newLeafNode(lv_strType_5_0, grammarAccess.getListExpressionAccess().getStrTypeNULLTerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getListExpressionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"strType",
-							lv_strType_5_0 != null,
-							"com.shark.lang.Dd.NULL");
-					}
-				)
-			)
-			(
-				(
-					lv_dateType_6_0=RULE_NULL
-					{
-						newLeafNode(lv_dateType_6_0, grammarAccess.getListExpressionAccess().getDateTypeNULLTerminalRuleCall_4_2_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getListExpressionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"dateType",
-							lv_dateType_6_0 != null,
-							"com.shark.lang.Dd.NULL");
-					}
-				)
-			)
-			(
-				(
-					lv_boolType_7_0=RULE_NULL
-					{
-						newLeafNode(lv_boolType_7_0, grammarAccess.getListExpressionAccess().getBoolTypeNULLTerminalRuleCall_4_3_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getListExpressionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"boolType",
-							lv_boolType_7_0 != null,
-							"com.shark.lang.Dd.NULL");
-					}
-				)
-			)
-		)?
 	)
 ;
 
@@ -2548,80 +2530,6 @@ ruleRangeExpression returns [EObject current=null]
 			{
 				newLeafNode(otherlv_3, grammarAccess.getRangeExpressionAccess().getRightParenthesisKeyword_0_3());
 			}
-			(
-				(
-					(
-						lv_numType_4_0=RULE_NULL
-						{
-							newLeafNode(lv_numType_4_0, grammarAccess.getRangeExpressionAccess().getNumTypeNULLTerminalRuleCall_0_4_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getRangeExpressionRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"numType",
-								lv_numType_4_0 != null,
-								"com.shark.lang.Dd.NULL");
-						}
-					)
-				)
-				(
-					(
-						lv_strType_5_0=RULE_NULL
-						{
-							newLeafNode(lv_strType_5_0, grammarAccess.getRangeExpressionAccess().getStrTypeNULLTerminalRuleCall_0_4_1_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getRangeExpressionRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"strType",
-								lv_strType_5_0 != null,
-								"com.shark.lang.Dd.NULL");
-						}
-					)
-				)
-				(
-					(
-						lv_dateType_6_0=RULE_NULL
-						{
-							newLeafNode(lv_dateType_6_0, grammarAccess.getRangeExpressionAccess().getDateTypeNULLTerminalRuleCall_0_4_2_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getRangeExpressionRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"dateType",
-								lv_dateType_6_0 != null,
-								"com.shark.lang.Dd.NULL");
-						}
-					)
-				)
-				(
-					(
-						lv_boolType_7_0=RULE_NULL
-						{
-							newLeafNode(lv_boolType_7_0, grammarAccess.getRangeExpressionAccess().getBoolTypeNULLTerminalRuleCall_0_4_3_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getRangeExpressionRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"boolType",
-								lv_boolType_7_0 != null,
-								"com.shark.lang.Dd.NULL");
-						}
-					)
-				)
-			)?
 		)
 		    |
 		(
@@ -2634,16 +2542,16 @@ ruleRangeExpression returns [EObject current=null]
 			)
 			(
 				(LeftParenthesis)=>
-				otherlv_9=LeftParenthesis
+				otherlv_5=LeftParenthesis
 				{
-					newLeafNode(otherlv_9, grammarAccess.getRangeExpressionAccess().getLeftParenthesisKeyword_1_1());
+					newLeafNode(otherlv_5, grammarAccess.getRangeExpressionAccess().getLeftParenthesisKeyword_1_1());
 				}
 			)
 			(
 				(
-					lv_range_10_0=RULE_RANGEINF
+					lv_range_6_0=RULE_RANGEINF
 					{
-						newLeafNode(lv_range_10_0, grammarAccess.getRangeExpressionAccess().getRangeRANGEINFTerminalRuleCall_1_2_0());
+						newLeafNode(lv_range_6_0, grammarAccess.getRangeExpressionAccess().getRangeRANGEINFTerminalRuleCall_1_2_0());
 					}
 					{
 						if ($current==null) {
@@ -2652,89 +2560,15 @@ ruleRangeExpression returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"range",
-							lv_range_10_0,
+							lv_range_6_0,
 							"com.shark.lang.Dd.RANGEINF");
 					}
 				)
 			)
-			otherlv_11=RightParenthesis
+			otherlv_7=RightParenthesis
 			{
-				newLeafNode(otherlv_11, grammarAccess.getRangeExpressionAccess().getRightParenthesisKeyword_1_3());
+				newLeafNode(otherlv_7, grammarAccess.getRangeExpressionAccess().getRightParenthesisKeyword_1_3());
 			}
-			(
-				(
-					(
-						lv_numType_12_0=RULE_NULL
-						{
-							newLeafNode(lv_numType_12_0, grammarAccess.getRangeExpressionAccess().getNumTypeNULLTerminalRuleCall_1_4_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getRangeExpressionRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"numType",
-								lv_numType_12_0 != null,
-								"com.shark.lang.Dd.NULL");
-						}
-					)
-				)
-				(
-					(
-						lv_strType_13_0=RULE_NULL
-						{
-							newLeafNode(lv_strType_13_0, grammarAccess.getRangeExpressionAccess().getStrTypeNULLTerminalRuleCall_1_4_1_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getRangeExpressionRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"strType",
-								lv_strType_13_0 != null,
-								"com.shark.lang.Dd.NULL");
-						}
-					)
-				)
-				(
-					(
-						lv_dateType_14_0=RULE_NULL
-						{
-							newLeafNode(lv_dateType_14_0, grammarAccess.getRangeExpressionAccess().getDateTypeNULLTerminalRuleCall_1_4_2_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getRangeExpressionRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"dateType",
-								lv_dateType_14_0 != null,
-								"com.shark.lang.Dd.NULL");
-						}
-					)
-				)
-				(
-					(
-						lv_boolType_15_0=RULE_NULL
-						{
-							newLeafNode(lv_boolType_15_0, grammarAccess.getRangeExpressionAccess().getBoolTypeNULLTerminalRuleCall_1_4_3_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getRangeExpressionRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"boolType",
-								lv_boolType_15_0 != null,
-								"com.shark.lang.Dd.NULL");
-						}
-					)
-				)
-			)?
 		)
 	)
 ;

@@ -8,8 +8,6 @@ import com.shark.lang.dd.OrExpression;
 import com.shark.lang.dd.OrExpressionElt;
 import com.shark.lang.dd.SharkExpression;
 
-import java.lang.Boolean;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -37,7 +35,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.shark.lang.dd.impl.OrExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.OrExpressionImpl#getRight <em>Right</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.OrExpressionImpl#getOrElts <em>Or Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.OrExpressionImpl#isChecked <em>Checked</em>}</li>
  * </ul>
  *
  * @generated
@@ -93,26 +90,6 @@ public class OrExpressionImpl extends SharkExpressionImpl implements OrExpressio
    * @ordered
    */
   protected EList<OrExpressionElt> orElts;
-
-  /**
-   * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isChecked()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean CHECKED_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isChecked() <em>Checked</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isChecked()
-   * @generated
-   * @ordered
-   */
-  protected boolean checked = CHECKED_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -281,31 +258,6 @@ public class OrExpressionImpl extends SharkExpressionImpl implements OrExpressio
    * @generated
    */
   @Override
-  public boolean isChecked()
-  {
-    return checked;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setChecked(boolean newChecked)
-  {
-    boolean oldChecked = checked;
-    checked = newChecked;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.OR_EXPRESSION__CHECKED, oldChecked, checked));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -338,8 +290,6 @@ public class OrExpressionImpl extends SharkExpressionImpl implements OrExpressio
         return getRight();
       case DdPackage.OR_EXPRESSION__OR_ELTS:
         return getOrElts();
-      case DdPackage.OR_EXPRESSION__CHECKED:
-        return isChecked();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -368,9 +318,6 @@ public class OrExpressionImpl extends SharkExpressionImpl implements OrExpressio
         getOrElts().clear();
         getOrElts().addAll((Collection<? extends OrExpressionElt>)newValue);
         return;
-      case DdPackage.OR_EXPRESSION__CHECKED:
-        setChecked((Boolean)newValue);
-        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -397,9 +344,6 @@ public class OrExpressionImpl extends SharkExpressionImpl implements OrExpressio
       case DdPackage.OR_EXPRESSION__OR_ELTS:
         getOrElts().clear();
         return;
-      case DdPackage.OR_EXPRESSION__CHECKED:
-        setChecked(CHECKED_EDEFAULT);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -422,8 +366,6 @@ public class OrExpressionImpl extends SharkExpressionImpl implements OrExpressio
         return right != null;
       case DdPackage.OR_EXPRESSION__OR_ELTS:
         return orElts != null && !orElts.isEmpty();
-      case DdPackage.OR_EXPRESSION__CHECKED:
-        return checked != CHECKED_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -441,8 +383,6 @@ public class OrExpressionImpl extends SharkExpressionImpl implements OrExpressio
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", checked: ");
-    result.append(checked);
     result.append(')');
     return result.toString();
   }

@@ -8,9 +8,11 @@ import com.shark.lang.dd.Constraint;
 import com.shark.lang.dd.DataModelFragment;
 import com.shark.lang.dd.DdPackage;
 import com.shark.lang.dd.Entity;
+import com.shark.lang.dd.LineComment;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -18,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -31,6 +34,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link com.shark.lang.dd.impl.DataModelFragmentImpl#getModelDesc <em>Model Desc</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.DataModelFragmentImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.DataModelFragmentImpl#getConstants <em>Constants</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.DataModelFragmentImpl#getEntities <em>Entities</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.DataModelFragmentImpl#getConstraints <em>Constraints</em>}</li>
@@ -40,6 +45,36 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class DataModelFragmentImpl extends MinimalEObjectImpl.Container implements DataModelFragment
 {
+  /**
+   * The cached value of the '{@link #getModelDesc() <em>Model Desc</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getModelDesc()
+   * @generated
+   * @ordered
+   */
+  protected EList<LineComment> modelDesc;
+
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getConstants() <em>Constants</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -97,6 +132,46 @@ public class DataModelFragmentImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    */
   @Override
+  public EList<LineComment> getModelDesc()
+  {
+    if (modelDesc == null)
+    {
+      modelDesc = new EObjectContainmentEList<LineComment>(LineComment.class, this, DdPackage.DATA_MODEL_FRAGMENT__MODEL_DESC);
+    }
+    return modelDesc;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.DATA_MODEL_FRAGMENT__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<Constant> getConstants()
   {
     if (constants == null)
@@ -146,6 +221,8 @@ public class DataModelFragmentImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case DdPackage.DATA_MODEL_FRAGMENT__MODEL_DESC:
+        return ((InternalEList<?>)getModelDesc()).basicRemove(otherEnd, msgs);
       case DdPackage.DATA_MODEL_FRAGMENT__CONSTANTS:
         return ((InternalEList<?>)getConstants()).basicRemove(otherEnd, msgs);
       case DdPackage.DATA_MODEL_FRAGMENT__ENTITIES:
@@ -166,6 +243,10 @@ public class DataModelFragmentImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case DdPackage.DATA_MODEL_FRAGMENT__MODEL_DESC:
+        return getModelDesc();
+      case DdPackage.DATA_MODEL_FRAGMENT__NAME:
+        return getName();
       case DdPackage.DATA_MODEL_FRAGMENT__CONSTANTS:
         return getConstants();
       case DdPackage.DATA_MODEL_FRAGMENT__ENTITIES:
@@ -187,6 +268,13 @@ public class DataModelFragmentImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case DdPackage.DATA_MODEL_FRAGMENT__MODEL_DESC:
+        getModelDesc().clear();
+        getModelDesc().addAll((Collection<? extends LineComment>)newValue);
+        return;
+      case DdPackage.DATA_MODEL_FRAGMENT__NAME:
+        setName((String)newValue);
+        return;
       case DdPackage.DATA_MODEL_FRAGMENT__CONSTANTS:
         getConstants().clear();
         getConstants().addAll((Collection<? extends Constant>)newValue);
@@ -213,6 +301,12 @@ public class DataModelFragmentImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case DdPackage.DATA_MODEL_FRAGMENT__MODEL_DESC:
+        getModelDesc().clear();
+        return;
+      case DdPackage.DATA_MODEL_FRAGMENT__NAME:
+        setName(NAME_EDEFAULT);
+        return;
       case DdPackage.DATA_MODEL_FRAGMENT__CONSTANTS:
         getConstants().clear();
         return;
@@ -236,6 +330,10 @@ public class DataModelFragmentImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case DdPackage.DATA_MODEL_FRAGMENT__MODEL_DESC:
+        return modelDesc != null && !modelDesc.isEmpty();
+      case DdPackage.DATA_MODEL_FRAGMENT__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case DdPackage.DATA_MODEL_FRAGMENT__CONSTANTS:
         return constants != null && !constants.isEmpty();
       case DdPackage.DATA_MODEL_FRAGMENT__ENTITIES:
@@ -244,6 +342,23 @@ public class DataModelFragmentImpl extends MinimalEObjectImpl.Container implemen
         return constraints != null && !constraints.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //DataModelFragmentImpl

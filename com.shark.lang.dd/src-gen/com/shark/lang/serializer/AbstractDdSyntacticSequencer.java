@@ -32,8 +32,6 @@ public abstract class AbstractDdSyntacticSequencer extends AbstractSyntacticSequ
 			return getENDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getEOLRule())
 			return getEOLToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getNULLRule())
-			return getNULLToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
@@ -51,11 +49,6 @@ public abstract class AbstractDdSyntacticSequencer extends AbstractSyntacticSequ
 	 * Synthetic terminal rule. The concrete syntax is to be specified by clients.
 	 */
 	protected abstract String getEOLToken(EObject semanticObject, RuleCall ruleCall, INode node);
-	
-	/**
-	 * Synthetic terminal rule. The concrete syntax is to be specified by clients.
-	 */
-	protected abstract String getNULLToken(EObject semanticObject, RuleCall ruleCall, INode node);
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {

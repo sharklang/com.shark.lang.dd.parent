@@ -15,10 +15,9 @@ package com.shark.lang.dd;
  * <ul>
  *   <li>{@link com.shark.lang.dd.UnaryExpression#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.UnaryExpression#getLeft <em>Left</em>}</li>
- *   <li>{@link com.shark.lang.dd.UnaryExpression#isNumType <em>Num Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.UnaryExpression#isStrType <em>Str Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.UnaryExpression#isDateType <em>Date Type</em>}</li>
- *   <li>{@link com.shark.lang.dd.UnaryExpression#isBoolType <em>Bool Type</em>}</li>
+ *   <li>{@link com.shark.lang.dd.UnaryExpression#getValue <em>Value</em>}</li>
+ *   <li>{@link com.shark.lang.dd.UnaryExpression#getPrecision <em>Precision</em>}</li>
+ *   <li>{@link com.shark.lang.dd.UnaryExpression#getLength <em>Length</em>}</li>
  * </ul>
  *
  * @see com.shark.lang.dd.DdPackage#getUnaryExpression()
@@ -75,91 +74,69 @@ public interface UnaryExpression extends SharkExpression
   void setLeft(SharkExpression value);
 
   /**
-   * Returns the value of the '<em><b>Num Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Num Type</em>' attribute.
-   * @see #setNumType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getUnaryExpression_NumType()
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(String)
+   * @see com.shark.lang.dd.DdPackage#getUnaryExpression_Value()
    * @model
    * @generated
    */
-  boolean isNumType();
+  String getValue();
 
   /**
-   * Sets the value of the '{@link com.shark.lang.dd.UnaryExpression#isNumType <em>Num Type</em>}' attribute.
+   * Sets the value of the '{@link com.shark.lang.dd.UnaryExpression#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Num Type</em>' attribute.
-   * @see #isNumType()
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see #getValue()
    * @generated
    */
-  void setNumType(boolean value);
+  void setValue(String value);
 
   /**
-   * Returns the value of the '<em><b>Str Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Precision</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Str Type</em>' attribute.
-   * @see #setStrType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getUnaryExpression_StrType()
+   * @return the value of the '<em>Precision</em>' attribute.
+   * @see #setPrecision(int)
+   * @see com.shark.lang.dd.DdPackage#getUnaryExpression_Precision()
    * @model
    * @generated
    */
-  boolean isStrType();
+  int getPrecision();
 
   /**
-   * Sets the value of the '{@link com.shark.lang.dd.UnaryExpression#isStrType <em>Str Type</em>}' attribute.
+   * Sets the value of the '{@link com.shark.lang.dd.UnaryExpression#getPrecision <em>Precision</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Str Type</em>' attribute.
-   * @see #isStrType()
+   * @param value the new value of the '<em>Precision</em>' attribute.
+   * @see #getPrecision()
    * @generated
    */
-  void setStrType(boolean value);
+  void setPrecision(int value);
 
   /**
-   * Returns the value of the '<em><b>Date Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Length</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Date Type</em>' attribute.
-   * @see #setDateType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getUnaryExpression_DateType()
+   * @return the value of the '<em>Length</em>' attribute.
+   * @see #setLength(int)
+   * @see com.shark.lang.dd.DdPackage#getUnaryExpression_Length()
    * @model
    * @generated
    */
-  boolean isDateType();
+  int getLength();
 
   /**
-   * Sets the value of the '{@link com.shark.lang.dd.UnaryExpression#isDateType <em>Date Type</em>}' attribute.
+   * Sets the value of the '{@link com.shark.lang.dd.UnaryExpression#getLength <em>Length</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Date Type</em>' attribute.
-   * @see #isDateType()
+   * @param value the new value of the '<em>Length</em>' attribute.
+   * @see #getLength()
    * @generated
    */
-  void setDateType(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Bool Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Bool Type</em>' attribute.
-   * @see #setBoolType(boolean)
-   * @see com.shark.lang.dd.DdPackage#getUnaryExpression_BoolType()
-   * @model
-   * @generated
-   */
-  boolean isBoolType();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.UnaryExpression#isBoolType <em>Bool Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Bool Type</em>' attribute.
-   * @see #isBoolType()
-   * @generated
-   */
-  void setBoolType(boolean value);
+  void setLength(int value);
 
 } // UnaryExpression

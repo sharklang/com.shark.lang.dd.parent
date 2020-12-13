@@ -11,7 +11,7 @@ override String calculateId(String tokenName, int tokenType) {
 		} else if ("RULE_ID".equals(tokenName)) {
 			return DdHighlightingConfiguration.IDENTIFIER_ID;
 		} else if ("RULE_OBJID".equals(tokenName)) {
-			return DdHighlightingConfiguration.IDENTIFIER_ID;
+			return DdHighlightingConfiguration.OBJ_ID;
 		} else if ("RULE_CHKID".equals(tokenName)) {
 			return DdHighlightingConfiguration.CHK_ID;
 		} else if ("RULE_CHR".equals(tokenName)) {

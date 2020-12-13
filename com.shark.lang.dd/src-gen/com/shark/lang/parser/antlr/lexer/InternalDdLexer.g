@@ -13,6 +13,8 @@ import org.eclipse.xtext.parser.antlr.Lexer;
 
 False : 'false';
 
+Model : 'model';
+
 Round : 'round';
 
 Stamp : 'stamp';
@@ -41,6 +43,8 @@ Dec : 'dec';
 
 Int : 'int';
 
+Key : 'key';
+
 Len : 'len';
 
 Not : 'not';
@@ -62,8 +66,6 @@ GreaterThanSignEqualsSign : '>=';
 In : 'in';
 
 Or : 'or';
-
-Pk : 'pk';
 
 ExclamationMark : '!';
 
@@ -107,7 +109,7 @@ fragment RULE_END : ;
 
 fragment RULE_EOL : ;
 
-fragment RULE_NULL : ;
+fragment RULE_NUL : ;
 
 fragment RULE_HEX : ('0'..'9'|'A'..'F'|'a'..'f');
 

@@ -429,7 +429,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EReference getDataModelFragment_Constants()
+  public EReference getDataModelFragment_ModelDesc()
   {
     return (EReference)dataModelFragmentEClass.getEStructuralFeatures().get(0);
   }
@@ -440,9 +440,31 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
+  public EAttribute getDataModelFragment_Name()
+  {
+    return (EAttribute)dataModelFragmentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDataModelFragment_Constants()
+  {
+    return (EReference)dataModelFragmentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getDataModelFragment_Entities()
   {
-    return (EReference)dataModelFragmentEClass.getEStructuralFeatures().get(1);
+    return (EReference)dataModelFragmentEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -453,7 +475,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
   @Override
   public EReference getDataModelFragment_Constraints()
   {
-    return (EReference)dataModelFragmentEClass.getEStructuralFeatures().get(2);
+    return (EReference)dataModelFragmentEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -990,7 +1012,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getBinaryExpression_NumType()
+  public EAttribute getBinaryExpression_Value()
   {
     return (EAttribute)binaryExpressionEClass.getEStructuralFeatures().get(3);
   }
@@ -1001,7 +1023,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getBinaryExpression_StrType()
+  public EAttribute getBinaryExpression_Precision()
   {
     return (EAttribute)binaryExpressionEClass.getEStructuralFeatures().get(4);
   }
@@ -1012,20 +1034,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getBinaryExpression_DateType()
+  public EAttribute getBinaryExpression_Length()
   {
     return (EAttribute)binaryExpressionEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getBinaryExpression_BoolType()
-  {
-    return (EAttribute)binaryExpressionEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1067,7 +1078,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getUnaryExpression_NumType()
+  public EAttribute getUnaryExpression_Value()
   {
     return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(2);
   }
@@ -1078,7 +1089,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getUnaryExpression_StrType()
+  public EAttribute getUnaryExpression_Precision()
   {
     return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(3);
   }
@@ -1089,20 +1100,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getUnaryExpression_DateType()
+  public EAttribute getUnaryExpression_Length()
   {
     return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getUnaryExpression_BoolType()
-  {
-    return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -1166,9 +1166,31 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getAddExpression_Checked()
+  public EAttribute getAddExpression_Value()
   {
     return (EAttribute)addExpressionEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAddExpression_Precision()
+  {
+    return (EAttribute)addExpressionEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAddExpression_Length()
+  {
+    return (EAttribute)addExpressionEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1265,9 +1287,31 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getMultExpression_Checked()
+  public EAttribute getMultExpression_Value()
   {
     return (EAttribute)multExpressionEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getMultExpression_Precision()
+  {
+    return (EAttribute)multExpressionEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getMultExpression_Length()
+  {
+    return (EAttribute)multExpressionEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1364,17 +1408,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getAndExpression_Checked()
-  {
-    return (EAttribute)andExpressionEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getAndExpressionElt()
   {
     return andExpressionEltEClass;
@@ -1455,17 +1488,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
   public EReference getOrExpression_OrElts()
   {
     return (EReference)orExpressionEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getOrExpression_Checked()
-  {
-    return (EAttribute)orExpressionEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1562,9 +1584,20 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getCatExpression_Checked()
+  public EAttribute getCatExpression_Value()
   {
     return (EAttribute)catExpressionEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCatExpression_Length()
+  {
+    return (EAttribute)catExpressionEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -1650,53 +1683,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getListExpression_NumType()
-  {
-    return (EAttribute)listExpressionEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getListExpression_StrType()
-  {
-    return (EAttribute)listExpressionEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getListExpression_DateType()
-  {
-    return (EAttribute)listExpressionEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getListExpression_BoolType()
-  {
-    return (EAttribute)listExpressionEClass.getEStructuralFeatures().get(6);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getListExpression_Range()
   {
-    return (EAttribute)listExpressionEClass.getEStructuralFeatures().get(7);
+    return (EAttribute)listExpressionEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -2050,6 +2039,8 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
 
     // Create classes and their features
     dataModelFragmentEClass = createEClass(DATA_MODEL_FRAGMENT);
+    createEReference(dataModelFragmentEClass, DATA_MODEL_FRAGMENT__MODEL_DESC);
+    createEAttribute(dataModelFragmentEClass, DATA_MODEL_FRAGMENT__NAME);
     createEReference(dataModelFragmentEClass, DATA_MODEL_FRAGMENT__CONSTANTS);
     createEReference(dataModelFragmentEClass, DATA_MODEL_FRAGMENT__ENTITIES);
     createEReference(dataModelFragmentEClass, DATA_MODEL_FRAGMENT__CONSTRAINTS);
@@ -2111,25 +2102,25 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEReference(binaryExpressionEClass, BINARY_EXPRESSION__LEFT);
     createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__OP);
     createEReference(binaryExpressionEClass, BINARY_EXPRESSION__RIGHT);
-    createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__NUM_TYPE);
-    createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__STR_TYPE);
-    createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__DATE_TYPE);
-    createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__BOOL_TYPE);
+    createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__VALUE);
+    createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__PRECISION);
+    createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__LENGTH);
 
     unaryExpressionEClass = createEClass(UNARY_EXPRESSION);
     createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__OP);
     createEReference(unaryExpressionEClass, UNARY_EXPRESSION__LEFT);
-    createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__NUM_TYPE);
-    createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__STR_TYPE);
-    createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__DATE_TYPE);
-    createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__BOOL_TYPE);
+    createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__VALUE);
+    createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__PRECISION);
+    createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__LENGTH);
 
     addExpressionEClass = createEClass(ADD_EXPRESSION);
     createEReference(addExpressionEClass, ADD_EXPRESSION__LEFT);
     createEAttribute(addExpressionEClass, ADD_EXPRESSION__OP);
     createEReference(addExpressionEClass, ADD_EXPRESSION__RIGHT);
     createEReference(addExpressionEClass, ADD_EXPRESSION__ADD_ELTS);
-    createEAttribute(addExpressionEClass, ADD_EXPRESSION__CHECKED);
+    createEAttribute(addExpressionEClass, ADD_EXPRESSION__VALUE);
+    createEAttribute(addExpressionEClass, ADD_EXPRESSION__PRECISION);
+    createEAttribute(addExpressionEClass, ADD_EXPRESSION__LENGTH);
 
     addExpressionEltEClass = createEClass(ADD_EXPRESSION_ELT);
     createEAttribute(addExpressionEltEClass, ADD_EXPRESSION_ELT__OP);
@@ -2140,7 +2131,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEAttribute(multExpressionEClass, MULT_EXPRESSION__OP);
     createEReference(multExpressionEClass, MULT_EXPRESSION__RIGHT);
     createEReference(multExpressionEClass, MULT_EXPRESSION__MULT_ELTS);
-    createEAttribute(multExpressionEClass, MULT_EXPRESSION__CHECKED);
+    createEAttribute(multExpressionEClass, MULT_EXPRESSION__VALUE);
+    createEAttribute(multExpressionEClass, MULT_EXPRESSION__PRECISION);
+    createEAttribute(multExpressionEClass, MULT_EXPRESSION__LENGTH);
 
     multExpressionEltEClass = createEClass(MULT_EXPRESSION_ELT);
     createEAttribute(multExpressionEltEClass, MULT_EXPRESSION_ELT__OP);
@@ -2151,7 +2144,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEAttribute(andExpressionEClass, AND_EXPRESSION__OP);
     createEReference(andExpressionEClass, AND_EXPRESSION__RIGHT);
     createEReference(andExpressionEClass, AND_EXPRESSION__AND_ELTS);
-    createEAttribute(andExpressionEClass, AND_EXPRESSION__CHECKED);
 
     andExpressionEltEClass = createEClass(AND_EXPRESSION_ELT);
     createEAttribute(andExpressionEltEClass, AND_EXPRESSION_ELT__OP);
@@ -2162,7 +2154,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEAttribute(orExpressionEClass, OR_EXPRESSION__OP);
     createEReference(orExpressionEClass, OR_EXPRESSION__RIGHT);
     createEReference(orExpressionEClass, OR_EXPRESSION__OR_ELTS);
-    createEAttribute(orExpressionEClass, OR_EXPRESSION__CHECKED);
 
     orExpressionEltEClass = createEClass(OR_EXPRESSION_ELT);
     createEAttribute(orExpressionEltEClass, OR_EXPRESSION_ELT__OP);
@@ -2173,7 +2164,8 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEAttribute(catExpressionEClass, CAT_EXPRESSION__OP);
     createEReference(catExpressionEClass, CAT_EXPRESSION__RIGHT);
     createEReference(catExpressionEClass, CAT_EXPRESSION__CAT_ELTS);
-    createEAttribute(catExpressionEClass, CAT_EXPRESSION__CHECKED);
+    createEAttribute(catExpressionEClass, CAT_EXPRESSION__VALUE);
+    createEAttribute(catExpressionEClass, CAT_EXPRESSION__LENGTH);
 
     catExpressionEltEClass = createEClass(CAT_EXPRESSION_ELT);
     createEAttribute(catExpressionEltEClass, CAT_EXPRESSION_ELT__OP);
@@ -2183,10 +2175,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEAttribute(listExpressionEClass, LIST_EXPRESSION__OP);
     createEReference(listExpressionEClass, LIST_EXPRESSION__LEFT);
     createEReference(listExpressionEClass, LIST_EXPRESSION__LIST_ELTS);
-    createEAttribute(listExpressionEClass, LIST_EXPRESSION__NUM_TYPE);
-    createEAttribute(listExpressionEClass, LIST_EXPRESSION__STR_TYPE);
-    createEAttribute(listExpressionEClass, LIST_EXPRESSION__DATE_TYPE);
-    createEAttribute(listExpressionEClass, LIST_EXPRESSION__BOOL_TYPE);
     createEAttribute(listExpressionEClass, LIST_EXPRESSION__RANGE);
 
     listExpressionEltEClass = createEClass(LIST_EXPRESSION_ELT);
@@ -2285,6 +2273,8 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(dataModelFragmentEClass, DataModelFragment.class, "DataModelFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDataModelFragment_ModelDesc(), this.getLineComment(), null, "modelDesc", null, 0, -1, DataModelFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDataModelFragment_Name(), ecorePackage.getEString(), "name", null, 0, 1, DataModelFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDataModelFragment_Constants(), this.getConstant(), null, "constants", null, 0, -1, DataModelFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDataModelFragment_Entities(), this.getEntity(), null, "entities", null, 0, -1, DataModelFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDataModelFragment_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, DataModelFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2346,25 +2336,25 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEReference(getBinaryExpression_Left(), this.getSharkExpression(), null, "left", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBinaryExpression_Op(), this.getBinaryOperator(), "op", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBinaryExpression_Right(), this.getSharkExpression(), null, "right", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getBinaryExpression_NumType(), ecorePackage.getEBoolean(), "numType", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getBinaryExpression_StrType(), ecorePackage.getEBoolean(), "strType", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getBinaryExpression_DateType(), ecorePackage.getEBoolean(), "dateType", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getBinaryExpression_BoolType(), ecorePackage.getEBoolean(), "boolType", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBinaryExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBinaryExpression_Precision(), ecorePackage.getEInt(), "precision", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBinaryExpression_Length(), ecorePackage.getEInt(), "length", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unaryExpressionEClass, UnaryExpression.class, "UnaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnaryExpression_Op(), this.getUnaryOperator(), "op", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getUnaryExpression_Left(), this.getSharkExpression(), null, "left", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getUnaryExpression_NumType(), ecorePackage.getEBoolean(), "numType", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getUnaryExpression_StrType(), ecorePackage.getEBoolean(), "strType", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getUnaryExpression_DateType(), ecorePackage.getEBoolean(), "dateType", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getUnaryExpression_BoolType(), ecorePackage.getEBoolean(), "boolType", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUnaryExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUnaryExpression_Precision(), ecorePackage.getEInt(), "precision", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUnaryExpression_Length(), ecorePackage.getEInt(), "length", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(addExpressionEClass, AddExpression.class, "AddExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAddExpression_Left(), this.getSharkExpression(), null, "left", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAddExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAddExpression_Right(), this.getSharkExpression(), null, "right", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAddExpression_AddElts(), this.getAddExpressionElt(), null, "addElts", null, 0, -1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAddExpression_Checked(), ecorePackage.getEBoolean(), "checked", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAddExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAddExpression_Precision(), ecorePackage.getEInt(), "precision", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAddExpression_Length(), ecorePackage.getEInt(), "length", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(addExpressionEltEClass, AddExpressionElt.class, "AddExpressionElt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAddExpressionElt_Op(), ecorePackage.getEString(), "op", null, 0, 1, AddExpressionElt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2375,7 +2365,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getMultExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMultExpression_Right(), this.getSharkExpression(), null, "right", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMultExpression_MultElts(), this.getMultExpressionElt(), null, "multElts", null, 0, -1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMultExpression_Checked(), ecorePackage.getEBoolean(), "checked", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMultExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMultExpression_Precision(), ecorePackage.getEInt(), "precision", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMultExpression_Length(), ecorePackage.getEInt(), "length", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(multExpressionEltEClass, MultExpressionElt.class, "MultExpressionElt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMultExpressionElt_Op(), ecorePackage.getEString(), "op", null, 0, 1, MultExpressionElt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2386,7 +2378,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getAndExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, AndExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAndExpression_Right(), this.getSharkExpression(), null, "right", null, 0, 1, AndExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAndExpression_AndElts(), this.getAndExpressionElt(), null, "andElts", null, 0, -1, AndExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAndExpression_Checked(), ecorePackage.getEBoolean(), "checked", null, 0, 1, AndExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(andExpressionEltEClass, AndExpressionElt.class, "AndExpressionElt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAndExpressionElt_Op(), ecorePackage.getEString(), "op", null, 0, 1, AndExpressionElt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2397,7 +2388,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getOrExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, OrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getOrExpression_Right(), this.getSharkExpression(), null, "right", null, 0, 1, OrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getOrExpression_OrElts(), this.getOrExpressionElt(), null, "orElts", null, 0, -1, OrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getOrExpression_Checked(), ecorePackage.getEBoolean(), "checked", null, 0, 1, OrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orExpressionEltEClass, OrExpressionElt.class, "OrExpressionElt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getOrExpressionElt_Op(), ecorePackage.getEString(), "op", null, 0, 1, OrExpressionElt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2408,7 +2398,8 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getCatExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCatExpression_Right(), this.getSharkExpression(), null, "right", null, 0, 1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCatExpression_CatElts(), this.getCatExpressionElt(), null, "catElts", null, 0, -1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCatExpression_Checked(), ecorePackage.getEBoolean(), "checked", null, 0, 1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCatExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCatExpression_Length(), ecorePackage.getEInt(), "length", null, 0, 1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(catExpressionEltEClass, CatExpressionElt.class, "CatExpressionElt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCatExpressionElt_Op(), ecorePackage.getEString(), "op", null, 0, 1, CatExpressionElt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2418,10 +2409,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getListExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, ListExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getListExpression_Left(), this.getSharkExpression(), null, "left", null, 0, 1, ListExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getListExpression_ListElts(), this.getListExpressionElt(), null, "ListElts", null, 0, -1, ListExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getListExpression_NumType(), ecorePackage.getEBoolean(), "numType", null, 0, 1, ListExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getListExpression_StrType(), ecorePackage.getEBoolean(), "strType", null, 0, 1, ListExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getListExpression_DateType(), ecorePackage.getEBoolean(), "dateType", null, 0, 1, ListExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getListExpression_BoolType(), ecorePackage.getEBoolean(), "boolType", null, 0, 1, ListExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getListExpression_Range(), ecorePackage.getEString(), "range", null, 0, 1, ListExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listExpressionEltEClass, ListExpressionElt.class, "ListExpressionElt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

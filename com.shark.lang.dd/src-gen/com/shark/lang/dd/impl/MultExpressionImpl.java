@@ -8,8 +8,6 @@ import com.shark.lang.dd.MultExpression;
 import com.shark.lang.dd.MultExpressionElt;
 import com.shark.lang.dd.SharkExpression;
 
-import java.lang.Boolean;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -37,7 +35,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getRight <em>Right</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getMultElts <em>Mult Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#isChecked <em>Checked</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getPrecision <em>Precision</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getLength <em>Length</em>}</li>
  * </ul>
  *
  * @generated
@@ -95,24 +95,64 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
   protected EList<MultExpressionElt> multElts;
 
   /**
-   * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isChecked()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final boolean CHECKED_EDEFAULT = false;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isChecked() <em>Checked</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isChecked()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected boolean checked = CHECKED_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPrecision()
+   * @generated
+   * @ordered
+   */
+  protected static final int PRECISION_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPrecision()
+   * @generated
+   * @ordered
+   */
+  protected int precision = PRECISION_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLength()
+   * @generated
+   * @ordered
+   */
+  protected static final int LENGTH_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLength()
+   * @generated
+   * @ordered
+   */
+  protected int length = LENGTH_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -281,9 +321,9 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
    * @generated
    */
   @Override
-  public boolean isChecked()
+  public String getValue()
   {
-    return checked;
+    return value;
   }
 
   /**
@@ -292,12 +332,62 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
    * @generated
    */
   @Override
-  public void setChecked(boolean newChecked)
+  public void setValue(String newValue)
   {
-    boolean oldChecked = checked;
-    checked = newChecked;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.MULT_EXPRESSION__CHECKED, oldChecked, checked));
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.MULT_EXPRESSION__VALUE, oldValue, value));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int getPrecision()
+  {
+    return precision;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setPrecision(int newPrecision)
+  {
+    int oldPrecision = precision;
+    precision = newPrecision;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.MULT_EXPRESSION__PRECISION, oldPrecision, precision));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int getLength()
+  {
+    return length;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setLength(int newLength)
+  {
+    int oldLength = length;
+    length = newLength;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.MULT_EXPRESSION__LENGTH, oldLength, length));
   }
 
   /**
@@ -338,8 +428,12 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
         return getRight();
       case DdPackage.MULT_EXPRESSION__MULT_ELTS:
         return getMultElts();
-      case DdPackage.MULT_EXPRESSION__CHECKED:
-        return isChecked();
+      case DdPackage.MULT_EXPRESSION__VALUE:
+        return getValue();
+      case DdPackage.MULT_EXPRESSION__PRECISION:
+        return getPrecision();
+      case DdPackage.MULT_EXPRESSION__LENGTH:
+        return getLength();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -368,8 +462,14 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
         getMultElts().clear();
         getMultElts().addAll((Collection<? extends MultExpressionElt>)newValue);
         return;
-      case DdPackage.MULT_EXPRESSION__CHECKED:
-        setChecked((Boolean)newValue);
+      case DdPackage.MULT_EXPRESSION__VALUE:
+        setValue((String)newValue);
+        return;
+      case DdPackage.MULT_EXPRESSION__PRECISION:
+        setPrecision((Integer)newValue);
+        return;
+      case DdPackage.MULT_EXPRESSION__LENGTH:
+        setLength((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -397,8 +497,14 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
       case DdPackage.MULT_EXPRESSION__MULT_ELTS:
         getMultElts().clear();
         return;
-      case DdPackage.MULT_EXPRESSION__CHECKED:
-        setChecked(CHECKED_EDEFAULT);
+      case DdPackage.MULT_EXPRESSION__VALUE:
+        setValue(VALUE_EDEFAULT);
+        return;
+      case DdPackage.MULT_EXPRESSION__PRECISION:
+        setPrecision(PRECISION_EDEFAULT);
+        return;
+      case DdPackage.MULT_EXPRESSION__LENGTH:
+        setLength(LENGTH_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -422,8 +528,12 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
         return right != null;
       case DdPackage.MULT_EXPRESSION__MULT_ELTS:
         return multElts != null && !multElts.isEmpty();
-      case DdPackage.MULT_EXPRESSION__CHECKED:
-        return checked != CHECKED_EDEFAULT;
+      case DdPackage.MULT_EXPRESSION__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+      case DdPackage.MULT_EXPRESSION__PRECISION:
+        return precision != PRECISION_EDEFAULT;
+      case DdPackage.MULT_EXPRESSION__LENGTH:
+        return length != LENGTH_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -441,8 +551,12 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", checked: ");
-    result.append(checked);
+    result.append(", value: ");
+    result.append(value);
+    result.append(", precision: ");
+    result.append(precision);
+    result.append(", length: ");
+    result.append(length);
     result.append(')');
     return result.toString();
   }
