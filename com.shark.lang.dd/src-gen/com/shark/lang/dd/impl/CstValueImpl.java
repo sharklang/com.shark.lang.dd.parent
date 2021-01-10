@@ -3,11 +3,13 @@
  */
 package com.shark.lang.dd.impl;
 
+import com.shark.lang.dd.ArraySize;
 import com.shark.lang.dd.Constant;
 import com.shark.lang.dd.CstValue;
 import com.shark.lang.dd.DdPackage;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -23,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link com.shark.lang.dd.impl.CstValueImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.CstValueImpl#getIndex <em>Index</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,6 +41,16 @@ public class CstValueImpl extends TerminalExpressionImpl implements CstValue
    * @ordered
    */
   protected Constant value;
+
+  /**
+   * The cached value of the '{@link #getIndex() <em>Index</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIndex()
+   * @generated
+   * @ordered
+   */
+  protected ArraySize index;
 
   /**
    * <!-- begin-user-doc -->
@@ -111,6 +124,72 @@ public class CstValueImpl extends TerminalExpressionImpl implements CstValue
    * @generated
    */
   @Override
+  public ArraySize getIndex()
+  {
+    return index;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetIndex(ArraySize newIndex, NotificationChain msgs)
+  {
+    ArraySize oldIndex = index;
+    index = newIndex;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DdPackage.CST_VALUE__INDEX, oldIndex, newIndex);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setIndex(ArraySize newIndex)
+  {
+    if (newIndex != index)
+    {
+      NotificationChain msgs = null;
+      if (index != null)
+        msgs = ((InternalEObject)index).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DdPackage.CST_VALUE__INDEX, null, msgs);
+      if (newIndex != null)
+        msgs = ((InternalEObject)newIndex).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DdPackage.CST_VALUE__INDEX, null, msgs);
+      msgs = basicSetIndex(newIndex, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.CST_VALUE__INDEX, newIndex, newIndex));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case DdPackage.CST_VALUE__INDEX:
+        return basicSetIndex(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -118,6 +197,8 @@ public class CstValueImpl extends TerminalExpressionImpl implements CstValue
       case DdPackage.CST_VALUE__VALUE:
         if (resolve) return getValue();
         return basicGetValue();
+      case DdPackage.CST_VALUE__INDEX:
+        return getIndex();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -134,6 +215,9 @@ public class CstValueImpl extends TerminalExpressionImpl implements CstValue
     {
       case DdPackage.CST_VALUE__VALUE:
         setValue((Constant)newValue);
+        return;
+      case DdPackage.CST_VALUE__INDEX:
+        setIndex((ArraySize)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -152,6 +236,9 @@ public class CstValueImpl extends TerminalExpressionImpl implements CstValue
       case DdPackage.CST_VALUE__VALUE:
         setValue((Constant)null);
         return;
+      case DdPackage.CST_VALUE__INDEX:
+        setIndex((ArraySize)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -168,6 +255,8 @@ public class CstValueImpl extends TerminalExpressionImpl implements CstValue
     {
       case DdPackage.CST_VALUE__VALUE:
         return value != null;
+      case DdPackage.CST_VALUE__INDEX:
+        return index != null;
     }
     return super.eIsSet(featureID);
   }

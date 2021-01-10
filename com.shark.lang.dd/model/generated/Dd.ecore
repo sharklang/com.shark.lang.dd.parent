@@ -261,6 +261,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CstValue" eSuperTypes="#//TerminalExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Constant"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//ArraySize"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BoolValue" eSuperTypes="#//TerminalExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//Boolean"/>
@@ -270,6 +272,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IdentifierExpression" eSuperTypes="#//TerminalExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//ArraySize"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//LineComment #//TrailComment">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="line" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

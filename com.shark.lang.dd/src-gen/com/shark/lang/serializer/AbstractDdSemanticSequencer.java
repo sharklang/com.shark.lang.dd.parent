@@ -423,16 +423,10 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     IdentifierExpression returns IdentifierExpression
 	 *
 	 * Constraint:
-	 *     value=[Attribute|QualifiedName]
+	 *     (value=[Attribute|QualifiedName] index=ArraySize?)
 	 */
 	protected void sequence_IdentifierExpression(ISerializationContext context, IdentifierExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.IDENTIFIER_EXPRESSION__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.IDENTIFIER_EXPRESSION__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIdentifierExpressionAccess().getValueAttributeQualifiedNameParserRuleCall_1_0_1(), semanticObject.eGet(DdPackage.Literals.IDENTIFIER_EXPRESSION__VALUE, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -653,16 +647,10 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     TerminalExpression returns CstValue
 	 *
 	 * Constraint:
-	 *     value=[Constant|CSTID]
+	 *     (value=[Constant|CSTID] index=ArraySize?)
 	 */
 	protected void sequence_TerminalExpression(ISerializationContext context, CstValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.CST_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.CST_VALUE__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTerminalExpressionAccess().getValueConstantCSTIDTerminalRuleCall_4_1_0_1(), semanticObject.eGet(DdPackage.Literals.CST_VALUE__VALUE, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

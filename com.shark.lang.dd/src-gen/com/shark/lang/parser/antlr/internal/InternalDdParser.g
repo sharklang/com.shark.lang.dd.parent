@@ -2722,6 +2722,25 @@ ruleTerminalExpression returns [EObject current=null]
 					}
 				)
 			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getTerminalExpressionAccess().getIndexArraySizeParserRuleCall_4_2_0());
+					}
+					lv_index_10_0=ruleArraySize
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTerminalExpressionRule());
+						}
+						set(
+							$current,
+							"index",
+							lv_index_10_0,
+							"com.shark.lang.Dd.ArraySize");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)?
 		)
 		    |
 		(
@@ -2737,7 +2756,7 @@ ruleTerminalExpression returns [EObject current=null]
 					{
 						newCompositeNode(grammarAccess.getTerminalExpressionAccess().getValueBooleanEnumRuleCall_5_1_0());
 					}
-					lv_value_11_0=ruleBoolean
+					lv_value_12_0=ruleBoolean
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getTerminalExpressionRule());
@@ -2745,7 +2764,7 @@ ruleTerminalExpression returns [EObject current=null]
 						set(
 							$current,
 							"value",
-							lv_value_11_0,
+							lv_value_12_0,
 							"com.shark.lang.Dd.Boolean");
 						afterParserOrEnumRuleCall();
 					}
@@ -2766,7 +2785,7 @@ ruleTerminalExpression returns [EObject current=null]
 					{
 						newCompositeNode(grammarAccess.getTerminalExpressionAccess().getValueUnsetEnumRuleCall_6_1_0());
 					}
-					lv_value_13_0=ruleUnset
+					lv_value_14_0=ruleUnset
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getTerminalExpressionRule());
@@ -2774,7 +2793,7 @@ ruleTerminalExpression returns [EObject current=null]
 						set(
 							$current,
 							"value",
-							lv_value_13_0,
+							lv_value_14_0,
 							"com.shark.lang.Dd.Unset");
 						afterParserOrEnumRuleCall();
 					}
@@ -2823,6 +2842,25 @@ ruleIdentifierExpression returns [EObject current=null]
 				}
 			)
 		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIdentifierExpressionAccess().getIndexArraySizeParserRuleCall_2_0());
+				}
+				lv_index_2_0=ruleArraySize
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIdentifierExpressionRule());
+					}
+					set(
+						$current,
+						"index",
+						lv_index_2_0,
+						"com.shark.lang.Dd.ArraySize");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 

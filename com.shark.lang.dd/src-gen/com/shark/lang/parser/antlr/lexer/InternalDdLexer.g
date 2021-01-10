@@ -123,9 +123,9 @@ fragment RULE_ASCII : ('!'|'#'|'$'|'%'|'&'|'\''|'('|')'|'*'|'+'|','|'-'|'.'|'/'|
 
 fragment RULE_NL : '\r'? '\n';
 
-RULE_CHR : '"' (RULE_ESC|RULE_ASCII)? '"';
+RULE_STR : '"' (RULE_ESC|RULE_ASCII) (RULE_ESC|RULE_ASCII) (RULE_ESC|RULE_ASCII)* '"';
 
-RULE_STR : '"' (RULE_ESC|RULE_ASCII)+ '"';
+RULE_CHR : '"' (RULE_ESC|RULE_ASCII)? '"';
 
 RULE_RANGEINF : RULE_NUM '..n';
 

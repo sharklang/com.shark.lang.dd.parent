@@ -5,8 +5,10 @@ package com.shark.lang.validation
 
 import com.google.inject.Inject
 import com.google.inject.Provider
+import com.shark.lang.dd.ArraySize
 import com.shark.lang.dd.CheckExpression
 import com.shark.lang.dd.Constraint
+import com.shark.lang.dd.CstValue
 import com.shark.lang.dd.DdPackage
 import com.shark.lang.dd.Entity
 import com.shark.lang.dd.IdentifierExpression
@@ -29,9 +31,7 @@ import org.eclipse.xtext.validation.ComposedChecks
  * 
  */
 @ComposedChecks(validators=#[DdDeclarationValidator])
-
 //TODO check numberUtil iCreatable and compare to exception management below 
-
 class DdValidator extends AbstractDdValidator {
 
 	@Inject
@@ -41,8 +41,6 @@ class DdValidator extends AbstractDdValidator {
 	@Inject
 	Provider<XtextResourceSet> resourceSetProvider;
 
-
-
 	@Check
 	def checkEntityGloballyUnique(Entity entity) {
 		// visible containers is part of the global scope provider system
@@ -51,7 +49,7 @@ class DdValidator extends AbstractDdValidator {
 		for (visibleContainer : visibleContainers) {
 			for (_entity_description : visibleContainer.getExportedObjectsByType(DdPackage.Literals.ENTITY)) {
 				val _entity = resourceSetProvider.get.getEObject(_entity_description.EObjectURI, true) as Entity
-				if ((entity.eResource.URI != _entity.eResource.URI) && (entity.name == _entity.name)) {
+				if((entity.eResource.URI != _entity.eResource.URI) && (entity.name == _entity.name)) {
 					error('Entity duplication', entity, DdPackage.Literals.ENTITY__NAME)
 				}
 			}
@@ -69,18 +67,18 @@ class DdValidator extends AbstractDdValidator {
 		// get list of all entities in this file and check each if name is same
 		for (_entity_description : container.getExportedObjectsByType(DdPackage.Literals.ENTITY)) {
 			val _entity = resourceSetProvider.get.getEObject(_entity_description.EObjectURI, true) as Entity
-			if (cstrName == _entity.name) {
+			if(cstrName == _entity.name) {
 				// in that case we check the list of operands to verify that none goes outside of the entity scope
 				for (CheckExpression chk : cstr.check.toList) {
 					for (EObject eObj : chk.eAllContents.toIterable) {
-						if (eObj instanceof IdentifierExpression) {
+						if(eObj instanceof IdentifierExpression) {
 							val ident = eObj as IdentifierExpression
 							val referredEntity = ident.value.eContainer as Entity
-							if (referredEntity.name != cstrName) {
+							if(referredEntity.name != cstrName) {
 								error(
 									"Invalid Entity check expression: it cannot use a reference to an attribute outside of the referred Entity here " +
-										referredEntity.name + " is used, but allowed only are attributes from " +
-										cstrName, ident, DdPackage.Literals.IDENTIFIER_EXPRESSION__VALUE)
+										referredEntity.name + " is used, but allowed only are attributes from " + cstrName, ident,
+									DdPackage.Literals.IDENTIFIER_EXPRESSION__VALUE)
 							}
 						}
 					}
@@ -89,6 +87,30 @@ class DdValidator extends AbstractDdValidator {
 		}
 	}
 
-
-
+	// check that index of the identifier is in line with the array size declared
+	@Check
+	def checkArrayConsistency(ArraySize arraySize) {
+		val parent = arraySize.eContainer
+		if(parent instanceof IdentifierExpression) {
+			val idExpr = parent as IdentifierExpression
+			val attr = idExpr.value
+			if(attr.arraySize === null) {
+				error("This attribute is not an array and so no index can be specified to access it", arraySize,
+					DdPackage.Literals.ARRAY_SIZE__SIZE)
+			} else if(arraySize.size >= attr.arraySize.size) {
+				// array access is index from 0 to size-1
+				error("Index is out of bound", arraySize, DdPackage.Literals.ARRAY_SIZE__SIZE)
+			}
+		} else if(parent instanceof CstValue) {
+			val idExpr = parent as CstValue
+			val cst = idExpr.value
+			if(cst.arraySize === null) {
+				error("This constant is not an array and so no index can be specified to access it", arraySize,
+					DdPackage.Literals.ARRAY_SIZE__SIZE)
+			} else if(arraySize.size >= cst.arraySize.size) {
+				// array access is index from 0 to size-1
+				error("Index is out of bound", arraySize, DdPackage.Literals.ARRAY_SIZE__SIZE)
+			}
+		}
+	}
 } //end class

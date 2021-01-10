@@ -46,8 +46,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		////EOL tokens are added after an indent constant or no indent and a new line
 		////IDENT triggered after a Comment so generates EOL 
 		////with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-		////TODO check empty string const on like: myvar like "" should fail
-		////TODO check cast date format: date("YYYYMMDD") in case it is not and expression
+		////TODO add the ref to a value in an array with the index as an identifier expression
+		////TODO add the check that cross ref can be done only if this is a 1-1 relationship: 2 attribute belong to 2 different entity with 1-1 only
 		////TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
 		////TODO test expressions interactively and build non passing JUNIT tests using excel random
 		////TODO update formatter
@@ -58,17 +58,16 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		////TODO do a first output
 		////TODO semantic highlighting example
 		////TODO use case of the unset value
-		////TODO add formats on top of checks to be used by like operator: 5A003a-"H" with positions. formats will be usable to split
 		////TODO test date operations + 1*DAY... basing on the generator error management
 		////TODO add min, max, avg
 		////TODO add content assist
 		////TODO split into reusable grammar and create sd and sk languages
 		////TODO implement math a bit more: implement the expression precision check and rounding routines
 		////TODO in this context consider removing int and stick to general dec(n,0)?
-		////TODO as for constant they need to be calculatable expressions at compile time so use groovy or other in validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
+		////TODO Improve calculateExpression and add it to the main descent of getExpressionType using a value extra member so that at least int(2,2)=90+20 fails
 		////TODO check and neutralize useless comment associator
 		////TODO check that all text is assigned
-		////TODO cleanup error messages in propoerties
+		////TODO cleanup error messages in properties
 		////ecore sample editor. editor read again the XtextRessource so normal that my boolean are not there. they would have to 
 		////be persisted in hidden text... But core code generation maybe the in memory AST is the same as in validation
 		////to test.
@@ -1456,6 +1455,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final Assignment cValueAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final CrossReference cValueConstantCrossReference_4_1_0 = (CrossReference)cValueAssignment_4_1.eContents().get(0);
 		private final RuleCall cValueConstantCSTIDTerminalRuleCall_4_1_0_1 = (RuleCall)cValueConstantCrossReference_4_1_0.eContents().get(1);
+		private final Assignment cIndexAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cIndexArraySizeParserRuleCall_4_2_0 = (RuleCall)cIndexAssignment_4_2.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Action cBoolValueAction_5_0 = (Action)cGroup_5.eContents().get(0);
 		private final Assignment cValueAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
@@ -1467,11 +1468,11 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		
 		//TerminalExpression:
 		//	{StrValue} value=STR | {IntValue} value=INT | {DecValue} value=DEC | {ChrValue} value=CHR | {CstValue}
-		//	value=[Constant|CSTID] | {BoolValue} value=Boolean | {UnsetValue} value=Unset;
+		//	value=[Constant|CSTID] index=ArraySize? | {BoolValue} value=Boolean | {UnsetValue} value=Unset;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{StrValue} value=STR | {IntValue} value=INT | {DecValue} value=DEC | {ChrValue} value=CHR | {CstValue}
-		//value=[Constant|CSTID] | {BoolValue} value=Boolean | {UnsetValue} value=Unset
+		//value=[Constant|CSTID] index=ArraySize? | {BoolValue} value=Boolean | {UnsetValue} value=Unset
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//{StrValue} value=STR
@@ -1522,7 +1523,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		//CHR
 		public RuleCall getValueCHRTerminalRuleCall_3_1_0() { return cValueCHRTerminalRuleCall_3_1_0; }
 		
-		//{CstValue} value=[Constant|CSTID]
+		//{CstValue} value=[Constant|CSTID] index=ArraySize?
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//{CstValue}
@@ -1536,6 +1537,12 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		
 		//CSTID
 		public RuleCall getValueConstantCSTIDTerminalRuleCall_4_1_0_1() { return cValueConstantCSTIDTerminalRuleCall_4_1_0_1; }
+		
+		//index=ArraySize?
+		public Assignment getIndexAssignment_4_2() { return cIndexAssignment_4_2; }
+		
+		//ArraySize
+		public RuleCall getIndexArraySizeParserRuleCall_4_2_0() { return cIndexArraySizeParserRuleCall_4_2_0; }
 		
 		//{BoolValue} value=Boolean
 		public Group getGroup_5() { return cGroup_5; }
@@ -1568,12 +1575,14 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cValueAttributeCrossReference_1_0 = (CrossReference)cValueAssignment_1.eContents().get(0);
 		private final RuleCall cValueAttributeQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cValueAttributeCrossReference_1_0.eContents().get(1);
+		private final Assignment cIndexAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cIndexArraySizeParserRuleCall_2_0 = (RuleCall)cIndexAssignment_2.eContents().get(0);
 		
 		//IdentifierExpression TerminalExpression:
-		//	{IdentifierExpression} value=[Attribute|QualifiedName];
+		//	{IdentifierExpression} value=[Attribute|QualifiedName] index=ArraySize?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{IdentifierExpression} value=[Attribute|QualifiedName]
+		//{IdentifierExpression} value=[Attribute|QualifiedName] index=ArraySize?
 		public Group getGroup() { return cGroup; }
 		
 		//{IdentifierExpression}
@@ -1587,6 +1596,12 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		
 		//QualifiedName
 		public RuleCall getValueAttributeQualifiedNameParserRuleCall_1_0_1() { return cValueAttributeQualifiedNameParserRuleCall_1_0_1; }
+		
+		//index=ArraySize?
+		public Assignment getIndexAssignment_2() { return cIndexAssignment_2; }
+		
+		//ArraySize
+		public RuleCall getIndexArraySizeParserRuleCall_2_0() { return cIndexArraySizeParserRuleCall_2_0; }
 	}
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.QualifiedName");
@@ -2099,8 +2114,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	private final TerminalRule tESC;
 	private final TerminalRule tASCII;
 	private final TerminalRule tNL;
-	private final TerminalRule tCHR;
 	private final TerminalRule tSTR;
+	private final TerminalRule tCHR;
 	private final TerminalRule tRANGEINF;
 	private final TerminalRule tRANGE;
 	private final TerminalRule tCHKID;
@@ -2165,8 +2180,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		this.tESC = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.ESC");
 		this.tASCII = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.ASCII");
 		this.tNL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.NL");
-		this.tCHR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.CHR");
 		this.tSTR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.STR");
+		this.tCHR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.CHR");
 		this.tRANGEINF = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.RANGEINF");
 		this.tRANGE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.RANGE");
 		this.tCHKID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "com.shark.lang.Dd.CHKID");
@@ -2210,8 +2225,8 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	////EOL tokens are added after an indent constant or no indent and a new line
 	////IDENT triggered after a Comment so generates EOL 
 	////with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-	////TODO check empty string const on like: myvar like "" should fail
-	////TODO check cast date format: date("YYYYMMDD") in case it is not and expression
+	////TODO add the ref to a value in an array with the index as an identifier expression
+	////TODO add the check that cross ref can be done only if this is a 1-1 relationship: 2 attribute belong to 2 different entity with 1-1 only
 	////TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
 	////TODO test expressions interactively and build non passing JUNIT tests using excel random
 	////TODO update formatter
@@ -2222,17 +2237,16 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	////TODO do a first output
 	////TODO semantic highlighting example
 	////TODO use case of the unset value
-	////TODO add formats on top of checks to be used by like operator: 5A003a-"H" with positions. formats will be usable to split
 	////TODO test date operations + 1*DAY... basing on the generator error management
 	////TODO add min, max, avg
 	////TODO add content assist
 	////TODO split into reusable grammar and create sd and sk languages
 	////TODO implement math a bit more: implement the expression precision check and rounding routines
 	////TODO in this context consider removing int and stick to general dec(n,0)?
-	////TODO as for constant they need to be calculatable expressions at compile time so use groovy or other in validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
+	////TODO Improve calculateExpression and add it to the main descent of getExpressionType using a value extra member so that at least int(2,2)=90+20 fails
 	////TODO check and neutralize useless comment associator
 	////TODO check that all text is assigned
-	////TODO cleanup error messages in propoerties
+	////TODO cleanup error messages in properties
 	////ecore sample editor. editor read again the XtextRessource so normal that my boolean are not there. they would have to 
 	////be persisted in hidden text... But core code generation maybe the in memory AST is the same as in validation
 	////to test.
@@ -2567,7 +2581,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	
 	//TerminalExpression:
 	//	{StrValue} value=STR | {IntValue} value=INT | {DecValue} value=DEC | {ChrValue} value=CHR | {CstValue}
-	//	value=[Constant|CSTID] | {BoolValue} value=Boolean | {UnsetValue} value=Unset;
+	//	value=[Constant|CSTID] index=ArraySize? | {BoolValue} value=Boolean | {UnsetValue} value=Unset;
 	public TerminalExpressionElements getTerminalExpressionAccess() {
 		return pTerminalExpression;
 	}
@@ -2577,7 +2591,7 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 	}
 	
 	//IdentifierExpression TerminalExpression:
-	//	{IdentifierExpression} value=[Attribute|QualifiedName];
+	//	{IdentifierExpression} value=[Attribute|QualifiedName] index=ArraySize?;
 	public IdentifierExpressionElements getIdentifierExpressionAccess() {
 		return pIdentifierExpression;
 	}
@@ -2709,17 +2723,17 @@ public class DdGrammarAccess extends AbstractElementFinder.AbstractGrammarElemen
 		return tNL;
 	}
 	
+	//terminal STR:
+	//	'"' (ESC | ASCII) (ESC | ASCII) (ESC | ASCII)* '"';
+	public TerminalRule getSTRRule() {
+		return tSTR;
+	}
+	
 	//terminal CHR: //simpler to manage a string and remove quotes rather than using a value converter
 	////TODO consider using a value converter
 	//	'"' (ESC | ASCII)? '"';
 	public TerminalRule getCHRRule() {
 		return tCHR;
-	}
-	
-	//terminal STR:
-	//	'"' (ESC | ASCII)+ '"';
-	public TerminalRule getSTRRule() {
-		return tSTR;
 	}
 	
 	//terminal RANGEINF:

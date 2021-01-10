@@ -25,7 +25,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalDdParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "False", "Model", "Round", "Stamp", "Unset", "Bits", "Bool", "Date", "Like", "Stxt", "Time", "True", "And", "Chr", "Dec", "Int", "Key", "Len", "Not", "Str", "HalfwidthHangulFillerHalfwidthHangulFillerHalfwidthHangulFiller", "ExclamationMarkEqualsSign", "HyphenMinusGreaterThanSign", "LessThanSignEqualsSign", "EqualsSignEqualsSign", "GreaterThanSignEqualsSign", "In", "Or", "ExclamationMark", "PercentSign", "Ampersand", "LeftParenthesis", "RightParenthesis", "Asterisk", "PlusSign", "Comma", "HyphenMinus", "FullStop", "Solidus", "Colon", "LessThanSign", "EqualsSign", "GreaterThanSign", "LeftSquareBracket", "RightSquareBracket", "CircumflexAccent", "RULE_BEGIN", "RULE_END", "RULE_EOL", "RULE_NUL", "RULE_HEX", "RULE_NUM", "RULE_UNI", "RULE_ESC", "RULE_ASCII", "RULE_NL", "RULE_CHR", "RULE_STR", "RULE_RANGEINF", "RULE_RANGE", "RULE_CHKID", "RULE_CSTID", "RULE_OBJID", "RULE_ID", "RULE_DEC", "RULE_INT", "RULE_CONT", "RULE_IDENT", "RULE_CMT", "RULE_WS", "RULE_ANY_OTHER"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "False", "Model", "Round", "Stamp", "Unset", "Bits", "Bool", "Date", "Like", "Stxt", "Time", "True", "And", "Chr", "Dec", "Int", "Key", "Len", "Not", "Str", "HalfwidthHangulFillerHalfwidthHangulFillerHalfwidthHangulFiller", "ExclamationMarkEqualsSign", "HyphenMinusGreaterThanSign", "LessThanSignEqualsSign", "EqualsSignEqualsSign", "GreaterThanSignEqualsSign", "In", "Or", "ExclamationMark", "PercentSign", "Ampersand", "LeftParenthesis", "RightParenthesis", "Asterisk", "PlusSign", "Comma", "HyphenMinus", "FullStop", "Solidus", "Colon", "LessThanSign", "EqualsSign", "GreaterThanSign", "LeftSquareBracket", "RightSquareBracket", "CircumflexAccent", "RULE_BEGIN", "RULE_END", "RULE_EOL", "RULE_NUL", "RULE_HEX", "RULE_NUM", "RULE_UNI", "RULE_ESC", "RULE_ASCII", "RULE_NL", "RULE_STR", "RULE_CHR", "RULE_RANGEINF", "RULE_RANGE", "RULE_CHKID", "RULE_CSTID", "RULE_OBJID", "RULE_ID", "RULE_DEC", "RULE_INT", "RULE_CONT", "RULE_IDENT", "RULE_CMT", "RULE_WS", "RULE_ANY_OTHER"
     };
     public static final int RULE_HEX=54;
     public static final int Or=31;
@@ -91,9 +91,9 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
     public static final int RULE_ANY_OTHER=74;
     public static final int Date=11;
     public static final int CircumflexAccent=49;
-    public static final int RULE_CHR=60;
+    public static final int RULE_CHR=61;
     public static final int Len=21;
-    public static final int RULE_STR=61;
+    public static final int RULE_STR=60;
     public static final int Model=5;
     public static final int ExclamationMarkEqualsSign=25;
     public static final int RULE_NL=59;
@@ -19084,17 +19084,22 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__Group_4__1"
-    // InternalDdParser.g:5644:1: rule__TerminalExpression__Group_4__1 : rule__TerminalExpression__Group_4__1__Impl ;
+    // InternalDdParser.g:5644:1: rule__TerminalExpression__Group_4__1 : rule__TerminalExpression__Group_4__1__Impl rule__TerminalExpression__Group_4__2 ;
     public final void rule__TerminalExpression__Group_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5648:1: ( rule__TerminalExpression__Group_4__1__Impl )
-            // InternalDdParser.g:5649:2: rule__TerminalExpression__Group_4__1__Impl
+            // InternalDdParser.g:5648:1: ( rule__TerminalExpression__Group_4__1__Impl rule__TerminalExpression__Group_4__2 )
+            // InternalDdParser.g:5649:2: rule__TerminalExpression__Group_4__1__Impl rule__TerminalExpression__Group_4__2
             {
-            pushFollow(FOLLOW_2);
+            pushFollow(FOLLOW_49);
             rule__TerminalExpression__Group_4__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__TerminalExpression__Group_4__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19117,23 +19122,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__Group_4__1__Impl"
-    // InternalDdParser.g:5655:1: rule__TerminalExpression__Group_4__1__Impl : ( ( rule__TerminalExpression__ValueAssignment_4_1 ) ) ;
+    // InternalDdParser.g:5656:1: rule__TerminalExpression__Group_4__1__Impl : ( ( rule__TerminalExpression__ValueAssignment_4_1 ) ) ;
     public final void rule__TerminalExpression__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5659:1: ( ( ( rule__TerminalExpression__ValueAssignment_4_1 ) ) )
-            // InternalDdParser.g:5660:1: ( ( rule__TerminalExpression__ValueAssignment_4_1 ) )
+            // InternalDdParser.g:5660:1: ( ( ( rule__TerminalExpression__ValueAssignment_4_1 ) ) )
+            // InternalDdParser.g:5661:1: ( ( rule__TerminalExpression__ValueAssignment_4_1 ) )
             {
-            // InternalDdParser.g:5660:1: ( ( rule__TerminalExpression__ValueAssignment_4_1 ) )
-            // InternalDdParser.g:5661:2: ( rule__TerminalExpression__ValueAssignment_4_1 )
+            // InternalDdParser.g:5661:1: ( ( rule__TerminalExpression__ValueAssignment_4_1 ) )
+            // InternalDdParser.g:5662:2: ( rule__TerminalExpression__ValueAssignment_4_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueAssignment_4_1()); 
             }
-            // InternalDdParser.g:5662:2: ( rule__TerminalExpression__ValueAssignment_4_1 )
-            // InternalDdParser.g:5662:3: rule__TerminalExpression__ValueAssignment_4_1
+            // InternalDdParser.g:5663:2: ( rule__TerminalExpression__ValueAssignment_4_1 )
+            // InternalDdParser.g:5663:3: rule__TerminalExpression__ValueAssignment_4_1
             {
             pushFollow(FOLLOW_2);
             rule__TerminalExpression__ValueAssignment_4_1();
@@ -19167,17 +19172,112 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TerminalExpression__Group_4__1__Impl"
 
 
+    // $ANTLR start "rule__TerminalExpression__Group_4__2"
+    // InternalDdParser.g:5671:1: rule__TerminalExpression__Group_4__2 : rule__TerminalExpression__Group_4__2__Impl ;
+    public final void rule__TerminalExpression__Group_4__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalDdParser.g:5675:1: ( rule__TerminalExpression__Group_4__2__Impl )
+            // InternalDdParser.g:5676:2: rule__TerminalExpression__Group_4__2__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__TerminalExpression__Group_4__2__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__TerminalExpression__Group_4__2"
+
+
+    // $ANTLR start "rule__TerminalExpression__Group_4__2__Impl"
+    // InternalDdParser.g:5682:1: rule__TerminalExpression__Group_4__2__Impl : ( ( rule__TerminalExpression__IndexAssignment_4_2 )? ) ;
+    public final void rule__TerminalExpression__Group_4__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalDdParser.g:5686:1: ( ( ( rule__TerminalExpression__IndexAssignment_4_2 )? ) )
+            // InternalDdParser.g:5687:1: ( ( rule__TerminalExpression__IndexAssignment_4_2 )? )
+            {
+            // InternalDdParser.g:5687:1: ( ( rule__TerminalExpression__IndexAssignment_4_2 )? )
+            // InternalDdParser.g:5688:2: ( rule__TerminalExpression__IndexAssignment_4_2 )?
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getTerminalExpressionAccess().getIndexAssignment_4_2()); 
+            }
+            // InternalDdParser.g:5689:2: ( rule__TerminalExpression__IndexAssignment_4_2 )?
+            int alt41=2;
+            int LA41_0 = input.LA(1);
+
+            if ( (LA41_0==LeftSquareBracket) ) {
+                alt41=1;
+            }
+            switch (alt41) {
+                case 1 :
+                    // InternalDdParser.g:5689:3: rule__TerminalExpression__IndexAssignment_4_2
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__TerminalExpression__IndexAssignment_4_2();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getTerminalExpressionAccess().getIndexAssignment_4_2()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__TerminalExpression__Group_4__2__Impl"
+
+
     // $ANTLR start "rule__TerminalExpression__Group_5__0"
-    // InternalDdParser.g:5671:1: rule__TerminalExpression__Group_5__0 : rule__TerminalExpression__Group_5__0__Impl rule__TerminalExpression__Group_5__1 ;
+    // InternalDdParser.g:5698:1: rule__TerminalExpression__Group_5__0 : rule__TerminalExpression__Group_5__0__Impl rule__TerminalExpression__Group_5__1 ;
     public final void rule__TerminalExpression__Group_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5675:1: ( rule__TerminalExpression__Group_5__0__Impl rule__TerminalExpression__Group_5__1 )
-            // InternalDdParser.g:5676:2: rule__TerminalExpression__Group_5__0__Impl rule__TerminalExpression__Group_5__1
+            // InternalDdParser.g:5702:1: ( rule__TerminalExpression__Group_5__0__Impl rule__TerminalExpression__Group_5__1 )
+            // InternalDdParser.g:5703:2: rule__TerminalExpression__Group_5__0__Impl rule__TerminalExpression__Group_5__1
             {
-            pushFollow(FOLLOW_49);
+            pushFollow(FOLLOW_50);
             rule__TerminalExpression__Group_5__0__Impl();
 
             state._fsp--;
@@ -19206,23 +19306,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__Group_5__0__Impl"
-    // InternalDdParser.g:5683:1: rule__TerminalExpression__Group_5__0__Impl : ( () ) ;
+    // InternalDdParser.g:5710:1: rule__TerminalExpression__Group_5__0__Impl : ( () ) ;
     public final void rule__TerminalExpression__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5687:1: ( ( () ) )
-            // InternalDdParser.g:5688:1: ( () )
+            // InternalDdParser.g:5714:1: ( ( () ) )
+            // InternalDdParser.g:5715:1: ( () )
             {
-            // InternalDdParser.g:5688:1: ( () )
-            // InternalDdParser.g:5689:2: ()
+            // InternalDdParser.g:5715:1: ( () )
+            // InternalDdParser.g:5716:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getBoolValueAction_5_0()); 
             }
-            // InternalDdParser.g:5690:2: ()
-            // InternalDdParser.g:5690:3: 
+            // InternalDdParser.g:5717:2: ()
+            // InternalDdParser.g:5717:3: 
             {
             }
 
@@ -19247,14 +19347,14 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__Group_5__1"
-    // InternalDdParser.g:5698:1: rule__TerminalExpression__Group_5__1 : rule__TerminalExpression__Group_5__1__Impl ;
+    // InternalDdParser.g:5725:1: rule__TerminalExpression__Group_5__1 : rule__TerminalExpression__Group_5__1__Impl ;
     public final void rule__TerminalExpression__Group_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5702:1: ( rule__TerminalExpression__Group_5__1__Impl )
-            // InternalDdParser.g:5703:2: rule__TerminalExpression__Group_5__1__Impl
+            // InternalDdParser.g:5729:1: ( rule__TerminalExpression__Group_5__1__Impl )
+            // InternalDdParser.g:5730:2: rule__TerminalExpression__Group_5__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TerminalExpression__Group_5__1__Impl();
@@ -19280,23 +19380,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__Group_5__1__Impl"
-    // InternalDdParser.g:5709:1: rule__TerminalExpression__Group_5__1__Impl : ( ( rule__TerminalExpression__ValueAssignment_5_1 ) ) ;
+    // InternalDdParser.g:5736:1: rule__TerminalExpression__Group_5__1__Impl : ( ( rule__TerminalExpression__ValueAssignment_5_1 ) ) ;
     public final void rule__TerminalExpression__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5713:1: ( ( ( rule__TerminalExpression__ValueAssignment_5_1 ) ) )
-            // InternalDdParser.g:5714:1: ( ( rule__TerminalExpression__ValueAssignment_5_1 ) )
+            // InternalDdParser.g:5740:1: ( ( ( rule__TerminalExpression__ValueAssignment_5_1 ) ) )
+            // InternalDdParser.g:5741:1: ( ( rule__TerminalExpression__ValueAssignment_5_1 ) )
             {
-            // InternalDdParser.g:5714:1: ( ( rule__TerminalExpression__ValueAssignment_5_1 ) )
-            // InternalDdParser.g:5715:2: ( rule__TerminalExpression__ValueAssignment_5_1 )
+            // InternalDdParser.g:5741:1: ( ( rule__TerminalExpression__ValueAssignment_5_1 ) )
+            // InternalDdParser.g:5742:2: ( rule__TerminalExpression__ValueAssignment_5_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueAssignment_5_1()); 
             }
-            // InternalDdParser.g:5716:2: ( rule__TerminalExpression__ValueAssignment_5_1 )
-            // InternalDdParser.g:5716:3: rule__TerminalExpression__ValueAssignment_5_1
+            // InternalDdParser.g:5743:2: ( rule__TerminalExpression__ValueAssignment_5_1 )
+            // InternalDdParser.g:5743:3: rule__TerminalExpression__ValueAssignment_5_1
             {
             pushFollow(FOLLOW_2);
             rule__TerminalExpression__ValueAssignment_5_1();
@@ -19331,16 +19431,16 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__Group_6__0"
-    // InternalDdParser.g:5725:1: rule__TerminalExpression__Group_6__0 : rule__TerminalExpression__Group_6__0__Impl rule__TerminalExpression__Group_6__1 ;
+    // InternalDdParser.g:5752:1: rule__TerminalExpression__Group_6__0 : rule__TerminalExpression__Group_6__0__Impl rule__TerminalExpression__Group_6__1 ;
     public final void rule__TerminalExpression__Group_6__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5729:1: ( rule__TerminalExpression__Group_6__0__Impl rule__TerminalExpression__Group_6__1 )
-            // InternalDdParser.g:5730:2: rule__TerminalExpression__Group_6__0__Impl rule__TerminalExpression__Group_6__1
+            // InternalDdParser.g:5756:1: ( rule__TerminalExpression__Group_6__0__Impl rule__TerminalExpression__Group_6__1 )
+            // InternalDdParser.g:5757:2: rule__TerminalExpression__Group_6__0__Impl rule__TerminalExpression__Group_6__1
             {
-            pushFollow(FOLLOW_50);
+            pushFollow(FOLLOW_51);
             rule__TerminalExpression__Group_6__0__Impl();
 
             state._fsp--;
@@ -19369,23 +19469,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__Group_6__0__Impl"
-    // InternalDdParser.g:5737:1: rule__TerminalExpression__Group_6__0__Impl : ( () ) ;
+    // InternalDdParser.g:5764:1: rule__TerminalExpression__Group_6__0__Impl : ( () ) ;
     public final void rule__TerminalExpression__Group_6__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5741:1: ( ( () ) )
-            // InternalDdParser.g:5742:1: ( () )
+            // InternalDdParser.g:5768:1: ( ( () ) )
+            // InternalDdParser.g:5769:1: ( () )
             {
-            // InternalDdParser.g:5742:1: ( () )
-            // InternalDdParser.g:5743:2: ()
+            // InternalDdParser.g:5769:1: ( () )
+            // InternalDdParser.g:5770:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getUnsetValueAction_6_0()); 
             }
-            // InternalDdParser.g:5744:2: ()
-            // InternalDdParser.g:5744:3: 
+            // InternalDdParser.g:5771:2: ()
+            // InternalDdParser.g:5771:3: 
             {
             }
 
@@ -19410,14 +19510,14 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__Group_6__1"
-    // InternalDdParser.g:5752:1: rule__TerminalExpression__Group_6__1 : rule__TerminalExpression__Group_6__1__Impl ;
+    // InternalDdParser.g:5779:1: rule__TerminalExpression__Group_6__1 : rule__TerminalExpression__Group_6__1__Impl ;
     public final void rule__TerminalExpression__Group_6__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5756:1: ( rule__TerminalExpression__Group_6__1__Impl )
-            // InternalDdParser.g:5757:2: rule__TerminalExpression__Group_6__1__Impl
+            // InternalDdParser.g:5783:1: ( rule__TerminalExpression__Group_6__1__Impl )
+            // InternalDdParser.g:5784:2: rule__TerminalExpression__Group_6__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TerminalExpression__Group_6__1__Impl();
@@ -19443,23 +19543,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__Group_6__1__Impl"
-    // InternalDdParser.g:5763:1: rule__TerminalExpression__Group_6__1__Impl : ( ( rule__TerminalExpression__ValueAssignment_6_1 ) ) ;
+    // InternalDdParser.g:5790:1: rule__TerminalExpression__Group_6__1__Impl : ( ( rule__TerminalExpression__ValueAssignment_6_1 ) ) ;
     public final void rule__TerminalExpression__Group_6__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5767:1: ( ( ( rule__TerminalExpression__ValueAssignment_6_1 ) ) )
-            // InternalDdParser.g:5768:1: ( ( rule__TerminalExpression__ValueAssignment_6_1 ) )
+            // InternalDdParser.g:5794:1: ( ( ( rule__TerminalExpression__ValueAssignment_6_1 ) ) )
+            // InternalDdParser.g:5795:1: ( ( rule__TerminalExpression__ValueAssignment_6_1 ) )
             {
-            // InternalDdParser.g:5768:1: ( ( rule__TerminalExpression__ValueAssignment_6_1 ) )
-            // InternalDdParser.g:5769:2: ( rule__TerminalExpression__ValueAssignment_6_1 )
+            // InternalDdParser.g:5795:1: ( ( rule__TerminalExpression__ValueAssignment_6_1 ) )
+            // InternalDdParser.g:5796:2: ( rule__TerminalExpression__ValueAssignment_6_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueAssignment_6_1()); 
             }
-            // InternalDdParser.g:5770:2: ( rule__TerminalExpression__ValueAssignment_6_1 )
-            // InternalDdParser.g:5770:3: rule__TerminalExpression__ValueAssignment_6_1
+            // InternalDdParser.g:5797:2: ( rule__TerminalExpression__ValueAssignment_6_1 )
+            // InternalDdParser.g:5797:3: rule__TerminalExpression__ValueAssignment_6_1
             {
             pushFollow(FOLLOW_2);
             rule__TerminalExpression__ValueAssignment_6_1();
@@ -19494,14 +19594,14 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IdentifierExpression__Group__0"
-    // InternalDdParser.g:5779:1: rule__IdentifierExpression__Group__0 : rule__IdentifierExpression__Group__0__Impl rule__IdentifierExpression__Group__1 ;
+    // InternalDdParser.g:5806:1: rule__IdentifierExpression__Group__0 : rule__IdentifierExpression__Group__0__Impl rule__IdentifierExpression__Group__1 ;
     public final void rule__IdentifierExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5783:1: ( rule__IdentifierExpression__Group__0__Impl rule__IdentifierExpression__Group__1 )
-            // InternalDdParser.g:5784:2: rule__IdentifierExpression__Group__0__Impl rule__IdentifierExpression__Group__1
+            // InternalDdParser.g:5810:1: ( rule__IdentifierExpression__Group__0__Impl rule__IdentifierExpression__Group__1 )
+            // InternalDdParser.g:5811:2: rule__IdentifierExpression__Group__0__Impl rule__IdentifierExpression__Group__1
             {
             pushFollow(FOLLOW_12);
             rule__IdentifierExpression__Group__0__Impl();
@@ -19532,23 +19632,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IdentifierExpression__Group__0__Impl"
-    // InternalDdParser.g:5791:1: rule__IdentifierExpression__Group__0__Impl : ( () ) ;
+    // InternalDdParser.g:5818:1: rule__IdentifierExpression__Group__0__Impl : ( () ) ;
     public final void rule__IdentifierExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5795:1: ( ( () ) )
-            // InternalDdParser.g:5796:1: ( () )
+            // InternalDdParser.g:5822:1: ( ( () ) )
+            // InternalDdParser.g:5823:1: ( () )
             {
-            // InternalDdParser.g:5796:1: ( () )
-            // InternalDdParser.g:5797:2: ()
+            // InternalDdParser.g:5823:1: ( () )
+            // InternalDdParser.g:5824:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIdentifierExpressionAccess().getIdentifierExpressionAction_0()); 
             }
-            // InternalDdParser.g:5798:2: ()
-            // InternalDdParser.g:5798:3: 
+            // InternalDdParser.g:5825:2: ()
+            // InternalDdParser.g:5825:3: 
             {
             }
 
@@ -19573,17 +19673,22 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IdentifierExpression__Group__1"
-    // InternalDdParser.g:5806:1: rule__IdentifierExpression__Group__1 : rule__IdentifierExpression__Group__1__Impl ;
+    // InternalDdParser.g:5833:1: rule__IdentifierExpression__Group__1 : rule__IdentifierExpression__Group__1__Impl rule__IdentifierExpression__Group__2 ;
     public final void rule__IdentifierExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5810:1: ( rule__IdentifierExpression__Group__1__Impl )
-            // InternalDdParser.g:5811:2: rule__IdentifierExpression__Group__1__Impl
+            // InternalDdParser.g:5837:1: ( rule__IdentifierExpression__Group__1__Impl rule__IdentifierExpression__Group__2 )
+            // InternalDdParser.g:5838:2: rule__IdentifierExpression__Group__1__Impl rule__IdentifierExpression__Group__2
             {
-            pushFollow(FOLLOW_2);
+            pushFollow(FOLLOW_49);
             rule__IdentifierExpression__Group__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__IdentifierExpression__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19606,23 +19711,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IdentifierExpression__Group__1__Impl"
-    // InternalDdParser.g:5817:1: rule__IdentifierExpression__Group__1__Impl : ( ( rule__IdentifierExpression__ValueAssignment_1 ) ) ;
+    // InternalDdParser.g:5845:1: rule__IdentifierExpression__Group__1__Impl : ( ( rule__IdentifierExpression__ValueAssignment_1 ) ) ;
     public final void rule__IdentifierExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5821:1: ( ( ( rule__IdentifierExpression__ValueAssignment_1 ) ) )
-            // InternalDdParser.g:5822:1: ( ( rule__IdentifierExpression__ValueAssignment_1 ) )
+            // InternalDdParser.g:5849:1: ( ( ( rule__IdentifierExpression__ValueAssignment_1 ) ) )
+            // InternalDdParser.g:5850:1: ( ( rule__IdentifierExpression__ValueAssignment_1 ) )
             {
-            // InternalDdParser.g:5822:1: ( ( rule__IdentifierExpression__ValueAssignment_1 ) )
-            // InternalDdParser.g:5823:2: ( rule__IdentifierExpression__ValueAssignment_1 )
+            // InternalDdParser.g:5850:1: ( ( rule__IdentifierExpression__ValueAssignment_1 ) )
+            // InternalDdParser.g:5851:2: ( rule__IdentifierExpression__ValueAssignment_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIdentifierExpressionAccess().getValueAssignment_1()); 
             }
-            // InternalDdParser.g:5824:2: ( rule__IdentifierExpression__ValueAssignment_1 )
-            // InternalDdParser.g:5824:3: rule__IdentifierExpression__ValueAssignment_1
+            // InternalDdParser.g:5852:2: ( rule__IdentifierExpression__ValueAssignment_1 )
+            // InternalDdParser.g:5852:3: rule__IdentifierExpression__ValueAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__IdentifierExpression__ValueAssignment_1();
@@ -19656,15 +19761,110 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__IdentifierExpression__Group__1__Impl"
 
 
+    // $ANTLR start "rule__IdentifierExpression__Group__2"
+    // InternalDdParser.g:5860:1: rule__IdentifierExpression__Group__2 : rule__IdentifierExpression__Group__2__Impl ;
+    public final void rule__IdentifierExpression__Group__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalDdParser.g:5864:1: ( rule__IdentifierExpression__Group__2__Impl )
+            // InternalDdParser.g:5865:2: rule__IdentifierExpression__Group__2__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__IdentifierExpression__Group__2__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__IdentifierExpression__Group__2"
+
+
+    // $ANTLR start "rule__IdentifierExpression__Group__2__Impl"
+    // InternalDdParser.g:5871:1: rule__IdentifierExpression__Group__2__Impl : ( ( rule__IdentifierExpression__IndexAssignment_2 )? ) ;
+    public final void rule__IdentifierExpression__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalDdParser.g:5875:1: ( ( ( rule__IdentifierExpression__IndexAssignment_2 )? ) )
+            // InternalDdParser.g:5876:1: ( ( rule__IdentifierExpression__IndexAssignment_2 )? )
+            {
+            // InternalDdParser.g:5876:1: ( ( rule__IdentifierExpression__IndexAssignment_2 )? )
+            // InternalDdParser.g:5877:2: ( rule__IdentifierExpression__IndexAssignment_2 )?
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getIdentifierExpressionAccess().getIndexAssignment_2()); 
+            }
+            // InternalDdParser.g:5878:2: ( rule__IdentifierExpression__IndexAssignment_2 )?
+            int alt42=2;
+            int LA42_0 = input.LA(1);
+
+            if ( (LA42_0==LeftSquareBracket) ) {
+                alt42=1;
+            }
+            switch (alt42) {
+                case 1 :
+                    // InternalDdParser.g:5878:3: rule__IdentifierExpression__IndexAssignment_2
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__IdentifierExpression__IndexAssignment_2();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getIdentifierExpressionAccess().getIndexAssignment_2()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__IdentifierExpression__Group__2__Impl"
+
+
     // $ANTLR start "rule__QualifiedName__Group__0"
-    // InternalDdParser.g:5833:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
+    // InternalDdParser.g:5887:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5837:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
-            // InternalDdParser.g:5838:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
+            // InternalDdParser.g:5891:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
+            // InternalDdParser.g:5892:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
             {
             pushFollow(FOLLOW_12);
             rule__QualifiedName__Group__0__Impl();
@@ -19695,31 +19895,31 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__0__Impl"
-    // InternalDdParser.g:5845:1: rule__QualifiedName__Group__0__Impl : ( ( rule__QualifiedName__Group_0__0 )? ) ;
+    // InternalDdParser.g:5899:1: rule__QualifiedName__Group__0__Impl : ( ( rule__QualifiedName__Group_0__0 )? ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5849:1: ( ( ( rule__QualifiedName__Group_0__0 )? ) )
-            // InternalDdParser.g:5850:1: ( ( rule__QualifiedName__Group_0__0 )? )
+            // InternalDdParser.g:5903:1: ( ( ( rule__QualifiedName__Group_0__0 )? ) )
+            // InternalDdParser.g:5904:1: ( ( rule__QualifiedName__Group_0__0 )? )
             {
-            // InternalDdParser.g:5850:1: ( ( rule__QualifiedName__Group_0__0 )? )
-            // InternalDdParser.g:5851:2: ( rule__QualifiedName__Group_0__0 )?
+            // InternalDdParser.g:5904:1: ( ( rule__QualifiedName__Group_0__0 )? )
+            // InternalDdParser.g:5905:2: ( rule__QualifiedName__Group_0__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameAccess().getGroup_0()); 
             }
-            // InternalDdParser.g:5852:2: ( rule__QualifiedName__Group_0__0 )?
-            int alt41=2;
-            int LA41_0 = input.LA(1);
+            // InternalDdParser.g:5906:2: ( rule__QualifiedName__Group_0__0 )?
+            int alt43=2;
+            int LA43_0 = input.LA(1);
 
-            if ( (LA41_0==RULE_OBJID) ) {
-                alt41=1;
+            if ( (LA43_0==RULE_OBJID) ) {
+                alt43=1;
             }
-            switch (alt41) {
+            switch (alt43) {
                 case 1 :
-                    // InternalDdParser.g:5852:3: rule__QualifiedName__Group_0__0
+                    // InternalDdParser.g:5906:3: rule__QualifiedName__Group_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__QualifiedName__Group_0__0();
@@ -19757,14 +19957,14 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__1"
-    // InternalDdParser.g:5860:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
+    // InternalDdParser.g:5914:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5864:1: ( rule__QualifiedName__Group__1__Impl )
-            // InternalDdParser.g:5865:2: rule__QualifiedName__Group__1__Impl
+            // InternalDdParser.g:5918:1: ( rule__QualifiedName__Group__1__Impl )
+            // InternalDdParser.g:5919:2: rule__QualifiedName__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__QualifiedName__Group__1__Impl();
@@ -19790,17 +19990,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__1__Impl"
-    // InternalDdParser.g:5871:1: rule__QualifiedName__Group__1__Impl : ( RULE_ID ) ;
+    // InternalDdParser.g:5925:1: rule__QualifiedName__Group__1__Impl : ( RULE_ID ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5875:1: ( ( RULE_ID ) )
-            // InternalDdParser.g:5876:1: ( RULE_ID )
+            // InternalDdParser.g:5929:1: ( ( RULE_ID ) )
+            // InternalDdParser.g:5930:1: ( RULE_ID )
             {
-            // InternalDdParser.g:5876:1: ( RULE_ID )
-            // InternalDdParser.g:5877:2: RULE_ID
+            // InternalDdParser.g:5930:1: ( RULE_ID )
+            // InternalDdParser.g:5931:2: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_1()); 
@@ -19831,16 +20031,16 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_0__0"
-    // InternalDdParser.g:5887:1: rule__QualifiedName__Group_0__0 : rule__QualifiedName__Group_0__0__Impl rule__QualifiedName__Group_0__1 ;
+    // InternalDdParser.g:5941:1: rule__QualifiedName__Group_0__0 : rule__QualifiedName__Group_0__0__Impl rule__QualifiedName__Group_0__1 ;
     public final void rule__QualifiedName__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5891:1: ( rule__QualifiedName__Group_0__0__Impl rule__QualifiedName__Group_0__1 )
-            // InternalDdParser.g:5892:2: rule__QualifiedName__Group_0__0__Impl rule__QualifiedName__Group_0__1
+            // InternalDdParser.g:5945:1: ( rule__QualifiedName__Group_0__0__Impl rule__QualifiedName__Group_0__1 )
+            // InternalDdParser.g:5946:2: rule__QualifiedName__Group_0__0__Impl rule__QualifiedName__Group_0__1
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_52);
             rule__QualifiedName__Group_0__0__Impl();
 
             state._fsp--;
@@ -19869,17 +20069,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_0__0__Impl"
-    // InternalDdParser.g:5899:1: rule__QualifiedName__Group_0__0__Impl : ( RULE_OBJID ) ;
+    // InternalDdParser.g:5953:1: rule__QualifiedName__Group_0__0__Impl : ( RULE_OBJID ) ;
     public final void rule__QualifiedName__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5903:1: ( ( RULE_OBJID ) )
-            // InternalDdParser.g:5904:1: ( RULE_OBJID )
+            // InternalDdParser.g:5957:1: ( ( RULE_OBJID ) )
+            // InternalDdParser.g:5958:1: ( RULE_OBJID )
             {
-            // InternalDdParser.g:5904:1: ( RULE_OBJID )
-            // InternalDdParser.g:5905:2: RULE_OBJID
+            // InternalDdParser.g:5958:1: ( RULE_OBJID )
+            // InternalDdParser.g:5959:2: RULE_OBJID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameAccess().getOBJIDTerminalRuleCall_0_0()); 
@@ -19910,14 +20110,14 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_0__1"
-    // InternalDdParser.g:5914:1: rule__QualifiedName__Group_0__1 : rule__QualifiedName__Group_0__1__Impl ;
+    // InternalDdParser.g:5968:1: rule__QualifiedName__Group_0__1 : rule__QualifiedName__Group_0__1__Impl ;
     public final void rule__QualifiedName__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5918:1: ( rule__QualifiedName__Group_0__1__Impl )
-            // InternalDdParser.g:5919:2: rule__QualifiedName__Group_0__1__Impl
+            // InternalDdParser.g:5972:1: ( rule__QualifiedName__Group_0__1__Impl )
+            // InternalDdParser.g:5973:2: rule__QualifiedName__Group_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__QualifiedName__Group_0__1__Impl();
@@ -19943,17 +20143,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_0__1__Impl"
-    // InternalDdParser.g:5925:1: rule__QualifiedName__Group_0__1__Impl : ( FullStop ) ;
+    // InternalDdParser.g:5979:1: rule__QualifiedName__Group_0__1__Impl : ( FullStop ) ;
     public final void rule__QualifiedName__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5929:1: ( ( FullStop ) )
-            // InternalDdParser.g:5930:1: ( FullStop )
+            // InternalDdParser.g:5983:1: ( ( FullStop ) )
+            // InternalDdParser.g:5984:1: ( FullStop )
             {
-            // InternalDdParser.g:5930:1: ( FullStop )
-            // InternalDdParser.g:5931:2: FullStop
+            // InternalDdParser.g:5984:1: ( FullStop )
+            // InternalDdParser.g:5985:2: FullStop
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_0_1()); 
@@ -19984,14 +20184,14 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LineComment__Group__0"
-    // InternalDdParser.g:5941:1: rule__LineComment__Group__0 : rule__LineComment__Group__0__Impl rule__LineComment__Group__1 ;
+    // InternalDdParser.g:5995:1: rule__LineComment__Group__0 : rule__LineComment__Group__0__Impl rule__LineComment__Group__1 ;
     public final void rule__LineComment__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5945:1: ( rule__LineComment__Group__0__Impl rule__LineComment__Group__1 )
-            // InternalDdParser.g:5946:2: rule__LineComment__Group__0__Impl rule__LineComment__Group__1
+            // InternalDdParser.g:5999:1: ( rule__LineComment__Group__0__Impl rule__LineComment__Group__1 )
+            // InternalDdParser.g:6000:2: rule__LineComment__Group__0__Impl rule__LineComment__Group__1
             {
             pushFollow(FOLLOW_11);
             rule__LineComment__Group__0__Impl();
@@ -20022,23 +20222,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LineComment__Group__0__Impl"
-    // InternalDdParser.g:5953:1: rule__LineComment__Group__0__Impl : ( () ) ;
+    // InternalDdParser.g:6007:1: rule__LineComment__Group__0__Impl : ( () ) ;
     public final void rule__LineComment__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5957:1: ( ( () ) )
-            // InternalDdParser.g:5958:1: ( () )
+            // InternalDdParser.g:6011:1: ( ( () ) )
+            // InternalDdParser.g:6012:1: ( () )
             {
-            // InternalDdParser.g:5958:1: ( () )
-            // InternalDdParser.g:5959:2: ()
+            // InternalDdParser.g:6012:1: ( () )
+            // InternalDdParser.g:6013:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLineCommentAccess().getCommentAction_0()); 
             }
-            // InternalDdParser.g:5960:2: ()
-            // InternalDdParser.g:5960:3: 
+            // InternalDdParser.g:6014:2: ()
+            // InternalDdParser.g:6014:3: 
             {
             }
 
@@ -20063,14 +20263,14 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LineComment__Group__1"
-    // InternalDdParser.g:5968:1: rule__LineComment__Group__1 : rule__LineComment__Group__1__Impl rule__LineComment__Group__2 ;
+    // InternalDdParser.g:6022:1: rule__LineComment__Group__1 : rule__LineComment__Group__1__Impl rule__LineComment__Group__2 ;
     public final void rule__LineComment__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5972:1: ( rule__LineComment__Group__1__Impl rule__LineComment__Group__2 )
-            // InternalDdParser.g:5973:2: rule__LineComment__Group__1__Impl rule__LineComment__Group__2
+            // InternalDdParser.g:6026:1: ( rule__LineComment__Group__1__Impl rule__LineComment__Group__2 )
+            // InternalDdParser.g:6027:2: rule__LineComment__Group__1__Impl rule__LineComment__Group__2
             {
             pushFollow(FOLLOW_6);
             rule__LineComment__Group__1__Impl();
@@ -20101,23 +20301,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LineComment__Group__1__Impl"
-    // InternalDdParser.g:5980:1: rule__LineComment__Group__1__Impl : ( ( rule__LineComment__LineAssignment_1 ) ) ;
+    // InternalDdParser.g:6034:1: rule__LineComment__Group__1__Impl : ( ( rule__LineComment__LineAssignment_1 ) ) ;
     public final void rule__LineComment__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5984:1: ( ( ( rule__LineComment__LineAssignment_1 ) ) )
-            // InternalDdParser.g:5985:1: ( ( rule__LineComment__LineAssignment_1 ) )
+            // InternalDdParser.g:6038:1: ( ( ( rule__LineComment__LineAssignment_1 ) ) )
+            // InternalDdParser.g:6039:1: ( ( rule__LineComment__LineAssignment_1 ) )
             {
-            // InternalDdParser.g:5985:1: ( ( rule__LineComment__LineAssignment_1 ) )
-            // InternalDdParser.g:5986:2: ( rule__LineComment__LineAssignment_1 )
+            // InternalDdParser.g:6039:1: ( ( rule__LineComment__LineAssignment_1 ) )
+            // InternalDdParser.g:6040:2: ( rule__LineComment__LineAssignment_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLineCommentAccess().getLineAssignment_1()); 
             }
-            // InternalDdParser.g:5987:2: ( rule__LineComment__LineAssignment_1 )
-            // InternalDdParser.g:5987:3: rule__LineComment__LineAssignment_1
+            // InternalDdParser.g:6041:2: ( rule__LineComment__LineAssignment_1 )
+            // InternalDdParser.g:6041:3: rule__LineComment__LineAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__LineComment__LineAssignment_1();
@@ -20152,14 +20352,14 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LineComment__Group__2"
-    // InternalDdParser.g:5995:1: rule__LineComment__Group__2 : rule__LineComment__Group__2__Impl ;
+    // InternalDdParser.g:6049:1: rule__LineComment__Group__2 : rule__LineComment__Group__2__Impl ;
     public final void rule__LineComment__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:5999:1: ( rule__LineComment__Group__2__Impl )
-            // InternalDdParser.g:6000:2: rule__LineComment__Group__2__Impl
+            // InternalDdParser.g:6053:1: ( rule__LineComment__Group__2__Impl )
+            // InternalDdParser.g:6054:2: rule__LineComment__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__LineComment__Group__2__Impl();
@@ -20185,17 +20385,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LineComment__Group__2__Impl"
-    // InternalDdParser.g:6006:1: rule__LineComment__Group__2__Impl : ( RULE_EOL ) ;
+    // InternalDdParser.g:6060:1: rule__LineComment__Group__2__Impl : ( RULE_EOL ) ;
     public final void rule__LineComment__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6010:1: ( ( RULE_EOL ) )
-            // InternalDdParser.g:6011:1: ( RULE_EOL )
+            // InternalDdParser.g:6064:1: ( ( RULE_EOL ) )
+            // InternalDdParser.g:6065:1: ( RULE_EOL )
             {
-            // InternalDdParser.g:6011:1: ( RULE_EOL )
-            // InternalDdParser.g:6012:2: RULE_EOL
+            // InternalDdParser.g:6065:1: ( RULE_EOL )
+            // InternalDdParser.g:6066:2: RULE_EOL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLineCommentAccess().getEOLTerminalRuleCall_2()); 
@@ -20226,14 +20426,14 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TrailComment__Group__0"
-    // InternalDdParser.g:6022:1: rule__TrailComment__Group__0 : rule__TrailComment__Group__0__Impl rule__TrailComment__Group__1 ;
+    // InternalDdParser.g:6076:1: rule__TrailComment__Group__0 : rule__TrailComment__Group__0__Impl rule__TrailComment__Group__1 ;
     public final void rule__TrailComment__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6026:1: ( rule__TrailComment__Group__0__Impl rule__TrailComment__Group__1 )
-            // InternalDdParser.g:6027:2: rule__TrailComment__Group__0__Impl rule__TrailComment__Group__1
+            // InternalDdParser.g:6080:1: ( rule__TrailComment__Group__0__Impl rule__TrailComment__Group__1 )
+            // InternalDdParser.g:6081:2: rule__TrailComment__Group__0__Impl rule__TrailComment__Group__1
             {
             pushFollow(FOLLOW_11);
             rule__TrailComment__Group__0__Impl();
@@ -20264,23 +20464,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TrailComment__Group__0__Impl"
-    // InternalDdParser.g:6034:1: rule__TrailComment__Group__0__Impl : ( () ) ;
+    // InternalDdParser.g:6088:1: rule__TrailComment__Group__0__Impl : ( () ) ;
     public final void rule__TrailComment__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6038:1: ( ( () ) )
-            // InternalDdParser.g:6039:1: ( () )
+            // InternalDdParser.g:6092:1: ( ( () ) )
+            // InternalDdParser.g:6093:1: ( () )
             {
-            // InternalDdParser.g:6039:1: ( () )
-            // InternalDdParser.g:6040:2: ()
+            // InternalDdParser.g:6093:1: ( () )
+            // InternalDdParser.g:6094:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTrailCommentAccess().getCommentAction_0()); 
             }
-            // InternalDdParser.g:6041:2: ()
-            // InternalDdParser.g:6041:3: 
+            // InternalDdParser.g:6095:2: ()
+            // InternalDdParser.g:6095:3: 
             {
             }
 
@@ -20305,14 +20505,14 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TrailComment__Group__1"
-    // InternalDdParser.g:6049:1: rule__TrailComment__Group__1 : rule__TrailComment__Group__1__Impl ;
+    // InternalDdParser.g:6103:1: rule__TrailComment__Group__1 : rule__TrailComment__Group__1__Impl ;
     public final void rule__TrailComment__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6053:1: ( rule__TrailComment__Group__1__Impl )
-            // InternalDdParser.g:6054:2: rule__TrailComment__Group__1__Impl
+            // InternalDdParser.g:6107:1: ( rule__TrailComment__Group__1__Impl )
+            // InternalDdParser.g:6108:2: rule__TrailComment__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TrailComment__Group__1__Impl();
@@ -20338,23 +20538,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TrailComment__Group__1__Impl"
-    // InternalDdParser.g:6060:1: rule__TrailComment__Group__1__Impl : ( ( rule__TrailComment__LineAssignment_1 ) ) ;
+    // InternalDdParser.g:6114:1: rule__TrailComment__Group__1__Impl : ( ( rule__TrailComment__LineAssignment_1 ) ) ;
     public final void rule__TrailComment__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6064:1: ( ( ( rule__TrailComment__LineAssignment_1 ) ) )
-            // InternalDdParser.g:6065:1: ( ( rule__TrailComment__LineAssignment_1 ) )
+            // InternalDdParser.g:6118:1: ( ( ( rule__TrailComment__LineAssignment_1 ) ) )
+            // InternalDdParser.g:6119:1: ( ( rule__TrailComment__LineAssignment_1 ) )
             {
-            // InternalDdParser.g:6065:1: ( ( rule__TrailComment__LineAssignment_1 ) )
-            // InternalDdParser.g:6066:2: ( rule__TrailComment__LineAssignment_1 )
+            // InternalDdParser.g:6119:1: ( ( rule__TrailComment__LineAssignment_1 ) )
+            // InternalDdParser.g:6120:2: ( rule__TrailComment__LineAssignment_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTrailCommentAccess().getLineAssignment_1()); 
             }
-            // InternalDdParser.g:6067:2: ( rule__TrailComment__LineAssignment_1 )
-            // InternalDdParser.g:6067:3: rule__TrailComment__LineAssignment_1
+            // InternalDdParser.g:6121:2: ( rule__TrailComment__LineAssignment_1 )
+            // InternalDdParser.g:6121:3: rule__TrailComment__LineAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__TrailComment__LineAssignment_1();
@@ -20389,17 +20589,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataModelFragment__ModelDescAssignment_0"
-    // InternalDdParser.g:6076:1: rule__DataModelFragment__ModelDescAssignment_0 : ( ruleLineComment ) ;
+    // InternalDdParser.g:6130:1: rule__DataModelFragment__ModelDescAssignment_0 : ( ruleLineComment ) ;
     public final void rule__DataModelFragment__ModelDescAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6080:1: ( ( ruleLineComment ) )
-            // InternalDdParser.g:6081:2: ( ruleLineComment )
+            // InternalDdParser.g:6134:1: ( ( ruleLineComment ) )
+            // InternalDdParser.g:6135:2: ( ruleLineComment )
             {
-            // InternalDdParser.g:6081:2: ( ruleLineComment )
-            // InternalDdParser.g:6082:3: ruleLineComment
+            // InternalDdParser.g:6135:2: ( ruleLineComment )
+            // InternalDdParser.g:6136:3: ruleLineComment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataModelFragmentAccess().getModelDescLineCommentParserRuleCall_0_0()); 
@@ -20434,17 +20634,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataModelFragment__NameAssignment_2"
-    // InternalDdParser.g:6091:1: rule__DataModelFragment__NameAssignment_2 : ( RULE_OBJID ) ;
+    // InternalDdParser.g:6145:1: rule__DataModelFragment__NameAssignment_2 : ( RULE_OBJID ) ;
     public final void rule__DataModelFragment__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6095:1: ( ( RULE_OBJID ) )
-            // InternalDdParser.g:6096:2: ( RULE_OBJID )
+            // InternalDdParser.g:6149:1: ( ( RULE_OBJID ) )
+            // InternalDdParser.g:6150:2: ( RULE_OBJID )
             {
-            // InternalDdParser.g:6096:2: ( RULE_OBJID )
-            // InternalDdParser.g:6097:3: RULE_OBJID
+            // InternalDdParser.g:6150:2: ( RULE_OBJID )
+            // InternalDdParser.g:6151:3: RULE_OBJID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataModelFragmentAccess().getNameOBJIDTerminalRuleCall_2_0()); 
@@ -20475,17 +20675,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataModelFragment__ConstantsAssignment_4"
-    // InternalDdParser.g:6106:1: rule__DataModelFragment__ConstantsAssignment_4 : ( ruleConstant ) ;
+    // InternalDdParser.g:6160:1: rule__DataModelFragment__ConstantsAssignment_4 : ( ruleConstant ) ;
     public final void rule__DataModelFragment__ConstantsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6110:1: ( ( ruleConstant ) )
-            // InternalDdParser.g:6111:2: ( ruleConstant )
+            // InternalDdParser.g:6164:1: ( ( ruleConstant ) )
+            // InternalDdParser.g:6165:2: ( ruleConstant )
             {
-            // InternalDdParser.g:6111:2: ( ruleConstant )
-            // InternalDdParser.g:6112:3: ruleConstant
+            // InternalDdParser.g:6165:2: ( ruleConstant )
+            // InternalDdParser.g:6166:3: ruleConstant
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataModelFragmentAccess().getConstantsConstantParserRuleCall_4_0()); 
@@ -20520,17 +20720,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataModelFragment__EntitiesAssignment_5"
-    // InternalDdParser.g:6121:1: rule__DataModelFragment__EntitiesAssignment_5 : ( ruleEntity ) ;
+    // InternalDdParser.g:6175:1: rule__DataModelFragment__EntitiesAssignment_5 : ( ruleEntity ) ;
     public final void rule__DataModelFragment__EntitiesAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6125:1: ( ( ruleEntity ) )
-            // InternalDdParser.g:6126:2: ( ruleEntity )
+            // InternalDdParser.g:6179:1: ( ( ruleEntity ) )
+            // InternalDdParser.g:6180:2: ( ruleEntity )
             {
-            // InternalDdParser.g:6126:2: ( ruleEntity )
-            // InternalDdParser.g:6127:3: ruleEntity
+            // InternalDdParser.g:6180:2: ( ruleEntity )
+            // InternalDdParser.g:6181:3: ruleEntity
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataModelFragmentAccess().getEntitiesEntityParserRuleCall_5_0()); 
@@ -20565,17 +20765,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataModelFragment__ConstraintsAssignment_6"
-    // InternalDdParser.g:6136:1: rule__DataModelFragment__ConstraintsAssignment_6 : ( ruleConstraint ) ;
+    // InternalDdParser.g:6190:1: rule__DataModelFragment__ConstraintsAssignment_6 : ( ruleConstraint ) ;
     public final void rule__DataModelFragment__ConstraintsAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6140:1: ( ( ruleConstraint ) )
-            // InternalDdParser.g:6141:2: ( ruleConstraint )
+            // InternalDdParser.g:6194:1: ( ( ruleConstraint ) )
+            // InternalDdParser.g:6195:2: ( ruleConstraint )
             {
-            // InternalDdParser.g:6141:2: ( ruleConstraint )
-            // InternalDdParser.g:6142:3: ruleConstraint
+            // InternalDdParser.g:6195:2: ( ruleConstraint )
+            // InternalDdParser.g:6196:3: ruleConstraint
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDataModelFragmentAccess().getConstraintsConstraintParserRuleCall_6_0()); 
@@ -20610,17 +20810,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__ExtraAttrDescAssignment_0"
-    // InternalDdParser.g:6151:1: rule__Constant__ExtraAttrDescAssignment_0 : ( ruleLineComment ) ;
+    // InternalDdParser.g:6205:1: rule__Constant__ExtraAttrDescAssignment_0 : ( ruleLineComment ) ;
     public final void rule__Constant__ExtraAttrDescAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6155:1: ( ( ruleLineComment ) )
-            // InternalDdParser.g:6156:2: ( ruleLineComment )
+            // InternalDdParser.g:6209:1: ( ( ruleLineComment ) )
+            // InternalDdParser.g:6210:2: ( ruleLineComment )
             {
-            // InternalDdParser.g:6156:2: ( ruleLineComment )
-            // InternalDdParser.g:6157:3: ruleLineComment
+            // InternalDdParser.g:6210:2: ( ruleLineComment )
+            // InternalDdParser.g:6211:3: ruleLineComment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getExtraAttrDescLineCommentParserRuleCall_0_0()); 
@@ -20655,17 +20855,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__DataTypeAssignment_1"
-    // InternalDdParser.g:6166:1: rule__Constant__DataTypeAssignment_1 : ( ruleDataType ) ;
+    // InternalDdParser.g:6220:1: rule__Constant__DataTypeAssignment_1 : ( ruleDataType ) ;
     public final void rule__Constant__DataTypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6170:1: ( ( ruleDataType ) )
-            // InternalDdParser.g:6171:2: ( ruleDataType )
+            // InternalDdParser.g:6224:1: ( ( ruleDataType ) )
+            // InternalDdParser.g:6225:2: ( ruleDataType )
             {
-            // InternalDdParser.g:6171:2: ( ruleDataType )
-            // InternalDdParser.g:6172:3: ruleDataType
+            // InternalDdParser.g:6225:2: ( ruleDataType )
+            // InternalDdParser.g:6226:3: ruleDataType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getDataTypeDataTypeEnumRuleCall_1_0()); 
@@ -20700,17 +20900,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__AttributeSizeAssignment_2"
-    // InternalDdParser.g:6181:1: rule__Constant__AttributeSizeAssignment_2 : ( ruleAttributeSize ) ;
+    // InternalDdParser.g:6235:1: rule__Constant__AttributeSizeAssignment_2 : ( ruleAttributeSize ) ;
     public final void rule__Constant__AttributeSizeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6185:1: ( ( ruleAttributeSize ) )
-            // InternalDdParser.g:6186:2: ( ruleAttributeSize )
+            // InternalDdParser.g:6239:1: ( ( ruleAttributeSize ) )
+            // InternalDdParser.g:6240:2: ( ruleAttributeSize )
             {
-            // InternalDdParser.g:6186:2: ( ruleAttributeSize )
-            // InternalDdParser.g:6187:3: ruleAttributeSize
+            // InternalDdParser.g:6240:2: ( ruleAttributeSize )
+            // InternalDdParser.g:6241:3: ruleAttributeSize
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getAttributeSizeAttributeSizeParserRuleCall_2_0()); 
@@ -20745,17 +20945,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__ArraySizeAssignment_3"
-    // InternalDdParser.g:6196:1: rule__Constant__ArraySizeAssignment_3 : ( ruleArraySize ) ;
+    // InternalDdParser.g:6250:1: rule__Constant__ArraySizeAssignment_3 : ( ruleArraySize ) ;
     public final void rule__Constant__ArraySizeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6200:1: ( ( ruleArraySize ) )
-            // InternalDdParser.g:6201:2: ( ruleArraySize )
+            // InternalDdParser.g:6254:1: ( ( ruleArraySize ) )
+            // InternalDdParser.g:6255:2: ( ruleArraySize )
             {
-            // InternalDdParser.g:6201:2: ( ruleArraySize )
-            // InternalDdParser.g:6202:3: ruleArraySize
+            // InternalDdParser.g:6255:2: ( ruleArraySize )
+            // InternalDdParser.g:6256:3: ruleArraySize
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getArraySizeArraySizeParserRuleCall_3_0()); 
@@ -20790,17 +20990,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__NameAssignment_4"
-    // InternalDdParser.g:6211:1: rule__Constant__NameAssignment_4 : ( RULE_CSTID ) ;
+    // InternalDdParser.g:6265:1: rule__Constant__NameAssignment_4 : ( RULE_CSTID ) ;
     public final void rule__Constant__NameAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6215:1: ( ( RULE_CSTID ) )
-            // InternalDdParser.g:6216:2: ( RULE_CSTID )
+            // InternalDdParser.g:6269:1: ( ( RULE_CSTID ) )
+            // InternalDdParser.g:6270:2: ( RULE_CSTID )
             {
-            // InternalDdParser.g:6216:2: ( RULE_CSTID )
-            // InternalDdParser.g:6217:3: RULE_CSTID
+            // InternalDdParser.g:6270:2: ( RULE_CSTID )
+            // InternalDdParser.g:6271:3: RULE_CSTID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getNameCSTIDTerminalRuleCall_4_0()); 
@@ -20831,17 +21031,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__DefaultValueAssignment_5_1"
-    // InternalDdParser.g:6226:1: rule__Constant__DefaultValueAssignment_5_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:6280:1: rule__Constant__DefaultValueAssignment_5_1 : ( ruleSharkExpression ) ;
     public final void rule__Constant__DefaultValueAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6230:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:6231:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6284:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:6285:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:6231:2: ( ruleSharkExpression )
-            // InternalDdParser.g:6232:3: ruleSharkExpression
+            // InternalDdParser.g:6285:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6286:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getDefaultValueSharkExpressionParserRuleCall_5_1_0()); 
@@ -20876,17 +21076,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__AttrDescAssignment_6"
-    // InternalDdParser.g:6241:1: rule__Constant__AttrDescAssignment_6 : ( ruleTrailComment ) ;
+    // InternalDdParser.g:6295:1: rule__Constant__AttrDescAssignment_6 : ( ruleTrailComment ) ;
     public final void rule__Constant__AttrDescAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6245:1: ( ( ruleTrailComment ) )
-            // InternalDdParser.g:6246:2: ( ruleTrailComment )
+            // InternalDdParser.g:6299:1: ( ( ruleTrailComment ) )
+            // InternalDdParser.g:6300:2: ( ruleTrailComment )
             {
-            // InternalDdParser.g:6246:2: ( ruleTrailComment )
-            // InternalDdParser.g:6247:3: ruleTrailComment
+            // InternalDdParser.g:6300:2: ( ruleTrailComment )
+            // InternalDdParser.g:6301:3: ruleTrailComment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstantAccess().getAttrDescTrailCommentParserRuleCall_6_0()); 
@@ -20921,17 +21121,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Entity__EntityDescLinesAssignment_0"
-    // InternalDdParser.g:6256:1: rule__Entity__EntityDescLinesAssignment_0 : ( ruleLineComment ) ;
+    // InternalDdParser.g:6310:1: rule__Entity__EntityDescLinesAssignment_0 : ( ruleLineComment ) ;
     public final void rule__Entity__EntityDescLinesAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6260:1: ( ( ruleLineComment ) )
-            // InternalDdParser.g:6261:2: ( ruleLineComment )
+            // InternalDdParser.g:6314:1: ( ( ruleLineComment ) )
+            // InternalDdParser.g:6315:2: ( ruleLineComment )
             {
-            // InternalDdParser.g:6261:2: ( ruleLineComment )
-            // InternalDdParser.g:6262:3: ruleLineComment
+            // InternalDdParser.g:6315:2: ( ruleLineComment )
+            // InternalDdParser.g:6316:3: ruleLineComment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEntityAccess().getEntityDescLinesLineCommentParserRuleCall_0_0()); 
@@ -20966,17 +21166,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Entity__NameAssignment_1"
-    // InternalDdParser.g:6271:1: rule__Entity__NameAssignment_1 : ( RULE_OBJID ) ;
+    // InternalDdParser.g:6325:1: rule__Entity__NameAssignment_1 : ( RULE_OBJID ) ;
     public final void rule__Entity__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6275:1: ( ( RULE_OBJID ) )
-            // InternalDdParser.g:6276:2: ( RULE_OBJID )
+            // InternalDdParser.g:6329:1: ( ( RULE_OBJID ) )
+            // InternalDdParser.g:6330:2: ( RULE_OBJID )
             {
-            // InternalDdParser.g:6276:2: ( RULE_OBJID )
-            // InternalDdParser.g:6277:3: RULE_OBJID
+            // InternalDdParser.g:6330:2: ( RULE_OBJID )
+            // InternalDdParser.g:6331:3: RULE_OBJID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEntityAccess().getNameOBJIDTerminalRuleCall_1_0()); 
@@ -21007,23 +21207,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Entity__ExtendsAssignment_2_1"
-    // InternalDdParser.g:6286:1: rule__Entity__ExtendsAssignment_2_1 : ( ( RULE_ID ) ) ;
+    // InternalDdParser.g:6340:1: rule__Entity__ExtendsAssignment_2_1 : ( ( RULE_ID ) ) ;
     public final void rule__Entity__ExtendsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6290:1: ( ( ( RULE_ID ) ) )
-            // InternalDdParser.g:6291:2: ( ( RULE_ID ) )
+            // InternalDdParser.g:6344:1: ( ( ( RULE_ID ) ) )
+            // InternalDdParser.g:6345:2: ( ( RULE_ID ) )
             {
-            // InternalDdParser.g:6291:2: ( ( RULE_ID ) )
-            // InternalDdParser.g:6292:3: ( RULE_ID )
+            // InternalDdParser.g:6345:2: ( ( RULE_ID ) )
+            // InternalDdParser.g:6346:3: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEntityAccess().getExtendsEntityCrossReference_2_1_0()); 
             }
-            // InternalDdParser.g:6293:3: ( RULE_ID )
-            // InternalDdParser.g:6294:4: RULE_ID
+            // InternalDdParser.g:6347:3: ( RULE_ID )
+            // InternalDdParser.g:6348:4: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEntityAccess().getExtendsEntityIDTerminalRuleCall_2_1_0_1()); 
@@ -21060,17 +21260,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Entity__AttributesAssignment_5"
-    // InternalDdParser.g:6305:1: rule__Entity__AttributesAssignment_5 : ( ruleAttribute ) ;
+    // InternalDdParser.g:6359:1: rule__Entity__AttributesAssignment_5 : ( ruleAttribute ) ;
     public final void rule__Entity__AttributesAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6309:1: ( ( ruleAttribute ) )
-            // InternalDdParser.g:6310:2: ( ruleAttribute )
+            // InternalDdParser.g:6363:1: ( ( ruleAttribute ) )
+            // InternalDdParser.g:6364:2: ( ruleAttribute )
             {
-            // InternalDdParser.g:6310:2: ( ruleAttribute )
-            // InternalDdParser.g:6311:3: ruleAttribute
+            // InternalDdParser.g:6364:2: ( ruleAttribute )
+            // InternalDdParser.g:6365:3: ruleAttribute
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEntityAccess().getAttributesAttributeParserRuleCall_5_0()); 
@@ -21105,17 +21305,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Entity__RelationshipsAssignment_6"
-    // InternalDdParser.g:6320:1: rule__Entity__RelationshipsAssignment_6 : ( ruleRelationship ) ;
+    // InternalDdParser.g:6374:1: rule__Entity__RelationshipsAssignment_6 : ( ruleRelationship ) ;
     public final void rule__Entity__RelationshipsAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6324:1: ( ( ruleRelationship ) )
-            // InternalDdParser.g:6325:2: ( ruleRelationship )
+            // InternalDdParser.g:6378:1: ( ( ruleRelationship ) )
+            // InternalDdParser.g:6379:2: ( ruleRelationship )
             {
-            // InternalDdParser.g:6325:2: ( ruleRelationship )
-            // InternalDdParser.g:6326:3: ruleRelationship
+            // InternalDdParser.g:6379:2: ( ruleRelationship )
+            // InternalDdParser.g:6380:3: ruleRelationship
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getEntityAccess().getRelationshipsRelationshipParserRuleCall_6_0()); 
@@ -21150,17 +21350,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__ExtraAttrDescAssignment_0"
-    // InternalDdParser.g:6335:1: rule__Attribute__ExtraAttrDescAssignment_0 : ( ruleLineComment ) ;
+    // InternalDdParser.g:6389:1: rule__Attribute__ExtraAttrDescAssignment_0 : ( ruleLineComment ) ;
     public final void rule__Attribute__ExtraAttrDescAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6339:1: ( ( ruleLineComment ) )
-            // InternalDdParser.g:6340:2: ( ruleLineComment )
+            // InternalDdParser.g:6393:1: ( ( ruleLineComment ) )
+            // InternalDdParser.g:6394:2: ( ruleLineComment )
             {
-            // InternalDdParser.g:6340:2: ( ruleLineComment )
-            // InternalDdParser.g:6341:3: ruleLineComment
+            // InternalDdParser.g:6394:2: ( ruleLineComment )
+            // InternalDdParser.g:6395:3: ruleLineComment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getExtraAttrDescLineCommentParserRuleCall_0_0()); 
@@ -21195,17 +21395,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__DataTypeAssignment_1"
-    // InternalDdParser.g:6350:1: rule__Attribute__DataTypeAssignment_1 : ( ruleDataType ) ;
+    // InternalDdParser.g:6404:1: rule__Attribute__DataTypeAssignment_1 : ( ruleDataType ) ;
     public final void rule__Attribute__DataTypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6354:1: ( ( ruleDataType ) )
-            // InternalDdParser.g:6355:2: ( ruleDataType )
+            // InternalDdParser.g:6408:1: ( ( ruleDataType ) )
+            // InternalDdParser.g:6409:2: ( ruleDataType )
             {
-            // InternalDdParser.g:6355:2: ( ruleDataType )
-            // InternalDdParser.g:6356:3: ruleDataType
+            // InternalDdParser.g:6409:2: ( ruleDataType )
+            // InternalDdParser.g:6410:3: ruleDataType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getDataTypeDataTypeEnumRuleCall_1_0()); 
@@ -21240,17 +21440,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__AttributeSizeAssignment_2"
-    // InternalDdParser.g:6365:1: rule__Attribute__AttributeSizeAssignment_2 : ( ruleAttributeSize ) ;
+    // InternalDdParser.g:6419:1: rule__Attribute__AttributeSizeAssignment_2 : ( ruleAttributeSize ) ;
     public final void rule__Attribute__AttributeSizeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6369:1: ( ( ruleAttributeSize ) )
-            // InternalDdParser.g:6370:2: ( ruleAttributeSize )
+            // InternalDdParser.g:6423:1: ( ( ruleAttributeSize ) )
+            // InternalDdParser.g:6424:2: ( ruleAttributeSize )
             {
-            // InternalDdParser.g:6370:2: ( ruleAttributeSize )
-            // InternalDdParser.g:6371:3: ruleAttributeSize
+            // InternalDdParser.g:6424:2: ( ruleAttributeSize )
+            // InternalDdParser.g:6425:3: ruleAttributeSize
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getAttributeSizeAttributeSizeParserRuleCall_2_0()); 
@@ -21285,17 +21485,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__ArraySizeAssignment_3"
-    // InternalDdParser.g:6380:1: rule__Attribute__ArraySizeAssignment_3 : ( ruleArraySize ) ;
+    // InternalDdParser.g:6434:1: rule__Attribute__ArraySizeAssignment_3 : ( ruleArraySize ) ;
     public final void rule__Attribute__ArraySizeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6384:1: ( ( ruleArraySize ) )
-            // InternalDdParser.g:6385:2: ( ruleArraySize )
+            // InternalDdParser.g:6438:1: ( ( ruleArraySize ) )
+            // InternalDdParser.g:6439:2: ( ruleArraySize )
             {
-            // InternalDdParser.g:6385:2: ( ruleArraySize )
-            // InternalDdParser.g:6386:3: ruleArraySize
+            // InternalDdParser.g:6439:2: ( ruleArraySize )
+            // InternalDdParser.g:6440:3: ruleArraySize
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getArraySizeArraySizeParserRuleCall_3_0()); 
@@ -21330,17 +21530,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__NameAssignment_4"
-    // InternalDdParser.g:6395:1: rule__Attribute__NameAssignment_4 : ( RULE_ID ) ;
+    // InternalDdParser.g:6449:1: rule__Attribute__NameAssignment_4 : ( RULE_ID ) ;
     public final void rule__Attribute__NameAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6399:1: ( ( RULE_ID ) )
-            // InternalDdParser.g:6400:2: ( RULE_ID )
+            // InternalDdParser.g:6453:1: ( ( RULE_ID ) )
+            // InternalDdParser.g:6454:2: ( RULE_ID )
             {
-            // InternalDdParser.g:6400:2: ( RULE_ID )
-            // InternalDdParser.g:6401:3: RULE_ID
+            // InternalDdParser.g:6454:2: ( RULE_ID )
+            // InternalDdParser.g:6455:3: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_4_0()); 
@@ -21371,17 +21571,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__DefaultValueAssignment_5_1"
-    // InternalDdParser.g:6410:1: rule__Attribute__DefaultValueAssignment_5_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:6464:1: rule__Attribute__DefaultValueAssignment_5_1 : ( ruleSharkExpression ) ;
     public final void rule__Attribute__DefaultValueAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6414:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:6415:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6468:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:6469:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:6415:2: ( ruleSharkExpression )
-            // InternalDdParser.g:6416:3: ruleSharkExpression
+            // InternalDdParser.g:6469:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6470:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getDefaultValueSharkExpressionParserRuleCall_5_1_0()); 
@@ -21416,23 +21616,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__PrimaryKeyAssignment_6"
-    // InternalDdParser.g:6425:1: rule__Attribute__PrimaryKeyAssignment_6 : ( ( Key ) ) ;
+    // InternalDdParser.g:6479:1: rule__Attribute__PrimaryKeyAssignment_6 : ( ( Key ) ) ;
     public final void rule__Attribute__PrimaryKeyAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6429:1: ( ( ( Key ) ) )
-            // InternalDdParser.g:6430:2: ( ( Key ) )
+            // InternalDdParser.g:6483:1: ( ( ( Key ) ) )
+            // InternalDdParser.g:6484:2: ( ( Key ) )
             {
-            // InternalDdParser.g:6430:2: ( ( Key ) )
-            // InternalDdParser.g:6431:3: ( Key )
+            // InternalDdParser.g:6484:2: ( ( Key ) )
+            // InternalDdParser.g:6485:3: ( Key )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getPrimaryKeyKeyKeyword_6_0()); 
             }
-            // InternalDdParser.g:6432:3: ( Key )
-            // InternalDdParser.g:6433:4: Key
+            // InternalDdParser.g:6486:3: ( Key )
+            // InternalDdParser.g:6487:4: Key
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getPrimaryKeyKeyKeyword_6_0()); 
@@ -21469,23 +21669,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__MandatoryAssignment_7"
-    // InternalDdParser.g:6444:1: rule__Attribute__MandatoryAssignment_7 : ( ( ExclamationMark ) ) ;
+    // InternalDdParser.g:6498:1: rule__Attribute__MandatoryAssignment_7 : ( ( ExclamationMark ) ) ;
     public final void rule__Attribute__MandatoryAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6448:1: ( ( ( ExclamationMark ) ) )
-            // InternalDdParser.g:6449:2: ( ( ExclamationMark ) )
+            // InternalDdParser.g:6502:1: ( ( ( ExclamationMark ) ) )
+            // InternalDdParser.g:6503:2: ( ( ExclamationMark ) )
             {
-            // InternalDdParser.g:6449:2: ( ( ExclamationMark ) )
-            // InternalDdParser.g:6450:3: ( ExclamationMark )
+            // InternalDdParser.g:6503:2: ( ( ExclamationMark ) )
+            // InternalDdParser.g:6504:3: ( ExclamationMark )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getMandatoryExclamationMarkKeyword_7_0()); 
             }
-            // InternalDdParser.g:6451:3: ( ExclamationMark )
-            // InternalDdParser.g:6452:4: ExclamationMark
+            // InternalDdParser.g:6505:3: ( ExclamationMark )
+            // InternalDdParser.g:6506:4: ExclamationMark
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getMandatoryExclamationMarkKeyword_7_0()); 
@@ -21522,17 +21722,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__AttrDescAssignment_8"
-    // InternalDdParser.g:6463:1: rule__Attribute__AttrDescAssignment_8 : ( ruleTrailComment ) ;
+    // InternalDdParser.g:6517:1: rule__Attribute__AttrDescAssignment_8 : ( ruleTrailComment ) ;
     public final void rule__Attribute__AttrDescAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6467:1: ( ( ruleTrailComment ) )
-            // InternalDdParser.g:6468:2: ( ruleTrailComment )
+            // InternalDdParser.g:6521:1: ( ( ruleTrailComment ) )
+            // InternalDdParser.g:6522:2: ( ruleTrailComment )
             {
-            // InternalDdParser.g:6468:2: ( ruleTrailComment )
-            // InternalDdParser.g:6469:3: ruleTrailComment
+            // InternalDdParser.g:6522:2: ( ruleTrailComment )
+            // InternalDdParser.g:6523:3: ruleTrailComment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeAccess().getAttrDescTrailCommentParserRuleCall_8_0()); 
@@ -21567,17 +21767,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeSize__LengthAssignment_1"
-    // InternalDdParser.g:6478:1: rule__AttributeSize__LengthAssignment_1 : ( RULE_INT ) ;
+    // InternalDdParser.g:6532:1: rule__AttributeSize__LengthAssignment_1 : ( RULE_INT ) ;
     public final void rule__AttributeSize__LengthAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6482:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:6483:2: ( RULE_INT )
+            // InternalDdParser.g:6536:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:6537:2: ( RULE_INT )
             {
-            // InternalDdParser.g:6483:2: ( RULE_INT )
-            // InternalDdParser.g:6484:3: RULE_INT
+            // InternalDdParser.g:6537:2: ( RULE_INT )
+            // InternalDdParser.g:6538:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeSizeAccess().getLengthINTTerminalRuleCall_1_0()); 
@@ -21608,17 +21808,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeSize__PrecisionAssignment_2_1"
-    // InternalDdParser.g:6493:1: rule__AttributeSize__PrecisionAssignment_2_1 : ( RULE_INT ) ;
+    // InternalDdParser.g:6547:1: rule__AttributeSize__PrecisionAssignment_2_1 : ( RULE_INT ) ;
     public final void rule__AttributeSize__PrecisionAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6497:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:6498:2: ( RULE_INT )
+            // InternalDdParser.g:6551:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:6552:2: ( RULE_INT )
             {
-            // InternalDdParser.g:6498:2: ( RULE_INT )
-            // InternalDdParser.g:6499:3: RULE_INT
+            // InternalDdParser.g:6552:2: ( RULE_INT )
+            // InternalDdParser.g:6553:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAttributeSizeAccess().getPrecisionINTTerminalRuleCall_2_1_0()); 
@@ -21649,17 +21849,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ArraySize__SizeAssignment_1"
-    // InternalDdParser.g:6508:1: rule__ArraySize__SizeAssignment_1 : ( RULE_INT ) ;
+    // InternalDdParser.g:6562:1: rule__ArraySize__SizeAssignment_1 : ( RULE_INT ) ;
     public final void rule__ArraySize__SizeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6512:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:6513:2: ( RULE_INT )
+            // InternalDdParser.g:6566:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:6567:2: ( RULE_INT )
             {
-            // InternalDdParser.g:6513:2: ( RULE_INT )
-            // InternalDdParser.g:6514:3: RULE_INT
+            // InternalDdParser.g:6567:2: ( RULE_INT )
+            // InternalDdParser.g:6568:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArraySizeAccess().getSizeINTTerminalRuleCall_1_0()); 
@@ -21690,17 +21890,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Relationship__Cardi1Assignment_0"
-    // InternalDdParser.g:6523:1: rule__Relationship__Cardi1Assignment_0 : ( ruleRangeExpression ) ;
+    // InternalDdParser.g:6577:1: rule__Relationship__Cardi1Assignment_0 : ( ruleRangeExpression ) ;
     public final void rule__Relationship__Cardi1Assignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6527:1: ( ( ruleRangeExpression ) )
-            // InternalDdParser.g:6528:2: ( ruleRangeExpression )
+            // InternalDdParser.g:6581:1: ( ( ruleRangeExpression ) )
+            // InternalDdParser.g:6582:2: ( ruleRangeExpression )
             {
-            // InternalDdParser.g:6528:2: ( ruleRangeExpression )
-            // InternalDdParser.g:6529:3: ruleRangeExpression
+            // InternalDdParser.g:6582:2: ( ruleRangeExpression )
+            // InternalDdParser.g:6583:3: ruleRangeExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationshipAccess().getCardi1RangeExpressionParserRuleCall_0_0()); 
@@ -21735,17 +21935,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Relationship__NameAssignment_1"
-    // InternalDdParser.g:6538:1: rule__Relationship__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalDdParser.g:6592:1: rule__Relationship__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Relationship__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6542:1: ( ( RULE_ID ) )
-            // InternalDdParser.g:6543:2: ( RULE_ID )
+            // InternalDdParser.g:6596:1: ( ( RULE_ID ) )
+            // InternalDdParser.g:6597:2: ( RULE_ID )
             {
-            // InternalDdParser.g:6543:2: ( RULE_ID )
-            // InternalDdParser.g:6544:3: RULE_ID
+            // InternalDdParser.g:6597:2: ( RULE_ID )
+            // InternalDdParser.g:6598:3: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationshipAccess().getNameIDTerminalRuleCall_1_0()); 
@@ -21776,17 +21976,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Relationship__Cardi2Assignment_2"
-    // InternalDdParser.g:6553:1: rule__Relationship__Cardi2Assignment_2 : ( ruleRangeExpression ) ;
+    // InternalDdParser.g:6607:1: rule__Relationship__Cardi2Assignment_2 : ( ruleRangeExpression ) ;
     public final void rule__Relationship__Cardi2Assignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6557:1: ( ( ruleRangeExpression ) )
-            // InternalDdParser.g:6558:2: ( ruleRangeExpression )
+            // InternalDdParser.g:6611:1: ( ( ruleRangeExpression ) )
+            // InternalDdParser.g:6612:2: ( ruleRangeExpression )
             {
-            // InternalDdParser.g:6558:2: ( ruleRangeExpression )
-            // InternalDdParser.g:6559:3: ruleRangeExpression
+            // InternalDdParser.g:6612:2: ( ruleRangeExpression )
+            // InternalDdParser.g:6613:3: ruleRangeExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationshipAccess().getCardi2RangeExpressionParserRuleCall_2_0()); 
@@ -21821,23 +22021,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Relationship__LinkToAssignment_3"
-    // InternalDdParser.g:6568:1: rule__Relationship__LinkToAssignment_3 : ( ( RULE_OBJID ) ) ;
+    // InternalDdParser.g:6622:1: rule__Relationship__LinkToAssignment_3 : ( ( RULE_OBJID ) ) ;
     public final void rule__Relationship__LinkToAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6572:1: ( ( ( RULE_OBJID ) ) )
-            // InternalDdParser.g:6573:2: ( ( RULE_OBJID ) )
+            // InternalDdParser.g:6626:1: ( ( ( RULE_OBJID ) ) )
+            // InternalDdParser.g:6627:2: ( ( RULE_OBJID ) )
             {
-            // InternalDdParser.g:6573:2: ( ( RULE_OBJID ) )
-            // InternalDdParser.g:6574:3: ( RULE_OBJID )
+            // InternalDdParser.g:6627:2: ( ( RULE_OBJID ) )
+            // InternalDdParser.g:6628:3: ( RULE_OBJID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationshipAccess().getLinkToEntityCrossReference_3_0()); 
             }
-            // InternalDdParser.g:6575:3: ( RULE_OBJID )
-            // InternalDdParser.g:6576:4: RULE_OBJID
+            // InternalDdParser.g:6629:3: ( RULE_OBJID )
+            // InternalDdParser.g:6630:4: RULE_OBJID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationshipAccess().getLinkToEntityOBJIDTerminalRuleCall_3_0_1()); 
@@ -21874,17 +22074,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Relationship__RelDescAssignment_4"
-    // InternalDdParser.g:6587:1: rule__Relationship__RelDescAssignment_4 : ( ruleTrailComment ) ;
+    // InternalDdParser.g:6641:1: rule__Relationship__RelDescAssignment_4 : ( ruleTrailComment ) ;
     public final void rule__Relationship__RelDescAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6591:1: ( ( ruleTrailComment ) )
-            // InternalDdParser.g:6592:2: ( ruleTrailComment )
+            // InternalDdParser.g:6645:1: ( ( ruleTrailComment ) )
+            // InternalDdParser.g:6646:2: ( ruleTrailComment )
             {
-            // InternalDdParser.g:6592:2: ( ruleTrailComment )
-            // InternalDdParser.g:6593:3: ruleTrailComment
+            // InternalDdParser.g:6646:2: ( ruleTrailComment )
+            // InternalDdParser.g:6647:3: ruleTrailComment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRelationshipAccess().getRelDescTrailCommentParserRuleCall_4_0()); 
@@ -21919,17 +22119,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__ChkDescLinesAssignment_0"
-    // InternalDdParser.g:6602:1: rule__Constraint__ChkDescLinesAssignment_0 : ( ruleLineComment ) ;
+    // InternalDdParser.g:6656:1: rule__Constraint__ChkDescLinesAssignment_0 : ( ruleLineComment ) ;
     public final void rule__Constraint__ChkDescLinesAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6606:1: ( ( ruleLineComment ) )
-            // InternalDdParser.g:6607:2: ( ruleLineComment )
+            // InternalDdParser.g:6660:1: ( ( ruleLineComment ) )
+            // InternalDdParser.g:6661:2: ( ruleLineComment )
             {
-            // InternalDdParser.g:6607:2: ( ruleLineComment )
-            // InternalDdParser.g:6608:3: ruleLineComment
+            // InternalDdParser.g:6661:2: ( ruleLineComment )
+            // InternalDdParser.g:6662:3: ruleLineComment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstraintAccess().getChkDescLinesLineCommentParserRuleCall_0_0()); 
@@ -21964,17 +22164,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__NameAssignment_1"
-    // InternalDdParser.g:6617:1: rule__Constraint__NameAssignment_1 : ( RULE_CHKID ) ;
+    // InternalDdParser.g:6671:1: rule__Constraint__NameAssignment_1 : ( RULE_CHKID ) ;
     public final void rule__Constraint__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6621:1: ( ( RULE_CHKID ) )
-            // InternalDdParser.g:6622:2: ( RULE_CHKID )
+            // InternalDdParser.g:6675:1: ( ( RULE_CHKID ) )
+            // InternalDdParser.g:6676:2: ( RULE_CHKID )
             {
-            // InternalDdParser.g:6622:2: ( RULE_CHKID )
-            // InternalDdParser.g:6623:3: RULE_CHKID
+            // InternalDdParser.g:6676:2: ( RULE_CHKID )
+            // InternalDdParser.g:6677:3: RULE_CHKID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstraintAccess().getNameCHKIDTerminalRuleCall_1_0()); 
@@ -22005,17 +22205,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__CheckAssignment_4"
-    // InternalDdParser.g:6632:1: rule__Constraint__CheckAssignment_4 : ( ruleCheckExpression ) ;
+    // InternalDdParser.g:6686:1: rule__Constraint__CheckAssignment_4 : ( ruleCheckExpression ) ;
     public final void rule__Constraint__CheckAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6636:1: ( ( ruleCheckExpression ) )
-            // InternalDdParser.g:6637:2: ( ruleCheckExpression )
+            // InternalDdParser.g:6690:1: ( ( ruleCheckExpression ) )
+            // InternalDdParser.g:6691:2: ( ruleCheckExpression )
             {
-            // InternalDdParser.g:6637:2: ( ruleCheckExpression )
-            // InternalDdParser.g:6638:3: ruleCheckExpression
+            // InternalDdParser.g:6691:2: ( ruleCheckExpression )
+            // InternalDdParser.g:6692:3: ruleCheckExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConstraintAccess().getCheckCheckExpressionParserRuleCall_4_0()); 
@@ -22050,17 +22250,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CheckExpression__ChkDescAssignment_0"
-    // InternalDdParser.g:6647:1: rule__CheckExpression__ChkDescAssignment_0 : ( ruleLineComment ) ;
+    // InternalDdParser.g:6701:1: rule__CheckExpression__ChkDescAssignment_0 : ( ruleLineComment ) ;
     public final void rule__CheckExpression__ChkDescAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6651:1: ( ( ruleLineComment ) )
-            // InternalDdParser.g:6652:2: ( ruleLineComment )
+            // InternalDdParser.g:6705:1: ( ( ruleLineComment ) )
+            // InternalDdParser.g:6706:2: ( ruleLineComment )
             {
-            // InternalDdParser.g:6652:2: ( ruleLineComment )
-            // InternalDdParser.g:6653:3: ruleLineComment
+            // InternalDdParser.g:6706:2: ( ruleLineComment )
+            // InternalDdParser.g:6707:3: ruleLineComment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCheckExpressionAccess().getChkDescLineCommentParserRuleCall_0_0()); 
@@ -22095,17 +22295,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CheckExpression__NameAssignment_1"
-    // InternalDdParser.g:6662:1: rule__CheckExpression__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalDdParser.g:6716:1: rule__CheckExpression__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__CheckExpression__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6666:1: ( ( RULE_ID ) )
-            // InternalDdParser.g:6667:2: ( RULE_ID )
+            // InternalDdParser.g:6720:1: ( ( RULE_ID ) )
+            // InternalDdParser.g:6721:2: ( RULE_ID )
             {
-            // InternalDdParser.g:6667:2: ( RULE_ID )
-            // InternalDdParser.g:6668:3: RULE_ID
+            // InternalDdParser.g:6721:2: ( RULE_ID )
+            // InternalDdParser.g:6722:3: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCheckExpressionAccess().getNameIDTerminalRuleCall_1_0()); 
@@ -22136,17 +22336,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CheckExpression__ExprAssignment_2"
-    // InternalDdParser.g:6677:1: rule__CheckExpression__ExprAssignment_2 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:6731:1: rule__CheckExpression__ExprAssignment_2 : ( ruleSharkExpression ) ;
     public final void rule__CheckExpression__ExprAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6681:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:6682:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6735:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:6736:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:6682:2: ( ruleSharkExpression )
-            // InternalDdParser.g:6683:3: ruleSharkExpression
+            // InternalDdParser.g:6736:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6737:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCheckExpressionAccess().getExprSharkExpressionParserRuleCall_2_0()); 
@@ -22181,17 +22381,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BinaryExpression__LeftAssignment_1"
-    // InternalDdParser.g:6692:1: rule__BinaryExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:6746:1: rule__BinaryExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__BinaryExpression__LeftAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6696:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:6697:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6750:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:6751:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:6697:2: ( ruleSharkExpression )
-            // InternalDdParser.g:6698:3: ruleSharkExpression
+            // InternalDdParser.g:6751:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6752:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBinaryExpressionAccess().getLeftSharkExpressionParserRuleCall_1_0()); 
@@ -22226,17 +22426,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BinaryExpression__OpAssignment_2"
-    // InternalDdParser.g:6707:1: rule__BinaryExpression__OpAssignment_2 : ( ruleBinaryOperator ) ;
+    // InternalDdParser.g:6761:1: rule__BinaryExpression__OpAssignment_2 : ( ruleBinaryOperator ) ;
     public final void rule__BinaryExpression__OpAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6711:1: ( ( ruleBinaryOperator ) )
-            // InternalDdParser.g:6712:2: ( ruleBinaryOperator )
+            // InternalDdParser.g:6765:1: ( ( ruleBinaryOperator ) )
+            // InternalDdParser.g:6766:2: ( ruleBinaryOperator )
             {
-            // InternalDdParser.g:6712:2: ( ruleBinaryOperator )
-            // InternalDdParser.g:6713:3: ruleBinaryOperator
+            // InternalDdParser.g:6766:2: ( ruleBinaryOperator )
+            // InternalDdParser.g:6767:3: ruleBinaryOperator
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBinaryExpressionAccess().getOpBinaryOperatorEnumRuleCall_2_0()); 
@@ -22271,17 +22471,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BinaryExpression__RightAssignment_3"
-    // InternalDdParser.g:6722:1: rule__BinaryExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:6776:1: rule__BinaryExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
     public final void rule__BinaryExpression__RightAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6726:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:6727:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6780:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:6781:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:6727:2: ( ruleSharkExpression )
-            // InternalDdParser.g:6728:3: ruleSharkExpression
+            // InternalDdParser.g:6781:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6782:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBinaryExpressionAccess().getRightSharkExpressionParserRuleCall_3_0()); 
@@ -22316,17 +22516,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BinaryExpression__ValueAssignment_5_0"
-    // InternalDdParser.g:6737:1: rule__BinaryExpression__ValueAssignment_5_0 : ( RULE_NUL ) ;
+    // InternalDdParser.g:6791:1: rule__BinaryExpression__ValueAssignment_5_0 : ( RULE_NUL ) ;
     public final void rule__BinaryExpression__ValueAssignment_5_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6741:1: ( ( RULE_NUL ) )
-            // InternalDdParser.g:6742:2: ( RULE_NUL )
+            // InternalDdParser.g:6795:1: ( ( RULE_NUL ) )
+            // InternalDdParser.g:6796:2: ( RULE_NUL )
             {
-            // InternalDdParser.g:6742:2: ( RULE_NUL )
-            // InternalDdParser.g:6743:3: RULE_NUL
+            // InternalDdParser.g:6796:2: ( RULE_NUL )
+            // InternalDdParser.g:6797:3: RULE_NUL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBinaryExpressionAccess().getValueNULTerminalRuleCall_5_0_0()); 
@@ -22357,17 +22557,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BinaryExpression__PrecisionAssignment_5_1"
-    // InternalDdParser.g:6752:1: rule__BinaryExpression__PrecisionAssignment_5_1 : ( RULE_INT ) ;
+    // InternalDdParser.g:6806:1: rule__BinaryExpression__PrecisionAssignment_5_1 : ( RULE_INT ) ;
     public final void rule__BinaryExpression__PrecisionAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6756:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:6757:2: ( RULE_INT )
+            // InternalDdParser.g:6810:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:6811:2: ( RULE_INT )
             {
-            // InternalDdParser.g:6757:2: ( RULE_INT )
-            // InternalDdParser.g:6758:3: RULE_INT
+            // InternalDdParser.g:6811:2: ( RULE_INT )
+            // InternalDdParser.g:6812:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBinaryExpressionAccess().getPrecisionINTTerminalRuleCall_5_1_0()); 
@@ -22398,17 +22598,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BinaryExpression__LengthAssignment_5_2"
-    // InternalDdParser.g:6767:1: rule__BinaryExpression__LengthAssignment_5_2 : ( RULE_INT ) ;
+    // InternalDdParser.g:6821:1: rule__BinaryExpression__LengthAssignment_5_2 : ( RULE_INT ) ;
     public final void rule__BinaryExpression__LengthAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6771:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:6772:2: ( RULE_INT )
+            // InternalDdParser.g:6825:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:6826:2: ( RULE_INT )
             {
-            // InternalDdParser.g:6772:2: ( RULE_INT )
-            // InternalDdParser.g:6773:3: RULE_INT
+            // InternalDdParser.g:6826:2: ( RULE_INT )
+            // InternalDdParser.g:6827:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBinaryExpressionAccess().getLengthINTTerminalRuleCall_5_2_0()); 
@@ -22439,17 +22639,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__OpAssignment_0"
-    // InternalDdParser.g:6782:1: rule__UnaryExpression__OpAssignment_0 : ( ruleUnaryOperator ) ;
+    // InternalDdParser.g:6836:1: rule__UnaryExpression__OpAssignment_0 : ( ruleUnaryOperator ) ;
     public final void rule__UnaryExpression__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6786:1: ( ( ruleUnaryOperator ) )
-            // InternalDdParser.g:6787:2: ( ruleUnaryOperator )
+            // InternalDdParser.g:6840:1: ( ( ruleUnaryOperator ) )
+            // InternalDdParser.g:6841:2: ( ruleUnaryOperator )
             {
-            // InternalDdParser.g:6787:2: ( ruleUnaryOperator )
-            // InternalDdParser.g:6788:3: ruleUnaryOperator
+            // InternalDdParser.g:6841:2: ( ruleUnaryOperator )
+            // InternalDdParser.g:6842:3: ruleUnaryOperator
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnaryExpressionAccess().getOpUnaryOperatorEnumRuleCall_0_0()); 
@@ -22484,17 +22684,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__LeftAssignment_2"
-    // InternalDdParser.g:6797:1: rule__UnaryExpression__LeftAssignment_2 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:6851:1: rule__UnaryExpression__LeftAssignment_2 : ( ruleSharkExpression ) ;
     public final void rule__UnaryExpression__LeftAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6801:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:6802:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6855:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:6856:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:6802:2: ( ruleSharkExpression )
-            // InternalDdParser.g:6803:3: ruleSharkExpression
+            // InternalDdParser.g:6856:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6857:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnaryExpressionAccess().getLeftSharkExpressionParserRuleCall_2_0()); 
@@ -22529,17 +22729,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__ValueAssignment_4_0"
-    // InternalDdParser.g:6812:1: rule__UnaryExpression__ValueAssignment_4_0 : ( RULE_NUL ) ;
+    // InternalDdParser.g:6866:1: rule__UnaryExpression__ValueAssignment_4_0 : ( RULE_NUL ) ;
     public final void rule__UnaryExpression__ValueAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6816:1: ( ( RULE_NUL ) )
-            // InternalDdParser.g:6817:2: ( RULE_NUL )
+            // InternalDdParser.g:6870:1: ( ( RULE_NUL ) )
+            // InternalDdParser.g:6871:2: ( RULE_NUL )
             {
-            // InternalDdParser.g:6817:2: ( RULE_NUL )
-            // InternalDdParser.g:6818:3: RULE_NUL
+            // InternalDdParser.g:6871:2: ( RULE_NUL )
+            // InternalDdParser.g:6872:3: RULE_NUL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnaryExpressionAccess().getValueNULTerminalRuleCall_4_0_0()); 
@@ -22570,17 +22770,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__PrecisionAssignment_4_1"
-    // InternalDdParser.g:6827:1: rule__UnaryExpression__PrecisionAssignment_4_1 : ( RULE_INT ) ;
+    // InternalDdParser.g:6881:1: rule__UnaryExpression__PrecisionAssignment_4_1 : ( RULE_INT ) ;
     public final void rule__UnaryExpression__PrecisionAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6831:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:6832:2: ( RULE_INT )
+            // InternalDdParser.g:6885:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:6886:2: ( RULE_INT )
             {
-            // InternalDdParser.g:6832:2: ( RULE_INT )
-            // InternalDdParser.g:6833:3: RULE_INT
+            // InternalDdParser.g:6886:2: ( RULE_INT )
+            // InternalDdParser.g:6887:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnaryExpressionAccess().getPrecisionINTTerminalRuleCall_4_1_0()); 
@@ -22611,17 +22811,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__LengthAssignment_4_2"
-    // InternalDdParser.g:6842:1: rule__UnaryExpression__LengthAssignment_4_2 : ( RULE_INT ) ;
+    // InternalDdParser.g:6896:1: rule__UnaryExpression__LengthAssignment_4_2 : ( RULE_INT ) ;
     public final void rule__UnaryExpression__LengthAssignment_4_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6846:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:6847:2: ( RULE_INT )
+            // InternalDdParser.g:6900:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:6901:2: ( RULE_INT )
             {
-            // InternalDdParser.g:6847:2: ( RULE_INT )
-            // InternalDdParser.g:6848:3: RULE_INT
+            // InternalDdParser.g:6901:2: ( RULE_INT )
+            // InternalDdParser.g:6902:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnaryExpressionAccess().getLengthINTTerminalRuleCall_4_2_0()); 
@@ -22652,17 +22852,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AddExpression__LeftAssignment_1"
-    // InternalDdParser.g:6857:1: rule__AddExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:6911:1: rule__AddExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__AddExpression__LeftAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6861:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:6862:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6915:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:6916:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:6862:2: ( ruleSharkExpression )
-            // InternalDdParser.g:6863:3: ruleSharkExpression
+            // InternalDdParser.g:6916:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6917:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAddExpressionAccess().getLeftSharkExpressionParserRuleCall_1_0()); 
@@ -22697,23 +22897,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AddExpression__OpAssignment_2"
-    // InternalDdParser.g:6872:1: rule__AddExpression__OpAssignment_2 : ( ( rule__AddExpression__OpAlternatives_2_0 ) ) ;
+    // InternalDdParser.g:6926:1: rule__AddExpression__OpAssignment_2 : ( ( rule__AddExpression__OpAlternatives_2_0 ) ) ;
     public final void rule__AddExpression__OpAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6876:1: ( ( ( rule__AddExpression__OpAlternatives_2_0 ) ) )
-            // InternalDdParser.g:6877:2: ( ( rule__AddExpression__OpAlternatives_2_0 ) )
+            // InternalDdParser.g:6930:1: ( ( ( rule__AddExpression__OpAlternatives_2_0 ) ) )
+            // InternalDdParser.g:6931:2: ( ( rule__AddExpression__OpAlternatives_2_0 ) )
             {
-            // InternalDdParser.g:6877:2: ( ( rule__AddExpression__OpAlternatives_2_0 ) )
-            // InternalDdParser.g:6878:3: ( rule__AddExpression__OpAlternatives_2_0 )
+            // InternalDdParser.g:6931:2: ( ( rule__AddExpression__OpAlternatives_2_0 ) )
+            // InternalDdParser.g:6932:3: ( rule__AddExpression__OpAlternatives_2_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAddExpressionAccess().getOpAlternatives_2_0()); 
             }
-            // InternalDdParser.g:6879:3: ( rule__AddExpression__OpAlternatives_2_0 )
-            // InternalDdParser.g:6879:4: rule__AddExpression__OpAlternatives_2_0
+            // InternalDdParser.g:6933:3: ( rule__AddExpression__OpAlternatives_2_0 )
+            // InternalDdParser.g:6933:4: rule__AddExpression__OpAlternatives_2_0
             {
             pushFollow(FOLLOW_2);
             rule__AddExpression__OpAlternatives_2_0();
@@ -22748,17 +22948,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AddExpression__RightAssignment_3"
-    // InternalDdParser.g:6887:1: rule__AddExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:6941:1: rule__AddExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
     public final void rule__AddExpression__RightAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6891:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:6892:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6945:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:6946:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:6892:2: ( ruleSharkExpression )
-            // InternalDdParser.g:6893:3: ruleSharkExpression
+            // InternalDdParser.g:6946:2: ( ruleSharkExpression )
+            // InternalDdParser.g:6947:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAddExpressionAccess().getRightSharkExpressionParserRuleCall_3_0()); 
@@ -22793,17 +22993,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AddExpression__AddEltsAssignment_4"
-    // InternalDdParser.g:6902:1: rule__AddExpression__AddEltsAssignment_4 : ( ruleAddExpressionElt ) ;
+    // InternalDdParser.g:6956:1: rule__AddExpression__AddEltsAssignment_4 : ( ruleAddExpressionElt ) ;
     public final void rule__AddExpression__AddEltsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6906:1: ( ( ruleAddExpressionElt ) )
-            // InternalDdParser.g:6907:2: ( ruleAddExpressionElt )
+            // InternalDdParser.g:6960:1: ( ( ruleAddExpressionElt ) )
+            // InternalDdParser.g:6961:2: ( ruleAddExpressionElt )
             {
-            // InternalDdParser.g:6907:2: ( ruleAddExpressionElt )
-            // InternalDdParser.g:6908:3: ruleAddExpressionElt
+            // InternalDdParser.g:6961:2: ( ruleAddExpressionElt )
+            // InternalDdParser.g:6962:3: ruleAddExpressionElt
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAddExpressionAccess().getAddEltsAddExpressionEltParserRuleCall_4_0()); 
@@ -22838,17 +23038,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AddExpression__ValueAssignment_6_0"
-    // InternalDdParser.g:6917:1: rule__AddExpression__ValueAssignment_6_0 : ( RULE_NUL ) ;
+    // InternalDdParser.g:6971:1: rule__AddExpression__ValueAssignment_6_0 : ( RULE_NUL ) ;
     public final void rule__AddExpression__ValueAssignment_6_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6921:1: ( ( RULE_NUL ) )
-            // InternalDdParser.g:6922:2: ( RULE_NUL )
+            // InternalDdParser.g:6975:1: ( ( RULE_NUL ) )
+            // InternalDdParser.g:6976:2: ( RULE_NUL )
             {
-            // InternalDdParser.g:6922:2: ( RULE_NUL )
-            // InternalDdParser.g:6923:3: RULE_NUL
+            // InternalDdParser.g:6976:2: ( RULE_NUL )
+            // InternalDdParser.g:6977:3: RULE_NUL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAddExpressionAccess().getValueNULTerminalRuleCall_6_0_0()); 
@@ -22879,17 +23079,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AddExpression__PrecisionAssignment_6_1"
-    // InternalDdParser.g:6932:1: rule__AddExpression__PrecisionAssignment_6_1 : ( RULE_INT ) ;
+    // InternalDdParser.g:6986:1: rule__AddExpression__PrecisionAssignment_6_1 : ( RULE_INT ) ;
     public final void rule__AddExpression__PrecisionAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6936:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:6937:2: ( RULE_INT )
+            // InternalDdParser.g:6990:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:6991:2: ( RULE_INT )
             {
-            // InternalDdParser.g:6937:2: ( RULE_INT )
-            // InternalDdParser.g:6938:3: RULE_INT
+            // InternalDdParser.g:6991:2: ( RULE_INT )
+            // InternalDdParser.g:6992:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAddExpressionAccess().getPrecisionINTTerminalRuleCall_6_1_0()); 
@@ -22920,17 +23120,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AddExpression__LengthAssignment_6_2"
-    // InternalDdParser.g:6947:1: rule__AddExpression__LengthAssignment_6_2 : ( RULE_INT ) ;
+    // InternalDdParser.g:7001:1: rule__AddExpression__LengthAssignment_6_2 : ( RULE_INT ) ;
     public final void rule__AddExpression__LengthAssignment_6_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6951:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:6952:2: ( RULE_INT )
+            // InternalDdParser.g:7005:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:7006:2: ( RULE_INT )
             {
-            // InternalDdParser.g:6952:2: ( RULE_INT )
-            // InternalDdParser.g:6953:3: RULE_INT
+            // InternalDdParser.g:7006:2: ( RULE_INT )
+            // InternalDdParser.g:7007:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAddExpressionAccess().getLengthINTTerminalRuleCall_6_2_0()); 
@@ -22961,23 +23161,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AddExpressionElt__OpAssignment_0"
-    // InternalDdParser.g:6962:1: rule__AddExpressionElt__OpAssignment_0 : ( ( PlusSign ) ) ;
+    // InternalDdParser.g:7016:1: rule__AddExpressionElt__OpAssignment_0 : ( ( PlusSign ) ) ;
     public final void rule__AddExpressionElt__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6966:1: ( ( ( PlusSign ) ) )
-            // InternalDdParser.g:6967:2: ( ( PlusSign ) )
+            // InternalDdParser.g:7020:1: ( ( ( PlusSign ) ) )
+            // InternalDdParser.g:7021:2: ( ( PlusSign ) )
             {
-            // InternalDdParser.g:6967:2: ( ( PlusSign ) )
-            // InternalDdParser.g:6968:3: ( PlusSign )
+            // InternalDdParser.g:7021:2: ( ( PlusSign ) )
+            // InternalDdParser.g:7022:3: ( PlusSign )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0()); 
             }
-            // InternalDdParser.g:6969:3: ( PlusSign )
-            // InternalDdParser.g:6970:4: PlusSign
+            // InternalDdParser.g:7023:3: ( PlusSign )
+            // InternalDdParser.g:7024:4: PlusSign
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAddExpressionEltAccess().getOpPlusSignKeyword_0_0()); 
@@ -23014,17 +23214,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AddExpressionElt__RightAssignment_1"
-    // InternalDdParser.g:6981:1: rule__AddExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7035:1: rule__AddExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__AddExpressionElt__RightAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:6985:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:6986:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7039:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7040:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:6986:2: ( ruleSharkExpression )
-            // InternalDdParser.g:6987:3: ruleSharkExpression
+            // InternalDdParser.g:7040:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7041:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAddExpressionEltAccess().getRightSharkExpressionParserRuleCall_1_0()); 
@@ -23059,17 +23259,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultExpression__LeftAssignment_1"
-    // InternalDdParser.g:6996:1: rule__MultExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7050:1: rule__MultExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__MultExpression__LeftAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7000:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7001:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7054:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7055:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7001:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7002:3: ruleSharkExpression
+            // InternalDdParser.g:7055:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7056:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionAccess().getLeftSharkExpressionParserRuleCall_1_0()); 
@@ -23104,23 +23304,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultExpression__OpAssignment_2"
-    // InternalDdParser.g:7011:1: rule__MultExpression__OpAssignment_2 : ( ( Asterisk ) ) ;
+    // InternalDdParser.g:7065:1: rule__MultExpression__OpAssignment_2 : ( ( Asterisk ) ) ;
     public final void rule__MultExpression__OpAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7015:1: ( ( ( Asterisk ) ) )
-            // InternalDdParser.g:7016:2: ( ( Asterisk ) )
+            // InternalDdParser.g:7069:1: ( ( ( Asterisk ) ) )
+            // InternalDdParser.g:7070:2: ( ( Asterisk ) )
             {
-            // InternalDdParser.g:7016:2: ( ( Asterisk ) )
-            // InternalDdParser.g:7017:3: ( Asterisk )
+            // InternalDdParser.g:7070:2: ( ( Asterisk ) )
+            // InternalDdParser.g:7071:3: ( Asterisk )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionAccess().getOpAsteriskKeyword_2_0()); 
             }
-            // InternalDdParser.g:7018:3: ( Asterisk )
-            // InternalDdParser.g:7019:4: Asterisk
+            // InternalDdParser.g:7072:3: ( Asterisk )
+            // InternalDdParser.g:7073:4: Asterisk
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionAccess().getOpAsteriskKeyword_2_0()); 
@@ -23157,17 +23357,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultExpression__RightAssignment_3"
-    // InternalDdParser.g:7030:1: rule__MultExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7084:1: rule__MultExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
     public final void rule__MultExpression__RightAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7034:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7035:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7088:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7089:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7035:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7036:3: ruleSharkExpression
+            // InternalDdParser.g:7089:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7090:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionAccess().getRightSharkExpressionParserRuleCall_3_0()); 
@@ -23202,17 +23402,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultExpression__MultEltsAssignment_4"
-    // InternalDdParser.g:7045:1: rule__MultExpression__MultEltsAssignment_4 : ( ruleMultExpressionElt ) ;
+    // InternalDdParser.g:7099:1: rule__MultExpression__MultEltsAssignment_4 : ( ruleMultExpressionElt ) ;
     public final void rule__MultExpression__MultEltsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7049:1: ( ( ruleMultExpressionElt ) )
-            // InternalDdParser.g:7050:2: ( ruleMultExpressionElt )
+            // InternalDdParser.g:7103:1: ( ( ruleMultExpressionElt ) )
+            // InternalDdParser.g:7104:2: ( ruleMultExpressionElt )
             {
-            // InternalDdParser.g:7050:2: ( ruleMultExpressionElt )
-            // InternalDdParser.g:7051:3: ruleMultExpressionElt
+            // InternalDdParser.g:7104:2: ( ruleMultExpressionElt )
+            // InternalDdParser.g:7105:3: ruleMultExpressionElt
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionAccess().getMultEltsMultExpressionEltParserRuleCall_4_0()); 
@@ -23247,17 +23447,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultExpression__ValueAssignment_6_0"
-    // InternalDdParser.g:7060:1: rule__MultExpression__ValueAssignment_6_0 : ( RULE_NUL ) ;
+    // InternalDdParser.g:7114:1: rule__MultExpression__ValueAssignment_6_0 : ( RULE_NUL ) ;
     public final void rule__MultExpression__ValueAssignment_6_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7064:1: ( ( RULE_NUL ) )
-            // InternalDdParser.g:7065:2: ( RULE_NUL )
+            // InternalDdParser.g:7118:1: ( ( RULE_NUL ) )
+            // InternalDdParser.g:7119:2: ( RULE_NUL )
             {
-            // InternalDdParser.g:7065:2: ( RULE_NUL )
-            // InternalDdParser.g:7066:3: RULE_NUL
+            // InternalDdParser.g:7119:2: ( RULE_NUL )
+            // InternalDdParser.g:7120:3: RULE_NUL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionAccess().getValueNULTerminalRuleCall_6_0_0()); 
@@ -23288,17 +23488,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultExpression__PrecisionAssignment_6_1"
-    // InternalDdParser.g:7075:1: rule__MultExpression__PrecisionAssignment_6_1 : ( RULE_INT ) ;
+    // InternalDdParser.g:7129:1: rule__MultExpression__PrecisionAssignment_6_1 : ( RULE_INT ) ;
     public final void rule__MultExpression__PrecisionAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7079:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:7080:2: ( RULE_INT )
+            // InternalDdParser.g:7133:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:7134:2: ( RULE_INT )
             {
-            // InternalDdParser.g:7080:2: ( RULE_INT )
-            // InternalDdParser.g:7081:3: RULE_INT
+            // InternalDdParser.g:7134:2: ( RULE_INT )
+            // InternalDdParser.g:7135:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionAccess().getPrecisionINTTerminalRuleCall_6_1_0()); 
@@ -23329,17 +23529,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultExpression__LengthAssignment_6_2"
-    // InternalDdParser.g:7090:1: rule__MultExpression__LengthAssignment_6_2 : ( RULE_INT ) ;
+    // InternalDdParser.g:7144:1: rule__MultExpression__LengthAssignment_6_2 : ( RULE_INT ) ;
     public final void rule__MultExpression__LengthAssignment_6_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7094:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:7095:2: ( RULE_INT )
+            // InternalDdParser.g:7148:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:7149:2: ( RULE_INT )
             {
-            // InternalDdParser.g:7095:2: ( RULE_INT )
-            // InternalDdParser.g:7096:3: RULE_INT
+            // InternalDdParser.g:7149:2: ( RULE_INT )
+            // InternalDdParser.g:7150:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionAccess().getLengthINTTerminalRuleCall_6_2_0()); 
@@ -23370,23 +23570,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultExpressionElt__OpAssignment_0"
-    // InternalDdParser.g:7105:1: rule__MultExpressionElt__OpAssignment_0 : ( ( Asterisk ) ) ;
+    // InternalDdParser.g:7159:1: rule__MultExpressionElt__OpAssignment_0 : ( ( Asterisk ) ) ;
     public final void rule__MultExpressionElt__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7109:1: ( ( ( Asterisk ) ) )
-            // InternalDdParser.g:7110:2: ( ( Asterisk ) )
+            // InternalDdParser.g:7163:1: ( ( ( Asterisk ) ) )
+            // InternalDdParser.g:7164:2: ( ( Asterisk ) )
             {
-            // InternalDdParser.g:7110:2: ( ( Asterisk ) )
-            // InternalDdParser.g:7111:3: ( Asterisk )
+            // InternalDdParser.g:7164:2: ( ( Asterisk ) )
+            // InternalDdParser.g:7165:3: ( Asterisk )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionEltAccess().getOpAsteriskKeyword_0_0()); 
             }
-            // InternalDdParser.g:7112:3: ( Asterisk )
-            // InternalDdParser.g:7113:4: Asterisk
+            // InternalDdParser.g:7166:3: ( Asterisk )
+            // InternalDdParser.g:7167:4: Asterisk
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionEltAccess().getOpAsteriskKeyword_0_0()); 
@@ -23423,17 +23623,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultExpressionElt__RightAssignment_1"
-    // InternalDdParser.g:7124:1: rule__MultExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7178:1: rule__MultExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__MultExpressionElt__RightAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7128:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7129:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7182:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7183:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7129:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7130:3: ruleSharkExpression
+            // InternalDdParser.g:7183:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7184:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMultExpressionEltAccess().getRightSharkExpressionParserRuleCall_1_0()); 
@@ -23468,17 +23668,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__LeftAssignment_1"
-    // InternalDdParser.g:7139:1: rule__AndExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7193:1: rule__AndExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__AndExpression__LeftAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7143:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7144:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7197:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7198:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7144:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7145:3: ruleSharkExpression
+            // InternalDdParser.g:7198:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7199:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExpressionAccess().getLeftSharkExpressionParserRuleCall_1_0()); 
@@ -23513,23 +23713,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__OpAssignment_2"
-    // InternalDdParser.g:7154:1: rule__AndExpression__OpAssignment_2 : ( ( And ) ) ;
+    // InternalDdParser.g:7208:1: rule__AndExpression__OpAssignment_2 : ( ( And ) ) ;
     public final void rule__AndExpression__OpAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7158:1: ( ( ( And ) ) )
-            // InternalDdParser.g:7159:2: ( ( And ) )
+            // InternalDdParser.g:7212:1: ( ( ( And ) ) )
+            // InternalDdParser.g:7213:2: ( ( And ) )
             {
-            // InternalDdParser.g:7159:2: ( ( And ) )
-            // InternalDdParser.g:7160:3: ( And )
+            // InternalDdParser.g:7213:2: ( ( And ) )
+            // InternalDdParser.g:7214:3: ( And )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExpressionAccess().getOpAndKeyword_2_0()); 
             }
-            // InternalDdParser.g:7161:3: ( And )
-            // InternalDdParser.g:7162:4: And
+            // InternalDdParser.g:7215:3: ( And )
+            // InternalDdParser.g:7216:4: And
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExpressionAccess().getOpAndKeyword_2_0()); 
@@ -23566,17 +23766,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__RightAssignment_3"
-    // InternalDdParser.g:7173:1: rule__AndExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7227:1: rule__AndExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
     public final void rule__AndExpression__RightAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7177:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7178:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7231:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7232:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7178:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7179:3: ruleSharkExpression
+            // InternalDdParser.g:7232:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7233:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExpressionAccess().getRightSharkExpressionParserRuleCall_3_0()); 
@@ -23611,17 +23811,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__AndEltsAssignment_4"
-    // InternalDdParser.g:7188:1: rule__AndExpression__AndEltsAssignment_4 : ( ruleAndExpressionElt ) ;
+    // InternalDdParser.g:7242:1: rule__AndExpression__AndEltsAssignment_4 : ( ruleAndExpressionElt ) ;
     public final void rule__AndExpression__AndEltsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7192:1: ( ( ruleAndExpressionElt ) )
-            // InternalDdParser.g:7193:2: ( ruleAndExpressionElt )
+            // InternalDdParser.g:7246:1: ( ( ruleAndExpressionElt ) )
+            // InternalDdParser.g:7247:2: ( ruleAndExpressionElt )
             {
-            // InternalDdParser.g:7193:2: ( ruleAndExpressionElt )
-            // InternalDdParser.g:7194:3: ruleAndExpressionElt
+            // InternalDdParser.g:7247:2: ( ruleAndExpressionElt )
+            // InternalDdParser.g:7248:3: ruleAndExpressionElt
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExpressionAccess().getAndEltsAndExpressionEltParserRuleCall_4_0()); 
@@ -23656,23 +23856,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpressionElt__OpAssignment_0"
-    // InternalDdParser.g:7203:1: rule__AndExpressionElt__OpAssignment_0 : ( ( And ) ) ;
+    // InternalDdParser.g:7257:1: rule__AndExpressionElt__OpAssignment_0 : ( ( And ) ) ;
     public final void rule__AndExpressionElt__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7207:1: ( ( ( And ) ) )
-            // InternalDdParser.g:7208:2: ( ( And ) )
+            // InternalDdParser.g:7261:1: ( ( ( And ) ) )
+            // InternalDdParser.g:7262:2: ( ( And ) )
             {
-            // InternalDdParser.g:7208:2: ( ( And ) )
-            // InternalDdParser.g:7209:3: ( And )
+            // InternalDdParser.g:7262:2: ( ( And ) )
+            // InternalDdParser.g:7263:3: ( And )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExpressionEltAccess().getOpAndKeyword_0_0()); 
             }
-            // InternalDdParser.g:7210:3: ( And )
-            // InternalDdParser.g:7211:4: And
+            // InternalDdParser.g:7264:3: ( And )
+            // InternalDdParser.g:7265:4: And
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExpressionEltAccess().getOpAndKeyword_0_0()); 
@@ -23709,17 +23909,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpressionElt__RightAssignment_1"
-    // InternalDdParser.g:7222:1: rule__AndExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7276:1: rule__AndExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__AndExpressionElt__RightAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7226:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7227:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7280:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7281:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7227:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7228:3: ruleSharkExpression
+            // InternalDdParser.g:7281:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7282:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExpressionEltAccess().getRightSharkExpressionParserRuleCall_1_0()); 
@@ -23754,17 +23954,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__LeftAssignment_1"
-    // InternalDdParser.g:7237:1: rule__OrExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7291:1: rule__OrExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__OrExpression__LeftAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7241:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7242:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7295:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7296:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7242:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7243:3: ruleSharkExpression
+            // InternalDdParser.g:7296:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7297:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExpressionAccess().getLeftSharkExpressionParserRuleCall_1_0()); 
@@ -23799,23 +23999,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__OpAssignment_2"
-    // InternalDdParser.g:7252:1: rule__OrExpression__OpAssignment_2 : ( ( Or ) ) ;
+    // InternalDdParser.g:7306:1: rule__OrExpression__OpAssignment_2 : ( ( Or ) ) ;
     public final void rule__OrExpression__OpAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7256:1: ( ( ( Or ) ) )
-            // InternalDdParser.g:7257:2: ( ( Or ) )
+            // InternalDdParser.g:7310:1: ( ( ( Or ) ) )
+            // InternalDdParser.g:7311:2: ( ( Or ) )
             {
-            // InternalDdParser.g:7257:2: ( ( Or ) )
-            // InternalDdParser.g:7258:3: ( Or )
+            // InternalDdParser.g:7311:2: ( ( Or ) )
+            // InternalDdParser.g:7312:3: ( Or )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExpressionAccess().getOpOrKeyword_2_0()); 
             }
-            // InternalDdParser.g:7259:3: ( Or )
-            // InternalDdParser.g:7260:4: Or
+            // InternalDdParser.g:7313:3: ( Or )
+            // InternalDdParser.g:7314:4: Or
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExpressionAccess().getOpOrKeyword_2_0()); 
@@ -23852,17 +24052,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__RightAssignment_3"
-    // InternalDdParser.g:7271:1: rule__OrExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7325:1: rule__OrExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
     public final void rule__OrExpression__RightAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7275:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7276:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7329:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7330:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7276:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7277:3: ruleSharkExpression
+            // InternalDdParser.g:7330:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7331:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExpressionAccess().getRightSharkExpressionParserRuleCall_3_0()); 
@@ -23897,17 +24097,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__OrEltsAssignment_4"
-    // InternalDdParser.g:7286:1: rule__OrExpression__OrEltsAssignment_4 : ( ruleOrExpressionElt ) ;
+    // InternalDdParser.g:7340:1: rule__OrExpression__OrEltsAssignment_4 : ( ruleOrExpressionElt ) ;
     public final void rule__OrExpression__OrEltsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7290:1: ( ( ruleOrExpressionElt ) )
-            // InternalDdParser.g:7291:2: ( ruleOrExpressionElt )
+            // InternalDdParser.g:7344:1: ( ( ruleOrExpressionElt ) )
+            // InternalDdParser.g:7345:2: ( ruleOrExpressionElt )
             {
-            // InternalDdParser.g:7291:2: ( ruleOrExpressionElt )
-            // InternalDdParser.g:7292:3: ruleOrExpressionElt
+            // InternalDdParser.g:7345:2: ( ruleOrExpressionElt )
+            // InternalDdParser.g:7346:3: ruleOrExpressionElt
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExpressionAccess().getOrEltsOrExpressionEltParserRuleCall_4_0()); 
@@ -23942,23 +24142,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpressionElt__OpAssignment_0"
-    // InternalDdParser.g:7301:1: rule__OrExpressionElt__OpAssignment_0 : ( ( Or ) ) ;
+    // InternalDdParser.g:7355:1: rule__OrExpressionElt__OpAssignment_0 : ( ( Or ) ) ;
     public final void rule__OrExpressionElt__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7305:1: ( ( ( Or ) ) )
-            // InternalDdParser.g:7306:2: ( ( Or ) )
+            // InternalDdParser.g:7359:1: ( ( ( Or ) ) )
+            // InternalDdParser.g:7360:2: ( ( Or ) )
             {
-            // InternalDdParser.g:7306:2: ( ( Or ) )
-            // InternalDdParser.g:7307:3: ( Or )
+            // InternalDdParser.g:7360:2: ( ( Or ) )
+            // InternalDdParser.g:7361:3: ( Or )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExpressionEltAccess().getOpOrKeyword_0_0()); 
             }
-            // InternalDdParser.g:7308:3: ( Or )
-            // InternalDdParser.g:7309:4: Or
+            // InternalDdParser.g:7362:3: ( Or )
+            // InternalDdParser.g:7363:4: Or
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExpressionEltAccess().getOpOrKeyword_0_0()); 
@@ -23995,17 +24195,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpressionElt__RightAssignment_1"
-    // InternalDdParser.g:7320:1: rule__OrExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7374:1: rule__OrExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__OrExpressionElt__RightAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7324:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7325:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7378:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7379:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7325:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7326:3: ruleSharkExpression
+            // InternalDdParser.g:7379:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7380:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOrExpressionEltAccess().getRightSharkExpressionParserRuleCall_1_0()); 
@@ -24040,17 +24240,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CatExpression__LeftAssignment_1"
-    // InternalDdParser.g:7335:1: rule__CatExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7389:1: rule__CatExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__CatExpression__LeftAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7339:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7340:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7393:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7394:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7340:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7341:3: ruleSharkExpression
+            // InternalDdParser.g:7394:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7395:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCatExpressionAccess().getLeftSharkExpressionParserRuleCall_1_0()); 
@@ -24085,23 +24285,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CatExpression__OpAssignment_2"
-    // InternalDdParser.g:7350:1: rule__CatExpression__OpAssignment_2 : ( ( Ampersand ) ) ;
+    // InternalDdParser.g:7404:1: rule__CatExpression__OpAssignment_2 : ( ( Ampersand ) ) ;
     public final void rule__CatExpression__OpAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7354:1: ( ( ( Ampersand ) ) )
-            // InternalDdParser.g:7355:2: ( ( Ampersand ) )
+            // InternalDdParser.g:7408:1: ( ( ( Ampersand ) ) )
+            // InternalDdParser.g:7409:2: ( ( Ampersand ) )
             {
-            // InternalDdParser.g:7355:2: ( ( Ampersand ) )
-            // InternalDdParser.g:7356:3: ( Ampersand )
+            // InternalDdParser.g:7409:2: ( ( Ampersand ) )
+            // InternalDdParser.g:7410:3: ( Ampersand )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCatExpressionAccess().getOpAmpersandKeyword_2_0()); 
             }
-            // InternalDdParser.g:7357:3: ( Ampersand )
-            // InternalDdParser.g:7358:4: Ampersand
+            // InternalDdParser.g:7411:3: ( Ampersand )
+            // InternalDdParser.g:7412:4: Ampersand
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCatExpressionAccess().getOpAmpersandKeyword_2_0()); 
@@ -24138,17 +24338,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CatExpression__RightAssignment_3"
-    // InternalDdParser.g:7369:1: rule__CatExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7423:1: rule__CatExpression__RightAssignment_3 : ( ruleSharkExpression ) ;
     public final void rule__CatExpression__RightAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7373:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7374:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7427:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7428:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7374:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7375:3: ruleSharkExpression
+            // InternalDdParser.g:7428:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7429:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCatExpressionAccess().getRightSharkExpressionParserRuleCall_3_0()); 
@@ -24183,17 +24383,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CatExpression__CatEltsAssignment_4"
-    // InternalDdParser.g:7384:1: rule__CatExpression__CatEltsAssignment_4 : ( ruleCatExpressionElt ) ;
+    // InternalDdParser.g:7438:1: rule__CatExpression__CatEltsAssignment_4 : ( ruleCatExpressionElt ) ;
     public final void rule__CatExpression__CatEltsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7388:1: ( ( ruleCatExpressionElt ) )
-            // InternalDdParser.g:7389:2: ( ruleCatExpressionElt )
+            // InternalDdParser.g:7442:1: ( ( ruleCatExpressionElt ) )
+            // InternalDdParser.g:7443:2: ( ruleCatExpressionElt )
             {
-            // InternalDdParser.g:7389:2: ( ruleCatExpressionElt )
-            // InternalDdParser.g:7390:3: ruleCatExpressionElt
+            // InternalDdParser.g:7443:2: ( ruleCatExpressionElt )
+            // InternalDdParser.g:7444:3: ruleCatExpressionElt
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCatExpressionAccess().getCatEltsCatExpressionEltParserRuleCall_4_0()); 
@@ -24228,17 +24428,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CatExpression__ValueAssignment_6_0"
-    // InternalDdParser.g:7399:1: rule__CatExpression__ValueAssignment_6_0 : ( RULE_NUL ) ;
+    // InternalDdParser.g:7453:1: rule__CatExpression__ValueAssignment_6_0 : ( RULE_NUL ) ;
     public final void rule__CatExpression__ValueAssignment_6_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7403:1: ( ( RULE_NUL ) )
-            // InternalDdParser.g:7404:2: ( RULE_NUL )
+            // InternalDdParser.g:7457:1: ( ( RULE_NUL ) )
+            // InternalDdParser.g:7458:2: ( RULE_NUL )
             {
-            // InternalDdParser.g:7404:2: ( RULE_NUL )
-            // InternalDdParser.g:7405:3: RULE_NUL
+            // InternalDdParser.g:7458:2: ( RULE_NUL )
+            // InternalDdParser.g:7459:3: RULE_NUL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCatExpressionAccess().getValueNULTerminalRuleCall_6_0_0()); 
@@ -24269,17 +24469,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CatExpression__LengthAssignment_6_1"
-    // InternalDdParser.g:7414:1: rule__CatExpression__LengthAssignment_6_1 : ( RULE_INT ) ;
+    // InternalDdParser.g:7468:1: rule__CatExpression__LengthAssignment_6_1 : ( RULE_INT ) ;
     public final void rule__CatExpression__LengthAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7418:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:7419:2: ( RULE_INT )
+            // InternalDdParser.g:7472:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:7473:2: ( RULE_INT )
             {
-            // InternalDdParser.g:7419:2: ( RULE_INT )
-            // InternalDdParser.g:7420:3: RULE_INT
+            // InternalDdParser.g:7473:2: ( RULE_INT )
+            // InternalDdParser.g:7474:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCatExpressionAccess().getLengthINTTerminalRuleCall_6_1_0()); 
@@ -24310,23 +24510,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CatExpressionElt__OpAssignment_0"
-    // InternalDdParser.g:7429:1: rule__CatExpressionElt__OpAssignment_0 : ( ( Ampersand ) ) ;
+    // InternalDdParser.g:7483:1: rule__CatExpressionElt__OpAssignment_0 : ( ( Ampersand ) ) ;
     public final void rule__CatExpressionElt__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7433:1: ( ( ( Ampersand ) ) )
-            // InternalDdParser.g:7434:2: ( ( Ampersand ) )
+            // InternalDdParser.g:7487:1: ( ( ( Ampersand ) ) )
+            // InternalDdParser.g:7488:2: ( ( Ampersand ) )
             {
-            // InternalDdParser.g:7434:2: ( ( Ampersand ) )
-            // InternalDdParser.g:7435:3: ( Ampersand )
+            // InternalDdParser.g:7488:2: ( ( Ampersand ) )
+            // InternalDdParser.g:7489:3: ( Ampersand )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCatExpressionEltAccess().getOpAmpersandKeyword_0_0()); 
             }
-            // InternalDdParser.g:7436:3: ( Ampersand )
-            // InternalDdParser.g:7437:4: Ampersand
+            // InternalDdParser.g:7490:3: ( Ampersand )
+            // InternalDdParser.g:7491:4: Ampersand
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCatExpressionEltAccess().getOpAmpersandKeyword_0_0()); 
@@ -24363,17 +24563,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CatExpressionElt__RightAssignment_1"
-    // InternalDdParser.g:7448:1: rule__CatExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7502:1: rule__CatExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__CatExpressionElt__RightAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7452:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7453:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7506:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7507:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7453:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7454:3: ruleSharkExpression
+            // InternalDdParser.g:7507:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7508:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCatExpressionEltAccess().getRightSharkExpressionParserRuleCall_1_0()); 
@@ -24408,23 +24608,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListExpression__OpAssignment_0"
-    // InternalDdParser.g:7463:1: rule__ListExpression__OpAssignment_0 : ( ( LeftParenthesis ) ) ;
+    // InternalDdParser.g:7517:1: rule__ListExpression__OpAssignment_0 : ( ( LeftParenthesis ) ) ;
     public final void rule__ListExpression__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7467:1: ( ( ( LeftParenthesis ) ) )
-            // InternalDdParser.g:7468:2: ( ( LeftParenthesis ) )
+            // InternalDdParser.g:7521:1: ( ( ( LeftParenthesis ) ) )
+            // InternalDdParser.g:7522:2: ( ( LeftParenthesis ) )
             {
-            // InternalDdParser.g:7468:2: ( ( LeftParenthesis ) )
-            // InternalDdParser.g:7469:3: ( LeftParenthesis )
+            // InternalDdParser.g:7522:2: ( ( LeftParenthesis ) )
+            // InternalDdParser.g:7523:3: ( LeftParenthesis )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getListExpressionAccess().getOpLeftParenthesisKeyword_0_0()); 
             }
-            // InternalDdParser.g:7470:3: ( LeftParenthesis )
-            // InternalDdParser.g:7471:4: LeftParenthesis
+            // InternalDdParser.g:7524:3: ( LeftParenthesis )
+            // InternalDdParser.g:7525:4: LeftParenthesis
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getListExpressionAccess().getOpLeftParenthesisKeyword_0_0()); 
@@ -24461,17 +24661,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListExpression__LeftAssignment_1"
-    // InternalDdParser.g:7482:1: rule__ListExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7536:1: rule__ListExpression__LeftAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__ListExpression__LeftAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7486:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7487:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7540:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7541:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7487:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7488:3: ruleSharkExpression
+            // InternalDdParser.g:7541:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7542:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getListExpressionAccess().getLeftSharkExpressionParserRuleCall_1_0()); 
@@ -24506,17 +24706,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListExpression__ListEltsAssignment_2"
-    // InternalDdParser.g:7497:1: rule__ListExpression__ListEltsAssignment_2 : ( ruleListExpressionElt ) ;
+    // InternalDdParser.g:7551:1: rule__ListExpression__ListEltsAssignment_2 : ( ruleListExpressionElt ) ;
     public final void rule__ListExpression__ListEltsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7501:1: ( ( ruleListExpressionElt ) )
-            // InternalDdParser.g:7502:2: ( ruleListExpressionElt )
+            // InternalDdParser.g:7555:1: ( ( ruleListExpressionElt ) )
+            // InternalDdParser.g:7556:2: ( ruleListExpressionElt )
             {
-            // InternalDdParser.g:7502:2: ( ruleListExpressionElt )
-            // InternalDdParser.g:7503:3: ruleListExpressionElt
+            // InternalDdParser.g:7556:2: ( ruleListExpressionElt )
+            // InternalDdParser.g:7557:3: ruleListExpressionElt
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getListExpressionAccess().getListEltsListExpressionEltParserRuleCall_2_0()); 
@@ -24551,23 +24751,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListExpressionElt__OpAssignment_0"
-    // InternalDdParser.g:7512:1: rule__ListExpressionElt__OpAssignment_0 : ( ( Comma ) ) ;
+    // InternalDdParser.g:7566:1: rule__ListExpressionElt__OpAssignment_0 : ( ( Comma ) ) ;
     public final void rule__ListExpressionElt__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7516:1: ( ( ( Comma ) ) )
-            // InternalDdParser.g:7517:2: ( ( Comma ) )
+            // InternalDdParser.g:7570:1: ( ( ( Comma ) ) )
+            // InternalDdParser.g:7571:2: ( ( Comma ) )
             {
-            // InternalDdParser.g:7517:2: ( ( Comma ) )
-            // InternalDdParser.g:7518:3: ( Comma )
+            // InternalDdParser.g:7571:2: ( ( Comma ) )
+            // InternalDdParser.g:7572:3: ( Comma )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getListExpressionEltAccess().getOpCommaKeyword_0_0()); 
             }
-            // InternalDdParser.g:7519:3: ( Comma )
-            // InternalDdParser.g:7520:4: Comma
+            // InternalDdParser.g:7573:3: ( Comma )
+            // InternalDdParser.g:7574:4: Comma
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getListExpressionEltAccess().getOpCommaKeyword_0_0()); 
@@ -24604,17 +24804,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListExpressionElt__RightAssignment_1"
-    // InternalDdParser.g:7531:1: rule__ListExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
+    // InternalDdParser.g:7585:1: rule__ListExpressionElt__RightAssignment_1 : ( ruleSharkExpression ) ;
     public final void rule__ListExpressionElt__RightAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7535:1: ( ( ruleSharkExpression ) )
-            // InternalDdParser.g:7536:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7589:1: ( ( ruleSharkExpression ) )
+            // InternalDdParser.g:7590:2: ( ruleSharkExpression )
             {
-            // InternalDdParser.g:7536:2: ( ruleSharkExpression )
-            // InternalDdParser.g:7537:3: ruleSharkExpression
+            // InternalDdParser.g:7590:2: ( ruleSharkExpression )
+            // InternalDdParser.g:7591:3: ruleSharkExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getListExpressionEltAccess().getRightSharkExpressionParserRuleCall_1_0()); 
@@ -24649,17 +24849,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RangeExpression__RangeAssignment_0_2"
-    // InternalDdParser.g:7546:1: rule__RangeExpression__RangeAssignment_0_2 : ( RULE_RANGE ) ;
+    // InternalDdParser.g:7600:1: rule__RangeExpression__RangeAssignment_0_2 : ( RULE_RANGE ) ;
     public final void rule__RangeExpression__RangeAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7550:1: ( ( RULE_RANGE ) )
-            // InternalDdParser.g:7551:2: ( RULE_RANGE )
+            // InternalDdParser.g:7604:1: ( ( RULE_RANGE ) )
+            // InternalDdParser.g:7605:2: ( RULE_RANGE )
             {
-            // InternalDdParser.g:7551:2: ( RULE_RANGE )
-            // InternalDdParser.g:7552:3: RULE_RANGE
+            // InternalDdParser.g:7605:2: ( RULE_RANGE )
+            // InternalDdParser.g:7606:3: RULE_RANGE
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRangeExpressionAccess().getRangeRANGETerminalRuleCall_0_2_0()); 
@@ -24690,17 +24890,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RangeExpression__RangeAssignment_1_2"
-    // InternalDdParser.g:7561:1: rule__RangeExpression__RangeAssignment_1_2 : ( RULE_RANGEINF ) ;
+    // InternalDdParser.g:7615:1: rule__RangeExpression__RangeAssignment_1_2 : ( RULE_RANGEINF ) ;
     public final void rule__RangeExpression__RangeAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7565:1: ( ( RULE_RANGEINF ) )
-            // InternalDdParser.g:7566:2: ( RULE_RANGEINF )
+            // InternalDdParser.g:7619:1: ( ( RULE_RANGEINF ) )
+            // InternalDdParser.g:7620:2: ( RULE_RANGEINF )
             {
-            // InternalDdParser.g:7566:2: ( RULE_RANGEINF )
-            // InternalDdParser.g:7567:3: RULE_RANGEINF
+            // InternalDdParser.g:7620:2: ( RULE_RANGEINF )
+            // InternalDdParser.g:7621:3: RULE_RANGEINF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRangeExpressionAccess().getRangeRANGEINFTerminalRuleCall_1_2_0()); 
@@ -24731,17 +24931,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__ValueAssignment_0_1"
-    // InternalDdParser.g:7576:1: rule__TerminalExpression__ValueAssignment_0_1 : ( RULE_STR ) ;
+    // InternalDdParser.g:7630:1: rule__TerminalExpression__ValueAssignment_0_1 : ( RULE_STR ) ;
     public final void rule__TerminalExpression__ValueAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7580:1: ( ( RULE_STR ) )
-            // InternalDdParser.g:7581:2: ( RULE_STR )
+            // InternalDdParser.g:7634:1: ( ( RULE_STR ) )
+            // InternalDdParser.g:7635:2: ( RULE_STR )
             {
-            // InternalDdParser.g:7581:2: ( RULE_STR )
-            // InternalDdParser.g:7582:3: RULE_STR
+            // InternalDdParser.g:7635:2: ( RULE_STR )
+            // InternalDdParser.g:7636:3: RULE_STR
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueSTRTerminalRuleCall_0_1_0()); 
@@ -24772,17 +24972,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__ValueAssignment_1_1"
-    // InternalDdParser.g:7591:1: rule__TerminalExpression__ValueAssignment_1_1 : ( RULE_INT ) ;
+    // InternalDdParser.g:7645:1: rule__TerminalExpression__ValueAssignment_1_1 : ( RULE_INT ) ;
     public final void rule__TerminalExpression__ValueAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7595:1: ( ( RULE_INT ) )
-            // InternalDdParser.g:7596:2: ( RULE_INT )
+            // InternalDdParser.g:7649:1: ( ( RULE_INT ) )
+            // InternalDdParser.g:7650:2: ( RULE_INT )
             {
-            // InternalDdParser.g:7596:2: ( RULE_INT )
-            // InternalDdParser.g:7597:3: RULE_INT
+            // InternalDdParser.g:7650:2: ( RULE_INT )
+            // InternalDdParser.g:7651:3: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueINTTerminalRuleCall_1_1_0()); 
@@ -24813,17 +25013,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__ValueAssignment_2_1"
-    // InternalDdParser.g:7606:1: rule__TerminalExpression__ValueAssignment_2_1 : ( RULE_DEC ) ;
+    // InternalDdParser.g:7660:1: rule__TerminalExpression__ValueAssignment_2_1 : ( RULE_DEC ) ;
     public final void rule__TerminalExpression__ValueAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7610:1: ( ( RULE_DEC ) )
-            // InternalDdParser.g:7611:2: ( RULE_DEC )
+            // InternalDdParser.g:7664:1: ( ( RULE_DEC ) )
+            // InternalDdParser.g:7665:2: ( RULE_DEC )
             {
-            // InternalDdParser.g:7611:2: ( RULE_DEC )
-            // InternalDdParser.g:7612:3: RULE_DEC
+            // InternalDdParser.g:7665:2: ( RULE_DEC )
+            // InternalDdParser.g:7666:3: RULE_DEC
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueDECTerminalRuleCall_2_1_0()); 
@@ -24854,17 +25054,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__ValueAssignment_3_1"
-    // InternalDdParser.g:7621:1: rule__TerminalExpression__ValueAssignment_3_1 : ( RULE_CHR ) ;
+    // InternalDdParser.g:7675:1: rule__TerminalExpression__ValueAssignment_3_1 : ( RULE_CHR ) ;
     public final void rule__TerminalExpression__ValueAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7625:1: ( ( RULE_CHR ) )
-            // InternalDdParser.g:7626:2: ( RULE_CHR )
+            // InternalDdParser.g:7679:1: ( ( RULE_CHR ) )
+            // InternalDdParser.g:7680:2: ( RULE_CHR )
             {
-            // InternalDdParser.g:7626:2: ( RULE_CHR )
-            // InternalDdParser.g:7627:3: RULE_CHR
+            // InternalDdParser.g:7680:2: ( RULE_CHR )
+            // InternalDdParser.g:7681:3: RULE_CHR
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueCHRTerminalRuleCall_3_1_0()); 
@@ -24895,23 +25095,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__ValueAssignment_4_1"
-    // InternalDdParser.g:7636:1: rule__TerminalExpression__ValueAssignment_4_1 : ( ( RULE_CSTID ) ) ;
+    // InternalDdParser.g:7690:1: rule__TerminalExpression__ValueAssignment_4_1 : ( ( RULE_CSTID ) ) ;
     public final void rule__TerminalExpression__ValueAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7640:1: ( ( ( RULE_CSTID ) ) )
-            // InternalDdParser.g:7641:2: ( ( RULE_CSTID ) )
+            // InternalDdParser.g:7694:1: ( ( ( RULE_CSTID ) ) )
+            // InternalDdParser.g:7695:2: ( ( RULE_CSTID ) )
             {
-            // InternalDdParser.g:7641:2: ( ( RULE_CSTID ) )
-            // InternalDdParser.g:7642:3: ( RULE_CSTID )
+            // InternalDdParser.g:7695:2: ( ( RULE_CSTID ) )
+            // InternalDdParser.g:7696:3: ( RULE_CSTID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueConstantCrossReference_4_1_0()); 
             }
-            // InternalDdParser.g:7643:3: ( RULE_CSTID )
-            // InternalDdParser.g:7644:4: RULE_CSTID
+            // InternalDdParser.g:7697:3: ( RULE_CSTID )
+            // InternalDdParser.g:7698:4: RULE_CSTID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueConstantCSTIDTerminalRuleCall_4_1_0_1()); 
@@ -24947,18 +25147,63 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TerminalExpression__ValueAssignment_4_1"
 
 
+    // $ANTLR start "rule__TerminalExpression__IndexAssignment_4_2"
+    // InternalDdParser.g:7709:1: rule__TerminalExpression__IndexAssignment_4_2 : ( ruleArraySize ) ;
+    public final void rule__TerminalExpression__IndexAssignment_4_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalDdParser.g:7713:1: ( ( ruleArraySize ) )
+            // InternalDdParser.g:7714:2: ( ruleArraySize )
+            {
+            // InternalDdParser.g:7714:2: ( ruleArraySize )
+            // InternalDdParser.g:7715:3: ruleArraySize
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getTerminalExpressionAccess().getIndexArraySizeParserRuleCall_4_2_0()); 
+            }
+            pushFollow(FOLLOW_2);
+            ruleArraySize();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getTerminalExpressionAccess().getIndexArraySizeParserRuleCall_4_2_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__TerminalExpression__IndexAssignment_4_2"
+
+
     // $ANTLR start "rule__TerminalExpression__ValueAssignment_5_1"
-    // InternalDdParser.g:7655:1: rule__TerminalExpression__ValueAssignment_5_1 : ( ruleBoolean ) ;
+    // InternalDdParser.g:7724:1: rule__TerminalExpression__ValueAssignment_5_1 : ( ruleBoolean ) ;
     public final void rule__TerminalExpression__ValueAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7659:1: ( ( ruleBoolean ) )
-            // InternalDdParser.g:7660:2: ( ruleBoolean )
+            // InternalDdParser.g:7728:1: ( ( ruleBoolean ) )
+            // InternalDdParser.g:7729:2: ( ruleBoolean )
             {
-            // InternalDdParser.g:7660:2: ( ruleBoolean )
-            // InternalDdParser.g:7661:3: ruleBoolean
+            // InternalDdParser.g:7729:2: ( ruleBoolean )
+            // InternalDdParser.g:7730:3: ruleBoolean
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueBooleanEnumRuleCall_5_1_0()); 
@@ -24993,17 +25238,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TerminalExpression__ValueAssignment_6_1"
-    // InternalDdParser.g:7670:1: rule__TerminalExpression__ValueAssignment_6_1 : ( ruleUnset ) ;
+    // InternalDdParser.g:7739:1: rule__TerminalExpression__ValueAssignment_6_1 : ( ruleUnset ) ;
     public final void rule__TerminalExpression__ValueAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7674:1: ( ( ruleUnset ) )
-            // InternalDdParser.g:7675:2: ( ruleUnset )
+            // InternalDdParser.g:7743:1: ( ( ruleUnset ) )
+            // InternalDdParser.g:7744:2: ( ruleUnset )
             {
-            // InternalDdParser.g:7675:2: ( ruleUnset )
-            // InternalDdParser.g:7676:3: ruleUnset
+            // InternalDdParser.g:7744:2: ( ruleUnset )
+            // InternalDdParser.g:7745:3: ruleUnset
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTerminalExpressionAccess().getValueUnsetEnumRuleCall_6_1_0()); 
@@ -25038,23 +25283,23 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IdentifierExpression__ValueAssignment_1"
-    // InternalDdParser.g:7685:1: rule__IdentifierExpression__ValueAssignment_1 : ( ( ruleQualifiedName ) ) ;
+    // InternalDdParser.g:7754:1: rule__IdentifierExpression__ValueAssignment_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__IdentifierExpression__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7689:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalDdParser.g:7690:2: ( ( ruleQualifiedName ) )
+            // InternalDdParser.g:7758:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalDdParser.g:7759:2: ( ( ruleQualifiedName ) )
             {
-            // InternalDdParser.g:7690:2: ( ( ruleQualifiedName ) )
-            // InternalDdParser.g:7691:3: ( ruleQualifiedName )
+            // InternalDdParser.g:7759:2: ( ( ruleQualifiedName ) )
+            // InternalDdParser.g:7760:3: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIdentifierExpressionAccess().getValueAttributeCrossReference_1_0()); 
             }
-            // InternalDdParser.g:7692:3: ( ruleQualifiedName )
-            // InternalDdParser.g:7693:4: ruleQualifiedName
+            // InternalDdParser.g:7761:3: ( ruleQualifiedName )
+            // InternalDdParser.g:7762:4: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIdentifierExpressionAccess().getValueAttributeQualifiedNameParserRuleCall_1_0_1()); 
@@ -25094,18 +25339,63 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__IdentifierExpression__ValueAssignment_1"
 
 
+    // $ANTLR start "rule__IdentifierExpression__IndexAssignment_2"
+    // InternalDdParser.g:7773:1: rule__IdentifierExpression__IndexAssignment_2 : ( ruleArraySize ) ;
+    public final void rule__IdentifierExpression__IndexAssignment_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalDdParser.g:7777:1: ( ( ruleArraySize ) )
+            // InternalDdParser.g:7778:2: ( ruleArraySize )
+            {
+            // InternalDdParser.g:7778:2: ( ruleArraySize )
+            // InternalDdParser.g:7779:3: ruleArraySize
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getIdentifierExpressionAccess().getIndexArraySizeParserRuleCall_2_0()); 
+            }
+            pushFollow(FOLLOW_2);
+            ruleArraySize();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getIdentifierExpressionAccess().getIndexArraySizeParserRuleCall_2_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__IdentifierExpression__IndexAssignment_2"
+
+
     // $ANTLR start "rule__LineComment__LineAssignment_1"
-    // InternalDdParser.g:7704:1: rule__LineComment__LineAssignment_1 : ( RULE_CMT ) ;
+    // InternalDdParser.g:7788:1: rule__LineComment__LineAssignment_1 : ( RULE_CMT ) ;
     public final void rule__LineComment__LineAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7708:1: ( ( RULE_CMT ) )
-            // InternalDdParser.g:7709:2: ( RULE_CMT )
+            // InternalDdParser.g:7792:1: ( ( RULE_CMT ) )
+            // InternalDdParser.g:7793:2: ( RULE_CMT )
             {
-            // InternalDdParser.g:7709:2: ( RULE_CMT )
-            // InternalDdParser.g:7710:3: RULE_CMT
+            // InternalDdParser.g:7793:2: ( RULE_CMT )
+            // InternalDdParser.g:7794:3: RULE_CMT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLineCommentAccess().getLineCMTTerminalRuleCall_1_0()); 
@@ -25136,17 +25426,17 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TrailComment__LineAssignment_1"
-    // InternalDdParser.g:7719:1: rule__TrailComment__LineAssignment_1 : ( RULE_CMT ) ;
+    // InternalDdParser.g:7803:1: rule__TrailComment__LineAssignment_1 : ( RULE_CMT ) ;
     public final void rule__TrailComment__LineAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDdParser.g:7723:1: ( ( RULE_CMT ) )
-            // InternalDdParser.g:7724:2: ( RULE_CMT )
+            // InternalDdParser.g:7807:1: ( ( RULE_CMT ) )
+            // InternalDdParser.g:7808:2: ( RULE_CMT )
             {
-            // InternalDdParser.g:7724:2: ( RULE_CMT )
-            // InternalDdParser.g:7725:3: RULE_CMT
+            // InternalDdParser.g:7808:2: ( RULE_CMT )
+            // InternalDdParser.g:7809:3: RULE_CMT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTrailCommentAccess().getLineCMTTerminalRuleCall_1_0()); 
@@ -25748,12 +26038,13 @@ public class InternalDdParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000008000000002L});
     public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x8000000000000000L});
     public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x1000000000000000L});
     public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x2000000000000000L});
     public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000000000008010L});
-    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x3000000000008110L,0x0000000000000032L});
-    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0000000000008010L});
+    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x3000000000008110L,0x0000000000000032L});
+    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000020000000000L});
 
 }

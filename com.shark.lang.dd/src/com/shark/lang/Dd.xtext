@@ -9,22 +9,26 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 //IDENT triggered after a Comment so generates EOL 
 //with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
 //TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
+//TODO bug on -(1) invalid expression type?
+//TODO bug init integer from constant
+//TODO bug constant can be init from attribute
+//TODO add the check that cross ref can be done only if this is a 1-1 relationship: 2 attribute belong to 2 different entity with 1-1 only
 //TODO test expressions interactively and build non passing JUNIT tests using excel random
 //TODO update formatter
-//TODO move up error message as constants
-//TODO move checkOpertor to helper class
 //TODO customize error messages for parser and lexer: eg constant en maj
 //TODO use long for INT and DEC size verification instead of int
-//TODO do a first output
-//TODO semantic highlighting example
+//TODO do a first output: flatbuffer et 
+//TODO see other todos
 //TODO use case of the unset value
 //TODO test date operations + 1*DAY... basing on the generator error management
 //TODO add min, max, avg
+//TODO semantic highlighting example
 //TODO add content assist
+//TODO move up error message as constants and add more automatic unit tests
+//TODO move checkOpertor to helper class
 //TODO split into reusable grammar and create sd and sk languages
-//TODO implement math a bit more: implement the expression precision check and rounding routines
 //TODO in this context consider removing int and stick to general dec(n,0)?
-//TODO Improve calculateExpression and add it to the main descent of getExpressionType using a value extra member
+//TODO Improve calculateExpression and add it to the main descent of getExpressionType using a value extra member so that at least int(2,2)=90+20 fails
 //TODO check and neutralize useless comment associator
 //TODO check that all text is assigned
 //TODO cleanup error messages in properties
@@ -202,12 +206,12 @@ TerminalExpression returns TerminalExpression:
 	{IntValue} value=INT |
 	{DecValue} value=DEC |
 	{ChrValue} value=CHR |
-	{CstValue} value=[Constant|CSTID] |
+	{CstValue} value=[Constant|CSTID] (index=ArraySize)?|
 	{BoolValue} value=Boolean |
 	{UnsetValue} value=Unset);
 
 IdentifierExpression returns TerminalExpression:
-	{IdentifierExpression} value=[Attribute|QualifiedName];
+	{IdentifierExpression} value=[Attribute|QualifiedName] (index=ArraySize)?;
 
 QualifiedName:
 	(OBJID '.')? ID;
@@ -269,18 +273,17 @@ terminal fragment ASCII:
 terminal fragment NL:
 	('\r'? '\n');
 
-	//beware terminals are consumed in this order of precedence
+//beware terminals are consumed in this order of precedence
 //and lexer eats the longest possibility. caret removed
 //string literals don't allow all escapes only common ones, and only double quotes
-terminal CHR returns ecore::EString: //simpler to manage a string and remove quotes rather than using a value converter
-//TODO consider using a value converter
-	'"' (ESC | ASCII)? '"';
-
-	//string literals don't allow all escapes only common ones, and only double quotes
 //and still need to put Unicode support for special char so \u is in
 //with string compaction, non ASCII char is not encouraged in code/literals --> Unicode only
 terminal STR returns ecore::EString:
-	'"' (ESC | ASCII)+ '"';
+	'"' (ESC | ASCII) (ESC | ASCII) (ESC | ASCII)* '"';
+
+terminal CHR returns ecore::EString: //simpler to manage a string and remove quotes rather than using a value converter
+//TODO consider using a value converter
+	'"' (ESC | ASCII)? '"';
 
 terminal RANGEINF returns ecore::EString:
 	NUM '..n'

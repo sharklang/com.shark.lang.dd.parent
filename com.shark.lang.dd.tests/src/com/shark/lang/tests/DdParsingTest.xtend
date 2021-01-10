@@ -34,28 +34,36 @@ class DdParsingTest {
 	def void testCheckExpressionsPassingCases() {
 
 		val memFile = "inmemory:/testCheckExpressionsPassingCases.dd" -> '''
-			'description of this model, why is it structured like that and which entities it contains
-			'the first series of constants test nominal declarions of constants for each type
+			''description of this model, why is it structured like that and which entities it contains
+			'the first series of constants test nominal declarions of constants for each type which
+			'show what is the list of available types
 			model Customer_Accounts 
 			
-			'first of all we can put comments everywhere as a full line but they are related to the next item
+			'comments can be put everywhere as a full line but they are related to the next item
 			'and they have to follow the indentation strcuture
 			'so these first 3 lines will be considered as extra decription of the first costant AVERAGE_AGE below
-			int(2,1)  AVERAGE_AGE = (32+4) 'to initiate ages
-			str(9)  DEFAULT_FIRST_NAME= "@No22Name" 'just for testing string constants
-			date BUG_OF_2000 = "20000101"  'just to test date constants
-			date CREATION_OF_BANK = "18700101"  'just to test date constants
-			chr  YES = "Y" 'yes constant
-			chr  NO = "N"  'no constant
-			dec(15,5) MAX_AMOUNT = 3145678190.12345 'max amount
+			'constants have to be upper or it does not compile
+			str(7)  DEFAULT_FIRST_NAME= "@NoName" 'each declaration statement is followed by a trailing comment with mandatory description, and string have a max size
+			str(6)  DEFAULT_LAST_NAME= "Dupont" 'so here compilation error due to max size too small
+			chr  YES = "Y" 'yes constant. A single char string is actually a char in the background
+			chr  NO = "N"  'no constant does not compile because it needs to be upper case
+			chr CHAR1 = "\u00AF" '!#$%&'()*+,-./:;<=>?@[]^|_`{}~ are accepted as well as \\t \\n \\r \\\\ and \\u+ 4 digits hexacode  
+			chr RETURN = "\n" 'no need to escape \
+			str(2) DOUBLETAB = "\t\t" ' and that counts the length acordingly so here no error or no warning
+			int(2,2)  AVERAGE_AGE = ((3*2)+50) 'to initiate ages of Persons as default, it is an interger of min 1 digit and max 2 digitts so 0 to 100
+			int(3,2)  MAX_AGE = (100+20)  'and this fails because literal is too big for the max size of the int. Otherwise expressions can be used anywhere
+			date BUG_OF_2000 = "20000101"  'date can be initialized by string and string expressions or with an explicit cast but htis is a bit superfluous 
+			date MY_BIRTH = ("1976"&"0409") 'here it fails because the string expression does not have the right length but no format check in expression 										
+			stamp CREATION_OF_BANK = "18700101.233000.0000" 'does not compile because the hour is 25
+			dec(15,5) MAX_AMOUNT = 3145678190.12345 'max amount does not compile due to too many digits after the comma: a dec 15 5 has max 5 digits on the right
 			time MIDNIGHT = "000000" 'to test a time constant 
 			stamp MIDNIGHT_STAMP = "20100101.000000.9999" 'to test a time constant 
-			chr[2] GENDERS = ("M","F") 'domain values for gender
-			str(3)[5] ALLOWED_ISO_3_CCY = ("eur","USD","GPB","JPY","RMB") 'domain values for currencies 
-			bits PLAIN = "000001" 'this is a joke...
-			bool TRUE = true 'for testinrg
-			date[3] TARGET_HOLIDAYS = ("20000101","18700101","17890101") 'bank holidays for europe target2 all put in year 2000
-			time[3] CUTOFF_TIMES = ("120000","163000","193059") 'time of sepa cutoffs
+			chr[2] GENDERS = ("M","F") 'domain values for gender and example of an array declaration. size of array is checked too as compile time
+			str(3)[5] ALLOWED_ISO_3_CCY = ("eur","USD","GPB","JPY","RMB") 'domain values for currencies, fails because array is too small 
+			bits PLAIN = "001001" 'this is a joke... bits don't support expression just init with a string
+			bool TRUE = true 'for testing of boolead, anything but true or false would have a compile error
+			date[2] TARGET_HOLIDAYS = ("20000101","20001225") 'bank holidays for europe target2 all put in year 2000, only 2 so warning due to list size
+			time[3] CUTOFF_TIMES = ("120000","163000","193059") 'time of sepa cutoffs, does not compile because seconds is 61
 			stamp[2] MILLENIUM_BUG = ("20000101.000000.0000","20000101.000000.0000") 'the time after which all should have gone mad
 			
 			'this is the entity description
@@ -69,18 +77,18 @@ class DdParsingTest {
 				int(10)  id  key 'the internal identifier of the Person
 			
 				'See here an example of a line continuation \ which is the only way to split a statement into several line
-				str(100) name \
+				str(5) name \
 										="Chang" 'name of the person which I defaulted to one for the sake of the example
-				str(100) prenom = DEFAULT_FIRST_NAME 'first name of the customer
-				chr	     gender = "M" 'the gendre either M or F
+				str(7) prenom = DEFAULT_FIRST_NAME 'first name of the customer
+				chr	     gender = GENDERS[0] ' use and array of constant to init the attribute
 			
 				date     dateOfBirth = BUG_OF_2000 'the date of birth is initialized for generation Millenial 
 				time     timeOfBirth = MIDNIGHT 'init at midnight
 				str(2)   countryOfBirth_iso2 = "CN" 'initialized to the most common country in the world :-)
 			
-				str(5)   postalCode = "92500" 'code desc
+				str(5)   postalCode = ("9250" & "0") 'here the size of the concat expression is checked and compiles becaus eit is a str 5
 				'forbidden physical description data :-)
-				bits(5)  physical_description = "11010" 'blue eyes (0|1) dark hair (0|1) dark skin (0|1) height>1,75 (0|1) fat (0|1)
+				bits(5)  physical_description = PLAIN 'blue eyes (0|1) dark hair (0|1) dark skin (0|1) height>1,75 (0|1) fat (0|1)
 			
 			'a customer can be a person or a company
 			Customer:
@@ -89,7 +97,7 @@ class DdParsingTest {
 				(1..n) hasAccounts (0..n) Account 'should move to a 1-n relationship because a customer has at least one account
 			
 			'banking account, can be of many types (term, savings, current, overdraft...)
-			Account:
+			Account: 
 				int(11) 			num     key   ! 'the internal acount number 
 				dec(13,7) 		balance 'balance os the account with a large enough precision for all type of currency
 				str(100) 					description ! 'open description of the account from a customer standpoint, mandatory with !
@@ -98,22 +106,22 @@ class DdParsingTest {
 				stamp openTimeStamp = "20120101.141857.1234"  'timestamp at write time on the DB
 				bits flags 'to store shit in ity
 			
-			'default checks done all the time
-			'add a validation that it cannot crossref other entities unless there is a 1-1 relationship
+			'default checks done all the time when creating or adding an entity are belo for Account and Person
+			'it cannot crossref other entities unless there is a 1-1 relationship
 			#Account:
 				'test the account opening date validity: it cannot be less than the bank historical creation in 1870 and limite to next 200 years
 				test1 (((Account.openDate>=CREATION_OF_BANK) or (Account.openDate<=date("22000101"))) and ((7==8)==true))
 				'test date cast
-				test2 ((Account.num>=5) or (0<=8) or (Account.openDate==date("")) or ((1+6+Account.balance)>=9))
+				test2 ((Account.num>=5) or (0<=8) or (Account.openDate==date("20000101")) or ((1+6+Account.balance)>=9))
 				'mandatory doc on tests
 				test3 (((1+2+4+(5*5*6)+(5/6))==0) or ((10/3) in (1,2)))
 				'mandatory doc
-				test4 (("" stxt (1,2))=="") 
+				test4 (("" stxt (1,2))=="")  
 			
 			'default intrinsic checks for a person entity
 			#Person:
 				'test date on constants
-				test1 ((len(Person.name)>=5) or (0<=8) or (Person.dateOfBirth==date(DEFAULT_FIRST_NAME)) or ((1+6+Person.id)<9))
+				test1 ((len(Person.name)>=5) or (0<=8) or (Person.dateOfBirth==date("20010102")) or ((1+6+Person.id)<9))
 				'test2
 				test2 ((1 in (1..4)) and (("ABC" in "DBCDABC")==4))
 				'test
@@ -134,9 +142,47 @@ class DdParsingTest {
 				'test
 				test3 ((1+2+3+4+(5*5)+(5*6)+5)==6)
 			
+			
 		'''
 
-		testMemoryFileNoError(memFile)
+		val errList = testMemoryFileWithErrors(memFile)
+		Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+	}
+
+	@Test
+	def void testArray() {
+
+		val memFile = "inmemory:/testArray.dd" -> '''
+			'this is a test model   
+			model Array_Test
+			chr[2] GENDERS = ("M","F") 'domain values for gender 
+			str(3)[5] ALLOWED_ISO_3_CCY = ("eur","USD","GPB","JPY","RMB") 'domain values for currencies
+			str(3)    DEFAULT_ISO_3_CCY = "eur" 'default is euro
+						
+			'this is a person
+			Person:
+				chr	gender1 = GENDERS[0] ' use and array of constant to init the attribute
+				chr	gender2 = GENDERS[2] ' out of bound error
+				str(3)	ccy = ALLOWED_ISO_3_CCY ' error as it requires an index to access an array
+				str(3)	ccy2 = DEFAULT_ISO_3_CCY[0] 'error as it is not an array
+				int(2)	length = len(ALLOWED_ISO_3_CCY) 'len and in and stxt on array/lists are the 3 only operations allowed
+				str(6)	two_ccy = (DEFAULT_ISO_3_CCY & ALLOWED_ISO_3_CCY[0]) 'ok
+				str(6)	two_ccy2 = (DEFAULT_ISO_3_CCY & ALLOWED_ISO_3_CCY) 'expression not allowed on array
+								
+		'''
+
+		val errList = testMemoryFileWithErrors(memFile)
+		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message ==
+			"Index is out of bound"),
+			"Out of bound Check With Array Not Working")
+		Assertions.assertTrue((errList.get(1).message ==
+			"non array cannot use a list or range as default/init value"),
+			"non array variable init using array check Not Working")
+		Assertions.assertTrue((errList.get(2).message == "This constant is not an array and so no index can be specified to access it"),
+			"index on non array check not working")
+		Assertions.assertTrue((errList.get(4).message == "Invalid Operator: only in and stxt operator can be used on a list, here it is &"),
+			"Array not allowed in expression check not working")
 
 	}
 
@@ -154,19 +200,18 @@ class DdParsingTest {
 		'''
 
 		val errList = testMemoryFileWithErrors(memFile)
-		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
 		Assertions.assertTrue((errList.get(0).message ==
 			"Expression precision is incompatible with the declaration precision, it is 2 and not 1"),
 			"Precision Validation Check With Round Not Working")
-		Assertions.assertTrue((errList.get(1).message == 
-			"Expression precision is incompatible with the declaration precision, it is 4 and not 1"), 
+		Assertions.assertTrue((errList.get(1).message ==
+			"Expression precision is incompatible with the declaration precision, it is 4 and not 1"),
 			"Precision Validation Check Without Round Not Working")
-		Assertions.assertTrue((errList.get(2).message == 
-			"Invalid initialization: expression type mismatch with attribute or constant"), 
+		Assertions.assertTrue((errList.get(2).message == "Invalid initialization: expression type mismatch with attribute or constant"),
 			"Type Checking Not Working On Round: Should Detect That Round Is a Num And Not A Str")
-		
+
 	}
-	
+
 	@Test
 	def void testStxt() {
 
@@ -183,30 +228,28 @@ class DdParsingTest {
 		'''
 
 		val errList = testMemoryFileWithErrors(memFile)
-		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
-		//warnings are skipped in the list
+		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		// warnings are skipped in the list
 		Assertions.assertTrue((errList.get(0).message ==
 			"Expression length is incompatible with the declaration length, it is 4 and not 3"),
 			"Length Validation Check Not Working on binary cat")
-		Assertions.assertTrue((errList.get(1).message == 
-			"Expression length is incompatible with the declaration length, it is 5 and not 4"), 
+		Assertions.assertTrue((errList.get(1).message ==
+			"Expression length is incompatible with the declaration length, it is 5 and not 4"),
 			"Length Validation Check Not Working on multiple cat")
-		Assertions.assertTrue((errList.get(3).message == 
-			"Expression min size is incompatible with the declaration min size, it is 1 and not 2"), 
+		Assertions.assertTrue((errList.get(3).message ==
+			"Expression min size is incompatible with the declaration min size, it is 1 and not 2"),
 			"Min length validation on string not working")
-		Assertions.assertTrue((errList.get(4).message == 
-			"Type Mismatch: substring operator requires string on the left and integer list on the right"), 
+		Assertions.assertTrue((errList.get(4).message ==
+			"Type Mismatch: substring operator requires string on the left and integer list on the right"),
 			"Operator validation not working")
-		Assertions.assertTrue((errList.get(5).message == 
-			"Type Mismatch: substring operator requires string on the left and integer list on the right"), 
+		Assertions.assertTrue((errList.get(5).message ==
+			"Type Mismatch: substring operator requires string on the left and integer list on the right"),
 			"Type Mismatch validation on stxt operator is not working")
-		Assertions.assertTrue((errList.get(6).message == 
-			"Invalid initialization: expression type mismatch with attribute or constant"), 
+		Assertions.assertTrue((errList.get(6).message == "Invalid initialization: expression type mismatch with attribute or constant"),
 			"Type Mismatch validation is not working")
 
-		
 	}
-	
+
 	@Test
 	def void testMultType() {
 
@@ -222,29 +265,26 @@ class DdParsingTest {
 		'''
 
 		val errList = testMemoryFileWithErrors(memFile)
-		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
-		Assertions.assertTrue((errList.get(0).message ==
-			"Type Mismatch: all the members of the addition should be of numeric type"),
+		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message == "Type Mismatch: all the members of the addition should be of numeric type"),
 			"Type validation of Multiple add fails")
-		Assertions.assertTrue((errList.get(1).message == 
-			"Type Mismatch: all the members of the multiplication should be of numeric type"), 
+		Assertions.assertTrue((errList.get(1).message == "Type Mismatch: all the members of the multiplication should be of numeric type"),
 			"Type validation of Multiple mult fails")
-		Assertions.assertTrue((errList.get(2).message == 
-			"Type Mismatch: all the members of the concat expression should be of string type"), 
-			"Type validation of Multiple cat fails")
-		Assertions.assertTrue((errList.get(3).message == 
-			"Type Mismatch: all the members of the logical Or expression should be of boolean type"), 
+		Assertions.assertTrue((errList.get(2).message ==
+			"Type Mismatch: all the members of the concat expression should be of string type"), "Type validation of Multiple cat fails")
+		Assertions.assertTrue((errList.get(3).message ==
+			"Type Mismatch: all the members of the logical Or expression should be of boolean type"),
 			"Type validation of Multiple or fails")
-		Assertions.assertTrue((errList.get(4).message == 
-			"Type Mismatch: all the members of the logical And expression should be of boolean type"), 
+		Assertions.assertTrue((errList.get(4).message ==
+			"Type Mismatch: all the members of the logical And expression should be of boolean type"),
 			"Type validation of Multiple and fails")
-		
+
 	}
-	
+
 	@Test
 	def void testLike() {
 
-		val memFile = "inmemory:/testStxt.dd" -> '''
+		val memFile = "inmemory:/testLike.dd" -> '''
 			'this is a test model   
 			model Round_Test
 			bool			    TEST1 = ("TOTO" like "TO") 'comment
@@ -253,16 +293,15 @@ class DdParsingTest {
 		'''
 
 		val errList = testMemoryFileWithErrors(memFile)
-		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
-		Assertions.assertTrue((errList.get(0).message ==
-			"Invalid Operand: String template for a like operator cannot be empty"),
+		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message == "Invalid Operand: String template for a like operator cannot be empty"),
 			"Verification of right operand of like operator fails")
 	}
 
 	@Test
 	def void testDateCasts() {
 
-		val memFile = "inmemory:/testStxt.dd" -> '''
+		val memFile = "inmemory:/testDateCast.dd" -> '''
 			'this is a test model   
 			model Round_Test
 			date			    TEST1 = date("ABC") 'comment
@@ -272,38 +311,39 @@ class DdParsingTest {
 		'''
 
 		val errList = testMemoryFileWithErrors(memFile)
-		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
-		Assertions.assertTrue((errList.get(0).message ==
-			"Invalid Date Format: it should be YYYYMMDD"),
+		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message == "Invalid Date Format: it should be YYYYMMDD"),
 			"Verification of date cast literal operand format failed")
-		Assertions.assertTrue((errList.get(1).message ==
-			"Invalid Timestamp Format: it should be YYYYMMDD.HHMMSS.ssss"),
+		Assertions.assertTrue((errList.get(1).message == "Invalid Timestamp Format: it should be YYYYMMDD.HHMMSS.ssss"),
 			"Verification of stamp cast literal operand format failed")
-		Assertions.assertTrue((errList.get(2).message ==
-			"Invalid Time Format: it should be HHMNSS"),
+		Assertions.assertTrue((errList.get(2).message == "Invalid Time Format: it should be HHMNSS"),
 			"Verification of time cast literal operand format failed")
 	}
 
+	@Test
+	def void testChrLexing() {
 
-//TODO move that to a helper class
-	def testMemoryFileNoError(Pair<String, String> fileDesc) {
-		val inMemFile = handler.getInMemoryFile(URI.createURI(fileDesc.key))
-		inMemFile.contents = fileDesc.value.bytes
-		inMemFile.exists = true
-		val resourceSet = resourceSetProvider.get
-		resourceSet.URIConverter.URIHandlers.add(0, handler)
-		val resource = resourceSet.getResource(URI.createURI(fileDesc.key), true)
-		resource.load(null)
-		val model = resource.contents.head as DataModelFragment
-		if(resource.loaded) {
-			val errors = resource.errors
-			validationTestHelper.assertNoError(model,'''Errors: «errors.join("\n ")»''')
-		
-		}
-		//println(NodeModelUtils.compactDump(NodeModelUtils.getNode(model), true))
+		val memFile = "inmemory:/testChrlex.dd" -> '''
+			'this is a test model   
+			model Round_Test
+			chr CHAR1 = "\n" 'comment
+			chr CHAR2 = "\u00AF" 'comment
+			chr CHAR3 = "\u00AF&" 'comment
+			str(4) STR1 = "\t\t\t\n" 'comment
+			str(4) STR2 = "\t\t\t\u0101A9" 'comment
+			
+		'''
+
+		val errList = testMemoryFileWithErrors(memFile)
+		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message ==
+			"Expression length is incompatible with the declaration length, it is 2 and not 1"), "Lexing of char failed on escapes")
+		Assertions.assertTrue((errList.get(1).message ==
+			"Expression length is incompatible with the declaration length, it is 6 and not 4"), "Lexing of string failed on escapes")
 	}
 
-	def  testMemoryFileWithErrors(Pair<String, String> fileDesc) {
+
+	def testMemoryFileWithErrors(Pair<String, String> fileDesc) {
 		val inMemFile = handler.getInMemoryFile(URI.createURI(fileDesc.key))
 		inMemFile.contents = fileDesc.value.bytes
 		inMemFile.exists = true

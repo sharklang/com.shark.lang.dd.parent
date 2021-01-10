@@ -14,6 +14,7 @@ package com.shark.lang.dd;
  * </p>
  * <ul>
  *   <li>{@link com.shark.lang.dd.CstValue#getValue <em>Value</em>}</li>
+ *   <li>{@link com.shark.lang.dd.CstValue#getIndex <em>Index</em>}</li>
  * </ul>
  *
  * @see com.shark.lang.dd.DdPackage#getCstValue()
@@ -43,5 +44,27 @@ public interface CstValue extends TerminalExpression
    * @generated
    */
   void setValue(Constant value);
+
+  /**
+   * Returns the value of the '<em><b>Index</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Index</em>' containment reference.
+   * @see #setIndex(ArraySize)
+   * @see com.shark.lang.dd.DdPackage#getCstValue_Index()
+   * @model containment="true"
+   * @generated
+   */
+  ArraySize getIndex();
+
+  /**
+   * Sets the value of the '{@link com.shark.lang.dd.CstValue#getIndex <em>Index</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Index</em>' containment reference.
+   * @see #getIndex()
+   * @generated
+   */
+  void setIndex(ArraySize value);
 
 } // CstValue

@@ -1870,6 +1870,17 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
+  public EReference getCstValue_Index()
+  {
+    return (EReference)cstValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getBoolValue()
   {
     return boolValueEClass;
@@ -1928,6 +1939,17 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
   public EReference getIdentifierExpression_Value()
   {
     return (EReference)identifierExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getIdentifierExpression_Index()
+  {
+    return (EReference)identifierExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2201,6 +2223,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
 
     cstValueEClass = createEClass(CST_VALUE);
     createEReference(cstValueEClass, CST_VALUE__VALUE);
+    createEReference(cstValueEClass, CST_VALUE__INDEX);
 
     boolValueEClass = createEClass(BOOL_VALUE);
     createEAttribute(boolValueEClass, BOOL_VALUE__VALUE);
@@ -2210,6 +2233,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
 
     identifierExpressionEClass = createEClass(IDENTIFIER_EXPRESSION);
     createEReference(identifierExpressionEClass, IDENTIFIER_EXPRESSION__VALUE);
+    createEReference(identifierExpressionEClass, IDENTIFIER_EXPRESSION__INDEX);
 
     commentEClass = createEClass(COMMENT);
     createEAttribute(commentEClass, COMMENT__LINE);
@@ -2435,6 +2459,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
 
     initEClass(cstValueEClass, CstValue.class, "CstValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCstValue_Value(), this.getConstant(), null, "value", null, 0, 1, CstValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCstValue_Index(), this.getArraySize(), null, "index", null, 0, 1, CstValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(boolValueEClass, BoolValue.class, "BoolValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBoolValue_Value(), this.getBoolean(), "value", null, 0, 1, BoolValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2444,6 +2469,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
 
     initEClass(identifierExpressionEClass, IdentifierExpression.class, "IdentifierExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getIdentifierExpression_Value(), this.getAttribute(), null, "value", null, 0, 1, IdentifierExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIdentifierExpression_Index(), this.getArraySize(), null, "index", null, 0, 1, IdentifierExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getComment_Line(), ecorePackage.getEString(), "line", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

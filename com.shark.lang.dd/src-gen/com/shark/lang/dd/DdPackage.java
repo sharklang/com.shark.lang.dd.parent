@@ -1558,13 +1558,22 @@ public interface DdPackage extends EPackage
   int CST_VALUE__VALUE = TERMINAL_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Index</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CST_VALUE__INDEX = TERMINAL_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Cst Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CST_VALUE_FEATURE_COUNT = TERMINAL_EXPRESSION_FEATURE_COUNT + 1;
+  int CST_VALUE_FEATURE_COUNT = TERMINAL_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.BoolValueImpl <em>Bool Value</em>}' class.
@@ -1642,13 +1651,22 @@ public interface DdPackage extends EPackage
   int IDENTIFIER_EXPRESSION__VALUE = TERMINAL_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Index</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IDENTIFIER_EXPRESSION__INDEX = TERMINAL_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Identifier Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IDENTIFIER_EXPRESSION_FEATURE_COUNT = TERMINAL_EXPRESSION_FEATURE_COUNT + 1;
+  int IDENTIFIER_EXPRESSION_FEATURE_COUNT = TERMINAL_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.CommentImpl <em>Comment</em>}' class.
@@ -3150,6 +3168,17 @@ public interface DdPackage extends EPackage
   EReference getCstValue_Value();
 
   /**
+   * Returns the meta object for the containment reference '{@link com.shark.lang.dd.CstValue#getIndex <em>Index</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Index</em>'.
+   * @see com.shark.lang.dd.CstValue#getIndex()
+   * @see #getCstValue()
+   * @generated
+   */
+  EReference getCstValue_Index();
+
+  /**
    * Returns the meta object for class '{@link com.shark.lang.dd.BoolValue <em>Bool Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3211,6 +3240,17 @@ public interface DdPackage extends EPackage
    * @generated
    */
   EReference getIdentifierExpression_Value();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.shark.lang.dd.IdentifierExpression#getIndex <em>Index</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Index</em>'.
+   * @see com.shark.lang.dd.IdentifierExpression#getIndex()
+   * @see #getIdentifierExpression()
+   * @generated
+   */
+  EReference getIdentifierExpression_Index();
 
   /**
    * Returns the meta object for class '{@link com.shark.lang.dd.Comment <em>Comment</em>}'.
@@ -4427,6 +4467,14 @@ public interface DdPackage extends EPackage
     EReference CST_VALUE__VALUE = eINSTANCE.getCstValue_Value();
 
     /**
+     * The meta object literal for the '<em><b>Index</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CST_VALUE__INDEX = eINSTANCE.getCstValue_Index();
+
+    /**
      * The meta object literal for the '{@link com.shark.lang.dd.impl.BoolValueImpl <em>Bool Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4479,6 +4527,14 @@ public interface DdPackage extends EPackage
      * @generated
      */
     EReference IDENTIFIER_EXPRESSION__VALUE = eINSTANCE.getIdentifierExpression_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Index</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IDENTIFIER_EXPRESSION__INDEX = eINSTANCE.getIdentifierExpression_Index();
 
     /**
      * The meta object literal for the '{@link com.shark.lang.dd.impl.CommentImpl <em>Comment</em>}' class.

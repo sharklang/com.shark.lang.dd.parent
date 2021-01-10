@@ -23,6 +23,7 @@ import com.shark.lang.dd.UnaryExpression
 import com.shark.lang.dd.UnaryOperator
 import com.shark.lang.dd.UnsetValue
 import com.shark.lang.dd.impl.DdFactoryImpl
+import java.util.regex.Pattern
 
 /**
  * The class focuses on validating expression in check and initialization expressions and of the dd grammar
@@ -40,15 +41,18 @@ class DdExpressionHelper {
 
 	static val zero = "0".charAt(0)
 	static val one = "1".charAt(0)
+	static val matcher = Pattern.compile("\\\\(t|n|r|\\\\)") //matches one escape
+	static val matcher2 = Pattern.compile("\\\\u(\\d|[A-F]){4}") //matches one unicode escape
+
 
 	// to manage the different subtypes of list as well as the case of a variable/Constant and return the information
 	protected def boolean isListExpression(SharkExpression binExpr) {
 		if(binExpr instanceof IdentifierExpression) {
 			val ident = binExpr as IdentifierExpression
-			ident.value.arraySize !== null
+			((ident.value.arraySize !== null) && (ident.index===null)) //an array identifier without index specified
 		} else if(binExpr instanceof CstValue) {
 			val cst = binExpr as CstValue
-			cst.value.arraySize !== null
+			((cst.value.arraySize !== null) && (cst.index===null)) //an array constant without index specified
 		} else if(binExpr instanceof ListExpression) {
 			true
 		} else
@@ -245,11 +249,36 @@ class DdExpressionHelper {
 		var precision = 0
 		switch (expr) {
 			StrValue: {
-				length = (expr as StrValue).value.length - 2 // quotes are in value
+				var strValue = (expr as StrValue).value.substring(1)
+				strValue = strValue.substring(0,strValue.length-1)
+				length = strValue.length 
+				//if the string contains simple escapes like \n we need to remove 1 count for each
+				var m = matcher.matcher(strValue)
+				while (m.find){
+						length=length - 1
+				}
+				//if the string contains unicode escapes like \u00AF we need to remove 5 count for each
+				m=matcher2.matcher(strValue)
+				while (m.find){
+						length=length - 5
+				}
 			}
 			ChrValue: {
 				//empty string is an empty char... So here can return 1 or 0
-				length = (expr as ChrValue).value.length - 2
+				var chrValue = (expr as ChrValue).value.substring(1)
+				chrValue = chrValue.substring(0,chrValue.length-1)
+				length = chrValue.length
+				if (length==2) {
+					// verifies \n \r \\ \t 
+					if (matcher.matcher(chrValue).matches){
+						length=1
+					}
+				} else if (length==6) {
+					// verifies \u1234 
+					if (matcher2.matcher(chrValue).matches){
+						length=1
+					}
+				}
 			}
 			IntValue: {
 				length = (expr as IntValue).value.integerLength
@@ -357,35 +386,35 @@ class DdExpressionHelper {
 				calculateExpression(identExpr.value.defaultValue)
 			}
 			BinaryExpression: {
-				val binExpr = expr as BinaryExpression
+				//val binExpr = expr as BinaryExpression
 				""
 			}
 			UnaryExpression: {
-				val unExpr = expr as UnaryExpression
+				//val unExpr = expr as UnaryExpression
 				""
 			}
 			AddExpression: {
-				val addExpr = expr as AddExpression
+				//val addExpr = expr as AddExpression
 				""
 			}
 			MultExpression: {
-				val multExpr = expr as MultExpression
+				//val multExpr = expr as MultExpression
 				""
 			}
 			AndExpression: {
-				val andExpr = expr as AndExpression
+				//val andExpr = expr as AndExpression
 				""
 			}
 			OrExpression: {
-				val orExpr = expr as OrExpression
+				//val orExpr = expr as OrExpression
 				""
 			}
 			CatExpression: {
-				val catExpr = expr as CatExpression
+				//val catExpr = expr as CatExpression
 				""
 			}
 			ListExpression: {
-				val listExpr = expr as ListExpression
+				//val listExpr = expr as ListExpression
 				""
 			}
 			UnsetValue: {

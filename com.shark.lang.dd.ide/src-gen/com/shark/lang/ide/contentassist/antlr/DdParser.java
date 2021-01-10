@@ -188,9 +188,11 @@ public class DdParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTerminalExpressionAccess().getValueAssignment_2_1(), "rule__TerminalExpression__ValueAssignment_2_1");
 			builder.put(grammarAccess.getTerminalExpressionAccess().getValueAssignment_3_1(), "rule__TerminalExpression__ValueAssignment_3_1");
 			builder.put(grammarAccess.getTerminalExpressionAccess().getValueAssignment_4_1(), "rule__TerminalExpression__ValueAssignment_4_1");
+			builder.put(grammarAccess.getTerminalExpressionAccess().getIndexAssignment_4_2(), "rule__TerminalExpression__IndexAssignment_4_2");
 			builder.put(grammarAccess.getTerminalExpressionAccess().getValueAssignment_5_1(), "rule__TerminalExpression__ValueAssignment_5_1");
 			builder.put(grammarAccess.getTerminalExpressionAccess().getValueAssignment_6_1(), "rule__TerminalExpression__ValueAssignment_6_1");
 			builder.put(grammarAccess.getIdentifierExpressionAccess().getValueAssignment_1(), "rule__IdentifierExpression__ValueAssignment_1");
+			builder.put(grammarAccess.getIdentifierExpressionAccess().getIndexAssignment_2(), "rule__IdentifierExpression__IndexAssignment_2");
 			builder.put(grammarAccess.getLineCommentAccess().getLineAssignment_1(), "rule__LineComment__LineAssignment_1");
 			builder.put(grammarAccess.getTrailCommentAccess().getLineAssignment_1(), "rule__TrailComment__LineAssignment_1");
 		}
