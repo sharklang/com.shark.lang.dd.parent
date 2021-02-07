@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.shark.lang.dd.impl.AddExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.AddExpressionImpl#getRight <em>Right</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.AddExpressionImpl#getAddElts <em>Add Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.AddExpressionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.AddExpressionImpl#getPrecision <em>Precision</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.AddExpressionImpl#getLength <em>Length</em>}</li>
  * </ul>
@@ -93,26 +92,6 @@ public class AddExpressionImpl extends SharkExpressionImpl implements AddExpress
    * @ordered
    */
   protected EList<AddExpressionElt> addElts;
-
-  /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected static final String VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
@@ -321,31 +300,6 @@ public class AddExpressionImpl extends SharkExpressionImpl implements AddExpress
    * @generated
    */
   @Override
-  public String getValue()
-  {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setValue(String newValue)
-  {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.ADD_EXPRESSION__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public int getPrecision()
   {
     return precision;
@@ -428,8 +382,6 @@ public class AddExpressionImpl extends SharkExpressionImpl implements AddExpress
         return getRight();
       case DdPackage.ADD_EXPRESSION__ADD_ELTS:
         return getAddElts();
-      case DdPackage.ADD_EXPRESSION__VALUE:
-        return getValue();
       case DdPackage.ADD_EXPRESSION__PRECISION:
         return getPrecision();
       case DdPackage.ADD_EXPRESSION__LENGTH:
@@ -461,9 +413,6 @@ public class AddExpressionImpl extends SharkExpressionImpl implements AddExpress
       case DdPackage.ADD_EXPRESSION__ADD_ELTS:
         getAddElts().clear();
         getAddElts().addAll((Collection<? extends AddExpressionElt>)newValue);
-        return;
-      case DdPackage.ADD_EXPRESSION__VALUE:
-        setValue((String)newValue);
         return;
       case DdPackage.ADD_EXPRESSION__PRECISION:
         setPrecision((Integer)newValue);
@@ -497,9 +446,6 @@ public class AddExpressionImpl extends SharkExpressionImpl implements AddExpress
       case DdPackage.ADD_EXPRESSION__ADD_ELTS:
         getAddElts().clear();
         return;
-      case DdPackage.ADD_EXPRESSION__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
       case DdPackage.ADD_EXPRESSION__PRECISION:
         setPrecision(PRECISION_EDEFAULT);
         return;
@@ -528,8 +474,6 @@ public class AddExpressionImpl extends SharkExpressionImpl implements AddExpress
         return right != null;
       case DdPackage.ADD_EXPRESSION__ADD_ELTS:
         return addElts != null && !addElts.isEmpty();
-      case DdPackage.ADD_EXPRESSION__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case DdPackage.ADD_EXPRESSION__PRECISION:
         return precision != PRECISION_EDEFAULT;
       case DdPackage.ADD_EXPRESSION__LENGTH:
@@ -551,8 +495,6 @@ public class AddExpressionImpl extends SharkExpressionImpl implements AddExpress
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", value: ");
-    result.append(value);
     result.append(", precision: ");
     result.append(precision);
     result.append(", length: ");

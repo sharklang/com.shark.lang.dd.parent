@@ -4,36 +4,38 @@
 package com.shark.lang.tests
 
 import com.google.inject.Inject
+import com.shark.lang.DdStandaloneSetup
 import com.shark.lang.dd.DataModelFragment
-import javax.inject.Provider
+import java.io.ByteArrayInputStream
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.extensions.InjectionExtension
-import org.eclipse.xtext.testing.util.InMemoryURIHandler
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
 
-//with a grammar that is EOF sensitive we need to use File Input Stream
+//with a grammar that is EOF sensitive we need to use File Input Stream, as apparently it does not work otherwise...
+//hence the use of temp files. Works partially with inMemFile but that fails with eclipse IContainer/IResource based test of 
+//constraints in DdValidator. So simple classical temp files and standalone code
 @ExtendWith(InjectionExtension)
 @InjectWith(DdInjectorProvider)
 class DdParsingTest {
-	// @Inject ParseHelper<DataModel> parseHelper
+	// @Inject ParseHelper<DataModelFragment> parseHelper // To parse text directly but seems failing with EOF dependent grammar
 	@Inject ValidationTestHelper validationTestHelper
+
 	// @Inject ResourceHelper resourceHelper;
 	// @Inject NodeModelUtils modelUtil //nodeUtil is static...
 	// @Inject ITokenDefProvider tokenDefProvider;
 	// @Inject Lexer lexer;
-	@Inject Provider<XtextResourceSet> resourceSetProvider
-
-	val handler = new InMemoryURIHandler()
-
+	// @Inject Provider<XtextResourceSet> resourceSetProvider
 	@Test
 	def void testCheckExpressionsPassingCases() {
 
-		val memFile = "inmemory:/testCheckExpressionsPassingCases.dd" -> '''
+		val memFile = "testCheckExpressionsPassingCases.dd" -> '''
 			''description of this model, why is it structured like that and which entities it contains
 			'the first series of constants test nominal declarions of constants for each type which
 			'show what is the list of available types
@@ -134,7 +136,7 @@ class DdParsingTest {
 				test6 (DEFAULT_FIRST_NAME like str(123))
 			
 			'All cross checks for persons and accounts
-			#Accounts_Person:
+			#Accounts_Person (Person, Account[]):
 				'test
 				test1 ((len(Person.name)>=5) or (0<=8) or (Person.dateOfBirth==CREATION_OF_BANK) or ((1+6+Account.balance)<9))
 				'test
@@ -145,14 +147,83 @@ class DdParsingTest {
 			
 		'''
 
-		val errList = testMemoryFileWithErrors(memFile)
+		val errList = testFileWithErrors(memFile)
 		Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+	}
+
+	@Test
+	def void testMinus() {
+
+		val memFile = "testMinus.dd" -> '''
+			'this is a test model   
+			model Minus_Test
+			int(1) TEST = -(1) 'to debug an error on minus
+			int(3,2) TEST2 = 1000 'fails
+			int(3,2) TEST3 = 1 'fails
+			int(3,2) TEST4 = 10 'works
+			int(4,2) MAX = -(((100+20)*1)) 'this one should work
+			int(3,2) MAX2 = -(((100+20)*1)) 'this one should fail
+			
+		'''
+
+		val errList = testFileWithErrors(memFile)
+		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message ==
+			"Expression length is incompatible with the declaration length, it is 4 and not 3"),
+			"Length calculation inside a unary operator does not work")
+		Assertions.assertTrue((errList.get(2).message ==
+			"Expression min size is incompatible with the declaration min size, it is 1 and not 2"),
+			"Length calculation inside a unary operator does not work")
+		Assertions.assertTrue((errList.get(4).message ==
+			"Expression length is incompatible with the declaration length, it is 4 and not 3"),
+			"Length calculation inside a unary operator does not work")
+		Assertions.assertTrue(errList.size == 5, "New Errors or Warning are listed, to be checked")
+	}
+
+	@Test
+	def void testAttributeInConstant() {
+
+		val memFile = "testAttrInCst.dd" -> '''
+			'this is a test model   
+			model AttributeInCst_Test
+			int(1) TEST1 = Account.num 'fails because does not make sense
+			dec(1,2) TEST2 = ((1-(Account.num +1)+4)/10) 'fails too same reason
+			
+			'banking account, can be of many types (term, savings, current, overdraft...)
+			Account: 
+				int(1) 			num     key   ! 'the internal acount number 
+		'''
+
+		val errList = testFileWithErrors(memFile)
+		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message == "A constant cannot be initiated with an attribute or attribute based expression"),
+			"Check on attribute used in constant definition failed")
+		Assertions.assertTrue((errList.get(1).message == "A constant cannot be initiated with an attribute or attribute based expression"),
+			"Check on attribute used in constant definition failed")
+		Assertions.assertTrue(errList.size == 2, "New Errors or Warning are listed, to be checked")
+	}
+
+	// test a bug fix on precision propagation between constants
+	@Test
+	def void testIntegerFromConstant() {
+
+		val memFile = "testIntFromCst.dd" -> '''
+			'this is a test model   
+			model AttributeInCst_Test
+			int(2,2) TEST1 = 10 'fails because does not make sense
+			int(2,2) TEST2 = TEST1 'fails too same reason
+			
+		'''
+
+		val errList = testFileWithErrors(memFile)
+		Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+
 	}
 
 	@Test
 	def void testArray() {
 
-		val memFile = "inmemory:/testArray.dd" -> '''
+		val memFile = "testArray.dd" -> '''
 			'this is a test model   
 			model Array_Test
 			chr[2] GENDERS = ("M","F") 'domain values for gender 
@@ -171,25 +242,23 @@ class DdParsingTest {
 								
 		'''
 
-		val errList = testMemoryFileWithErrors(memFile)
-		//Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
-		Assertions.assertTrue((errList.get(0).message ==
-			"Index is out of bound"),
-			"Out of bound Check With Array Not Working")
-		Assertions.assertTrue((errList.get(1).message ==
-			"non array cannot use a list or range as default/init value"),
+		val errList = testFileWithErrors(memFile)
+		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
+		Assertions.assertTrue((errList.get(0).message == "Index is out of bound"), "Out of bound Check With Array Not Working")
+		Assertions.assertTrue((errList.get(1).message == "non array cannot use a list or range as default/init value"),
 			"non array variable init using array check Not Working")
 		Assertions.assertTrue((errList.get(2).message == "This constant is not an array and so no index can be specified to access it"),
 			"index on non array check not working")
 		Assertions.assertTrue((errList.get(4).message == "Invalid Operator: only in and stxt operator can be used on a list, here it is &"),
 			"Array not allowed in expression check not working")
+		Assertions.assertTrue(errList.size == 6, "New Errors or Warning are listed, to be checked")
 
 	}
 
 	@Test
 	def void testRound() {
 
-		val memFile = "inmemory:/testRound.dd" -> '''
+		val memFile = "testRound.dd" -> '''
 			'this is a test model   
 			model Round_Test
 			dec ( 3 , 1 ) TEST1 = ( ( 2.23 + 1 ) round 1 ) 'comment
@@ -199,7 +268,7 @@ class DdParsingTest {
 			
 		'''
 
-		val errList = testMemoryFileWithErrors(memFile)
+		val errList = testFileWithErrors(memFile)
 		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
 		Assertions.assertTrue((errList.get(0).message ==
 			"Expression precision is incompatible with the declaration precision, it is 2 and not 1"),
@@ -209,13 +278,13 @@ class DdParsingTest {
 			"Precision Validation Check Without Round Not Working")
 		Assertions.assertTrue((errList.get(2).message == "Invalid initialization: expression type mismatch with attribute or constant"),
 			"Type Checking Not Working On Round: Should Detect That Round Is a Num And Not A Str")
-
+		Assertions.assertTrue(errList.size == 5, "New Errors or Warning are listed, to be checked")
 	}
 
 	@Test
 	def void testStxt() {
 
-		val memFile = "inmemory:/testStxt.dd" -> '''
+		val memFile = "testStxt.dd" -> '''
 			'this is a test model   
 			model Round_Test
 			str ( 3 , 1 ) TEST1 = ( "AB" & "AB" )	'comment
@@ -227,7 +296,7 @@ class DdParsingTest {
 			
 		'''
 
-		val errList = testMemoryFileWithErrors(memFile)
+		val errList = testFileWithErrors(memFile)
 		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
 		// warnings are skipped in the list
 		Assertions.assertTrue((errList.get(0).message ==
@@ -247,13 +316,14 @@ class DdParsingTest {
 			"Type Mismatch validation on stxt operator is not working")
 		Assertions.assertTrue((errList.get(6).message == "Invalid initialization: expression type mismatch with attribute or constant"),
 			"Type Mismatch validation is not working")
+		Assertions.assertTrue(errList.size == 8, "New Errors or Warning are listed, to be checked")
 
 	}
 
 	@Test
 	def void testMultType() {
 
-		val memFile = "inmemory:/testStxt.dd" -> '''
+		val memFile = "testStxt.dd" -> '''
 			'this is a test model   
 			model Round_Test
 			int ( 3,2 )     TEST1 = (323+4+"" ) 'comment
@@ -264,7 +334,7 @@ class DdParsingTest {
 			
 		'''
 
-		val errList = testMemoryFileWithErrors(memFile)
+		val errList = testFileWithErrors(memFile)
 		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
 		Assertions.assertTrue((errList.get(0).message == "Type Mismatch: all the members of the addition should be of numeric type"),
 			"Type validation of Multiple add fails")
@@ -278,13 +348,14 @@ class DdParsingTest {
 		Assertions.assertTrue((errList.get(4).message ==
 			"Type Mismatch: all the members of the logical And expression should be of boolean type"),
 			"Type validation of Multiple and fails")
+		Assertions.assertTrue(errList.size == 5, "New Errors or Warning are listed, to be checked")
 
 	}
 
 	@Test
 	def void testLike() {
 
-		val memFile = "inmemory:/testLike.dd" -> '''
+		val memFile = "testLike.dd" -> '''
 			'this is a test model   
 			model Round_Test
 			bool			    TEST1 = ("TOTO" like "TO") 'comment
@@ -292,16 +363,17 @@ class DdParsingTest {
 			
 		'''
 
-		val errList = testMemoryFileWithErrors(memFile)
+		val errList = testFileWithErrors(memFile)
 		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
 		Assertions.assertTrue((errList.get(0).message == "Invalid Operand: String template for a like operator cannot be empty"),
 			"Verification of right operand of like operator fails")
+		Assertions.assertTrue(errList.size == 1, "New Errors or Warning are listed, to be checked")
 	}
 
 	@Test
 	def void testDateCasts() {
 
-		val memFile = "inmemory:/testDateCast.dd" -> '''
+		val memFile = "testDateCast.dd" -> '''
 			'this is a test model   
 			model Round_Test
 			date			    TEST1 = date("ABC") 'comment
@@ -310,7 +382,7 @@ class DdParsingTest {
 			
 		'''
 
-		val errList = testMemoryFileWithErrors(memFile)
+		val errList = testFileWithErrors(memFile)
 		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
 		Assertions.assertTrue((errList.get(0).message == "Invalid Date Format: it should be YYYYMMDD"),
 			"Verification of date cast literal operand format failed")
@@ -318,12 +390,13 @@ class DdParsingTest {
 			"Verification of stamp cast literal operand format failed")
 		Assertions.assertTrue((errList.get(2).message == "Invalid Time Format: it should be HHMNSS"),
 			"Verification of time cast literal operand format failed")
+		Assertions.assertTrue(errList.size == 3, "New Errors or Warning are listed, to be checked")
 	}
 
 	@Test
 	def void testChrLexing() {
 
-		val memFile = "inmemory:/testChrlex.dd" -> '''
+		val memFile = "testChrlex.dd" -> '''
 			'this is a test model   
 			model Round_Test
 			chr CHAR1 = "\n" 'comment
@@ -334,25 +407,37 @@ class DdParsingTest {
 			
 		'''
 
-		val errList = testMemoryFileWithErrors(memFile)
+		val errList = testFileWithErrors(memFile)
 		// Assertions.assertTrue(errList.isEmpty, '''Errors: «errList.join("\n ")»''')
 		Assertions.assertTrue((errList.get(0).message ==
 			"Expression length is incompatible with the declaration length, it is 2 and not 1"), "Lexing of char failed on escapes")
 		Assertions.assertTrue((errList.get(1).message ==
 			"Expression length is incompatible with the declaration length, it is 6 and not 4"), "Lexing of string failed on escapes")
+		Assertions.assertTrue(errList.size == 2, "New Errors or Warning are listed, to be checked")
 	}
 
+	def testFileWithErrors(Pair<String, String> fileDesc) {
+		//val tempFile = Files.createTempFile("xtext-unit-test-", fileDesc.key);
+		//tempFile.toFile.deleteOnExit;
 
-	def testMemoryFileWithErrors(Pair<String, String> fileDesc) {
-		val inMemFile = handler.getInMemoryFile(URI.createURI(fileDesc.key))
-		inMemFile.contents = fileDesc.value.bytes
-		inMemFile.exists = true
-		val resourceSet = resourceSetProvider.get
-		resourceSet.URIConverter.URIHandlers.add(0, handler)
-		val resource = resourceSet.getResource(URI.createURI(fileDesc.key), true)
-		resource.load(null)
+		// write in file
+		//Files.write(tempFile, fileDesc.value.getBytes(StandardCharsets.UTF_8));
+
+		// old version with inMemFile
+		/*val resourceSet = resourceSetProvider.get
+		 * resourceSet.URIConverter.URIHandlers.add(0, handler)
+		 * val resource = resourceSet.getResource(URI.createURI(fileDesc.key), true)
+		 resource.load(null)*/
+		new StandaloneSetup().setPlatformUri("../");
+		val injector = new DdStandaloneSetup().createInjectorAndDoEMFRegistration();
+		val resourceSet = injector.getInstance(XtextResourceSet);
+		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
+		val resource = resourceSet.createResource(URI.createURI("test:/"+fileDesc.key));
+		val in = new ByteArrayInputStream(fileDesc.value.getBytes());
+		resource.load(in, resourceSet.getLoadOptions());
 		val model = resource.contents.head as DataModelFragment
 		validationTestHelper.validate(model)
+
 	}
 
 }

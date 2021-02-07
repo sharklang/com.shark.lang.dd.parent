@@ -8,6 +8,7 @@ import com.shark.lang.dd.AndExpressionElt
 import com.shark.lang.dd.ArraySize
 import com.shark.lang.dd.Attribute
 import com.shark.lang.dd.AttributeSize
+import com.shark.lang.dd.AttributeValue
 import com.shark.lang.dd.BinaryExpression
 import com.shark.lang.dd.BinaryOperator
 import com.shark.lang.dd.BoolValue
@@ -20,7 +21,6 @@ import com.shark.lang.dd.CstValue
 import com.shark.lang.dd.DataType
 import com.shark.lang.dd.DdPackage
 import com.shark.lang.dd.DecValue
-import com.shark.lang.dd.IdentifierExpression
 import com.shark.lang.dd.IntValue
 import com.shark.lang.dd.ListExpression
 import com.shark.lang.dd.ListExpressionElt
@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.validation.AbstractDeclarativeValidator
 import org.eclipse.xtext.validation.Check
+import org.eclipse.xtext.validation.CheckType
 import org.eclipse.xtext.validation.EValidatorRegistrar
 
 /**
@@ -75,7 +76,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 
 // check that declared type are aligned to expression used for declaration
 //on attribute and constant defaultValue
-	@Check
+	@Check(CheckType.NORMAL)
 	def checkTypes(Attribute attr) {
 		val attrDataType = attr.dataType
 		val attrDefaultValue = attr.defaultValue
@@ -89,12 +90,12 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 		// checks the size between bracket, not the array size
 		checkSize(attrDataType.value, attr.attributeSize, attrDefaultValue, attr, DdPackage.Literals.ATTRIBUTE__ATTRIBUTE_SIZE)
 		// check that if the variable is an array it has a list of smaller size as a default
-		checkArray(attr.arraySize, attr, attr.defaultValue, DdPackage.Literals.ATTRIBUTE__DEFAULT_VALUE)
+		checkArray(attr.arraySize, attr.defaultValue, attr, DdPackage.Literals.ATTRIBUTE__DEFAULT_VALUE)
 	}
 
 // check that declared type are aligned to expression used for declaration
 // on attribute and constant defaultValue
-	@Check
+	@Check(CheckType.NORMAL)
 	def checkTypes(Constant cst) {
 		val cstDataType = cst.dataType
 		val cstDefaultValue = cst.defaultValue
@@ -104,11 +105,15 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 		// check size mandatory and if size is correct
 		checkSize(cstDataType.value, cst.attributeSize, cstDefaultValue, cst, DdPackage.Literals.CONSTANT__ATTRIBUTE_SIZE)
 		// check that if the variable is an array it has a list of smaller size as a default
-		checkArray(cst.arraySize, cst, cst.defaultValue, DdPackage.Literals.CONSTANT__DEFAULT_VALUE)
+		checkArray(cst.arraySize, cstDefaultValue, cst, DdPackage.Literals.CONSTANT__DEFAULT_VALUE)
+		//check if the default value expression somewhere contains an attribute reference which is not possible
+		if (cstDefaultValue.hasAttribute==1) {
+			error("A constant cannot be initiated with an attribute or attribute based expression", cst, DdPackage.Literals.CONSTANT__DEFAULT_VALUE)
+		}
 	}
 
 // check expression need to be of boolean type	
-	@Check
+	@Check(CheckType.NORMAL)
 	def checkConstraintsAreBoolean(CheckExpression checkExpr) {
 		var type = getExpressionType(checkExpr.expr)
 		if(type.value != DataType.BOOL_VALUE) {
@@ -128,6 +133,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 	def checkTypes(SharkExpression defaultValue, DataType dataType, EObject ctxt, EReference ref) {
 		// this first call here ensures all expressions are recursively checked, except special case for bits constant
 		var exprType = DataType.UNSET
+		// to manage the special case of a BITS CONSTANT. Any use of a bits constant deeper inside expression generates error
 		if(defaultValue instanceof CstValue) {
 			val cst = defaultValue as CstValue
 			// bits are stored only, not allowed in expression. Except to init an identifier 
@@ -143,6 +149,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 			// manage the init of bits and dates which is done by strings and raise error otherwise
 			if((dataType.value == DataType.BITS_VALUE) && (exprType.value == DataType.STR_VALUE)) {
 				// could be ok despite the difference of type if bits or date, unless it is not the right format
+				//TODO make it a bit more flexible like concat of strings? or do not check if expression?
 				if(!((defaultValue instanceof StrValue) && (exprHelper.checkStringBitsFormat((defaultValue as StrValue).value)))) {
 					error(ERR_MSG_BITS, ctxt, ref)
 				}
@@ -435,11 +442,12 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 				}
 				exprHelper.mergeCompatibleDataTypes(cst.value.dataType)
 			}
-			IdentifierExpression: {
-				val identExpr = e as IdentifierExpression
+			AttributeValue: {
+				val identExpr = e as AttributeValue
 				if(identExpr.value.dataType.value == DataType.BITS_VALUE) {
-					error(ERR_BITS_NOT_ALLOWED, identExpr, DdPackage.Literals.IDENTIFIER_EXPRESSION__VALUE)
+					error(ERR_BITS_NOT_ALLOWED, identExpr, DdPackage.Literals.ATTRIBUTE_VALUE__VALUE)
 				}
+				exprHelper.flagExpressionParentsWithAttribute(identExpr)
 				exprHelper.mergeCompatibleDataTypes(identExpr.value.dataType)
 			}
 			BinaryExpression: { // triggers recursive call of the check method,
@@ -576,13 +584,13 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 				val typeValue = t.value
 				// list not allowed on unary expressions except on len
 				if(exprHelper.isListExpression(unExpr.left)) {
-					
-				  if (opValue!=UnaryOperator.OP_LEN_VALUE) {
-						error("Invalid Expression: unary operator or function except len are impossible on a list, here it is " + op.literal, unExpr,
-							DdPackage.Literals.UNARY_EXPRESSION__OP)
+
+					if(opValue != UnaryOperator.OP_LEN_VALUE) {
+						error("Invalid Expression: unary operator or function except len are impossible on a list, here it is " +
+							op.literal, unExpr, DdPackage.Literals.UNARY_EXPRESSION__OP)
 					} else {
-						//if operator if len on an array, no need to check other compatibility it works for all sub type
-						//Todo test len on non homogenous array
+						// if operator if len on an array, no need to check other compatibility it works for all sub type
+						// Todo test len on non homogenous array
 						return
 					}
 				}
@@ -626,7 +634,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 	}
 
 	// when used, the types are checked already, only size is verified of array
-	def checkArray(ArraySize array, EObject context, SharkExpression defaultValue, EReference eRef) {
+	def checkArray(ArraySize array, SharkExpression defaultValue, EObject context, EReference eRef) {
 		if(array !== null) {
 			if(!(exprHelper.isListExpression(defaultValue))) {
 				error("arrays require a list or range as default/init value", context, eRef)

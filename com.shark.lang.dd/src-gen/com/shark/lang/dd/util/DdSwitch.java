@@ -10,6 +10,7 @@ import com.shark.lang.dd.AndExpressionElt;
 import com.shark.lang.dd.ArraySize;
 import com.shark.lang.dd.Attribute;
 import com.shark.lang.dd.AttributeSize;
+import com.shark.lang.dd.AttributeValue;
 import com.shark.lang.dd.BinaryExpression;
 import com.shark.lang.dd.BoolValue;
 import com.shark.lang.dd.CatExpression;
@@ -23,8 +24,8 @@ import com.shark.lang.dd.CstValue;
 import com.shark.lang.dd.DataModelFragment;
 import com.shark.lang.dd.DdPackage;
 import com.shark.lang.dd.DecValue;
+import com.shark.lang.dd.EntitiesListElt;
 import com.shark.lang.dd.Entity;
-import com.shark.lang.dd.IdentifierExpression;
 import com.shark.lang.dd.IntValue;
 import com.shark.lang.dd.LineComment;
 import com.shark.lang.dd.ListExpression;
@@ -162,6 +163,13 @@ public class DdSwitch<T> extends Switch<T>
       {
         Constraint constraint = (Constraint)theEObject;
         T result = caseConstraint(constraint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DdPackage.ENTITIES_LIST_ELT:
+      {
+        EntitiesListElt entitiesListElt = (EntitiesListElt)theEObject;
+        T result = caseEntitiesListElt(entitiesListElt);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -370,12 +378,12 @@ public class DdSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case DdPackage.IDENTIFIER_EXPRESSION:
+      case DdPackage.ATTRIBUTE_VALUE:
       {
-        IdentifierExpression identifierExpression = (IdentifierExpression)theEObject;
-        T result = caseIdentifierExpression(identifierExpression);
-        if (result == null) result = caseTerminalExpression(identifierExpression);
-        if (result == null) result = caseSharkExpression(identifierExpression);
+        AttributeValue attributeValue = (AttributeValue)theEObject;
+        T result = caseAttributeValue(attributeValue);
+        if (result == null) result = caseTerminalExpression(attributeValue);
+        if (result == null) result = caseSharkExpression(attributeValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -516,6 +524,22 @@ public class DdSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseConstraint(Constraint object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Entities List Elt</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Entities List Elt</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEntitiesListElt(EntitiesListElt object)
   {
     return null;
   }
@@ -937,17 +961,17 @@ public class DdSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Identifier Expression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Attribute Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Identifier Expression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Attribute Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIdentifierExpression(IdentifierExpression object)
+  public T caseAttributeValue(AttributeValue object)
   {
     return null;
   }

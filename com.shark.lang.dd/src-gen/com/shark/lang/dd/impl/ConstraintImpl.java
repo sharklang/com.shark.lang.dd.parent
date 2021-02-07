@@ -6,6 +6,8 @@ package com.shark.lang.dd.impl;
 import com.shark.lang.dd.CheckExpression;
 import com.shark.lang.dd.Constraint;
 import com.shark.lang.dd.DdPackage;
+import com.shark.lang.dd.EntitiesListElt;
+import com.shark.lang.dd.Entity;
 import com.shark.lang.dd.LineComment;
 
 import java.util.Collection;
@@ -34,6 +36,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link com.shark.lang.dd.impl.ConstraintImpl#getChkDescLines <em>Chk Desc Lines</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.ConstraintImpl#getName <em>Name</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.ConstraintImpl#getFirstEntity <em>First Entity</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.ConstraintImpl#getEntitiesList <em>Entities List</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.ConstraintImpl#getCheck <em>Check</em>}</li>
  * </ul>
  *
@@ -70,6 +74,26 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getFirstEntity() <em>First Entity</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFirstEntity()
+   * @generated
+   * @ordered
+   */
+  protected Entity firstEntity;
+
+  /**
+   * The cached value of the '{@link #getEntitiesList() <em>Entities List</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEntitiesList()
+   * @generated
+   * @ordered
+   */
+  protected EList<EntitiesListElt> entitiesList;
 
   /**
    * The cached value of the '{@link #getCheck() <em>Check</em>}' containment reference list.
@@ -148,6 +172,66 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
    * @generated
    */
   @Override
+  public Entity getFirstEntity()
+  {
+    if (firstEntity != null && firstEntity.eIsProxy())
+    {
+      InternalEObject oldFirstEntity = (InternalEObject)firstEntity;
+      firstEntity = (Entity)eResolveProxy(oldFirstEntity);
+      if (firstEntity != oldFirstEntity)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, DdPackage.CONSTRAINT__FIRST_ENTITY, oldFirstEntity, firstEntity));
+      }
+    }
+    return firstEntity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Entity basicGetFirstEntity()
+  {
+    return firstEntity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setFirstEntity(Entity newFirstEntity)
+  {
+    Entity oldFirstEntity = firstEntity;
+    firstEntity = newFirstEntity;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.CONSTRAINT__FIRST_ENTITY, oldFirstEntity, firstEntity));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<EntitiesListElt> getEntitiesList()
+  {
+    if (entitiesList == null)
+    {
+      entitiesList = new EObjectContainmentEList<EntitiesListElt>(EntitiesListElt.class, this, DdPackage.CONSTRAINT__ENTITIES_LIST);
+    }
+    return entitiesList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<CheckExpression> getCheck()
   {
     if (check == null)
@@ -169,6 +253,8 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
     {
       case DdPackage.CONSTRAINT__CHK_DESC_LINES:
         return ((InternalEList<?>)getChkDescLines()).basicRemove(otherEnd, msgs);
+      case DdPackage.CONSTRAINT__ENTITIES_LIST:
+        return ((InternalEList<?>)getEntitiesList()).basicRemove(otherEnd, msgs);
       case DdPackage.CONSTRAINT__CHECK:
         return ((InternalEList<?>)getCheck()).basicRemove(otherEnd, msgs);
     }
@@ -189,6 +275,11 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
         return getChkDescLines();
       case DdPackage.CONSTRAINT__NAME:
         return getName();
+      case DdPackage.CONSTRAINT__FIRST_ENTITY:
+        if (resolve) return getFirstEntity();
+        return basicGetFirstEntity();
+      case DdPackage.CONSTRAINT__ENTITIES_LIST:
+        return getEntitiesList();
       case DdPackage.CONSTRAINT__CHECK:
         return getCheck();
     }
@@ -212,6 +303,13 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
         return;
       case DdPackage.CONSTRAINT__NAME:
         setName((String)newValue);
+        return;
+      case DdPackage.CONSTRAINT__FIRST_ENTITY:
+        setFirstEntity((Entity)newValue);
+        return;
+      case DdPackage.CONSTRAINT__ENTITIES_LIST:
+        getEntitiesList().clear();
+        getEntitiesList().addAll((Collection<? extends EntitiesListElt>)newValue);
         return;
       case DdPackage.CONSTRAINT__CHECK:
         getCheck().clear();
@@ -237,6 +335,12 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
       case DdPackage.CONSTRAINT__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case DdPackage.CONSTRAINT__FIRST_ENTITY:
+        setFirstEntity((Entity)null);
+        return;
+      case DdPackage.CONSTRAINT__ENTITIES_LIST:
+        getEntitiesList().clear();
+        return;
       case DdPackage.CONSTRAINT__CHECK:
         getCheck().clear();
         return;
@@ -258,6 +362,10 @@ public class ConstraintImpl extends MinimalEObjectImpl.Container implements Cons
         return chkDescLines != null && !chkDescLines.isEmpty();
       case DdPackage.CONSTRAINT__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case DdPackage.CONSTRAINT__FIRST_ENTITY:
+        return firstEntity != null;
+      case DdPackage.CONSTRAINT__ENTITIES_LIST:
+        return entitiesList != null && !entitiesList.isEmpty();
       case DdPackage.CONSTRAINT__CHECK:
         return check != null && !check.isEmpty();
     }

@@ -20,5 +20,9 @@ class DdRuntimeModule extends AbstractDdRuntimeModule {
 	override Class<? extends IScopeProvider> bindIScopeProvider() {
 		DdScopeProvider
 	}
+	
+	/*override Class<? extends IGlobalScopeProvider > bindIGlobalScopeProvider() {
+		DefaultGlobalScopeProvider
+	}*/
 
 }

@@ -5,18 +5,26 @@ package com.shark.lang.dd.impl;
 
 import com.shark.lang.dd.DdPackage;
 import com.shark.lang.dd.Entity;
+import com.shark.lang.dd.LineComment;
 import com.shark.lang.dd.ListExpression;
 import com.shark.lang.dd.Relationship;
 import com.shark.lang.dd.TrailComment;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +34,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link com.shark.lang.dd.impl.RelationshipImpl#getRelDescLines <em>Rel Desc Lines</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.RelationshipImpl#getCardi1 <em>Cardi1</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.RelationshipImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.RelationshipImpl#getCardi2 <em>Cardi2</em>}</li>
@@ -37,6 +46,16 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class RelationshipImpl extends MinimalEObjectImpl.Container implements Relationship
 {
+  /**
+   * The cached value of the '{@link #getRelDescLines() <em>Rel Desc Lines</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRelDescLines()
+   * @generated
+   * @ordered
+   */
+  protected EList<LineComment> relDescLines;
+
   /**
    * The cached value of the '{@link #getCardi1() <em>Cardi1</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -116,6 +135,21 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected EClass eStaticClass()
   {
     return DdPackage.Literals.RELATIONSHIP;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<LineComment> getRelDescLines()
+  {
+    if (relDescLines == null)
+    {
+      relDescLines = new EObjectContainmentEList<LineComment>(LineComment.class, this, DdPackage.RELATIONSHIP__REL_DESC_LINES);
+    }
+    return relDescLines;
   }
 
   /**
@@ -348,6 +382,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   {
     switch (featureID)
     {
+      case DdPackage.RELATIONSHIP__REL_DESC_LINES:
+        return ((InternalEList<?>)getRelDescLines()).basicRemove(otherEnd, msgs);
       case DdPackage.RELATIONSHIP__CARDI1:
         return basicSetCardi1(null, msgs);
       case DdPackage.RELATIONSHIP__CARDI2:
@@ -368,6 +404,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   {
     switch (featureID)
     {
+      case DdPackage.RELATIONSHIP__REL_DESC_LINES:
+        return getRelDescLines();
       case DdPackage.RELATIONSHIP__CARDI1:
         return getCardi1();
       case DdPackage.RELATIONSHIP__NAME:
@@ -388,11 +426,16 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
+      case DdPackage.RELATIONSHIP__REL_DESC_LINES:
+        getRelDescLines().clear();
+        getRelDescLines().addAll((Collection<? extends LineComment>)newValue);
+        return;
       case DdPackage.RELATIONSHIP__CARDI1:
         setCardi1((ListExpression)newValue);
         return;
@@ -422,6 +465,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   {
     switch (featureID)
     {
+      case DdPackage.RELATIONSHIP__REL_DESC_LINES:
+        getRelDescLines().clear();
+        return;
       case DdPackage.RELATIONSHIP__CARDI1:
         setCardi1((ListExpression)null);
         return;
@@ -451,6 +497,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   {
     switch (featureID)
     {
+      case DdPackage.RELATIONSHIP__REL_DESC_LINES:
+        return relDescLines != null && !relDescLines.isEmpty();
       case DdPackage.RELATIONSHIP__CARDI1:
         return cardi1 != null;
       case DdPackage.RELATIONSHIP__NAME:

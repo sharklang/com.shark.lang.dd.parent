@@ -96,6 +96,15 @@ public interface DdFactory extends EFactory
   Constraint createConstraint();
 
   /**
+   * Returns a new object of class '<em>Entities List Elt</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Entities List Elt</em>'.
+   * @generated
+   */
+  EntitiesListElt createEntitiesListElt();
+
+  /**
    * Returns a new object of class '<em>Check Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -330,13 +339,13 @@ public interface DdFactory extends EFactory
   UnsetValue createUnsetValue();
 
   /**
-   * Returns a new object of class '<em>Identifier Expression</em>'.
+   * Returns a new object of class '<em>Attribute Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Identifier Expression</em>'.
+   * @return a new object of class '<em>Attribute Value</em>'.
    * @generated
    */
-  IdentifierExpression createIdentifierExpression();
+  AttributeValue createAttributeValue();
 
   /**
    * Returns a new object of class '<em>Comment</em>'.

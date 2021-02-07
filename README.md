@@ -1,14 +1,14 @@
 # dd language
 
-This is an xtext simple language that allows to describe data in a consize way, more so than sql ddl, with ability to no only describe data structure but also validation rules.
+This is an xtext simple language that allows to describe data in a concise way, more so than SQL DDL, with ability to no only describe data structure (Entities) but also validation rules and relationships.
 
-It also enforces a lot more validation in the ide, with mandatory descriptions, data type consistencies...
+It also enforces a lot more validation in the ide, with mandatory descriptions, data type consistencies...than what is today available in SQL editors or other data structure definition languages/platforms.
 
-It then can be used in other languages of the sharklang software factory to be the base of business rules and behaviours, be used as service interfaces, or any other aspect of the software that requires data structure.
+It  can be used in other languages of the Sharklang software factory to be the base for business rules and behaviours, service interfaces, or any other aspect of the software that requires data structure.
 
 As such it can already generate a series of output:
 
-- a simple flutter front end for crud operations, as well as lists and searches
-- a series of crud APIs on the entities, implemented on a vertx / cassandra optimized stack
-- all validation rules are used in both the crud MVC layer and also at the API level unless the service call is trusted (ie. coming from a signed proxy)
-- this relies on optimized flatbuffer objects
+- a simple Flutter front end for CRUD (Create, Read, Update, Delete) operations, as well as lists and searches, which allow deployment as native apps on all platforms (desktop, mobile...)
+- a series of CRUD APIs on the entities, implemented on a Vertx / RocksDB optimized stack
+- all validation rules are used in both the CRUD MVC Front End Flutter based layer (within the proxies) and also at the API level unless, the service call is trusted (ie. coming from a signed proxy)
+- this relies on optimized Flatbuffer objects in the front End and in the Back-End, and in the Database for optimal performance and CO2 footprint 

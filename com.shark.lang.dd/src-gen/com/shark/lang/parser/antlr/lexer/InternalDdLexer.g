@@ -11,6 +11,10 @@ package com.shark.lang.parser.antlr.lexer;
 import org.eclipse.xtext.parser.antlr.Lexer;
 }
 
+Partitionkey : 'partitionkey';
+
+Deprecated : 'deprecated';
+
 False : 'false';
 
 Model : 'model';
@@ -62,6 +66,8 @@ LessThanSignEqualsSign : '<=';
 EqualsSignEqualsSign : '==';
 
 GreaterThanSignEqualsSign : '>=';
+
+LeftSquareBracketRightSquareBracket : '[]';
 
 In : 'in';
 

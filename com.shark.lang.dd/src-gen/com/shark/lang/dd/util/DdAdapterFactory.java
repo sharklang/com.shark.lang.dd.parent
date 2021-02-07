@@ -10,6 +10,7 @@ import com.shark.lang.dd.AndExpressionElt;
 import com.shark.lang.dd.ArraySize;
 import com.shark.lang.dd.Attribute;
 import com.shark.lang.dd.AttributeSize;
+import com.shark.lang.dd.AttributeValue;
 import com.shark.lang.dd.BinaryExpression;
 import com.shark.lang.dd.BoolValue;
 import com.shark.lang.dd.CatExpression;
@@ -23,8 +24,8 @@ import com.shark.lang.dd.CstValue;
 import com.shark.lang.dd.DataModelFragment;
 import com.shark.lang.dd.DdPackage;
 import com.shark.lang.dd.DecValue;
+import com.shark.lang.dd.EntitiesListElt;
 import com.shark.lang.dd.Entity;
-import com.shark.lang.dd.IdentifierExpression;
 import com.shark.lang.dd.IntValue;
 import com.shark.lang.dd.LineComment;
 import com.shark.lang.dd.ListExpression;
@@ -150,6 +151,11 @@ public class DdAdapterFactory extends AdapterFactoryImpl
       public Adapter caseConstraint(Constraint object)
       {
         return createConstraintAdapter();
+      }
+      @Override
+      public Adapter caseEntitiesListElt(EntitiesListElt object)
+      {
+        return createEntitiesListEltAdapter();
       }
       @Override
       public Adapter caseCheckExpression(CheckExpression object)
@@ -282,9 +288,9 @@ public class DdAdapterFactory extends AdapterFactoryImpl
         return createUnsetValueAdapter();
       }
       @Override
-      public Adapter caseIdentifierExpression(IdentifierExpression object)
+      public Adapter caseAttributeValue(AttributeValue object)
       {
-        return createIdentifierExpressionAdapter();
+        return createAttributeValueAdapter();
       }
       @Override
       public Adapter caseComment(Comment object)
@@ -429,6 +435,21 @@ public class DdAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createConstraintAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.shark.lang.dd.EntitiesListElt <em>Entities List Elt</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.shark.lang.dd.EntitiesListElt
+   * @generated
+   */
+  public Adapter createEntitiesListEltAdapter()
   {
     return null;
   }
@@ -824,16 +845,16 @@ public class DdAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.shark.lang.dd.IdentifierExpression <em>Identifier Expression</em>}'.
+   * Creates a new adapter for an object of class '{@link com.shark.lang.dd.AttributeValue <em>Attribute Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.shark.lang.dd.IdentifierExpression
+   * @see com.shark.lang.dd.AttributeValue
    * @generated
    */
-  public Adapter createIdentifierExpressionAdapter()
+  public Adapter createAttributeValueAdapter()
   {
     return null;
   }

@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getRight <em>Right</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getMultElts <em>Mult Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getPrecision <em>Precision</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.MultExpressionImpl#getLength <em>Length</em>}</li>
  * </ul>
@@ -93,26 +92,6 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
    * @ordered
    */
   protected EList<MultExpressionElt> multElts;
-
-  /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected static final String VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
@@ -321,31 +300,6 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
    * @generated
    */
   @Override
-  public String getValue()
-  {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setValue(String newValue)
-  {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.MULT_EXPRESSION__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public int getPrecision()
   {
     return precision;
@@ -428,8 +382,6 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
         return getRight();
       case DdPackage.MULT_EXPRESSION__MULT_ELTS:
         return getMultElts();
-      case DdPackage.MULT_EXPRESSION__VALUE:
-        return getValue();
       case DdPackage.MULT_EXPRESSION__PRECISION:
         return getPrecision();
       case DdPackage.MULT_EXPRESSION__LENGTH:
@@ -461,9 +413,6 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
       case DdPackage.MULT_EXPRESSION__MULT_ELTS:
         getMultElts().clear();
         getMultElts().addAll((Collection<? extends MultExpressionElt>)newValue);
-        return;
-      case DdPackage.MULT_EXPRESSION__VALUE:
-        setValue((String)newValue);
         return;
       case DdPackage.MULT_EXPRESSION__PRECISION:
         setPrecision((Integer)newValue);
@@ -497,9 +446,6 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
       case DdPackage.MULT_EXPRESSION__MULT_ELTS:
         getMultElts().clear();
         return;
-      case DdPackage.MULT_EXPRESSION__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
       case DdPackage.MULT_EXPRESSION__PRECISION:
         setPrecision(PRECISION_EDEFAULT);
         return;
@@ -528,8 +474,6 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
         return right != null;
       case DdPackage.MULT_EXPRESSION__MULT_ELTS:
         return multElts != null && !multElts.isEmpty();
-      case DdPackage.MULT_EXPRESSION__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case DdPackage.MULT_EXPRESSION__PRECISION:
         return precision != PRECISION_EDEFAULT;
       case DdPackage.MULT_EXPRESSION__LENGTH:
@@ -551,8 +495,6 @@ public class MultExpressionImpl extends SharkExpressionImpl implements MultExpre
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", value: ");
-    result.append(value);
     result.append(", precision: ");
     result.append(precision);
     result.append(", length: ");

@@ -45,7 +45,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.shark.lang.dd.impl.AttributeImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.AttributeImpl#isPrimaryKey <em>Primary Key</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.AttributeImpl#isPartitionKey <em>Partition Key</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.AttributeImpl#isMandatory <em>Mandatory</em>}</li>
+ *   <li>{@link com.shark.lang.dd.impl.AttributeImpl#isDeprecated <em>Deprecated</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.AttributeImpl#getAttrDesc <em>Attr Desc</em>}</li>
  * </ul>
  *
@@ -154,6 +156,26 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
   protected boolean primaryKey = PRIMARY_KEY_EDEFAULT;
 
   /**
+   * The default value of the '{@link #isPartitionKey() <em>Partition Key</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isPartitionKey()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean PARTITION_KEY_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isPartitionKey() <em>Partition Key</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isPartitionKey()
+   * @generated
+   * @ordered
+   */
+  protected boolean partitionKey = PARTITION_KEY_EDEFAULT;
+
+  /**
    * The default value of the '{@link #isMandatory() <em>Mandatory</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -172,6 +194,26 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @ordered
    */
   protected boolean mandatory = MANDATORY_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isDeprecated() <em>Deprecated</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDeprecated()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean DEPRECATED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isDeprecated() <em>Deprecated</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDeprecated()
+   * @generated
+   * @ordered
+   */
+  protected boolean deprecated = DEPRECATED_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getAttrDesc() <em>Attr Desc</em>}' containment reference.
@@ -450,6 +492,31 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @generated
    */
   @Override
+  public boolean isPartitionKey()
+  {
+    return partitionKey;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setPartitionKey(boolean newPartitionKey)
+  {
+    boolean oldPartitionKey = partitionKey;
+    partitionKey = newPartitionKey;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.ATTRIBUTE__PARTITION_KEY, oldPartitionKey, partitionKey));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public boolean isMandatory()
   {
     return mandatory;
@@ -467,6 +534,31 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     mandatory = newMandatory;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.ATTRIBUTE__MANDATORY, oldMandatory, mandatory));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isDeprecated()
+  {
+    return deprecated;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setDeprecated(boolean newDeprecated)
+  {
+    boolean oldDeprecated = deprecated;
+    deprecated = newDeprecated;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.ATTRIBUTE__DEPRECATED, oldDeprecated, deprecated));
   }
 
   /**
@@ -567,8 +659,12 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
         return getDefaultValue();
       case DdPackage.ATTRIBUTE__PRIMARY_KEY:
         return isPrimaryKey();
+      case DdPackage.ATTRIBUTE__PARTITION_KEY:
+        return isPartitionKey();
       case DdPackage.ATTRIBUTE__MANDATORY:
         return isMandatory();
+      case DdPackage.ATTRIBUTE__DEPRECATED:
+        return isDeprecated();
       case DdPackage.ATTRIBUTE__ATTR_DESC:
         return getAttrDesc();
     }
@@ -608,8 +704,14 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
       case DdPackage.ATTRIBUTE__PRIMARY_KEY:
         setPrimaryKey((Boolean)newValue);
         return;
+      case DdPackage.ATTRIBUTE__PARTITION_KEY:
+        setPartitionKey((Boolean)newValue);
+        return;
       case DdPackage.ATTRIBUTE__MANDATORY:
         setMandatory((Boolean)newValue);
+        return;
+      case DdPackage.ATTRIBUTE__DEPRECATED:
+        setDeprecated((Boolean)newValue);
         return;
       case DdPackage.ATTRIBUTE__ATTR_DESC:
         setAttrDesc((TrailComment)newValue);
@@ -649,8 +751,14 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
       case DdPackage.ATTRIBUTE__PRIMARY_KEY:
         setPrimaryKey(PRIMARY_KEY_EDEFAULT);
         return;
+      case DdPackage.ATTRIBUTE__PARTITION_KEY:
+        setPartitionKey(PARTITION_KEY_EDEFAULT);
+        return;
       case DdPackage.ATTRIBUTE__MANDATORY:
         setMandatory(MANDATORY_EDEFAULT);
+        return;
+      case DdPackage.ATTRIBUTE__DEPRECATED:
+        setDeprecated(DEPRECATED_EDEFAULT);
         return;
       case DdPackage.ATTRIBUTE__ATTR_DESC:
         setAttrDesc((TrailComment)null);
@@ -683,8 +791,12 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
         return defaultValue != null;
       case DdPackage.ATTRIBUTE__PRIMARY_KEY:
         return primaryKey != PRIMARY_KEY_EDEFAULT;
+      case DdPackage.ATTRIBUTE__PARTITION_KEY:
+        return partitionKey != PARTITION_KEY_EDEFAULT;
       case DdPackage.ATTRIBUTE__MANDATORY:
         return mandatory != MANDATORY_EDEFAULT;
+      case DdPackage.ATTRIBUTE__DEPRECATED:
+        return deprecated != DEPRECATED_EDEFAULT;
       case DdPackage.ATTRIBUTE__ATTR_DESC:
         return attrDesc != null;
     }
@@ -708,8 +820,12 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     result.append(name);
     result.append(", primaryKey: ");
     result.append(primaryKey);
+    result.append(", partitionKey: ");
+    result.append(partitionKey);
     result.append(", mandatory: ");
     result.append(mandatory);
+    result.append(", deprecated: ");
+    result.append(deprecated);
     result.append(')');
     return result.toString();
   }

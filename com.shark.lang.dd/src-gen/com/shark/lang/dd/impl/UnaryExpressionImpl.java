@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link com.shark.lang.dd.impl.UnaryExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.UnaryExpressionImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.UnaryExpressionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.UnaryExpressionImpl#getPrecision <em>Precision</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.UnaryExpressionImpl#getLength <em>Length</em>}</li>
  * </ul>
@@ -64,26 +63,6 @@ public class UnaryExpressionImpl extends SharkExpressionImpl implements UnaryExp
    * @ordered
    */
   protected SharkExpression left;
-
-  /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected static final String VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
@@ -227,31 +206,6 @@ public class UnaryExpressionImpl extends SharkExpressionImpl implements UnaryExp
    * @generated
    */
   @Override
-  public String getValue()
-  {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setValue(String newValue)
-  {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.UNARY_EXPRESSION__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public int getPrecision()
   {
     return precision;
@@ -326,8 +280,6 @@ public class UnaryExpressionImpl extends SharkExpressionImpl implements UnaryExp
         return getOp();
       case DdPackage.UNARY_EXPRESSION__LEFT:
         return getLeft();
-      case DdPackage.UNARY_EXPRESSION__VALUE:
-        return getValue();
       case DdPackage.UNARY_EXPRESSION__PRECISION:
         return getPrecision();
       case DdPackage.UNARY_EXPRESSION__LENGTH:
@@ -351,9 +303,6 @@ public class UnaryExpressionImpl extends SharkExpressionImpl implements UnaryExp
         return;
       case DdPackage.UNARY_EXPRESSION__LEFT:
         setLeft((SharkExpression)newValue);
-        return;
-      case DdPackage.UNARY_EXPRESSION__VALUE:
-        setValue((String)newValue);
         return;
       case DdPackage.UNARY_EXPRESSION__PRECISION:
         setPrecision((Integer)newValue);
@@ -381,9 +330,6 @@ public class UnaryExpressionImpl extends SharkExpressionImpl implements UnaryExp
       case DdPackage.UNARY_EXPRESSION__LEFT:
         setLeft((SharkExpression)null);
         return;
-      case DdPackage.UNARY_EXPRESSION__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
       case DdPackage.UNARY_EXPRESSION__PRECISION:
         setPrecision(PRECISION_EDEFAULT);
         return;
@@ -408,8 +354,6 @@ public class UnaryExpressionImpl extends SharkExpressionImpl implements UnaryExp
         return op != OP_EDEFAULT;
       case DdPackage.UNARY_EXPRESSION__LEFT:
         return left != null;
-      case DdPackage.UNARY_EXPRESSION__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case DdPackage.UNARY_EXPRESSION__PRECISION:
         return precision != PRECISION_EDEFAULT;
       case DdPackage.UNARY_EXPRESSION__LENGTH:
@@ -431,8 +375,6 @@ public class UnaryExpressionImpl extends SharkExpressionImpl implements UnaryExp
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", value: ");
-    result.append(value);
     result.append(", precision: ");
     result.append(precision);
     result.append(", length: ");

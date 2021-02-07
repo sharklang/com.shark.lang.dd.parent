@@ -11,6 +11,10 @@ package com.shark.lang.ide.contentassist.antlr.lexer;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.Lexer;
 }
 
+Partitionkey : 'partitionkey';
+
+Deprecated : 'deprecated';
+
 False : 'false';
 
 Model : 'model';
@@ -62,6 +66,8 @@ LessThanSignEqualsSign : '<=';
 EqualsSignEqualsSign : '==';
 
 GreaterThanSignEqualsSign : '>=';
+
+LeftSquareBracketRightSquareBracket : '[]';
 
 In : 'in';
 

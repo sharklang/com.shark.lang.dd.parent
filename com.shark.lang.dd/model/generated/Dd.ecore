@@ -48,7 +48,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValue" eType="#//SharkExpression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="primaryKey" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partitionKey" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mandatory" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deprecated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attrDesc" eType="#//TrailComment"
         containment="true"/>
   </eClassifiers>
@@ -60,6 +62,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relDescLines" upperBound="-1"
+        eType="#//LineComment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cardi1" eType="#//ListExpression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -73,8 +77,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="chkDescLines" upperBound="-1"
         eType="#//LineComment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstEntity" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entitiesList" upperBound="-1"
+        eType="#//EntitiesListElt" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="check" upperBound="-1"
         eType="#//CheckExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntitiesListElt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isArray" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CheckExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="chkDesc" upperBound="-1"
@@ -83,14 +94,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//SharkExpression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SharkExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SharkExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exprValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BinaryExpression" eSuperTypes="#//SharkExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//SharkExpression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="#//BinaryOperator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//SharkExpression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="precision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
@@ -98,7 +111,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="#//UnaryOperator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//SharkExpression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="precision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
@@ -110,7 +122,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="addElts" upperBound="-1"
         eType="#//AddExpressionElt" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="precision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
@@ -127,7 +138,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="multElts" upperBound="-1"
         eType="#//MultExpressionElt" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="precision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
@@ -172,7 +182,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="catElts" upperBound="-1"
         eType="#//CatExpressionElt" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CatExpressionElt">
@@ -270,7 +279,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="UnsetValue" eSuperTypes="#//TerminalExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//Unset"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IdentifierExpression" eSuperTypes="#//TerminalExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeValue" eSuperTypes="#//TerminalExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//ArraySize"
         containment="true"/>

@@ -15,7 +15,6 @@ package com.shark.lang.dd;
  * <ul>
  *   <li>{@link com.shark.lang.dd.UnaryExpression#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.UnaryExpression#getLeft <em>Left</em>}</li>
- *   <li>{@link com.shark.lang.dd.UnaryExpression#getValue <em>Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.UnaryExpression#getPrecision <em>Precision</em>}</li>
  *   <li>{@link com.shark.lang.dd.UnaryExpression#getLength <em>Length</em>}</li>
  * </ul>
@@ -72,28 +71,6 @@ public interface UnaryExpression extends SharkExpression
    * @generated
    */
   void setLeft(SharkExpression value);
-
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(String)
-   * @see com.shark.lang.dd.DdPackage#getUnaryExpression_Value()
-   * @model
-   * @generated
-   */
-  String getValue();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.UnaryExpression#getValue <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(String value);
 
   /**
    * Returns the value of the '<em><b>Precision</b></em>' attribute.

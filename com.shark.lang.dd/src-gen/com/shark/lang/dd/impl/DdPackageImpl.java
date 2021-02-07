@@ -10,6 +10,7 @@ import com.shark.lang.dd.AndExpressionElt;
 import com.shark.lang.dd.ArraySize;
 import com.shark.lang.dd.Attribute;
 import com.shark.lang.dd.AttributeSize;
+import com.shark.lang.dd.AttributeValue;
 import com.shark.lang.dd.BinaryExpression;
 import com.shark.lang.dd.BinaryOperator;
 import com.shark.lang.dd.BoolValue;
@@ -26,8 +27,8 @@ import com.shark.lang.dd.DataType;
 import com.shark.lang.dd.DdFactory;
 import com.shark.lang.dd.DdPackage;
 import com.shark.lang.dd.DecValue;
+import com.shark.lang.dd.EntitiesListElt;
 import com.shark.lang.dd.Entity;
-import com.shark.lang.dd.IdentifierExpression;
 import com.shark.lang.dd.IntValue;
 import com.shark.lang.dd.LineComment;
 import com.shark.lang.dd.ListExpression;
@@ -117,6 +118,13 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   private EClass constraintEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass entitiesListEltEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -305,7 +313,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass identifierExpressionEClass = null;
+  private EClass attributeValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -726,7 +734,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getAttribute_Mandatory()
+  public EAttribute getAttribute_PartitionKey()
   {
     return (EAttribute)attributeEClass.getEStructuralFeatures().get(7);
   }
@@ -737,9 +745,31 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
+  public EAttribute getAttribute_Mandatory()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAttribute_Deprecated()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getAttribute_AttrDesc()
   {
-    return (EReference)attributeEClass.getEStructuralFeatures().get(8);
+    return (EReference)attributeEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -814,7 +844,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EReference getRelationship_Cardi1()
+  public EReference getRelationship_RelDescLines()
   {
     return (EReference)relationshipEClass.getEStructuralFeatures().get(0);
   }
@@ -825,9 +855,20 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
+  public EReference getRelationship_Cardi1()
+  {
+    return (EReference)relationshipEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EAttribute getRelationship_Name()
   {
-    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -838,7 +879,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
   @Override
   public EReference getRelationship_Cardi2()
   {
-    return (EReference)relationshipEClass.getEStructuralFeatures().get(2);
+    return (EReference)relationshipEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -849,7 +890,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
   @Override
   public EReference getRelationship_LinkTo()
   {
-    return (EReference)relationshipEClass.getEStructuralFeatures().get(3);
+    return (EReference)relationshipEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -860,7 +901,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
   @Override
   public EReference getRelationship_RelDesc()
   {
-    return (EReference)relationshipEClass.getEStructuralFeatures().get(4);
+    return (EReference)relationshipEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -902,9 +943,64 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EReference getConstraint_Check()
+  public EReference getConstraint_FirstEntity()
   {
     return (EReference)constraintEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getConstraint_EntitiesList()
+  {
+    return (EReference)constraintEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getConstraint_Check()
+  {
+    return (EReference)constraintEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getEntitiesListElt()
+  {
+    return entitiesListEltEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEntitiesListElt_Entity()
+  {
+    return (EReference)entitiesListEltEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getEntitiesListElt_IsArray()
+  {
+    return (EAttribute)entitiesListEltEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -968,6 +1064,28 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
+  public EAttribute getSharkExpression_ExprValue()
+  {
+    return (EAttribute)sharkExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSharkExpression_HasAttribute()
+  {
+    return (EAttribute)sharkExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getBinaryExpression()
   {
     return binaryExpressionEClass;
@@ -1012,7 +1130,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getBinaryExpression_Value()
+  public EAttribute getBinaryExpression_Precision()
   {
     return (EAttribute)binaryExpressionEClass.getEStructuralFeatures().get(3);
   }
@@ -1023,20 +1141,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getBinaryExpression_Precision()
-  {
-    return (EAttribute)binaryExpressionEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getBinaryExpression_Length()
   {
-    return (EAttribute)binaryExpressionEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)binaryExpressionEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1078,7 +1185,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getUnaryExpression_Value()
+  public EAttribute getUnaryExpression_Precision()
   {
     return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(2);
   }
@@ -1089,20 +1196,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getUnaryExpression_Precision()
-  {
-    return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getUnaryExpression_Length()
   {
-    return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1166,7 +1262,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getAddExpression_Value()
+  public EAttribute getAddExpression_Precision()
   {
     return (EAttribute)addExpressionEClass.getEStructuralFeatures().get(4);
   }
@@ -1177,20 +1273,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getAddExpression_Precision()
-  {
-    return (EAttribute)addExpressionEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAddExpression_Length()
   {
-    return (EAttribute)addExpressionEClass.getEStructuralFeatures().get(6);
+    return (EAttribute)addExpressionEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -1287,7 +1372,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getMultExpression_Value()
+  public EAttribute getMultExpression_Precision()
   {
     return (EAttribute)multExpressionEClass.getEStructuralFeatures().get(4);
   }
@@ -1298,20 +1383,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getMultExpression_Precision()
-  {
-    return (EAttribute)multExpressionEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getMultExpression_Length()
   {
-    return (EAttribute)multExpressionEClass.getEStructuralFeatures().get(6);
+    return (EAttribute)multExpressionEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -1584,20 +1658,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EAttribute getCatExpression_Value()
-  {
-    return (EAttribute)catExpressionEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getCatExpression_Length()
   {
-    return (EAttribute)catExpressionEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)catExpressionEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1925,9 +1988,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EClass getIdentifierExpression()
+  public EClass getAttributeValue()
   {
-    return identifierExpressionEClass;
+    return attributeValueEClass;
   }
 
   /**
@@ -1936,9 +1999,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EReference getIdentifierExpression_Value()
+  public EReference getAttributeValue_Value()
   {
-    return (EReference)identifierExpressionEClass.getEStructuralFeatures().get(0);
+    return (EReference)attributeValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1947,9 +2010,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
    * @generated
    */
   @Override
-  public EReference getIdentifierExpression_Index()
+  public EReference getAttributeValue_Index()
   {
-    return (EReference)identifierExpressionEClass.getEStructuralFeatures().get(1);
+    return (EReference)attributeValueEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2091,7 +2154,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEAttribute(attributeEClass, ATTRIBUTE__NAME);
     createEReference(attributeEClass, ATTRIBUTE__DEFAULT_VALUE);
     createEAttribute(attributeEClass, ATTRIBUTE__PRIMARY_KEY);
+    createEAttribute(attributeEClass, ATTRIBUTE__PARTITION_KEY);
     createEAttribute(attributeEClass, ATTRIBUTE__MANDATORY);
+    createEAttribute(attributeEClass, ATTRIBUTE__DEPRECATED);
     createEReference(attributeEClass, ATTRIBUTE__ATTR_DESC);
 
     attributeSizeEClass = createEClass(ATTRIBUTE_SIZE);
@@ -2102,6 +2167,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEAttribute(arraySizeEClass, ARRAY_SIZE__SIZE);
 
     relationshipEClass = createEClass(RELATIONSHIP);
+    createEReference(relationshipEClass, RELATIONSHIP__REL_DESC_LINES);
     createEReference(relationshipEClass, RELATIONSHIP__CARDI1);
     createEAttribute(relationshipEClass, RELATIONSHIP__NAME);
     createEReference(relationshipEClass, RELATIONSHIP__CARDI2);
@@ -2111,7 +2177,13 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     constraintEClass = createEClass(CONSTRAINT);
     createEReference(constraintEClass, CONSTRAINT__CHK_DESC_LINES);
     createEAttribute(constraintEClass, CONSTRAINT__NAME);
+    createEReference(constraintEClass, CONSTRAINT__FIRST_ENTITY);
+    createEReference(constraintEClass, CONSTRAINT__ENTITIES_LIST);
     createEReference(constraintEClass, CONSTRAINT__CHECK);
+
+    entitiesListEltEClass = createEClass(ENTITIES_LIST_ELT);
+    createEReference(entitiesListEltEClass, ENTITIES_LIST_ELT__ENTITY);
+    createEAttribute(entitiesListEltEClass, ENTITIES_LIST_ELT__IS_ARRAY);
 
     checkExpressionEClass = createEClass(CHECK_EXPRESSION);
     createEReference(checkExpressionEClass, CHECK_EXPRESSION__CHK_DESC);
@@ -2119,19 +2191,19 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEReference(checkExpressionEClass, CHECK_EXPRESSION__EXPR);
 
     sharkExpressionEClass = createEClass(SHARK_EXPRESSION);
+    createEAttribute(sharkExpressionEClass, SHARK_EXPRESSION__EXPR_VALUE);
+    createEAttribute(sharkExpressionEClass, SHARK_EXPRESSION__HAS_ATTRIBUTE);
 
     binaryExpressionEClass = createEClass(BINARY_EXPRESSION);
     createEReference(binaryExpressionEClass, BINARY_EXPRESSION__LEFT);
     createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__OP);
     createEReference(binaryExpressionEClass, BINARY_EXPRESSION__RIGHT);
-    createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__VALUE);
     createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__PRECISION);
     createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__LENGTH);
 
     unaryExpressionEClass = createEClass(UNARY_EXPRESSION);
     createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__OP);
     createEReference(unaryExpressionEClass, UNARY_EXPRESSION__LEFT);
-    createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__VALUE);
     createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__PRECISION);
     createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__LENGTH);
 
@@ -2140,7 +2212,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEAttribute(addExpressionEClass, ADD_EXPRESSION__OP);
     createEReference(addExpressionEClass, ADD_EXPRESSION__RIGHT);
     createEReference(addExpressionEClass, ADD_EXPRESSION__ADD_ELTS);
-    createEAttribute(addExpressionEClass, ADD_EXPRESSION__VALUE);
     createEAttribute(addExpressionEClass, ADD_EXPRESSION__PRECISION);
     createEAttribute(addExpressionEClass, ADD_EXPRESSION__LENGTH);
 
@@ -2153,7 +2224,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEAttribute(multExpressionEClass, MULT_EXPRESSION__OP);
     createEReference(multExpressionEClass, MULT_EXPRESSION__RIGHT);
     createEReference(multExpressionEClass, MULT_EXPRESSION__MULT_ELTS);
-    createEAttribute(multExpressionEClass, MULT_EXPRESSION__VALUE);
     createEAttribute(multExpressionEClass, MULT_EXPRESSION__PRECISION);
     createEAttribute(multExpressionEClass, MULT_EXPRESSION__LENGTH);
 
@@ -2186,7 +2256,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     createEAttribute(catExpressionEClass, CAT_EXPRESSION__OP);
     createEReference(catExpressionEClass, CAT_EXPRESSION__RIGHT);
     createEReference(catExpressionEClass, CAT_EXPRESSION__CAT_ELTS);
-    createEAttribute(catExpressionEClass, CAT_EXPRESSION__VALUE);
     createEAttribute(catExpressionEClass, CAT_EXPRESSION__LENGTH);
 
     catExpressionEltEClass = createEClass(CAT_EXPRESSION_ELT);
@@ -2231,9 +2300,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     unsetValueEClass = createEClass(UNSET_VALUE);
     createEAttribute(unsetValueEClass, UNSET_VALUE__VALUE);
 
-    identifierExpressionEClass = createEClass(IDENTIFIER_EXPRESSION);
-    createEReference(identifierExpressionEClass, IDENTIFIER_EXPRESSION__VALUE);
-    createEReference(identifierExpressionEClass, IDENTIFIER_EXPRESSION__INDEX);
+    attributeValueEClass = createEClass(ATTRIBUTE_VALUE);
+    createEReference(attributeValueEClass, ATTRIBUTE_VALUE__VALUE);
+    createEReference(attributeValueEClass, ATTRIBUTE_VALUE__INDEX);
 
     commentEClass = createEClass(COMMENT);
     createEAttribute(commentEClass, COMMENT__LINE);
@@ -2291,7 +2360,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     cstValueEClass.getESuperTypes().add(this.getTerminalExpression());
     boolValueEClass.getESuperTypes().add(this.getTerminalExpression());
     unsetValueEClass.getESuperTypes().add(this.getTerminalExpression());
-    identifierExpressionEClass.getESuperTypes().add(this.getTerminalExpression());
+    attributeValueEClass.getESuperTypes().add(this.getTerminalExpression());
     commentEClass.getESuperTypes().add(this.getLineComment());
     commentEClass.getESuperTypes().add(this.getTrailComment());
 
@@ -2327,7 +2396,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_DefaultValue(), this.getSharkExpression(), null, "defaultValue", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAttribute_PrimaryKey(), ecorePackage.getEBoolean(), "primaryKey", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_PartitionKey(), ecorePackage.getEBoolean(), "partitionKey", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAttribute_Mandatory(), ecorePackage.getEBoolean(), "mandatory", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_Deprecated(), ecorePackage.getEBoolean(), "deprecated", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_AttrDesc(), this.getTrailComment(), null, "attrDesc", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeSizeEClass, AttributeSize.class, "AttributeSize", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2338,6 +2409,7 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getArraySize_Size(), ecorePackage.getEInt(), "size", null, 0, 1, ArraySize.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relationshipEClass, Relationship.class, "Relationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRelationship_RelDescLines(), this.getLineComment(), null, "relDescLines", null, 0, -1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelationship_Cardi1(), this.getListExpression(), null, "cardi1", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRelationship_Name(), ecorePackage.getEString(), "name", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelationship_Cardi2(), this.getListExpression(), null, "cardi2", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2347,7 +2419,13 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConstraint_ChkDescLines(), this.getLineComment(), null, "chkDescLines", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConstraint_Name(), ecorePackage.getEString(), "name", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConstraint_FirstEntity(), this.getEntity(), null, "firstEntity", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConstraint_EntitiesList(), this.getEntitiesListElt(), null, "entitiesList", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConstraint_Check(), this.getCheckExpression(), null, "check", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(entitiesListEltEClass, EntitiesListElt.class, "EntitiesListElt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEntitiesListElt_Entity(), this.getEntity(), null, "entity", null, 0, 1, EntitiesListElt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEntitiesListElt_IsArray(), ecorePackage.getEString(), "isArray", null, 0, 1, EntitiesListElt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(checkExpressionEClass, CheckExpression.class, "CheckExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCheckExpression_ChkDesc(), this.getLineComment(), null, "chkDesc", null, 0, -1, CheckExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2355,19 +2433,19 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEReference(getCheckExpression_Expr(), this.getSharkExpression(), null, "expr", null, 0, 1, CheckExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sharkExpressionEClass, SharkExpression.class, "SharkExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSharkExpression_ExprValue(), ecorePackage.getEString(), "exprValue", null, 0, 1, SharkExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSharkExpression_HasAttribute(), ecorePackage.getEInt(), "hasAttribute", null, 0, 1, SharkExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(binaryExpressionEClass, BinaryExpression.class, "BinaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBinaryExpression_Left(), this.getSharkExpression(), null, "left", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBinaryExpression_Op(), this.getBinaryOperator(), "op", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBinaryExpression_Right(), this.getSharkExpression(), null, "right", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getBinaryExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBinaryExpression_Precision(), ecorePackage.getEInt(), "precision", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBinaryExpression_Length(), ecorePackage.getEInt(), "length", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unaryExpressionEClass, UnaryExpression.class, "UnaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnaryExpression_Op(), this.getUnaryOperator(), "op", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getUnaryExpression_Left(), this.getSharkExpression(), null, "left", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getUnaryExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getUnaryExpression_Precision(), ecorePackage.getEInt(), "precision", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getUnaryExpression_Length(), ecorePackage.getEInt(), "length", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2376,7 +2454,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getAddExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAddExpression_Right(), this.getSharkExpression(), null, "right", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAddExpression_AddElts(), this.getAddExpressionElt(), null, "addElts", null, 0, -1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAddExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAddExpression_Precision(), ecorePackage.getEInt(), "precision", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAddExpression_Length(), ecorePackage.getEInt(), "length", null, 0, 1, AddExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2389,7 +2466,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getMultExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMultExpression_Right(), this.getSharkExpression(), null, "right", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMultExpression_MultElts(), this.getMultExpressionElt(), null, "multElts", null, 0, -1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMultExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMultExpression_Precision(), ecorePackage.getEInt(), "precision", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMultExpression_Length(), ecorePackage.getEInt(), "length", null, 0, 1, MultExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2422,7 +2498,6 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEAttribute(getCatExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCatExpression_Right(), this.getSharkExpression(), null, "right", null, 0, 1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCatExpression_CatElts(), this.getCatExpressionElt(), null, "catElts", null, 0, -1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCatExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCatExpression_Length(), ecorePackage.getEInt(), "length", null, 0, 1, CatExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(catExpressionEltEClass, CatExpressionElt.class, "CatExpressionElt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2467,9 +2542,9 @@ public class DdPackageImpl extends EPackageImpl implements DdPackage
     initEClass(unsetValueEClass, UnsetValue.class, "UnsetValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnsetValue_Value(), this.getUnset(), "value", null, 0, 1, UnsetValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(identifierExpressionEClass, IdentifierExpression.class, "IdentifierExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIdentifierExpression_Value(), this.getAttribute(), null, "value", null, 0, 1, IdentifierExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getIdentifierExpression_Index(), this.getArraySize(), null, "index", null, 0, 1, IdentifierExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(attributeValueEClass, AttributeValue.class, "AttributeValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAttributeValue_Value(), this.getAttribute(), null, "value", null, 0, 1, AttributeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAttributeValue_Index(), this.getArraySize(), null, "index", null, 0, 1, AttributeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getComment_Line(), ecorePackage.getEString(), "line", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

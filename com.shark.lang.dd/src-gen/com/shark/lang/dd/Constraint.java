@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link com.shark.lang.dd.Constraint#getChkDescLines <em>Chk Desc Lines</em>}</li>
  *   <li>{@link com.shark.lang.dd.Constraint#getName <em>Name</em>}</li>
+ *   <li>{@link com.shark.lang.dd.Constraint#getFirstEntity <em>First Entity</em>}</li>
+ *   <li>{@link com.shark.lang.dd.Constraint#getEntitiesList <em>Entities List</em>}</li>
  *   <li>{@link com.shark.lang.dd.Constraint#getCheck <em>Check</em>}</li>
  * </ul>
  *
@@ -60,6 +62,40 @@ public interface Constraint extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>First Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>First Entity</em>' reference.
+   * @see #setFirstEntity(Entity)
+   * @see com.shark.lang.dd.DdPackage#getConstraint_FirstEntity()
+   * @model
+   * @generated
+   */
+  Entity getFirstEntity();
+
+  /**
+   * Sets the value of the '{@link com.shark.lang.dd.Constraint#getFirstEntity <em>First Entity</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>First Entity</em>' reference.
+   * @see #getFirstEntity()
+   * @generated
+   */
+  void setFirstEntity(Entity value);
+
+  /**
+   * Returns the value of the '<em><b>Entities List</b></em>' containment reference list.
+   * The list contents are of type {@link com.shark.lang.dd.EntitiesListElt}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Entities List</em>' containment reference list.
+   * @see com.shark.lang.dd.DdPackage#getConstraint_EntitiesList()
+   * @model containment="true"
+   * @generated
+   */
+  EList<EntitiesListElt> getEntitiesList();
 
   /**
    * Returns the value of the '<em><b>Check</b></em>' containment reference list.

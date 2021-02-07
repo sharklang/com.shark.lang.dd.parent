@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#getRight <em>Right</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#getCatElts <em>Cat Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.CatExpressionImpl#getLength <em>Length</em>}</li>
  * </ul>
  *
@@ -92,26 +91,6 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
    * @ordered
    */
   protected EList<CatExpressionElt> catElts;
-
-  /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected static final String VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
@@ -300,31 +279,6 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
    * @generated
    */
   @Override
-  public String getValue()
-  {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setValue(String newValue)
-  {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.CAT_EXPRESSION__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public int getLength()
   {
     return length;
@@ -382,8 +336,6 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
         return getRight();
       case DdPackage.CAT_EXPRESSION__CAT_ELTS:
         return getCatElts();
-      case DdPackage.CAT_EXPRESSION__VALUE:
-        return getValue();
       case DdPackage.CAT_EXPRESSION__LENGTH:
         return getLength();
     }
@@ -414,9 +366,6 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
         getCatElts().clear();
         getCatElts().addAll((Collection<? extends CatExpressionElt>)newValue);
         return;
-      case DdPackage.CAT_EXPRESSION__VALUE:
-        setValue((String)newValue);
-        return;
       case DdPackage.CAT_EXPRESSION__LENGTH:
         setLength((Integer)newValue);
         return;
@@ -446,9 +395,6 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
       case DdPackage.CAT_EXPRESSION__CAT_ELTS:
         getCatElts().clear();
         return;
-      case DdPackage.CAT_EXPRESSION__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
       case DdPackage.CAT_EXPRESSION__LENGTH:
         setLength(LENGTH_EDEFAULT);
         return;
@@ -474,8 +420,6 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
         return right != null;
       case DdPackage.CAT_EXPRESSION__CAT_ELTS:
         return catElts != null && !catElts.isEmpty();
-      case DdPackage.CAT_EXPRESSION__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case DdPackage.CAT_EXPRESSION__LENGTH:
         return length != LENGTH_EDEFAULT;
     }
@@ -495,8 +439,6 @@ public class CatExpressionImpl extends SharkExpressionImpl implements CatExpress
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", value: ");
-    result.append(value);
     result.append(", length: ");
     result.append(length);
     result.append(')');
