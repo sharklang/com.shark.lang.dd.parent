@@ -35,7 +35,7 @@ public class ChrValueImpl extends TerminalExpressionImpl implements ChrValue
    * @generated
    * @ordered
    */
-  protected static final char VALUE_EDEFAULT = '\u0000';
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -45,7 +45,7 @@ public class ChrValueImpl extends TerminalExpressionImpl implements ChrValue
    * @generated
    * @ordered
    */
-  protected char value = VALUE_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public class ChrValueImpl extends TerminalExpressionImpl implements ChrValue
    * @generated
    */
   @Override
-  public char getValue()
+  public String getValue()
   {
     return value;
   }
@@ -85,9 +85,9 @@ public class ChrValueImpl extends TerminalExpressionImpl implements ChrValue
    * @generated
    */
   @Override
-  public void setValue(char newValue)
+  public void setValue(String newValue)
   {
-    char oldValue = value;
+    String oldValue = value;
     value = newValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.CHR_VALUE__VALUE, oldValue, value));
@@ -120,7 +120,7 @@ public class ChrValueImpl extends TerminalExpressionImpl implements ChrValue
     switch (featureID)
     {
       case DdPackage.CHR_VALUE__VALUE:
-        setValue((Character)newValue);
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -154,7 +154,7 @@ public class ChrValueImpl extends TerminalExpressionImpl implements ChrValue
     switch (featureID)
     {
       case DdPackage.CHR_VALUE__VALUE:
-        return value != VALUE_EDEFAULT;
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }

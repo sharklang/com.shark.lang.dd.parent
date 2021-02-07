@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import com.shark.lang.dd.AddExpression
 import com.shark.lang.dd.AndExpression
 import com.shark.lang.dd.AttributeSize
+import com.shark.lang.dd.AttributeValue
 import com.shark.lang.dd.BinaryExpression
 import com.shark.lang.dd.BinaryOperator
 import com.shark.lang.dd.BoolValue
@@ -12,7 +13,6 @@ import com.shark.lang.dd.ChrValue
 import com.shark.lang.dd.CstValue
 import com.shark.lang.dd.DataType
 import com.shark.lang.dd.DecValue
-import com.shark.lang.dd.IdentifierExpression
 import com.shark.lang.dd.IntValue
 import com.shark.lang.dd.ListExpression
 import com.shark.lang.dd.MultExpression
@@ -23,6 +23,7 @@ import com.shark.lang.dd.UnaryExpression
 import com.shark.lang.dd.UnaryOperator
 import com.shark.lang.dd.UnsetValue
 import com.shark.lang.dd.impl.DdFactoryImpl
+import java.util.regex.Pattern
 
 /**
  * The class focuses on validating expression in check and initialization expressions and of the dd grammar
@@ -40,15 +41,17 @@ class DdExpressionHelper {
 
 	static val zero = "0".charAt(0)
 	static val one = "1".charAt(0)
+	static val matcher = Pattern.compile("\\\\(t|n|r|\\\\)") // matches one escape
+	static val matcher2 = Pattern.compile("\\\\u(\\d|[A-F]){4}") // matches one unicode escape
 
 	// to manage the different subtypes of list as well as the case of a variable/Constant and return the information
 	protected def boolean isListExpression(SharkExpression binExpr) {
-		if(binExpr instanceof IdentifierExpression) {
-			val ident = binExpr as IdentifierExpression
-			ident.value.arraySize !== null
+		if(binExpr instanceof AttributeValue) {
+			val ident = binExpr as AttributeValue
+			((ident.value.arraySize !== null) && (ident.index === null)) // an array identifier without index specified
 		} else if(binExpr instanceof CstValue) {
 			val cst = binExpr as CstValue
-			cst.value.arraySize !== null
+			((cst.value.arraySize !== null) && (cst.index === null)) // an array constant without index specified
 		} else if(binExpr instanceof ListExpression) {
 			true
 		} else
@@ -125,9 +128,9 @@ class DdExpressionHelper {
 				DataType.TIME
 			case opValue == UnaryOperator.OP_LEN_VALUE:
 				DataType.DEC
-			case opValue == UnaryOperator.OP_NEG:
+			case opValue == UnaryOperator.OP_NEG_VALUE:
 				DataType.DEC
-			case opValue == UnaryOperator.OP_NOT:
+			case opValue == UnaryOperator.OP_NOT_VALUE:
 				DataType.BOOL
 			default: {
 				DataType.UNSET
@@ -216,9 +219,9 @@ class DdExpressionHelper {
 					val lengthStxt = (binExpr.right as ListExpression).listElts.get(0).right
 					binExpr.setLength(Integer.parseInt(calculateExpression(lengthStxt)))
 				} catch(Exception e) {
-				// TODO  find a better way? expression evaluation would be an endless problem
-				// so lets assume worsecase and so:
-				binExpr.setLength(attrSizeLeft.length)
+					// TODO  find a better way? expression evaluation would be an endless problem
+					// so lets assume worsecase and so:
+					binExpr.setLength(attrSizeLeft.length)
 				}
 			}
 		}
@@ -238,17 +241,43 @@ class DdExpressionHelper {
 // the descending algo with checkType already did the analysis to store the precision
 // and the length in the expression itself in length and precision members, that were added to the 
 // Expressions EObject from the dd g xtext grammar (using NULL to ensure it is not parsing anything)
-// length and preicision only matter for string and numerical attributes, zero for the rest
+// length and precision only matter for string and numerical attributes, zero for the rest
 	def AttributeSize getExpressionSize(SharkExpression expr) {
 		var attrSize = ddFactory.createAttributeSize()
 		var length = 0
 		var precision = 0
 		switch (expr) {
 			StrValue: {
-				length = (expr as StrValue).value.length - 2 // quotes are in value
+				var strValue = (expr as StrValue).value.substring(1)
+				strValue = strValue.substring(0, strValue.length - 1)
+				length = strValue.length
+				// if the string contains simple escapes like \n we need to remove 1 count for each
+				var m = matcher.matcher(strValue)
+				while(m.find) {
+					length = length - 1
+				}
+				// if the string contains unicode escapes like \u00AF we need to remove 5 count for each
+				m = matcher2.matcher(strValue)
+				while(m.find) {
+					length = length - 5
+				}
 			}
 			ChrValue: {
-				length = 1
+				// empty string is an empty char... So here can return 1 or 0
+				var chrValue = (expr as ChrValue).value.substring(1)
+				chrValue = chrValue.substring(0, chrValue.length - 1)
+				length = chrValue.length
+				if(length == 2) {
+					// verifies \n \r \\ \t 
+					if(matcher.matcher(chrValue).matches) {
+						length = 1
+					}
+				} else if(length == 6) {
+					// verifies \u1234 
+					if(matcher2.matcher(chrValue).matches) {
+						length = 1
+					}
+				}
 			}
 			IntValue: {
 				length = (expr as IntValue).value.integerLength
@@ -258,12 +287,19 @@ class DdExpressionHelper {
 				precision = (expr as DecValue).value.scale
 			}
 			CstValue: {
-				length = ((expr as CstValue).value.attributeSize).getLength()
-				precision = ((expr as CstValue).value.attributeSize).getPrecision()
+				val constant = (expr as CstValue).value
+				val attributeSize = constant.attributeSize
+				length = attributeSize.getLength()
+				val dataTypeVal = constant.dataType.value
+				if((dataTypeVal == DataType.INT_VALUE) || (dataTypeVal == DataType.STR_VALUE)) {
+					precision = 0
+				} else {
+					precision = attributeSize.getPrecision()
+				}
 			}
-			IdentifierExpression: {
-				length = ((expr as IdentifierExpression).value.attributeSize).getLength()
-				precision = ((expr as IdentifierExpression).value.attributeSize).getPrecision()
+			AttributeValue: {
+				length = ((expr as AttributeValue).value.attributeSize).getLength()
+				precision = ((expr as AttributeValue).value.attributeSize).getPrecision()
 			}
 			BinaryExpression: {
 				// gets it from the expression where it was stored during the checktype pass
@@ -295,13 +331,13 @@ class DdExpressionHelper {
 				var exprSize = list.left.getExpressionSize
 				length = exprSize.getLength()
 				precision = exprSize.getPrecision()
-				for(elt:list.listElts) {
+				for (elt : list.listElts) {
 					exprSize = elt.right.getExpressionSize
-					val newlength=exprSize.getLength()
-					length = length>newlength?length:newlength
-					val newprecision=exprSize.getPrecision()
-					precision = precision>newprecision?precision:newprecision
-				} 
+					val newlength = exprSize.getLength()
+					length = length > newlength ? length : newlength
+					val newprecision = exprSize.getPrecision()
+					precision = precision > newprecision ? precision : newprecision
+				}
 			}
 		}
 		attrSize.setLength(length)
@@ -326,7 +362,7 @@ class DdExpressionHelper {
 	}
 
 	// TODO, improve beyond simple literal cases. Can be done recursively at least a little for constants.
-	def calculateExpression(SharkExpression expr) {
+	def String calculateExpression(SharkExpression expr) {
 		switch (expr) {
 			ChrValue: {
 				val chr = expr as ChrValue
@@ -349,42 +385,42 @@ class DdExpressionHelper {
 			}
 			CstValue: {
 				val cst = expr as CstValue
-				""
+				calculateExpression(cst.value.defaultValue)
 			}
-			IdentifierExpression: {
-				val identExpr = expr as IdentifierExpression
-				""
+			AttributeValue: {
+				val identExpr = expr as AttributeValue
+				calculateExpression(identExpr.value.defaultValue)
 			}
 			BinaryExpression: {
-				val binExpr = expr as BinaryExpression
+				// val binExpr = expr as BinaryExpression
 				""
 			}
 			UnaryExpression: {
-				val unExpr = expr as UnaryExpression
+				// val unExpr = expr as UnaryExpression
 				""
 			}
 			AddExpression: {
-				val addExpr = expr as AddExpression
+				// val addExpr = expr as AddExpression
 				""
 			}
 			MultExpression: {
-				val multExpr = expr as MultExpression
+				// val multExpr = expr as MultExpression
 				""
 			}
 			AndExpression: {
-				val andExpr = expr as AndExpression
+				// val andExpr = expr as AndExpression
 				""
 			}
 			OrExpression: {
-				val orExpr = expr as OrExpression
+				// val orExpr = expr as OrExpression
 				""
 			}
 			CatExpression: {
-				val catExpr = expr as CatExpression
+				// val catExpr = expr as CatExpression
 				""
 			}
 			ListExpression: {
-				val listExpr = expr as ListExpression
+				// val listExpr = expr as ListExpression
 				""
 			}
 			UnsetValue: {
@@ -474,6 +510,24 @@ class DdExpressionHelper {
 			}
 		} else {
 			false
+		}
+	}
+
+	// Goes up the expression stack up to the last expression type and flag hasAttriute='Y' if required
+	// the hasAttribute flag was added as an integer in all expressions in the model so it was moved to the SharkExpression
+	// parent. this flag is then used in the checkTypes(Constant) method to check that the default expression is not using an Attribute
+	def void flagExpressionParentsWithAttribute(SharkExpression expr) {
+		expr.setHasAttribute(1)
+		var parent = expr.eContainer
+		var alreadyFlagged = false
+		while((parent instanceof SharkExpression) && !alreadyFlagged) {
+			val parentExpr = parent as SharkExpression
+			if(parentExpr.hasAttribute == 1) {
+				alreadyFlagged = true
+			} else {
+				parentExpr.setHasAttribute(1)
+				parent = parent.eContainer
+			}
 		}
 	}
 

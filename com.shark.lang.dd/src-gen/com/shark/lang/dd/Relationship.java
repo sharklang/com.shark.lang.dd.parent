@@ -3,6 +3,8 @@
  */
 package com.shark.lang.dd;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link com.shark.lang.dd.Relationship#getRelDescLines <em>Rel Desc Lines</em>}</li>
  *   <li>{@link com.shark.lang.dd.Relationship#getCardi1 <em>Cardi1</em>}</li>
  *   <li>{@link com.shark.lang.dd.Relationship#getName <em>Name</em>}</li>
  *   <li>{@link com.shark.lang.dd.Relationship#getCardi2 <em>Cardi2</em>}</li>
@@ -27,6 +30,18 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Relationship extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Rel Desc Lines</b></em>' containment reference list.
+   * The list contents are of type {@link com.shark.lang.dd.LineComment}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Rel Desc Lines</em>' containment reference list.
+   * @see com.shark.lang.dd.DdPackage#getRelationship_RelDescLines()
+   * @model containment="true"
+   * @generated
+   */
+  EList<LineComment> getRelDescLines();
+
   /**
    * Returns the value of the '<em><b>Cardi1</b></em>' containment reference.
    * <!-- begin-user-doc -->

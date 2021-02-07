@@ -10,6 +10,13 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Shark Expression</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link com.shark.lang.dd.SharkExpression#getExprValue <em>Expr Value</em>}</li>
+ *   <li>{@link com.shark.lang.dd.SharkExpression#getHasAttribute <em>Has Attribute</em>}</li>
+ * </ul>
  *
  * @see com.shark.lang.dd.DdPackage#getSharkExpression()
  * @model
@@ -17,4 +24,48 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SharkExpression extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Expr Value</em>' attribute.
+   * @see #setExprValue(String)
+   * @see com.shark.lang.dd.DdPackage#getSharkExpression_ExprValue()
+   * @model
+   * @generated
+   */
+  String getExprValue();
+
+  /**
+   * Sets the value of the '{@link com.shark.lang.dd.SharkExpression#getExprValue <em>Expr Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Expr Value</em>' attribute.
+   * @see #getExprValue()
+   * @generated
+   */
+  void setExprValue(String value);
+
+  /**
+   * Returns the value of the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Has Attribute</em>' attribute.
+   * @see #setHasAttribute(int)
+   * @see com.shark.lang.dd.DdPackage#getSharkExpression_HasAttribute()
+   * @model
+   * @generated
+   */
+  int getHasAttribute();
+
+  /**
+   * Sets the value of the '{@link com.shark.lang.dd.SharkExpression#getHasAttribute <em>Has Attribute</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Has Attribute</em>' attribute.
+   * @see #getHasAttribute()
+   * @generated
+   */
+  void setHasAttribute(int value);
+
 } // SharkExpression

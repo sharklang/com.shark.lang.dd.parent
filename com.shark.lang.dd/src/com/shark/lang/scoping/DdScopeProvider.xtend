@@ -3,7 +3,6 @@
  */
 package com.shark.lang.scoping
 
-
 /**
  * This class contains custom scoping description.
  * 
@@ -11,5 +10,8 @@ package com.shark.lang.scoping
  * on how and when to use it.
  */
 class DdScopeProvider extends AbstractDdScopeProvider {
+
+//this is already using default global scope in the background, so providing the qualified names are same in 2 files it will resolve
+//the reference
 
 }

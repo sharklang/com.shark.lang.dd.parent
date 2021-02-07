@@ -23,7 +23,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.shark.lang.dd.Attribute#getName <em>Name</em>}</li>
  *   <li>{@link com.shark.lang.dd.Attribute#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.Attribute#isPrimaryKey <em>Primary Key</em>}</li>
+ *   <li>{@link com.shark.lang.dd.Attribute#isPartitionKey <em>Partition Key</em>}</li>
  *   <li>{@link com.shark.lang.dd.Attribute#isMandatory <em>Mandatory</em>}</li>
+ *   <li>{@link com.shark.lang.dd.Attribute#isDeprecated <em>Deprecated</em>}</li>
  *   <li>{@link com.shark.lang.dd.Attribute#getAttrDesc <em>Attr Desc</em>}</li>
  * </ul>
  *
@@ -181,6 +183,28 @@ public interface Attribute extends EObject
   void setPrimaryKey(boolean value);
 
   /**
+   * Returns the value of the '<em><b>Partition Key</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Partition Key</em>' attribute.
+   * @see #setPartitionKey(boolean)
+   * @see com.shark.lang.dd.DdPackage#getAttribute_PartitionKey()
+   * @model
+   * @generated
+   */
+  boolean isPartitionKey();
+
+  /**
+   * Sets the value of the '{@link com.shark.lang.dd.Attribute#isPartitionKey <em>Partition Key</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Partition Key</em>' attribute.
+   * @see #isPartitionKey()
+   * @generated
+   */
+  void setPartitionKey(boolean value);
+
+  /**
    * Returns the value of the '<em><b>Mandatory</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -201,6 +225,28 @@ public interface Attribute extends EObject
    * @generated
    */
   void setMandatory(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Deprecated</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Deprecated</em>' attribute.
+   * @see #setDeprecated(boolean)
+   * @see com.shark.lang.dd.DdPackage#getAttribute_Deprecated()
+   * @model
+   * @generated
+   */
+  boolean isDeprecated();
+
+  /**
+   * Sets the value of the '{@link com.shark.lang.dd.Attribute#isDeprecated <em>Deprecated</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Deprecated</em>' attribute.
+   * @see #isDeprecated()
+   * @generated
+   */
+  void setDeprecated(boolean value);
 
   /**
    * Returns the value of the '<em><b>Attr Desc</b></em>' containment reference.

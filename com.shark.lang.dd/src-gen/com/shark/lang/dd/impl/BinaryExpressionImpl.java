@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getRight <em>Right</em>}</li>
- *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getPrecision <em>Precision</em>}</li>
  *   <li>{@link com.shark.lang.dd.impl.BinaryExpressionImpl#getLength <em>Length</em>}</li>
  * </ul>
@@ -75,26 +74,6 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
    * @ordered
    */
   protected SharkExpression right;
-
-  /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected static final String VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
@@ -288,31 +267,6 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
    * @generated
    */
   @Override
-  public String getValue()
-  {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setValue(String newValue)
-  {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DdPackage.BINARY_EXPRESSION__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public int getPrecision()
   {
     return precision;
@@ -391,8 +345,6 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
         return getOp();
       case DdPackage.BINARY_EXPRESSION__RIGHT:
         return getRight();
-      case DdPackage.BINARY_EXPRESSION__VALUE:
-        return getValue();
       case DdPackage.BINARY_EXPRESSION__PRECISION:
         return getPrecision();
       case DdPackage.BINARY_EXPRESSION__LENGTH:
@@ -419,9 +371,6 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
         return;
       case DdPackage.BINARY_EXPRESSION__RIGHT:
         setRight((SharkExpression)newValue);
-        return;
-      case DdPackage.BINARY_EXPRESSION__VALUE:
-        setValue((String)newValue);
         return;
       case DdPackage.BINARY_EXPRESSION__PRECISION:
         setPrecision((Integer)newValue);
@@ -452,9 +401,6 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
       case DdPackage.BINARY_EXPRESSION__RIGHT:
         setRight((SharkExpression)null);
         return;
-      case DdPackage.BINARY_EXPRESSION__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
       case DdPackage.BINARY_EXPRESSION__PRECISION:
         setPrecision(PRECISION_EDEFAULT);
         return;
@@ -481,8 +427,6 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
         return op != OP_EDEFAULT;
       case DdPackage.BINARY_EXPRESSION__RIGHT:
         return right != null;
-      case DdPackage.BINARY_EXPRESSION__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case DdPackage.BINARY_EXPRESSION__PRECISION:
         return precision != PRECISION_EDEFAULT;
       case DdPackage.BINARY_EXPRESSION__LENGTH:
@@ -504,8 +448,6 @@ public class BinaryExpressionImpl extends SharkExpressionImpl implements BinaryE
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (op: ");
     result.append(op);
-    result.append(", value: ");
-    result.append(value);
     result.append(", precision: ");
     result.append(precision);
     result.append(", length: ");

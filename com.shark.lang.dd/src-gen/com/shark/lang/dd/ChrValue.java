@@ -27,12 +27,12 @@ public interface ChrValue extends TerminalExpression
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(char)
+   * @see #setValue(String)
    * @see com.shark.lang.dd.DdPackage#getChrValue_Value()
    * @model
    * @generated
    */
-  char getValue();
+  String getValue();
 
   /**
    * Sets the value of the '{@link com.shark.lang.dd.ChrValue#getValue <em>Value</em>}' attribute.
@@ -42,6 +42,6 @@ public interface ChrValue extends TerminalExpression
    * @see #getValue()
    * @generated
    */
-  void setValue(char value);
+  void setValue(String value);
 
 } // ChrValue

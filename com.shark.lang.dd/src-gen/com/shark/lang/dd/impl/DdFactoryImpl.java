@@ -10,6 +10,7 @@ import com.shark.lang.dd.AndExpressionElt;
 import com.shark.lang.dd.ArraySize;
 import com.shark.lang.dd.Attribute;
 import com.shark.lang.dd.AttributeSize;
+import com.shark.lang.dd.AttributeValue;
 import com.shark.lang.dd.BinaryExpression;
 import com.shark.lang.dd.BinaryOperator;
 import com.shark.lang.dd.BoolValue;
@@ -26,8 +27,8 @@ import com.shark.lang.dd.DataType;
 import com.shark.lang.dd.DdFactory;
 import com.shark.lang.dd.DdPackage;
 import com.shark.lang.dd.DecValue;
+import com.shark.lang.dd.EntitiesListElt;
 import com.shark.lang.dd.Entity;
-import com.shark.lang.dd.IdentifierExpression;
 import com.shark.lang.dd.IntValue;
 import com.shark.lang.dd.LineComment;
 import com.shark.lang.dd.ListExpression;
@@ -115,6 +116,7 @@ public class DdFactoryImpl extends EFactoryImpl implements DdFactory
       case DdPackage.ARRAY_SIZE: return createArraySize();
       case DdPackage.RELATIONSHIP: return createRelationship();
       case DdPackage.CONSTRAINT: return createConstraint();
+      case DdPackage.ENTITIES_LIST_ELT: return createEntitiesListElt();
       case DdPackage.CHECK_EXPRESSION: return createCheckExpression();
       case DdPackage.SHARK_EXPRESSION: return createSharkExpression();
       case DdPackage.BINARY_EXPRESSION: return createBinaryExpression();
@@ -141,7 +143,7 @@ public class DdFactoryImpl extends EFactoryImpl implements DdFactory
       case DdPackage.CST_VALUE: return createCstValue();
       case DdPackage.BOOL_VALUE: return createBoolValue();
       case DdPackage.UNSET_VALUE: return createUnsetValue();
-      case DdPackage.IDENTIFIER_EXPRESSION: return createIdentifierExpression();
+      case DdPackage.ATTRIBUTE_VALUE: return createAttributeValue();
       case DdPackage.COMMENT: return createComment();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -292,6 +294,18 @@ public class DdFactoryImpl extends EFactoryImpl implements DdFactory
   {
     ConstraintImpl constraint = new ConstraintImpl();
     return constraint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EntitiesListElt createEntitiesListElt()
+  {
+    EntitiesListEltImpl entitiesListElt = new EntitiesListEltImpl();
+    return entitiesListElt;
   }
 
   /**
@@ -612,10 +626,10 @@ public class DdFactoryImpl extends EFactoryImpl implements DdFactory
    * @generated
    */
   @Override
-  public IdentifierExpression createIdentifierExpression()
+  public AttributeValue createAttributeValue()
   {
-    IdentifierExpressionImpl identifierExpression = new IdentifierExpressionImpl();
-    return identifierExpression;
+    AttributeValueImpl attributeValue = new AttributeValueImpl();
+    return attributeValue;
   }
 
   /**

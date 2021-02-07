@@ -8,32 +8,43 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 //EOL tokens are added after an indent constant or no indent and a new line
 //IDENT triggered after a Comment so generates EOL 
 //with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-//TODO check empty string const on like: myvar like "" should fail
-//TODO check cast date format: date("YYYYMMDD") in case it is not and expression
+//TODO defensive programming Make init mandatory for non key attributes
 //TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
-//TODO test expressions interactively and build non passing JUNIT tests using excel random
+//TODO test expressions interactively, re-read unit tests and enrich, and build non passing JUNIT tests using excel random
 //TODO update formatter
-//TODO move up error message as constants
-//TODO move checkOpertor to helper class
-//TODO customize error messages for parser and lexer: eg constant en maj
+//TODO do a first output: flatbuffer and rocks and flutter crud screens 
+//TODO add content assist
+//TODO bug precision/length check fails if there is a cast
+//TODO allow array of types but check the size*size to emmit a warning or error (2Mb, 100Mb)
 //TODO use long for INT and DEC size verification instead of int
-//TODO do a first output
-//TODO semantic highlighting example
+//TODO customize error messages for parser and lexer: eg constant en maj
+//TODO see other todos
 //TODO use case of the unset value
-//TODO add formats on top of checks to be used by like operator: 5A003a-"H" with positions. formats will be usable to split
 //TODO test date operations + 1*DAY... basing on the generator error management
 //TODO add min, max, avg
-//TODO add content assist
+//TODO semantic highlighting example
+//TODO finish moving up error message as constants and add more automatic unit tests
+//TODO move checkOpertor to helper class
 //TODO split into reusable grammar and create sd and sk languages
-//TODO implement math a bit more: implement the expression precision check and rounding routines
 //TODO in this context consider removing int and stick to general dec(n,0)?
-//TODO as for constant they need to be calculatable expressions at compile time so use groovy or other in validation to evaluate it, but keep the expression in java as the java compiler will simplify then.
+//TODO Improve calculateExpression and add it to the main descent of getExpressionType using a value extra member so that at least int(2,2)=90+20 fails
 //TODO check and neutralize useless comment associator
 //TODO check that all text is assigned
-//TODO cleanup error messages in propoerties
-//ecore sample editor. editor read again the XtextRessource so normal that my boolean are not there. they would have to 
-//be persisted in hidden text... But core code generation maybe the in memory AST is the same as in validation
-//to test.
+//TODO cleanup error messages in properties and second language support
+//TODO bits could be a string expression or attribute in which case the content is not checked. Add bits length.
+//TODO Unicity does not always work: on clean it fails because description from global index is null
+//			1) based on debug, linking (LazyLinker.doLinkModel) is done after lexer/parser of course but mixed with validation in case of save. 
+//				But done after each change like a fast validation. One could check how to disable this and do it like a NORMAL check
+//       2) investigate the unicity check default (helper):
+//				-remove it because this is duplicate effort with validation?
+//				-tune it using the new notion of context do to a cross resource validation
+//			3) current issue open in xtext for visibleContainer.getExportedObjectsByType being slow. to debug and see if override can be done
+//			4) question on stack overflow//eclipse to resolve the fact that a clean does not work on unicity error
+//TODO a single whitespace on a new line fails while a single tab works
+//TODO expression is not possible to initiate bits
+//TODO no default value on a key and no mandatory because this is explicit
+//TODO unary function look ugly because they imply double parenthesis date(("2010"&"0101"))
+
 DataModelFragment returns DataModelFragment:
 	(modelDesc+=LineComment)+
 	'model' name=OBJID EOL
@@ -74,7 +85,9 @@ Attribute returns Attribute:
 	name=ID
 	('=' defaultValue=SharkExpression)?
 	(primaryKey?='key')?
+	(partitionKey?='partitionkey')?
 	(mandatory?='!')?
+	(deprecated?='deprecated')?
 	(attrDesc=TrailComment) //mandatory description of the Attribute
 	//	(nullable?='!null')? 
 	EOL;
@@ -90,6 +103,7 @@ ArraySize returns ArraySize:
 
 	////////////Statement 2: Relationships
 Relationship returns Relationship:
+	(relDescLines+=LineComment)*
 	cardi1=RangeExpression name=ID cardi2=RangeExpression linkTo=[Entity|OBJID]
 	(relDesc=TrailComment) //mandatory description of the Attribute
 	EOL;
@@ -98,10 +112,14 @@ Relationship returns Relationship:
 //Second Block of statements: check constraints
 Constraint returns Constraint:
 	(chkDescLines+=LineComment)+
-	name=CHKID ':'
+	name=CHKID ('(' firstEntity=([Entity|OBJID]) entitiesList+=(EntitiesListElt)* ')' )? ':'
 	BEGIN
 	(check+=CheckExpression)+
 	END;
+	
+EntitiesListElt returns EntitiesListElt:
+	',' entity=([Entity|OBJID]) isArray=('[]')?
+;
 
 	////////////Statement 1: checks. If same name as entity they are intrinsic and executed systematically
 //at each creation time of the object. The other need to be invoked: check myCust#Customer_Account_Crosschecks.all or .<id>
@@ -127,22 +145,22 @@ SharkExpression returns SharkExpression:
 	=> AndExpression | => OrExpression |
 	=> CatExpression | => ListExpression | 
 	BinaryExpression | UnaryExpression |
-	TerminalExpression | IdentifierExpression
+	TerminalExpression 
 	;
 
 BinaryExpression returns BinaryExpression:
 	'(' left=SharkExpression op=BinaryOperator right=SharkExpression ')' 
-	 (value=NUL precision=INT length=INT)? //starting the sequence with NULL ensures it will never parse anything
+	 (exprValue=NUL precision=INT length=INT hasAttribute=INT)? //starting the sequence with NULL ensures it will never parse anything
 	;
 
 UnaryExpression returns UnaryExpression:
 	op=UnaryOperator '(' left=SharkExpression ')'
-	 (value=NUL precision=INT length=INT)?
+	 (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
 	;
 
 AddExpression returns AddExpression:
 	'(' left=SharkExpression op=('+' | '-') right=SharkExpression (addElts+=AddExpressionElt)+ ')'
-	 (value=NUL precision=INT length=INT)?
+	 (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
 	;
 
 AddExpressionElt returns AddExpressionElt:
@@ -150,7 +168,7 @@ AddExpressionElt returns AddExpressionElt:
 
 MultExpression returns MultExpression:
 	'(' left=SharkExpression op=('*') right=SharkExpression (multElts+=MultExpressionElt)+ ')'
-	 (value=NUL precision=INT length=INT)?
+	 (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
 	;
 
 MultExpressionElt returns MultExpressionElt:
@@ -158,6 +176,7 @@ MultExpressionElt returns MultExpressionElt:
 
 AndExpression returns AndExpression:
 	'(' left=SharkExpression op=('and') right=SharkExpression (andElts+=AndExpressionElt)+ ')'
+	(exprValue=NUL hasAttribute=INT)?
 	;
 
 AndExpressionElt returns AndExpressionElt:
@@ -165,6 +184,7 @@ AndExpressionElt returns AndExpressionElt:
 
 OrExpression returns OrExpression:
 	'(' left=SharkExpression op=('or') right=SharkExpression (orElts+=OrExpressionElt)+ ')'
+	(exprValue=NUL hasAttribute=INT)?
 	;
 
 OrExpressionElt returns OrExpressionElt:
@@ -172,7 +192,7 @@ OrExpressionElt returns OrExpressionElt:
 
 CatExpression returns CatExpression:
 	'(' left=SharkExpression op=('&') right=SharkExpression (catElts+=CatExpressionElt)+ ')'
-	 (value=NUL length=INT)?
+	 (exprValue=NUL length=INT hasAttribute=INT)?
 	;
 
 CatExpressionElt returns CatExpressionElt:
@@ -180,6 +200,7 @@ CatExpressionElt returns CatExpressionElt:
 	
 ListExpression returns ListExpression:
 	op='(' left=SharkExpression (ListElts+=ListExpressionElt)+ ')' 
+	(exprValue=NUL hasAttribute=INT)?
 	;
 
 ListExpressionElt returns ListExpressionElt:
@@ -205,12 +226,12 @@ TerminalExpression returns TerminalExpression:
 	{IntValue} value=INT |
 	{DecValue} value=DEC |
 	{ChrValue} value=CHR |
-	{CstValue} value=[Constant|CSTID] |
+	{CstValue} value=[Constant|CSTID] (index=ArraySize)?|
 	{BoolValue} value=Boolean |
-	{UnsetValue} value=Unset);
-
-IdentifierExpression returns TerminalExpression:
-	{IdentifierExpression} value=[Attribute|QualifiedName];
+	{UnsetValue} value=Unset |
+	{AttributeValue} value=[Attribute|QualifiedName] (index=ArraySize)?)
+	(exprValue=NUL hasAttribute=INT)?
+	;
 
 QualifiedName:
 	(OBJID '.')? ID;
@@ -272,17 +293,17 @@ terminal fragment ASCII:
 terminal fragment NL:
 	('\r'? '\n');
 
-	//beware terminals are consumed in this order of precedence
+//beware terminals are consumed in this order of precedence
 //and lexer eats the longest possibility. caret removed
-	//string literals don't allow all escapes only common ones, and only double quotes
-terminal CHR returns ecore::EChar:
-	'"' (ESC | ASCII)? '"';
-
-	//string literals don't allow all escapes only common ones, and only double quotes
+//string literals don't allow all escapes only common ones, and only double quotes
 //and still need to put Unicode support for special char so \u is in
 //with string compaction, non ASCII char is not encouraged in code/literals --> Unicode only
 terminal STR returns ecore::EString:
-	'"' (ESC | ASCII)+ '"';
+	'"' (ESC | ASCII) (ESC | ASCII) (ESC | ASCII)* '"';
+
+terminal CHR returns ecore::EString: //simpler to manage a string and remove quotes rather than using a value converter
+//TODO consider using a value converter
+	'"' (ESC | ASCII)? '"';
 
 terminal RANGEINF returns ecore::EString:
 	NUM '..n'

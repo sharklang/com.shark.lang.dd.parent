@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.shark.lang.dd.AddExpression#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.AddExpression#getRight <em>Right</em>}</li>
  *   <li>{@link com.shark.lang.dd.AddExpression#getAddElts <em>Add Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.AddExpression#getValue <em>Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.AddExpression#getPrecision <em>Precision</em>}</li>
  *   <li>{@link com.shark.lang.dd.AddExpression#getLength <em>Length</em>}</li>
  * </ul>
@@ -106,28 +105,6 @@ public interface AddExpression extends SharkExpression
    * @generated
    */
   EList<AddExpressionElt> getAddElts();
-
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(String)
-   * @see com.shark.lang.dd.DdPackage#getAddExpression_Value()
-   * @model
-   * @generated
-   */
-  String getValue();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.AddExpression#getValue <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(String value);
 
   /**
    * Returns the value of the '<em><b>Precision</b></em>' attribute.

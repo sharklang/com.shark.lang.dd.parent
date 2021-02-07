@@ -11,6 +11,7 @@ import com.shark.lang.dd.AndExpressionElt;
 import com.shark.lang.dd.ArraySize;
 import com.shark.lang.dd.Attribute;
 import com.shark.lang.dd.AttributeSize;
+import com.shark.lang.dd.AttributeValue;
 import com.shark.lang.dd.BinaryExpression;
 import com.shark.lang.dd.BoolValue;
 import com.shark.lang.dd.CatExpression;
@@ -24,8 +25,8 @@ import com.shark.lang.dd.CstValue;
 import com.shark.lang.dd.DataModelFragment;
 import com.shark.lang.dd.DdPackage;
 import com.shark.lang.dd.DecValue;
+import com.shark.lang.dd.EntitiesListElt;
 import com.shark.lang.dd.Entity;
-import com.shark.lang.dd.IdentifierExpression;
 import com.shark.lang.dd.IntValue;
 import com.shark.lang.dd.ListExpression;
 import com.shark.lang.dd.ListExpressionElt;
@@ -84,6 +85,9 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 			case DdPackage.ATTRIBUTE_SIZE:
 				sequence_AttributeSize(context, (AttributeSize) semanticObject); 
 				return; 
+			case DdPackage.ATTRIBUTE_VALUE:
+				sequence_TerminalExpression(context, (AttributeValue) semanticObject); 
+				return; 
 			case DdPackage.BINARY_EXPRESSION:
 				sequence_BinaryExpression(context, (BinaryExpression) semanticObject); 
 				return; 
@@ -127,11 +131,11 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 			case DdPackage.DEC_VALUE:
 				sequence_TerminalExpression(context, (DecValue) semanticObject); 
 				return; 
+			case DdPackage.ENTITIES_LIST_ELT:
+				sequence_EntitiesListElt(context, (EntitiesListElt) semanticObject); 
+				return; 
 			case DdPackage.ENTITY:
 				sequence_Entity(context, (Entity) semanticObject); 
-				return; 
-			case DdPackage.IDENTIFIER_EXPRESSION:
-				sequence_IdentifierExpression(context, (IdentifierExpression) semanticObject); 
 				return; 
 			case DdPackage.INT_VALUE:
 				sequence_TerminalExpression(context, (IntValue) semanticObject); 
@@ -209,7 +213,13 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     AddExpression returns AddExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression (op='+' | op='-') right=SharkExpression addElts+=AddExpressionElt+ (value=NUL precision=INT length=INT)?)
+	 *     (
+	 *         left=SharkExpression 
+	 *         (op='+' | op='-') 
+	 *         right=SharkExpression 
+	 *         addElts+=AddExpressionElt+ 
+	 *         (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
+	 *     )
 	 */
 	protected void sequence_AddExpression(ISerializationContext context, AddExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -243,7 +253,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     AndExpression returns AndExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+)
+	 *     (left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+ (exprValue=NUL hasAttribute=INT)?)
 	 */
 	protected void sequence_AndExpression(ISerializationContext context, AndExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -293,7 +303,9 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *         name=ID 
 	 *         defaultValue=SharkExpression? 
 	 *         primaryKey?='key'? 
+	 *         partitionKey?='partitionkey'? 
 	 *         mandatory?='!'? 
+	 *         deprecated?='deprecated'? 
 	 *         attrDesc=TrailComment
 	 *     )
 	 */
@@ -308,7 +320,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     BinaryExpression returns BinaryExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op=BinaryOperator right=SharkExpression (value=NUL precision=INT length=INT)?)
+	 *     (left=SharkExpression op=BinaryOperator right=SharkExpression (exprValue=NUL precision=INT length=INT hasAttribute=INT)?)
 	 */
 	protected void sequence_BinaryExpression(ISerializationContext context, BinaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -342,7 +354,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     CatExpression returns CatExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ (value=NUL length=INT)?)
+	 *     (left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ (exprValue=NUL length=INT hasAttribute=INT)?)
 	 */
 	protected void sequence_CatExpression(ISerializationContext context, CatExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -386,7 +398,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     Constraint returns Constraint
 	 *
 	 * Constraint:
-	 *     (chkDescLines+=LineComment+ name=CHKID check+=CheckExpression+)
+	 *     (chkDescLines+=LineComment+ name=CHKID (firstEntity=[Entity|OBJID] entitiesList+=EntitiesListElt*)? check+=CheckExpression+)
 	 */
 	protected void sequence_Constraint(ISerializationContext context, Constraint semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -407,6 +419,18 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	
 	/**
 	 * Contexts:
+	 *     EntitiesListElt returns EntitiesListElt
+	 *
+	 * Constraint:
+	 *     (entity=[Entity|OBJID] isArray='[]'?)
+	 */
+	protected void sequence_EntitiesListElt(ISerializationContext context, EntitiesListElt semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Entity returns Entity
 	 *
 	 * Constraint:
@@ -414,25 +438,6 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 */
 	protected void sequence_Entity(ISerializationContext context, Entity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     SharkExpression returns IdentifierExpression
-	 *     IdentifierExpression returns IdentifierExpression
-	 *
-	 * Constraint:
-	 *     value=[Attribute|QualifiedName]
-	 */
-	protected void sequence_IdentifierExpression(ISerializationContext context, IdentifierExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.IDENTIFIER_EXPRESSION__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.IDENTIFIER_EXPRESSION__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIdentifierExpressionAccess().getValueAttributeQualifiedNameParserRuleCall_1_0_1(), semanticObject.eGet(DdPackage.Literals.IDENTIFIER_EXPRESSION__VALUE, false));
-		feeder.finish();
 	}
 	
 	
@@ -480,7 +485,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     ListExpression returns ListExpression
 	 *
 	 * Constraint:
-	 *     (op='(' left=SharkExpression ListElts+=ListExpressionElt+)
+	 *     (op='(' left=SharkExpression ListElts+=ListExpressionElt+ (exprValue=NUL hasAttribute=INT)?)
 	 */
 	protected void sequence_ListExpression(ISerializationContext context, ListExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -492,7 +497,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     SharkExpression returns ListExpression
 	 *
 	 * Constraint:
-	 *     ((op='(' left=SharkExpression ListElts+=ListExpressionElt+) | range=RANGE | range=RANGEINF)
+	 *     ((op='(' left=SharkExpression ListElts+=ListExpressionElt+ (exprValue=NUL hasAttribute=INT)?) | range=RANGE | range=RANGEINF)
 	 */
 	protected void sequence_ListExpression_RangeExpression(ISerializationContext context, ListExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -526,7 +531,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     MultExpression returns MultExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ (value=NUL precision=INT length=INT)?)
+	 *     (left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ (exprValue=NUL precision=INT length=INT hasAttribute=INT)?)
 	 */
 	protected void sequence_MultExpression(ISerializationContext context, MultExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -560,7 +565,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     OrExpression returns OrExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+)
+	 *     (left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+ (exprValue=NUL hasAttribute=INT)?)
 	 */
 	protected void sequence_OrExpression(ISerializationContext context, OrExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -584,28 +589,30 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     Relationship returns Relationship
 	 *
 	 * Constraint:
-	 *     (cardi1=RangeExpression name=ID cardi2=RangeExpression linkTo=[Entity|OBJID] relDesc=TrailComment)
+	 *     (
+	 *         relDescLines+=LineComment* 
+	 *         cardi1=RangeExpression 
+	 *         name=ID 
+	 *         cardi2=RangeExpression 
+	 *         linkTo=[Entity|OBJID] 
+	 *         relDesc=TrailComment
+	 *     )
 	 */
 	protected void sequence_Relationship(ISerializationContext context, Relationship semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.RELATIONSHIP__CARDI1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.RELATIONSHIP__CARDI1));
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.RELATIONSHIP__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.RELATIONSHIP__NAME));
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.RELATIONSHIP__CARDI2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.RELATIONSHIP__CARDI2));
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.RELATIONSHIP__LINK_TO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.RELATIONSHIP__LINK_TO));
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.RELATIONSHIP__REL_DESC) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.RELATIONSHIP__REL_DESC));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRelationshipAccess().getCardi1RangeExpressionParserRuleCall_0_0(), semanticObject.getCardi1());
-		feeder.accept(grammarAccess.getRelationshipAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRelationshipAccess().getCardi2RangeExpressionParserRuleCall_2_0(), semanticObject.getCardi2());
-		feeder.accept(grammarAccess.getRelationshipAccess().getLinkToEntityOBJIDTerminalRuleCall_3_0_1(), semanticObject.eGet(DdPackage.Literals.RELATIONSHIP__LINK_TO, false));
-		feeder.accept(grammarAccess.getRelationshipAccess().getRelDescTrailCommentParserRuleCall_4_0(), semanticObject.getRelDesc());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SharkExpression returns AttributeValue
+	 *     TerminalExpression returns AttributeValue
+	 *
+	 * Constraint:
+	 *     (value=[Attribute|QualifiedName] index=ArraySize? (exprValue=NUL hasAttribute=INT)?)
+	 */
+	protected void sequence_TerminalExpression(ISerializationContext context, AttributeValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -615,16 +622,10 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     TerminalExpression returns BoolValue
 	 *
 	 * Constraint:
-	 *     value=Boolean
+	 *     (value=Boolean (exprValue=NUL hasAttribute=INT)?)
 	 */
 	protected void sequence_TerminalExpression(ISerializationContext context, BoolValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.BOOL_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.BOOL_VALUE__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTerminalExpressionAccess().getValueBooleanEnumRuleCall_5_1_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -634,16 +635,10 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     TerminalExpression returns ChrValue
 	 *
 	 * Constraint:
-	 *     value=CHR
+	 *     (value=CHR (exprValue=NUL hasAttribute=INT)?)
 	 */
 	protected void sequence_TerminalExpression(ISerializationContext context, ChrValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.CHR_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.CHR_VALUE__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTerminalExpressionAccess().getValueCHRTerminalRuleCall_3_1_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -653,16 +648,10 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     TerminalExpression returns CstValue
 	 *
 	 * Constraint:
-	 *     value=[Constant|CSTID]
+	 *     (value=[Constant|CSTID] index=ArraySize? (exprValue=NUL hasAttribute=INT)?)
 	 */
 	protected void sequence_TerminalExpression(ISerializationContext context, CstValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.CST_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.CST_VALUE__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTerminalExpressionAccess().getValueConstantCSTIDTerminalRuleCall_4_1_0_1(), semanticObject.eGet(DdPackage.Literals.CST_VALUE__VALUE, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -672,16 +661,10 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     TerminalExpression returns DecValue
 	 *
 	 * Constraint:
-	 *     value=DEC
+	 *     (value=DEC (exprValue=NUL hasAttribute=INT)?)
 	 */
 	protected void sequence_TerminalExpression(ISerializationContext context, DecValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.DEC_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.DEC_VALUE__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTerminalExpressionAccess().getValueDECTerminalRuleCall_2_1_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -691,16 +674,10 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     TerminalExpression returns IntValue
 	 *
 	 * Constraint:
-	 *     value=INT
+	 *     (value=INT (exprValue=NUL hasAttribute=INT)?)
 	 */
 	protected void sequence_TerminalExpression(ISerializationContext context, IntValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.INT_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.INT_VALUE__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTerminalExpressionAccess().getValueINTTerminalRuleCall_1_1_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -710,16 +687,10 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     TerminalExpression returns StrValue
 	 *
 	 * Constraint:
-	 *     value=STR
+	 *     (value=STR (exprValue=NUL hasAttribute=INT)?)
 	 */
 	protected void sequence_TerminalExpression(ISerializationContext context, StrValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.STR_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.STR_VALUE__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTerminalExpressionAccess().getValueSTRTerminalRuleCall_0_1_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -729,16 +700,10 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     TerminalExpression returns UnsetValue
 	 *
 	 * Constraint:
-	 *     value=Unset
+	 *     (value=Unset (exprValue=NUL hasAttribute=INT)?)
 	 */
 	protected void sequence_TerminalExpression(ISerializationContext context, UnsetValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DdPackage.Literals.UNSET_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DdPackage.Literals.UNSET_VALUE__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTerminalExpressionAccess().getValueUnsetEnumRuleCall_6_1_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -766,7 +731,7 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     UnaryExpression returns UnaryExpression
 	 *
 	 * Constraint:
-	 *     (op=UnaryOperator left=SharkExpression (value=NUL precision=INT length=INT)?)
+	 *     (op=UnaryOperator left=SharkExpression (exprValue=NUL precision=INT length=INT hasAttribute=INT)?)
 	 */
 	protected void sequence_UnaryExpression(ISerializationContext context, UnaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

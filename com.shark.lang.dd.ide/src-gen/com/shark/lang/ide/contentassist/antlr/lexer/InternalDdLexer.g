@@ -11,6 +11,10 @@ package com.shark.lang.ide.contentassist.antlr.lexer;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.Lexer;
 }
 
+Partitionkey : 'partitionkey';
+
+Deprecated : 'deprecated';
+
 False : 'false';
 
 Model : 'model';
@@ -62,6 +66,8 @@ LessThanSignEqualsSign : '<=';
 EqualsSignEqualsSign : '==';
 
 GreaterThanSignEqualsSign : '>=';
+
+LeftSquareBracketRightSquareBracket : '[]';
 
 In : 'in';
 
@@ -123,9 +129,9 @@ fragment RULE_ASCII : ('!'|'#'|'$'|'%'|'&'|'\''|'('|')'|'*'|'+'|','|'-'|'.'|'/'|
 
 fragment RULE_NL : '\r'? '\n';
 
-RULE_CHR : '"' (RULE_ESC|RULE_ASCII)? '"';
+RULE_STR : '"' (RULE_ESC|RULE_ASCII) (RULE_ESC|RULE_ASCII) (RULE_ESC|RULE_ASCII)* '"';
 
-RULE_STR : '"' (RULE_ESC|RULE_ASCII)+ '"';
+RULE_CHR : '"' (RULE_ESC|RULE_ASCII)? '"';
 
 RULE_RANGEINF : RULE_NUM '..n';
 

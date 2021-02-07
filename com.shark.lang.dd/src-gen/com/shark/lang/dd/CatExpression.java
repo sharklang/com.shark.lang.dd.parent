@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.shark.lang.dd.CatExpression#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.CatExpression#getRight <em>Right</em>}</li>
  *   <li>{@link com.shark.lang.dd.CatExpression#getCatElts <em>Cat Elts</em>}</li>
- *   <li>{@link com.shark.lang.dd.CatExpression#getValue <em>Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.CatExpression#getLength <em>Length</em>}</li>
  * </ul>
  *
@@ -105,28 +104,6 @@ public interface CatExpression extends SharkExpression
    * @generated
    */
   EList<CatExpressionElt> getCatElts();
-
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(String)
-   * @see com.shark.lang.dd.DdPackage#getCatExpression_Value()
-   * @model
-   * @generated
-   */
-  String getValue();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.CatExpression#getValue <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(String value);
 
   /**
    * Returns the value of the '<em><b>Length</b></em>' attribute.

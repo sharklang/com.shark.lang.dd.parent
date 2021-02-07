@@ -16,7 +16,6 @@ package com.shark.lang.dd;
  *   <li>{@link com.shark.lang.dd.BinaryExpression#getLeft <em>Left</em>}</li>
  *   <li>{@link com.shark.lang.dd.BinaryExpression#getOp <em>Op</em>}</li>
  *   <li>{@link com.shark.lang.dd.BinaryExpression#getRight <em>Right</em>}</li>
- *   <li>{@link com.shark.lang.dd.BinaryExpression#getValue <em>Value</em>}</li>
  *   <li>{@link com.shark.lang.dd.BinaryExpression#getPrecision <em>Precision</em>}</li>
  *   <li>{@link com.shark.lang.dd.BinaryExpression#getLength <em>Length</em>}</li>
  * </ul>
@@ -95,28 +94,6 @@ public interface BinaryExpression extends SharkExpression
    * @generated
    */
   void setRight(SharkExpression value);
-
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(String)
-   * @see com.shark.lang.dd.DdPackage#getBinaryExpression_Value()
-   * @model
-   * @generated
-   */
-  String getValue();
-
-  /**
-   * Sets the value of the '{@link com.shark.lang.dd.BinaryExpression#getValue <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(String value);
 
   /**
    * Returns the value of the '<em><b>Precision</b></em>' attribute.

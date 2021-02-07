@@ -8,6 +8,7 @@ import com.shark.lang.dd.AndExpressionElt
 import com.shark.lang.dd.ArraySize
 import com.shark.lang.dd.Attribute
 import com.shark.lang.dd.AttributeSize
+import com.shark.lang.dd.AttributeValue
 import com.shark.lang.dd.BinaryExpression
 import com.shark.lang.dd.BinaryOperator
 import com.shark.lang.dd.BoolValue
@@ -20,7 +21,6 @@ import com.shark.lang.dd.CstValue
 import com.shark.lang.dd.DataType
 import com.shark.lang.dd.DdPackage
 import com.shark.lang.dd.DecValue
-import com.shark.lang.dd.IdentifierExpression
 import com.shark.lang.dd.IntValue
 import com.shark.lang.dd.ListExpression
 import com.shark.lang.dd.ListExpressionElt
@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.validation.AbstractDeclarativeValidator
 import org.eclipse.xtext.validation.Check
+import org.eclipse.xtext.validation.CheckType
 import org.eclipse.xtext.validation.EValidatorRegistrar
 
 /**
@@ -75,7 +76,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 
 // check that declared type are aligned to expression used for declaration
 //on attribute and constant defaultValue
-	@Check
+	@Check(CheckType.NORMAL)
 	def checkTypes(Attribute attr) {
 		val attrDataType = attr.dataType
 		val attrDefaultValue = attr.defaultValue
@@ -89,12 +90,12 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 		// checks the size between bracket, not the array size
 		checkSize(attrDataType.value, attr.attributeSize, attrDefaultValue, attr, DdPackage.Literals.ATTRIBUTE__ATTRIBUTE_SIZE)
 		// check that if the variable is an array it has a list of smaller size as a default
-		checkArray(attr.arraySize, attr, attr.defaultValue, DdPackage.Literals.ATTRIBUTE__DEFAULT_VALUE)
+		checkArray(attr.arraySize, attr.defaultValue, attr, DdPackage.Literals.ATTRIBUTE__DEFAULT_VALUE)
 	}
 
 // check that declared type are aligned to expression used for declaration
 // on attribute and constant defaultValue
-	@Check
+	@Check(CheckType.NORMAL)
 	def checkTypes(Constant cst) {
 		val cstDataType = cst.dataType
 		val cstDefaultValue = cst.defaultValue
@@ -104,11 +105,15 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 		// check size mandatory and if size is correct
 		checkSize(cstDataType.value, cst.attributeSize, cstDefaultValue, cst, DdPackage.Literals.CONSTANT__ATTRIBUTE_SIZE)
 		// check that if the variable is an array it has a list of smaller size as a default
-		checkArray(cst.arraySize, cst, cst.defaultValue, DdPackage.Literals.CONSTANT__DEFAULT_VALUE)
+		checkArray(cst.arraySize, cstDefaultValue, cst, DdPackage.Literals.CONSTANT__DEFAULT_VALUE)
+		//check if the default value expression somewhere contains an attribute reference which is not possible
+		if (cstDefaultValue.hasAttribute==1) {
+			error("A constant cannot be initiated with an attribute or attribute based expression", cst, DdPackage.Literals.CONSTANT__DEFAULT_VALUE)
+		}
 	}
 
 // check expression need to be of boolean type	
-	@Check
+	@Check(CheckType.NORMAL)
 	def checkConstraintsAreBoolean(CheckExpression checkExpr) {
 		var type = getExpressionType(checkExpr.expr)
 		if(type.value != DataType.BOOL_VALUE) {
@@ -126,19 +131,34 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 // calls the expression type parser and manages bits and dates
 // the type checking with getexpressiontype function also gathers sizes and precisions
 	def checkTypes(SharkExpression defaultValue, DataType dataType, EObject ctxt, EReference ref) {
-		// this first call here ensures all expressions are recursively checked
-		val exprType = getExpressionType(defaultValue)
+		// this first call here ensures all expressions are recursively checked, except special case for bits constant
+		var exprType = DataType.UNSET
+		// to manage the special case of a BITS CONSTANT. Any use of a bits constant deeper inside expression generates error
+		if(defaultValue instanceof CstValue) {
+			val cst = defaultValue as CstValue
+			// bits are stored only, not allowed in expression. Except to init an identifier 
+			if(cst.value.dataType.value == DataType.BITS_VALUE) {
+				exprType = DataType.BITS
+			} else {
+				exprType = getExpressionType(defaultValue)
+			}
+		} else {
+			exprType = getExpressionType(defaultValue)
+		}
 		if(exprType != exprHelper.mergeCompatibleDataTypes(dataType)) {
 			// manage the init of bits and dates which is done by strings and raise error otherwise
 			if((dataType.value == DataType.BITS_VALUE) && (exprType.value == DataType.STR_VALUE)) {
 				// could be ok despite the difference of type if bits or date, unless it is not the right format
+				//TODO make it a bit more flexible like concat of strings? or do not check if expression?
 				if(!((defaultValue instanceof StrValue) && (exprHelper.checkStringBitsFormat((defaultValue as StrValue).value)))) {
 					error(ERR_MSG_BITS, ctxt, ref)
 				}
 			} else {
 				// last possible correct cases with date and time are checked in below function
 				// the final error message if types are different is in the manage date function
-				manageDateTimeFormatsOrThrowError(dataType.value, exprType.value, ctxt, defaultValue, ref)
+				if(manageDateTimeFormats(dataType.value, exprType.value, ctxt, defaultValue, ref) == false) {
+					error("Invalid initialization: expression type mismatch with attribute or constant", ctxt, ref)
+				}
 			}
 		}
 	}
@@ -167,7 +187,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 				if(listSize.precision != 0) {
 					error(ERR_STXT_SYNTAX, binExpr, DdPackage.Literals.BINARY_EXPRESSION__RIGHT)
 				}
-				val list = binExpr.right as ListExpression
+				val list = binExpr.right as ListExpression // will fail on an identifier or constant TODO create a getListExpressionSize function
 				if((list.listElts.length != 1) || (list.left === null)) {
 					error(ERR_STXT_SYNTAX, binExpr, DdPackage.Literals.BINARY_EXPRESSION__RIGHT)
 				}
@@ -199,7 +219,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 		// if no mismatch type is deducted from operator and casts are managed
 		// the order of the 2 calls here are important: in check operator the cast type change was not done yet so the check operator is done on the left type
 		// not on the target type of the unary expression
-		exprHelper.getUnaryType(unExpr)
+		exprHelper.mergeCompatibleDataTypes(exprHelper.getUnaryType(unExpr))
 	}
 
 // checks type and operator consistency
@@ -415,17 +435,19 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 				DataType.BOOL
 			CstValue: {
 				val cst = e as CstValue
-				// bits are stored only, notallowsed in expression. Strings are used to build them
+				// bits are stored only, not allowed in expression. Except to init an identifier which is manage before in the call stack
+				// Strings are used to build them
 				if(cst.value.dataType.value == DataType.BITS_VALUE) {
 					error(ERR_BITS_NOT_ALLOWED, cst, DdPackage.Literals.CST_VALUE__VALUE)
 				}
 				exprHelper.mergeCompatibleDataTypes(cst.value.dataType)
 			}
-			IdentifierExpression: {
-				val identExpr = e as IdentifierExpression
+			AttributeValue: {
+				val identExpr = e as AttributeValue
 				if(identExpr.value.dataType.value == DataType.BITS_VALUE) {
-					error(ERR_BITS_NOT_ALLOWED, identExpr, DdPackage.Literals.IDENTIFIER_EXPRESSION__VALUE)
+					error(ERR_BITS_NOT_ALLOWED, identExpr, DdPackage.Literals.ATTRIBUTE_VALUE__VALUE)
 				}
+				exprHelper.flagExpressionParentsWithAttribute(identExpr)
 				exprHelper.mergeCompatibleDataTypes(identExpr.value.dataType)
 			}
 			BinaryExpression: { // triggers recursive call of the check method,
@@ -476,10 +498,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 
 	// check operator and type compatibility, called after the type was identified for the expression
 	// so only on homogeneous expression with same type at that point. Sends error otherwise.
-	def void checkHomogenousOperator(
-		SharkExpression e,
-		DataType t
-	) {
+	def void checkHomogenousOperator(SharkExpression e, DataType t) {
 		switch (e) {
 			BinaryExpression: {
 				val binExpr = e as BinaryExpression
@@ -513,6 +532,10 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 						} else {
 							// computes the size/precision depending on operator of the binary expression
 							exprHelper.computesSizeSTR(binExpr)
+							if((opValue == BinaryOperator.OP_LIKE_VALUE) && (exprHelper.getExpressionSize(e.right).length == 0)) {
+								error("Invalid Operand: String template for a like operator cannot be empty", binExpr,
+									DdPackage.Literals.BINARY_EXPRESSION__OP)
+							}
 						}
 					}
 					case DataType.DEC_VALUE: {
@@ -559,22 +582,30 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 				val op = unExpr.op
 				val opValue = op.value
 				val typeValue = t.value
-				// list not allowed on unary expressions
+				// list not allowed on unary expressions except on len
 				if(exprHelper.isListExpression(unExpr.left)) {
-					error("Invalid Expression: unary operator or function impossible on a list, here it is " + op.literal, unExpr,
-						DdPackage.Literals.UNARY_EXPRESSION__OP)
+
+					if(opValue != UnaryOperator.OP_LEN_VALUE) {
+						error("Invalid Expression: unary operator or function except len are impossible on a list, here it is " +
+							op.literal, unExpr, DdPackage.Literals.UNARY_EXPRESSION__OP)
+					} else {
+						// if operator if len on an array, no need to check other compatibility it works for all sub type
+						// Todo test len on non homogenous array
+						return
+					}
 				}
 				switch (typeValue) {
 					case typeValue == DataType.STR_VALUE: {
 						if((opValue != UnaryOperator.DATE_CAST_VALUE) && (opValue != UnaryOperator.INT_CAST_VALUE) &&
 							(opValue != UnaryOperator.DEC_CAST_VALUE) && (opValue != UnaryOperator.OP_LEN_VALUE) &&
 							(opValue != UnaryOperator.TIME_CAST_VALUE) && (opValue != UnaryOperator.STAMP_CAST_VALUE)) {
-							error(
-								"Invalid Operator: String and character types can only use stxt(),int(),dec(),len(),date() and time() functions, here it is " +
-									op.literal, unExpr, DdPackage.Literals.UNARY_EXPRESSION__OP)
+							error("Invalid Unary Operator " + op.literal + " on a string expression", unExpr,
+								DdPackage.Literals.UNARY_EXPRESSION__OP)
 						} else {
 							// computes the size/precision depending on operator of the binary expression
 							exprHelper.computesSizeSTR(unExpr)
+							manageDateTimeFormats(exprHelper.getUnaryType(unExpr).value, typeValue, unExpr, unExpr.left,
+								DdPackage.Literals.UNARY_EXPRESSION__LEFT)
 						}
 					}
 					case typeValue == DataType.DEC_VALUE: {
@@ -603,7 +634,7 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 	}
 
 	// when used, the types are checked already, only size is verified of array
-	def checkArray(ArraySize array, EObject context, SharkExpression defaultValue, EReference eRef) {
+	def checkArray(ArraySize array, SharkExpression defaultValue, EObject context, EReference eRef) {
 		if(array !== null) {
 			if(!(exprHelper.isListExpression(defaultValue))) {
 				error("arrays require a list or range as default/init value", context, eRef)
@@ -631,6 +662,10 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 					warning("array size is too large for list size", context, eRef)
 				}
 			}
+		} else {
+			if((exprHelper.isListExpression(defaultValue))) {
+				error("non array cannot use a list or range as default/init value", context, eRef)
+			}
 		}
 
 	}
@@ -655,6 +690,10 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 
 					if(size.length > exprSize.length) {
 						warning("Please note that the attribute has larger size than the expression", context, eRef)
+					}
+
+					if(exprSize.precision != 0) {
+						error("Integer cannot have decimal part", context, eRef)
 					}
 
 					// non mandatory min size is present we use it (min size is stored in precision...)
@@ -709,8 +748,9 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 
 //used in the verification of initializations for constants and attribute to control the specific date and time string formats
 //allowed to init date and time attributes and constants
-//this is called at the end of the check sequence so here all types are homogenous already and operator is ok
-	def manageDateTimeFormatsOrThrowError(int mainDataType, int exprType, EObject context, SharkExpression defaultValue, EReference eRef) {
+//this is called at the end of the check sequence so here all types are homogeneous already and operator is ok
+//It only does a check if the init is done via a literal of list of them
+	def boolean manageDateTimeFormats(int mainDataType, int exprType, EObject context, SharkExpression defaultValue, EReference eRef) {
 		if((mainDataType == DataType.DATE_VALUE) && (exprType == DataType.STR_VALUE)) {
 			// could be ok despite the difference of type, unless it is not the right format 
 			// at that stage it can either be a list of strings to init an array of dates or a single date and a string
@@ -730,15 +770,18 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 						val right = exprElt.right
 						// continue to check date validity of other elt
 						// no need to check cast because all list elt are of same type here
-						if(!exprHelper.checkStringDateFormat((right as StrValue).value)) {
+						if(!((right instanceof StrValue) && exprHelper.checkStringDateFormat((right as StrValue).value))) {
 							error(ERR_DATE_BAD_FORMAT, context, eRef)
 						}
 					}
-				} else { // this would cover all other types of list with numbers or ranges (in which case left is null)
+				} else { // this is another type in the list not a str
 					error(ERR_INVALID_DATE_ARRAY_INIT, context, eRef)
 				}
-			} else {
-				error(ERR_INVALID_DATE_ARRAY_INIT, context, eRef)
+			} else { // string expression, at least we check the length, and otherwise let it go unchecked for now
+				val exprSize = exprHelper.getExpressionSize(defaultValue)
+				if(exprSize.length != 8) {
+					error("Incorrect string length for a date format", context, eRef)
+				}
 			}
 		} else {
 			if((mainDataType == DataType.TIME_VALUE) && (exprType == DataType.STR_VALUE)) {
@@ -766,8 +809,11 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 					} else { // this would cover all other types of list with numbers or ranges (in which case left is null)
 						error(ERR_INVALID_TIME_ARRAY_INIT, context, eRef)
 					}
-				} else { // this would cover all other types of list with numbers or ranges (in which case left is null)
-					error(ERR_INVALID_TIME_ARRAY_INIT, context, eRef)
+				} else {
+					val exprSize = exprHelper.getExpressionSize(defaultValue)
+					if(exprSize.length != 6) {
+						error("Incorrect string length for a time format", context, eRef)
+					}
 				}
 			} else {
 				if((mainDataType == DataType.STAMP_VALUE) && (exprType == DataType.STR_VALUE)) {
@@ -795,16 +841,19 @@ class DdDeclarationValidator extends AbstractDeclarativeValidator {
 						} else { // this would cover all other types of list with numbers or ranges (in which case left is null)
 							error(ERR_INVALID_STAMP_ARRAY_INIT, context, eRef)
 						}
-					} else { // this would cover all other types of list with numbers or ranges (in which case left is null)
-						error(ERR_INVALID_STAMP_ARRAY_INIT, context, eRef)
+					} else {
+						val exprSize = exprHelper.getExpressionSize(defaultValue)
+						if(exprSize.length != 20) {
+							error("Incorrect string length for a timestamp format", context, eRef)
+						}
 					}
 				} else {
-					// in that case we are sure this is a type error, not a date time or timestamp init
-					error("Invalid initialization: expression type mismatch with attribute or constant", context, eRef)
+					// to return and error in checktype
+					return false
 				}
 			}
 		}
-
+		return true
 	}
 
 }

@@ -342,13 +342,31 @@ public interface DdPackage extends EPackage
   int ATTRIBUTE__PRIMARY_KEY = 6;
 
   /**
+   * The feature id for the '<em><b>Partition Key</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__PARTITION_KEY = 7;
+
+  /**
    * The feature id for the '<em><b>Mandatory</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__MANDATORY = 7;
+  int ATTRIBUTE__MANDATORY = 8;
+
+  /**
+   * The feature id for the '<em><b>Deprecated</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__DEPRECATED = 9;
 
   /**
    * The feature id for the '<em><b>Attr Desc</b></em>' containment reference.
@@ -357,7 +375,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__ATTR_DESC = 8;
+  int ATTRIBUTE__ATTR_DESC = 10;
 
   /**
    * The number of structural features of the '<em>Attribute</em>' class.
@@ -366,7 +384,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_FEATURE_COUNT = 9;
+  int ATTRIBUTE_FEATURE_COUNT = 11;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.AttributeSizeImpl <em>Attribute Size</em>}' class.
@@ -444,13 +462,22 @@ public interface DdPackage extends EPackage
   int RELATIONSHIP = 6;
 
   /**
+   * The feature id for the '<em><b>Rel Desc Lines</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP__REL_DESC_LINES = 0;
+
+  /**
    * The feature id for the '<em><b>Cardi1</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__CARDI1 = 0;
+  int RELATIONSHIP__CARDI1 = 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -459,7 +486,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__NAME = 1;
+  int RELATIONSHIP__NAME = 2;
 
   /**
    * The feature id for the '<em><b>Cardi2</b></em>' containment reference.
@@ -468,7 +495,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__CARDI2 = 2;
+  int RELATIONSHIP__CARDI2 = 3;
 
   /**
    * The feature id for the '<em><b>Link To</b></em>' reference.
@@ -477,7 +504,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__LINK_TO = 3;
+  int RELATIONSHIP__LINK_TO = 4;
 
   /**
    * The feature id for the '<em><b>Rel Desc</b></em>' containment reference.
@@ -486,7 +513,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__REL_DESC = 4;
+  int RELATIONSHIP__REL_DESC = 5;
 
   /**
    * The number of structural features of the '<em>Relationship</em>' class.
@@ -495,7 +522,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIONSHIP_FEATURE_COUNT = 5;
+  int RELATIONSHIP_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -526,13 +553,31 @@ public interface DdPackage extends EPackage
   int CONSTRAINT__NAME = 1;
 
   /**
+   * The feature id for the '<em><b>First Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT__FIRST_ENTITY = 2;
+
+  /**
+   * The feature id for the '<em><b>Entities List</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT__ENTITIES_LIST = 3;
+
+  /**
    * The feature id for the '<em><b>Check</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONSTRAINT__CHECK = 2;
+  int CONSTRAINT__CHECK = 4;
 
   /**
    * The number of structural features of the '<em>Constraint</em>' class.
@@ -541,7 +586,44 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONSTRAINT_FEATURE_COUNT = 3;
+  int CONSTRAINT_FEATURE_COUNT = 5;
+
+  /**
+   * The meta object id for the '{@link com.shark.lang.dd.impl.EntitiesListEltImpl <em>Entities List Elt</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.shark.lang.dd.impl.EntitiesListEltImpl
+   * @see com.shark.lang.dd.impl.DdPackageImpl#getEntitiesListElt()
+   * @generated
+   */
+  int ENTITIES_LIST_ELT = 8;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITIES_LIST_ELT__ENTITY = 0;
+
+  /**
+   * The feature id for the '<em><b>Is Array</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITIES_LIST_ELT__IS_ARRAY = 1;
+
+  /**
+   * The number of structural features of the '<em>Entities List Elt</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITIES_LIST_ELT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.CheckExpressionImpl <em>Check Expression</em>}' class.
@@ -551,7 +633,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getCheckExpression()
    * @generated
    */
-  int CHECK_EXPRESSION = 8;
+  int CHECK_EXPRESSION = 9;
 
   /**
    * The feature id for the '<em><b>Chk Desc</b></em>' containment reference list.
@@ -597,7 +679,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getSharkExpression()
    * @generated
    */
-  int SHARK_EXPRESSION = 9;
+  int SHARK_EXPRESSION = 10;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SHARK_EXPRESSION__EXPR_VALUE = 0;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SHARK_EXPRESSION__HAS_ATTRIBUTE = 1;
 
   /**
    * The number of structural features of the '<em>Shark Expression</em>' class.
@@ -606,7 +706,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SHARK_EXPRESSION_FEATURE_COUNT = 0;
+  int SHARK_EXPRESSION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.BinaryExpressionImpl <em>Binary Expression</em>}' class.
@@ -616,7 +716,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getBinaryExpression()
    * @generated
    */
-  int BINARY_EXPRESSION = 10;
+  int BINARY_EXPRESSION = 11;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BINARY_EXPRESSION__EXPR_VALUE = SHARK_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BINARY_EXPRESSION__HAS_ATTRIBUTE = SHARK_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -646,22 +764,13 @@ public interface DdPackage extends EPackage
   int BINARY_EXPRESSION__RIGHT = SHARK_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BINARY_EXPRESSION__VALUE = SHARK_EXPRESSION_FEATURE_COUNT + 3;
-
-  /**
    * The feature id for the '<em><b>Precision</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BINARY_EXPRESSION__PRECISION = SHARK_EXPRESSION_FEATURE_COUNT + 4;
+  int BINARY_EXPRESSION__PRECISION = SHARK_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -670,7 +779,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BINARY_EXPRESSION__LENGTH = SHARK_EXPRESSION_FEATURE_COUNT + 5;
+  int BINARY_EXPRESSION__LENGTH = SHARK_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Binary Expression</em>' class.
@@ -679,7 +788,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BINARY_EXPRESSION_FEATURE_COUNT = SHARK_EXPRESSION_FEATURE_COUNT + 6;
+  int BINARY_EXPRESSION_FEATURE_COUNT = SHARK_EXPRESSION_FEATURE_COUNT + 5;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.UnaryExpressionImpl <em>Unary Expression</em>}' class.
@@ -689,7 +798,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getUnaryExpression()
    * @generated
    */
-  int UNARY_EXPRESSION = 11;
+  int UNARY_EXPRESSION = 12;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNARY_EXPRESSION__EXPR_VALUE = SHARK_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNARY_EXPRESSION__HAS_ATTRIBUTE = SHARK_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -710,22 +837,13 @@ public interface DdPackage extends EPackage
   int UNARY_EXPRESSION__LEFT = SHARK_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UNARY_EXPRESSION__VALUE = SHARK_EXPRESSION_FEATURE_COUNT + 2;
-
-  /**
    * The feature id for the '<em><b>Precision</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int UNARY_EXPRESSION__PRECISION = SHARK_EXPRESSION_FEATURE_COUNT + 3;
+  int UNARY_EXPRESSION__PRECISION = SHARK_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -734,7 +852,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int UNARY_EXPRESSION__LENGTH = SHARK_EXPRESSION_FEATURE_COUNT + 4;
+  int UNARY_EXPRESSION__LENGTH = SHARK_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Unary Expression</em>' class.
@@ -743,7 +861,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int UNARY_EXPRESSION_FEATURE_COUNT = SHARK_EXPRESSION_FEATURE_COUNT + 5;
+  int UNARY_EXPRESSION_FEATURE_COUNT = SHARK_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.AddExpressionImpl <em>Add Expression</em>}' class.
@@ -753,7 +871,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getAddExpression()
    * @generated
    */
-  int ADD_EXPRESSION = 12;
+  int ADD_EXPRESSION = 13;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADD_EXPRESSION__EXPR_VALUE = SHARK_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADD_EXPRESSION__HAS_ATTRIBUTE = SHARK_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -792,22 +928,13 @@ public interface DdPackage extends EPackage
   int ADD_EXPRESSION__ADD_ELTS = SHARK_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADD_EXPRESSION__VALUE = SHARK_EXPRESSION_FEATURE_COUNT + 4;
-
-  /**
    * The feature id for the '<em><b>Precision</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ADD_EXPRESSION__PRECISION = SHARK_EXPRESSION_FEATURE_COUNT + 5;
+  int ADD_EXPRESSION__PRECISION = SHARK_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -816,7 +943,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADD_EXPRESSION__LENGTH = SHARK_EXPRESSION_FEATURE_COUNT + 6;
+  int ADD_EXPRESSION__LENGTH = SHARK_EXPRESSION_FEATURE_COUNT + 5;
 
   /**
    * The number of structural features of the '<em>Add Expression</em>' class.
@@ -825,7 +952,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADD_EXPRESSION_FEATURE_COUNT = SHARK_EXPRESSION_FEATURE_COUNT + 7;
+  int ADD_EXPRESSION_FEATURE_COUNT = SHARK_EXPRESSION_FEATURE_COUNT + 6;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.AddExpressionEltImpl <em>Add Expression Elt</em>}' class.
@@ -835,7 +962,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getAddExpressionElt()
    * @generated
    */
-  int ADD_EXPRESSION_ELT = 13;
+  int ADD_EXPRESSION_ELT = 14;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -872,7 +999,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getMultExpression()
    * @generated
    */
-  int MULT_EXPRESSION = 14;
+  int MULT_EXPRESSION = 15;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT_EXPRESSION__EXPR_VALUE = SHARK_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT_EXPRESSION__HAS_ATTRIBUTE = SHARK_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -911,22 +1056,13 @@ public interface DdPackage extends EPackage
   int MULT_EXPRESSION__MULT_ELTS = SHARK_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MULT_EXPRESSION__VALUE = SHARK_EXPRESSION_FEATURE_COUNT + 4;
-
-  /**
    * The feature id for the '<em><b>Precision</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MULT_EXPRESSION__PRECISION = SHARK_EXPRESSION_FEATURE_COUNT + 5;
+  int MULT_EXPRESSION__PRECISION = SHARK_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -935,7 +1071,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULT_EXPRESSION__LENGTH = SHARK_EXPRESSION_FEATURE_COUNT + 6;
+  int MULT_EXPRESSION__LENGTH = SHARK_EXPRESSION_FEATURE_COUNT + 5;
 
   /**
    * The number of structural features of the '<em>Mult Expression</em>' class.
@@ -944,7 +1080,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULT_EXPRESSION_FEATURE_COUNT = SHARK_EXPRESSION_FEATURE_COUNT + 7;
+  int MULT_EXPRESSION_FEATURE_COUNT = SHARK_EXPRESSION_FEATURE_COUNT + 6;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.MultExpressionEltImpl <em>Mult Expression Elt</em>}' class.
@@ -954,7 +1090,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getMultExpressionElt()
    * @generated
    */
-  int MULT_EXPRESSION_ELT = 15;
+  int MULT_EXPRESSION_ELT = 16;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -991,7 +1127,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getAndExpression()
    * @generated
    */
-  int AND_EXPRESSION = 16;
+  int AND_EXPRESSION = 17;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_EXPRESSION__EXPR_VALUE = SHARK_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_EXPRESSION__HAS_ATTRIBUTE = SHARK_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1046,7 +1200,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getAndExpressionElt()
    * @generated
    */
-  int AND_EXPRESSION_ELT = 17;
+  int AND_EXPRESSION_ELT = 18;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1083,7 +1237,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getOrExpression()
    * @generated
    */
-  int OR_EXPRESSION = 18;
+  int OR_EXPRESSION = 19;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_EXPRESSION__EXPR_VALUE = SHARK_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_EXPRESSION__HAS_ATTRIBUTE = SHARK_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1138,7 +1310,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getOrExpressionElt()
    * @generated
    */
-  int OR_EXPRESSION_ELT = 19;
+  int OR_EXPRESSION_ELT = 20;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1175,7 +1347,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getCatExpression()
    * @generated
    */
-  int CAT_EXPRESSION = 20;
+  int CAT_EXPRESSION = 21;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CAT_EXPRESSION__EXPR_VALUE = SHARK_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CAT_EXPRESSION__HAS_ATTRIBUTE = SHARK_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1214,22 +1404,13 @@ public interface DdPackage extends EPackage
   int CAT_EXPRESSION__CAT_ELTS = SHARK_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CAT_EXPRESSION__VALUE = SHARK_EXPRESSION_FEATURE_COUNT + 4;
-
-  /**
    * The feature id for the '<em><b>Length</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CAT_EXPRESSION__LENGTH = SHARK_EXPRESSION_FEATURE_COUNT + 5;
+  int CAT_EXPRESSION__LENGTH = SHARK_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Cat Expression</em>' class.
@@ -1238,7 +1419,7 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CAT_EXPRESSION_FEATURE_COUNT = SHARK_EXPRESSION_FEATURE_COUNT + 6;
+  int CAT_EXPRESSION_FEATURE_COUNT = SHARK_EXPRESSION_FEATURE_COUNT + 5;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.CatExpressionEltImpl <em>Cat Expression Elt</em>}' class.
@@ -1248,7 +1429,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getCatExpressionElt()
    * @generated
    */
-  int CAT_EXPRESSION_ELT = 21;
+  int CAT_EXPRESSION_ELT = 22;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1285,7 +1466,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getListExpression()
    * @generated
    */
-  int LIST_EXPRESSION = 22;
+  int LIST_EXPRESSION = 23;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_EXPRESSION__EXPR_VALUE = SHARK_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_EXPRESSION__HAS_ATTRIBUTE = SHARK_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1340,7 +1539,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getListExpressionElt()
    * @generated
    */
-  int LIST_EXPRESSION_ELT = 23;
+  int LIST_EXPRESSION_ELT = 24;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1377,7 +1576,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getTerminalExpression()
    * @generated
    */
-  int TERMINAL_EXPRESSION = 24;
+  int TERMINAL_EXPRESSION = 25;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERMINAL_EXPRESSION__EXPR_VALUE = SHARK_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERMINAL_EXPRESSION__HAS_ATTRIBUTE = SHARK_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The number of structural features of the '<em>Terminal Expression</em>' class.
@@ -1396,7 +1613,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getLineComment()
    * @generated
    */
-  int LINE_COMMENT = 25;
+  int LINE_COMMENT = 26;
 
   /**
    * The number of structural features of the '<em>Line Comment</em>' class.
@@ -1415,7 +1632,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getTrailComment()
    * @generated
    */
-  int TRAIL_COMMENT = 26;
+  int TRAIL_COMMENT = 27;
 
   /**
    * The number of structural features of the '<em>Trail Comment</em>' class.
@@ -1434,7 +1651,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getStrValue()
    * @generated
    */
-  int STR_VALUE = 27;
+  int STR_VALUE = 28;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STR_VALUE__EXPR_VALUE = TERMINAL_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STR_VALUE__HAS_ATTRIBUTE = TERMINAL_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1462,7 +1697,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getIntValue()
    * @generated
    */
-  int INT_VALUE = 28;
+  int INT_VALUE = 29;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_VALUE__EXPR_VALUE = TERMINAL_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_VALUE__HAS_ATTRIBUTE = TERMINAL_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1490,7 +1743,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getDecValue()
    * @generated
    */
-  int DEC_VALUE = 29;
+  int DEC_VALUE = 30;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEC_VALUE__EXPR_VALUE = TERMINAL_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEC_VALUE__HAS_ATTRIBUTE = TERMINAL_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1518,7 +1789,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getChrValue()
    * @generated
    */
-  int CHR_VALUE = 30;
+  int CHR_VALUE = 31;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHR_VALUE__EXPR_VALUE = TERMINAL_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHR_VALUE__HAS_ATTRIBUTE = TERMINAL_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1546,7 +1835,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getCstValue()
    * @generated
    */
-  int CST_VALUE = 31;
+  int CST_VALUE = 32;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CST_VALUE__EXPR_VALUE = TERMINAL_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CST_VALUE__HAS_ATTRIBUTE = TERMINAL_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' reference.
@@ -1558,13 +1865,22 @@ public interface DdPackage extends EPackage
   int CST_VALUE__VALUE = TERMINAL_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Index</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CST_VALUE__INDEX = TERMINAL_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Cst Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CST_VALUE_FEATURE_COUNT = TERMINAL_EXPRESSION_FEATURE_COUNT + 1;
+  int CST_VALUE_FEATURE_COUNT = TERMINAL_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.BoolValueImpl <em>Bool Value</em>}' class.
@@ -1574,7 +1890,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getBoolValue()
    * @generated
    */
-  int BOOL_VALUE = 32;
+  int BOOL_VALUE = 33;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOL_VALUE__EXPR_VALUE = TERMINAL_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOL_VALUE__HAS_ATTRIBUTE = TERMINAL_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1602,7 +1936,25 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getUnsetValue()
    * @generated
    */
-  int UNSET_VALUE = 33;
+  int UNSET_VALUE = 34;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNSET_VALUE__EXPR_VALUE = TERMINAL_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNSET_VALUE__HAS_ATTRIBUTE = TERMINAL_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1623,14 +1975,32 @@ public interface DdPackage extends EPackage
   int UNSET_VALUE_FEATURE_COUNT = TERMINAL_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link com.shark.lang.dd.impl.IdentifierExpressionImpl <em>Identifier Expression</em>}' class.
+   * The meta object id for the '{@link com.shark.lang.dd.impl.AttributeValueImpl <em>Attribute Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see com.shark.lang.dd.impl.IdentifierExpressionImpl
-   * @see com.shark.lang.dd.impl.DdPackageImpl#getIdentifierExpression()
+   * @see com.shark.lang.dd.impl.AttributeValueImpl
+   * @see com.shark.lang.dd.impl.DdPackageImpl#getAttributeValue()
    * @generated
    */
-  int IDENTIFIER_EXPRESSION = 34;
+  int ATTRIBUTE_VALUE = 35;
+
+  /**
+   * The feature id for the '<em><b>Expr Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_VALUE__EXPR_VALUE = TERMINAL_EXPRESSION__EXPR_VALUE;
+
+  /**
+   * The feature id for the '<em><b>Has Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_VALUE__HAS_ATTRIBUTE = TERMINAL_EXPRESSION__HAS_ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' reference.
@@ -1639,16 +2009,25 @@ public interface DdPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IDENTIFIER_EXPRESSION__VALUE = TERMINAL_EXPRESSION_FEATURE_COUNT + 0;
+  int ATTRIBUTE_VALUE__VALUE = TERMINAL_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Identifier Expression</em>' class.
+   * The feature id for the '<em><b>Index</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IDENTIFIER_EXPRESSION_FEATURE_COUNT = TERMINAL_EXPRESSION_FEATURE_COUNT + 1;
+  int ATTRIBUTE_VALUE__INDEX = TERMINAL_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Attribute Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_VALUE_FEATURE_COUNT = TERMINAL_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.impl.CommentImpl <em>Comment</em>}' class.
@@ -1658,7 +2037,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getComment()
    * @generated
    */
-  int COMMENT = 35;
+  int COMMENT = 36;
 
   /**
    * The feature id for the '<em><b>Line</b></em>' attribute.
@@ -1686,7 +2065,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getBinaryOperator()
    * @generated
    */
-  int BINARY_OPERATOR = 36;
+  int BINARY_OPERATOR = 37;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -1696,7 +2075,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getUnaryOperator()
    * @generated
    */
-  int UNARY_OPERATOR = 37;
+  int UNARY_OPERATOR = 38;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.Unset <em>Unset</em>}' enum.
@@ -1706,7 +2085,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getUnset()
    * @generated
    */
-  int UNSET = 38;
+  int UNSET = 39;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.Boolean <em>Boolean</em>}' enum.
@@ -1716,7 +2095,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getBoolean()
    * @generated
    */
-  int BOOLEAN = 39;
+  int BOOLEAN = 40;
 
   /**
    * The meta object id for the '{@link com.shark.lang.dd.DataType <em>Data Type</em>}' enum.
@@ -1726,7 +2105,7 @@ public interface DdPackage extends EPackage
    * @see com.shark.lang.dd.impl.DdPackageImpl#getDataType()
    * @generated
    */
-  int DATA_TYPE = 40;
+  int DATA_TYPE = 41;
 
 
   /**
@@ -2034,6 +2413,17 @@ public interface DdPackage extends EPackage
   EAttribute getAttribute_PrimaryKey();
 
   /**
+   * Returns the meta object for the attribute '{@link com.shark.lang.dd.Attribute#isPartitionKey <em>Partition Key</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Partition Key</em>'.
+   * @see com.shark.lang.dd.Attribute#isPartitionKey()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_PartitionKey();
+
+  /**
    * Returns the meta object for the attribute '{@link com.shark.lang.dd.Attribute#isMandatory <em>Mandatory</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2043,6 +2433,17 @@ public interface DdPackage extends EPackage
    * @generated
    */
   EAttribute getAttribute_Mandatory();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.shark.lang.dd.Attribute#isDeprecated <em>Deprecated</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Deprecated</em>'.
+   * @see com.shark.lang.dd.Attribute#isDeprecated()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Deprecated();
 
   /**
    * Returns the meta object for the containment reference '{@link com.shark.lang.dd.Attribute#getAttrDesc <em>Attr Desc</em>}'.
@@ -2117,6 +2518,17 @@ public interface DdPackage extends EPackage
    * @generated
    */
   EClass getRelationship();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.shark.lang.dd.Relationship#getRelDescLines <em>Rel Desc Lines</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Rel Desc Lines</em>'.
+   * @see com.shark.lang.dd.Relationship#getRelDescLines()
+   * @see #getRelationship()
+   * @generated
+   */
+  EReference getRelationship_RelDescLines();
 
   /**
    * Returns the meta object for the containment reference '{@link com.shark.lang.dd.Relationship#getCardi1 <em>Cardi1</em>}'.
@@ -2206,6 +2618,28 @@ public interface DdPackage extends EPackage
   EAttribute getConstraint_Name();
 
   /**
+   * Returns the meta object for the reference '{@link com.shark.lang.dd.Constraint#getFirstEntity <em>First Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>First Entity</em>'.
+   * @see com.shark.lang.dd.Constraint#getFirstEntity()
+   * @see #getConstraint()
+   * @generated
+   */
+  EReference getConstraint_FirstEntity();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.shark.lang.dd.Constraint#getEntitiesList <em>Entities List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Entities List</em>'.
+   * @see com.shark.lang.dd.Constraint#getEntitiesList()
+   * @see #getConstraint()
+   * @generated
+   */
+  EReference getConstraint_EntitiesList();
+
+  /**
    * Returns the meta object for the containment reference list '{@link com.shark.lang.dd.Constraint#getCheck <em>Check</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2215,6 +2649,38 @@ public interface DdPackage extends EPackage
    * @generated
    */
   EReference getConstraint_Check();
+
+  /**
+   * Returns the meta object for class '{@link com.shark.lang.dd.EntitiesListElt <em>Entities List Elt</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Entities List Elt</em>'.
+   * @see com.shark.lang.dd.EntitiesListElt
+   * @generated
+   */
+  EClass getEntitiesListElt();
+
+  /**
+   * Returns the meta object for the reference '{@link com.shark.lang.dd.EntitiesListElt#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see com.shark.lang.dd.EntitiesListElt#getEntity()
+   * @see #getEntitiesListElt()
+   * @generated
+   */
+  EReference getEntitiesListElt_Entity();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.shark.lang.dd.EntitiesListElt#getIsArray <em>Is Array</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Array</em>'.
+   * @see com.shark.lang.dd.EntitiesListElt#getIsArray()
+   * @see #getEntitiesListElt()
+   * @generated
+   */
+  EAttribute getEntitiesListElt_IsArray();
 
   /**
    * Returns the meta object for class '{@link com.shark.lang.dd.CheckExpression <em>Check Expression</em>}'.
@@ -2270,6 +2736,28 @@ public interface DdPackage extends EPackage
   EClass getSharkExpression();
 
   /**
+   * Returns the meta object for the attribute '{@link com.shark.lang.dd.SharkExpression#getExprValue <em>Expr Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Expr Value</em>'.
+   * @see com.shark.lang.dd.SharkExpression#getExprValue()
+   * @see #getSharkExpression()
+   * @generated
+   */
+  EAttribute getSharkExpression_ExprValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.shark.lang.dd.SharkExpression#getHasAttribute <em>Has Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Has Attribute</em>'.
+   * @see com.shark.lang.dd.SharkExpression#getHasAttribute()
+   * @see #getSharkExpression()
+   * @generated
+   */
+  EAttribute getSharkExpression_HasAttribute();
+
+  /**
    * Returns the meta object for class '{@link com.shark.lang.dd.BinaryExpression <em>Binary Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2311,17 +2799,6 @@ public interface DdPackage extends EPackage
    * @generated
    */
   EReference getBinaryExpression_Right();
-
-  /**
-   * Returns the meta object for the attribute '{@link com.shark.lang.dd.BinaryExpression#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see com.shark.lang.dd.BinaryExpression#getValue()
-   * @see #getBinaryExpression()
-   * @generated
-   */
-  EAttribute getBinaryExpression_Value();
 
   /**
    * Returns the meta object for the attribute '{@link com.shark.lang.dd.BinaryExpression#getPrecision <em>Precision</em>}'.
@@ -2376,17 +2853,6 @@ public interface DdPackage extends EPackage
    * @generated
    */
   EReference getUnaryExpression_Left();
-
-  /**
-   * Returns the meta object for the attribute '{@link com.shark.lang.dd.UnaryExpression#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see com.shark.lang.dd.UnaryExpression#getValue()
-   * @see #getUnaryExpression()
-   * @generated
-   */
-  EAttribute getUnaryExpression_Value();
 
   /**
    * Returns the meta object for the attribute '{@link com.shark.lang.dd.UnaryExpression#getPrecision <em>Precision</em>}'.
@@ -2463,17 +2929,6 @@ public interface DdPackage extends EPackage
    * @generated
    */
   EReference getAddExpression_AddElts();
-
-  /**
-   * Returns the meta object for the attribute '{@link com.shark.lang.dd.AddExpression#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see com.shark.lang.dd.AddExpression#getValue()
-   * @see #getAddExpression()
-   * @generated
-   */
-  EAttribute getAddExpression_Value();
 
   /**
    * Returns the meta object for the attribute '{@link com.shark.lang.dd.AddExpression#getPrecision <em>Precision</em>}'.
@@ -2582,17 +3037,6 @@ public interface DdPackage extends EPackage
    * @generated
    */
   EReference getMultExpression_MultElts();
-
-  /**
-   * Returns the meta object for the attribute '{@link com.shark.lang.dd.MultExpression#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see com.shark.lang.dd.MultExpression#getValue()
-   * @see #getMultExpression()
-   * @generated
-   */
-  EAttribute getMultExpression_Value();
 
   /**
    * Returns the meta object for the attribute '{@link com.shark.lang.dd.MultExpression#getPrecision <em>Precision</em>}'.
@@ -2875,17 +3319,6 @@ public interface DdPackage extends EPackage
   EReference getCatExpression_CatElts();
 
   /**
-   * Returns the meta object for the attribute '{@link com.shark.lang.dd.CatExpression#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see com.shark.lang.dd.CatExpression#getValue()
-   * @see #getCatExpression()
-   * @generated
-   */
-  EAttribute getCatExpression_Value();
-
-  /**
    * Returns the meta object for the attribute '{@link com.shark.lang.dd.CatExpression#getLength <em>Length</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3150,6 +3583,17 @@ public interface DdPackage extends EPackage
   EReference getCstValue_Value();
 
   /**
+   * Returns the meta object for the containment reference '{@link com.shark.lang.dd.CstValue#getIndex <em>Index</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Index</em>'.
+   * @see com.shark.lang.dd.CstValue#getIndex()
+   * @see #getCstValue()
+   * @generated
+   */
+  EReference getCstValue_Index();
+
+  /**
    * Returns the meta object for class '{@link com.shark.lang.dd.BoolValue <em>Bool Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3192,25 +3636,36 @@ public interface DdPackage extends EPackage
   EAttribute getUnsetValue_Value();
 
   /**
-   * Returns the meta object for class '{@link com.shark.lang.dd.IdentifierExpression <em>Identifier Expression</em>}'.
+   * Returns the meta object for class '{@link com.shark.lang.dd.AttributeValue <em>Attribute Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Identifier Expression</em>'.
-   * @see com.shark.lang.dd.IdentifierExpression
+   * @return the meta object for class '<em>Attribute Value</em>'.
+   * @see com.shark.lang.dd.AttributeValue
    * @generated
    */
-  EClass getIdentifierExpression();
+  EClass getAttributeValue();
 
   /**
-   * Returns the meta object for the reference '{@link com.shark.lang.dd.IdentifierExpression#getValue <em>Value</em>}'.
+   * Returns the meta object for the reference '{@link com.shark.lang.dd.AttributeValue#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Value</em>'.
-   * @see com.shark.lang.dd.IdentifierExpression#getValue()
-   * @see #getIdentifierExpression()
+   * @see com.shark.lang.dd.AttributeValue#getValue()
+   * @see #getAttributeValue()
    * @generated
    */
-  EReference getIdentifierExpression_Value();
+  EReference getAttributeValue_Value();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.shark.lang.dd.AttributeValue#getIndex <em>Index</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Index</em>'.
+   * @see com.shark.lang.dd.AttributeValue#getIndex()
+   * @see #getAttributeValue()
+   * @generated
+   */
+  EReference getAttributeValue_Index();
 
   /**
    * Returns the meta object for class '{@link com.shark.lang.dd.Comment <em>Comment</em>}'.
@@ -3539,12 +3994,28 @@ public interface DdPackage extends EPackage
     EAttribute ATTRIBUTE__PRIMARY_KEY = eINSTANCE.getAttribute_PrimaryKey();
 
     /**
+     * The meta object literal for the '<em><b>Partition Key</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__PARTITION_KEY = eINSTANCE.getAttribute_PartitionKey();
+
+    /**
      * The meta object literal for the '<em><b>Mandatory</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute ATTRIBUTE__MANDATORY = eINSTANCE.getAttribute_Mandatory();
+
+    /**
+     * The meta object literal for the '<em><b>Deprecated</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__DEPRECATED = eINSTANCE.getAttribute_Deprecated();
 
     /**
      * The meta object literal for the '<em><b>Attr Desc</b></em>' containment reference feature.
@@ -3607,6 +4078,14 @@ public interface DdPackage extends EPackage
      * @generated
      */
     EClass RELATIONSHIP = eINSTANCE.getRelationship();
+
+    /**
+     * The meta object literal for the '<em><b>Rel Desc Lines</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATIONSHIP__REL_DESC_LINES = eINSTANCE.getRelationship_RelDescLines();
 
     /**
      * The meta object literal for the '<em><b>Cardi1</b></em>' containment reference feature.
@@ -3675,12 +4154,54 @@ public interface DdPackage extends EPackage
     EAttribute CONSTRAINT__NAME = eINSTANCE.getConstraint_Name();
 
     /**
+     * The meta object literal for the '<em><b>First Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONSTRAINT__FIRST_ENTITY = eINSTANCE.getConstraint_FirstEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Entities List</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONSTRAINT__ENTITIES_LIST = eINSTANCE.getConstraint_EntitiesList();
+
+    /**
      * The meta object literal for the '<em><b>Check</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference CONSTRAINT__CHECK = eINSTANCE.getConstraint_Check();
+
+    /**
+     * The meta object literal for the '{@link com.shark.lang.dd.impl.EntitiesListEltImpl <em>Entities List Elt</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.shark.lang.dd.impl.EntitiesListEltImpl
+     * @see com.shark.lang.dd.impl.DdPackageImpl#getEntitiesListElt()
+     * @generated
+     */
+    EClass ENTITIES_LIST_ELT = eINSTANCE.getEntitiesListElt();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITIES_LIST_ELT__ENTITY = eINSTANCE.getEntitiesListElt_Entity();
+
+    /**
+     * The meta object literal for the '<em><b>Is Array</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENTITIES_LIST_ELT__IS_ARRAY = eINSTANCE.getEntitiesListElt_IsArray();
 
     /**
      * The meta object literal for the '{@link com.shark.lang.dd.impl.CheckExpressionImpl <em>Check Expression</em>}' class.
@@ -3727,6 +4248,22 @@ public interface DdPackage extends EPackage
     EClass SHARK_EXPRESSION = eINSTANCE.getSharkExpression();
 
     /**
+     * The meta object literal for the '<em><b>Expr Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SHARK_EXPRESSION__EXPR_VALUE = eINSTANCE.getSharkExpression_ExprValue();
+
+    /**
+     * The meta object literal for the '<em><b>Has Attribute</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SHARK_EXPRESSION__HAS_ATTRIBUTE = eINSTANCE.getSharkExpression_HasAttribute();
+
+    /**
      * The meta object literal for the '{@link com.shark.lang.dd.impl.BinaryExpressionImpl <em>Binary Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3759,14 +4296,6 @@ public interface DdPackage extends EPackage
      * @generated
      */
     EReference BINARY_EXPRESSION__RIGHT = eINSTANCE.getBinaryExpression_Right();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BINARY_EXPRESSION__VALUE = eINSTANCE.getBinaryExpression_Value();
 
     /**
      * The meta object literal for the '<em><b>Precision</b></em>' attribute feature.
@@ -3809,14 +4338,6 @@ public interface DdPackage extends EPackage
      * @generated
      */
     EReference UNARY_EXPRESSION__LEFT = eINSTANCE.getUnaryExpression_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute UNARY_EXPRESSION__VALUE = eINSTANCE.getUnaryExpression_Value();
 
     /**
      * The meta object literal for the '<em><b>Precision</b></em>' attribute feature.
@@ -3875,14 +4396,6 @@ public interface DdPackage extends EPackage
      * @generated
      */
     EReference ADD_EXPRESSION__ADD_ELTS = eINSTANCE.getAddExpression_AddElts();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ADD_EXPRESSION__VALUE = eINSTANCE.getAddExpression_Value();
 
     /**
      * The meta object literal for the '<em><b>Precision</b></em>' attribute feature.
@@ -3967,14 +4480,6 @@ public interface DdPackage extends EPackage
      * @generated
      */
     EReference MULT_EXPRESSION__MULT_ELTS = eINSTANCE.getMultExpression_MultElts();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MULT_EXPRESSION__VALUE = eINSTANCE.getMultExpression_Value();
 
     /**
      * The meta object literal for the '<em><b>Precision</b></em>' attribute feature.
@@ -4195,14 +4700,6 @@ public interface DdPackage extends EPackage
      * @generated
      */
     EReference CAT_EXPRESSION__CAT_ELTS = eINSTANCE.getCatExpression_CatElts();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CAT_EXPRESSION__VALUE = eINSTANCE.getCatExpression_Value();
 
     /**
      * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
@@ -4427,6 +4924,14 @@ public interface DdPackage extends EPackage
     EReference CST_VALUE__VALUE = eINSTANCE.getCstValue_Value();
 
     /**
+     * The meta object literal for the '<em><b>Index</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CST_VALUE__INDEX = eINSTANCE.getCstValue_Index();
+
+    /**
      * The meta object literal for the '{@link com.shark.lang.dd.impl.BoolValueImpl <em>Bool Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4463,14 +4968,14 @@ public interface DdPackage extends EPackage
     EAttribute UNSET_VALUE__VALUE = eINSTANCE.getUnsetValue_Value();
 
     /**
-     * The meta object literal for the '{@link com.shark.lang.dd.impl.IdentifierExpressionImpl <em>Identifier Expression</em>}' class.
+     * The meta object literal for the '{@link com.shark.lang.dd.impl.AttributeValueImpl <em>Attribute Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see com.shark.lang.dd.impl.IdentifierExpressionImpl
-     * @see com.shark.lang.dd.impl.DdPackageImpl#getIdentifierExpression()
+     * @see com.shark.lang.dd.impl.AttributeValueImpl
+     * @see com.shark.lang.dd.impl.DdPackageImpl#getAttributeValue()
      * @generated
      */
-    EClass IDENTIFIER_EXPRESSION = eINSTANCE.getIdentifierExpression();
+    EClass ATTRIBUTE_VALUE = eINSTANCE.getAttributeValue();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' reference feature.
@@ -4478,7 +4983,15 @@ public interface DdPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference IDENTIFIER_EXPRESSION__VALUE = eINSTANCE.getIdentifierExpression_Value();
+    EReference ATTRIBUTE_VALUE__VALUE = eINSTANCE.getAttributeValue_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Index</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTE_VALUE__INDEX = eINSTANCE.getAttributeValue_Index();
 
     /**
      * The meta object literal for the '{@link com.shark.lang.dd.impl.CommentImpl <em>Comment</em>}' class.
