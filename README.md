@@ -1,6 +1,6 @@
 # dd language
 
-This is an xtext simple language that allows to describe data in a concise way, more so than SQL DDL, with ability to no only describe data structure (Entities) but also validation rules and relationships.
+This is an xtext simple language that allows to describe data in a concise way, more so than SQL DDL, with ability to, not only describe data structure (Entities), but also validation rules and relationships.
 
 It also enforces a lot more validation in the ide, with mandatory descriptions, data type consistencies...than what is today available in SQL editors or other data structure definition languages/platforms.
 
