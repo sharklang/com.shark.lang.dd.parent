@@ -3,8 +3,8 @@ define(["ace/lib/oop", "ace/mode/text", "ace/mode/text_highlight_rules"], functi
 		var keywords = "and|bits|bool|chr|date|dec|deprecated|false|in|int|key|len|like|model|not|or|partitionkey|round|stamp|str|stxt|time|true|unset";
 		this.$rules = {
 			"start": [
-				{token: "lparen", regex: "[\\[(]"},
-				{token: "rparen", regex: "[\\])]"},
+				{token: "lparen", regex: "[\\[({]"},
+				{token: "rparen", regex: "[\\])}]"},
 				{token: "keyword", regex: "\\b(?:" + keywords + ")\\b"}
 			]
 		};

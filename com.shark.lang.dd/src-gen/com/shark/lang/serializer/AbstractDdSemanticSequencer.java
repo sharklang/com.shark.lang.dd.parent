@@ -214,10 +214,11 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *
 	 * Constraint:
 	 *     (
-	 *         left=SharkExpression 
-	 *         (op='+' | op='-') 
-	 *         right=SharkExpression 
-	 *         addElts+=AddExpressionElt+ 
+	 *         (
+	 *             (left=SharkExpression (op='+' | op='-') right=SharkExpression addElts+=AddExpressionElt+) | 
+	 *             (left=SharkExpression (op='+' | op='-') right=SharkExpression addElts+=AddExpressionElt+) | 
+	 *             (left=SharkExpression (op='+' | op='-') right=SharkExpression addElts+=AddExpressionElt+)
+	 *         ) 
 	 *         (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
 	 *     )
 	 */
@@ -253,7 +254,14 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     AndExpression returns AndExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+ (exprValue=NUL hasAttribute=INT)?)
+	 *     (
+	 *         (
+	 *             (left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+) | 
+	 *             (left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+) | 
+	 *             (left=SharkExpression op='and' right=SharkExpression andElts+=AndExpressionElt+)
+	 *         ) 
+	 *         (exprValue=NUL hasAttribute=INT)?
+	 *     )
 	 */
 	protected void sequence_AndExpression(ISerializationContext context, AndExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -320,7 +328,14 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     BinaryExpression returns BinaryExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op=BinaryOperator right=SharkExpression (exprValue=NUL precision=INT length=INT hasAttribute=INT)?)
+	 *     (
+	 *         (
+	 *             (left=SharkExpression op=BinaryOperator right=SharkExpression) | 
+	 *             (left=SharkExpression op=BinaryOperator right=SharkExpression) | 
+	 *             (left=SharkExpression op=BinaryOperator right=SharkExpression)
+	 *         ) 
+	 *         (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
+	 *     )
 	 */
 	protected void sequence_BinaryExpression(ISerializationContext context, BinaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -354,7 +369,14 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     CatExpression returns CatExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+ (exprValue=NUL length=INT hasAttribute=INT)?)
+	 *     (
+	 *         (
+	 *             (left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+) | 
+	 *             (left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+) | 
+	 *             (left=SharkExpression op='&' right=SharkExpression catElts+=CatExpressionElt+)
+	 *         ) 
+	 *         (exprValue=NUL length=INT hasAttribute=INT)?
+	 *     )
 	 */
 	protected void sequence_CatExpression(ISerializationContext context, CatExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -531,7 +553,14 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     MultExpression returns MultExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+ (exprValue=NUL precision=INT length=INT hasAttribute=INT)?)
+	 *     (
+	 *         (
+	 *             (left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+) | 
+	 *             (left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+) | 
+	 *             (left=SharkExpression op='*' right=SharkExpression multElts+=MultExpressionElt+)
+	 *         ) 
+	 *         (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
+	 *     )
 	 */
 	protected void sequence_MultExpression(ISerializationContext context, MultExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -565,7 +594,14 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     OrExpression returns OrExpression
 	 *
 	 * Constraint:
-	 *     (left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+ (exprValue=NUL hasAttribute=INT)?)
+	 *     (
+	 *         (
+	 *             (left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+) | 
+	 *             (left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+) | 
+	 *             (left=SharkExpression op='or' right=SharkExpression orElts+=OrExpressionElt+)
+	 *         ) 
+	 *         (exprValue=NUL hasAttribute=INT)?
+	 *     )
 	 */
 	protected void sequence_OrExpression(ISerializationContext context, OrExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -731,7 +767,10 @@ public abstract class AbstractDdSemanticSequencer extends AbstractDelegatingSema
 	 *     UnaryExpression returns UnaryExpression
 	 *
 	 * Constraint:
-	 *     (op=UnaryOperator left=SharkExpression (exprValue=NUL precision=INT length=INT hasAttribute=INT)?)
+	 *     (
+	 *         ((op=UnaryOperator left=SharkExpression) | (op=UnaryOperator left=SharkExpression) | (op=UnaryOperator left=SharkExpression)) 
+	 *         (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
+	 *     )
 	 */
 	protected void sequence_UnaryExpression(ISerializationContext context, UnaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

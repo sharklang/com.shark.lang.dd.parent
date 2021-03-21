@@ -8,17 +8,23 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 //EOL tokens are added after an indent constant or no indent and a new line
 //IDENT triggered after a Comment so generates EOL 
 //with such grammar, comment are controlled for metrics and positioning --> not free anywhere --> there and concise
-//TODO defensive programming Make init mandatory for non key attributes
+//TODO do a first output: flatbuffer and rocks and flutter crud screens 
+//TODO remove inheritence 
+//TODO add a control on the filename=datamodel name
+//TODO either chr are kept and cannot accept escapes and so potentially add a char literal so we can store in a byte 127 ascii. or remove char.
+//TODO error if no key attribute
+//TODO defensive programming Make init mandatory for non key attributes except for string?
 //TODO document the dd language itself better in the example and doc: about the use of expressions, size and precisions can be analysed recursively everywhere... 
 //TODO test expressions interactively, re-read unit tests and enrich, and build non passing JUNIT tests using excel random
 //TODO update formatter
-//TODO do a first output: flatbuffer and rocks and flutter crud screens 
 //TODO add content assist
+//TODO add control max 19 digits before and after on dec/int... because long 64 bits
 //TODO bug precision/length check fails if there is a cast
 //TODO allow array of types but check the size*size to emmit a warning or error (2Mb, 100Mb)
 //TODO use long for INT and DEC size verification instead of int
 //TODO customize error messages for parser and lexer: eg constant en maj
 //TODO see other todos
+//TODO add a control on max length of bits (32), and on precision+length<=18
 //TODO use case of the unset value
 //TODO test date operations + 1*DAY... basing on the generator error management
 //TODO add min, max, avg
@@ -44,7 +50,10 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 //TODO expression is not possible to initiate bits
 //TODO no default value on a key and no mandatory because this is explicit
 //TODO unary function look ugly because they imply double parenthesis date(("2010"&"0101"))
-
+//TODO a weakness of the expression syntax is that unary impose an extra bracket on other expressions like not( [true or false or true] )
+//but that would require full re-write of a lot of check code in xtext and full re-write of the expression grammar
+//and also the resulting syntax is a bit superfluous but is made very very readable if one uses a mix of { [ and (
+//this is then a very verbose expression grammar but very easy to understand, and to modify by anyones...
 DataModelFragment returns DataModelFragment:
 	(modelDesc+=LineComment)+
 	'model' name=OBJID EOL
@@ -52,8 +61,10 @@ DataModelFragment returns DataModelFragment:
 	(entities+=Entity)*
 	(constraints+=Constraint)*;
 
-	/////////////////////////
-//Statement 0: constants
+
+/////////////////////////
+//A) Constants
+////////////////////////
 Constant returns Constant:
 	(extraAttrDesc+=LineComment)*
 	dataType=DataType
@@ -64,8 +75,10 @@ Constant returns Constant:
 	(attrDesc=TrailComment)
 	EOL;
 
-	//////////////////////////////////////////
-//First Block of statements: entity block
+
+//////////////////////////////////////////
+//B) First Block of statements: entity block
+////////////////////////////////////////////
 Entity returns Entity:
 	(entityDescLines+=LineComment)+
 	name=OBJID ('->' extends=[Entity])? ':'
@@ -74,8 +87,7 @@ Entity returns Entity:
 	(relationships+=Relationship)*
 	END;
 
-	////////////Statement 1: Attributes
-
+////////////Statement 1 in First Block B) : Attributes
 //all is initialized and we'll see if that creates perf issue.
 //the unset value constant is either zero or Min and "". it can be overridden in ddt
 Attribute returns Attribute:
@@ -101,15 +113,17 @@ ArraySize returns ArraySize:
 	'[' size=INT ']'
 ;
 
-	////////////Statement 2: Relationships
+////////////Statement 2 in First Block B) : Relationships
 Relationship returns Relationship:
 	(relDescLines+=LineComment)*
 	cardi1=RangeExpression name=ID cardi2=RangeExpression linkTo=[Entity|OBJID]
 	(relDesc=TrailComment) //mandatory description of the Attribute
 	EOL;
 
-	///////////////////////////////////////////////
-//Second Block of statements: check constraints
+
+///////////////////////////////////////////////
+//C) Second Block of statements: check constraints block
+//////////////////////////////////////////////////
 Constraint returns Constraint:
 	(chkDescLines+=LineComment)+
 	name=CHKID ('(' firstEntity=([Entity|OBJID]) entitiesList+=(EntitiesListElt)* ')' )? ':'
@@ -121,7 +135,7 @@ EntitiesListElt returns EntitiesListElt:
 	',' entity=([Entity|OBJID]) isArray=('[]')?
 ;
 
-	////////////Statement 1: checks. If same name as entity they are intrinsic and executed systematically
+////////////Statement 1 in second block C) : checks. If same name as entity they are intrinsic and executed systematically
 //at each creation time of the object. The other need to be invoked: check myCust#Customer_Account_Crosschecks.all or .<id>
 //because a full context with all objects is required and also a relationship is required to get the related objects
 //crosschecks only work when called from the root object and descending the tree. Validation would be applied to all 
@@ -130,7 +144,10 @@ CheckExpression returns CheckExpression:
 	(chkDesc+=LineComment)+
 	name=ID expr=SharkExpression EOL;
 
-	///////////////////////////////////////////////
+
+///////////////////////////////////////////////
+//D) underlying rules
+///////////////////////////////////////////////
 //reusable rules (expression, datatype rules...)
 //below expression are very badly written but easy to understand
 //Start was done with only Binary expressions with brackets and list expressions were added to avoid putting
@@ -149,17 +166,29 @@ SharkExpression returns SharkExpression:
 	;
 
 BinaryExpression returns BinaryExpression:
-	'(' left=SharkExpression op=BinaryOperator right=SharkExpression ')' 
+	(
+	'(' left=SharkExpression op=BinaryOperator right=SharkExpression ')' |
+	'[' left=SharkExpression op=BinaryOperator right=SharkExpression ']' |
+	'{' left=SharkExpression op=BinaryOperator right=SharkExpression '}' 
+	)
 	 (exprValue=NUL precision=INT length=INT hasAttribute=INT)? //starting the sequence with NULL ensures it will never parse anything
 	;
 
-UnaryExpression returns UnaryExpression:
-	op=UnaryOperator '(' left=SharkExpression ')'
+UnaryExpression returns UnaryExpression: 
+	(
+	op=UnaryOperator '(' left=SharkExpression ')' |
+   op=UnaryOperator '[' left=SharkExpression ']' |
+   op=UnaryOperator '{' left=SharkExpression '}' 
+	)
 	 (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
 	;
 
 AddExpression returns AddExpression:
-	'(' left=SharkExpression op=('+' | '-') right=SharkExpression (addElts+=AddExpressionElt)+ ')'
+	(
+	'(' left=SharkExpression op=('+' | '-') right=SharkExpression (addElts+=AddExpressionElt)+ ')' |
+	'[' left=SharkExpression op=('+' | '-') right=SharkExpression (addElts+=AddExpressionElt)+ ']' |
+	'{' left=SharkExpression op=('+' | '-') right=SharkExpression (addElts+=AddExpressionElt)+ '}' 
+	)
 	 (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
 	;
 
@@ -167,7 +196,11 @@ AddExpressionElt returns AddExpressionElt:
 	op=('+') right=SharkExpression;
 
 MultExpression returns MultExpression:
-	'(' left=SharkExpression op=('*') right=SharkExpression (multElts+=MultExpressionElt)+ ')'
+	(
+	'(' left=SharkExpression op=('*') right=SharkExpression (multElts+=MultExpressionElt)+ ')' |
+	'[' left=SharkExpression op=('*') right=SharkExpression (multElts+=MultExpressionElt)+ ']' |
+	'{' left=SharkExpression op=('*') right=SharkExpression (multElts+=MultExpressionElt)+ '}' 
+	)
 	 (exprValue=NUL precision=INT length=INT hasAttribute=INT)?
 	;
 
@@ -175,7 +208,11 @@ MultExpressionElt returns MultExpressionElt:
 	op=('*') right=SharkExpression;
 
 AndExpression returns AndExpression:
-	'(' left=SharkExpression op=('and') right=SharkExpression (andElts+=AndExpressionElt)+ ')'
+	(
+	'(' left=SharkExpression op=('and') right=SharkExpression (andElts+=AndExpressionElt)+ ')' |
+	'[' left=SharkExpression op=('and') right=SharkExpression (andElts+=AndExpressionElt)+ ']' |
+	'{' left=SharkExpression op=('and') right=SharkExpression (andElts+=AndExpressionElt)+ '}' 
+	)
 	(exprValue=NUL hasAttribute=INT)?
 	;
 
@@ -183,7 +220,11 @@ AndExpressionElt returns AndExpressionElt:
 	op=('and') right=SharkExpression;
 
 OrExpression returns OrExpression:
-	'(' left=SharkExpression op=('or') right=SharkExpression (orElts+=OrExpressionElt)+ ')'
+	(
+	'(' left=SharkExpression op=('or') right=SharkExpression (orElts+=OrExpressionElt)+ ')' |
+	'[' left=SharkExpression op=('or') right=SharkExpression (orElts+=OrExpressionElt)+ ']' |
+	'{' left=SharkExpression op=('or') right=SharkExpression (orElts+=OrExpressionElt)+ '}' 
+	)
 	(exprValue=NUL hasAttribute=INT)?
 	;
 
@@ -191,13 +232,18 @@ OrExpressionElt returns OrExpressionElt:
 	op=('or') right=SharkExpression;
 
 CatExpression returns CatExpression:
-	'(' left=SharkExpression op=('&') right=SharkExpression (catElts+=CatExpressionElt)+ ')'
+	(
+	'(' left=SharkExpression op=('&') right=SharkExpression (catElts+=CatExpressionElt)+ ')' |
+	'[' left=SharkExpression op=('&') right=SharkExpression (catElts+=CatExpressionElt)+ ']' |
+	'{' left=SharkExpression op=('&') right=SharkExpression (catElts+=CatExpressionElt)+ '}' 	
+	 )
 	 (exprValue=NUL length=INT hasAttribute=INT)?
 	;
 
 CatExpressionElt returns CatExpressionElt:
 	op=('&') right=SharkExpression;
 	
+//list only use brackets
 ListExpression returns ListExpression:
 	op='(' left=SharkExpression (ListElts+=ListExpressionElt)+ ')' 
 	(exprValue=NUL hasAttribute=INT)?
@@ -256,8 +302,12 @@ enum DataType returns DataType:
 	unset='\uFFA0\uFFA0\uFFA0';
 	//unset here allows to use the value in the validation logic but it will never be created by lexer
 
-	/////////////////////////////////////////////////////////
-//TERMINALS: TODO export in a re-usable sharkdsl grammar
+
+/////////////////////////////////////////////////////////
+//E) TERMINALS / LEXER TOKENS: 
+/////////////////////////////////////////////////////////
+//TODO export in a re-usable sharkdsl grammar
+
 
 //The following synthetic tokens are used for the indentation-aware blocks
 //they are declared here and injected in the lexer in DDTokenSource Class
@@ -270,7 +320,6 @@ terminal EOL:
 	'synthetic:EOL'; // allow to have a classical set of parser rule with end statement token like ; but not typed
 terminal NUL:
 	'synthetic:NUL'; // to create tokens that are never parsed but used in the processing and validation logic
-
 
 
 //reused below
@@ -328,10 +377,10 @@ terminal ID returns ecore::EString:
 
 	//although xtext doc advises datatype rule. kept like that if it fails will be educational, TBC
 terminal DEC returns ecore::EBigDecimal:
-	NUM '.' NUM;
+	'-'? NUM '.' NUM;
 
 terminal INT returns ecore::EInt:
-	NUM;
+	'-'? NUM;
 
 terminal CONT returns ecore::EString:
 	'\\' NL+;

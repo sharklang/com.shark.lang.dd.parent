@@ -109,6 +109,10 @@ RightSquareBracket : ']';
 
 CircumflexAccent : '^';
 
+LeftCurlyBracket : '{';
+
+RightCurlyBracket : '}';
+
 fragment RULE_BEGIN : ;
 
 fragment RULE_END : ;
@@ -145,9 +149,9 @@ RULE_OBJID : 'A'..'Z' ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_ID : ('a'..'z'|'_'|'~') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-RULE_DEC : RULE_NUM '.' RULE_NUM;
+RULE_DEC : '-'? RULE_NUM '.' RULE_NUM;
 
-RULE_INT : RULE_NUM;
+RULE_INT : '-'? RULE_NUM;
 
 RULE_CONT : '\\' RULE_NL+;
 

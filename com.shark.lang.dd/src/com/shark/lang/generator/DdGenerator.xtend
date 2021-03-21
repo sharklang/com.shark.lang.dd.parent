@@ -15,11 +15,13 @@ import org.eclipse.xtext.generator.IGeneratorContext
  */
 class DdGenerator extends AbstractGenerator {
 
+	val myFlatDdGenerator = new FlatDdGenerator
+
+	//using several generators might have a perf option vs. spitting out several files
+	//but if they are optional (like different styles SQL output or not... ) then
+	//better to separate. In the case of the sample data app it should be outside of the raw flatbuffer
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		myFlatDdGenerator.doGenerate(resource, fsa, context)
 	}
+
 }
